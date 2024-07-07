@@ -1,0 +1,790 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Recurrent Neural Networks" href="rnn.html" /><link rel="prev" title="Natural Language Processing" href="index.html" />
+
+    <!-- Generated with Sphinx 7.1.2 and Furo 2024.05.06 -->
+        <title>Word2Vec - Blog documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=387cc868" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=36a5483c" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" /
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">Blog  documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  
+  <span class="sidebar-brand-text">Blog  documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../past_experiences/index.html">Past Experiences</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Past Experiences</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../past_experiences/iot.html">Predictive Analytics in IoT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../past_experiences/adas.html">ADAS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../past_experiences/ecom.html">Ecom</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">Natural Language Processing</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Natural Language Processing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Word2Vec</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rnn.html">Recurrent Neural Networks</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../vision/index.html">Computer Vision</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Computer Vision</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../vision/image_segmentation.html">Image Segmentation</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="../_sources/nlp/word2vec.md.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="word2vec">
+<h1>Word2Vec<a class="headerlink" href="#word2vec" title="Permalink to this heading">¶</a></h1>
+<p>One of the fundamental problems in building natural language-learning systems is the question of how to  represent words ? This is vital to build practical natural language applications such as Machine translation, Question answering , information retrieval, Summarization , analysis of text, speech to text, text to speech etc.</p>
+<p>One of the simplest ways to represent words is by using independent vectors for each word.</p>
+<div class="container py-4 py-md-5 px-4 px-md-3 text-body-secondary">
+    <div class="row" >
+      <div class="col-lg-3 mb-3">
+        <img width="300px" src="../_static/nlp/word2vec/word2vec-matrix-rep.png"></img>
+      </div>
+    </div>
+</div>
+<p>One of the drawbacks of this representation is that each column vector’s length is equal to the number of words in the vocabulary which is a huge number. But unfortunately we do not encode any notion of similarity or any other relationship between words. Eg: In our word representation space, we would want the words ‘banking and finance’ to be closer to each other while at the same time both being significantly far from the word ‘watermelon’. But in our current representation, they are all equally close or equally far from each other. In order to overcome this, we need an alternate representations of words, one which encodes the notion of closeness amongst similar words. Word2vec is one such model used to generate word representations.</p>
+<section id="word2vec-model">
+<h2>Word2Vec Model<a class="headerlink" href="#word2vec-model" title="Permalink to this heading">¶</a></h2>
+<p>Word2vec model is based on the hypothesis that the meaning of a word can be derived from the distribution of contexts in which it appears. This seemingly simple idea is one of the most influential and successful ideas in all of modern NLP. The word2vec model represents each word in a fixed vocabulary as a low-dimensional (much smaller than vocabulary size) vector.</p>
+<section id="notation">
+<h3>Notation<a class="headerlink" href="#notation" title="Permalink to this heading">¶</a></h3>
+<p>
+Let \(|V|\) be the total number of words in the vocabulary and \(d\) be the length of vector representations of each word in the vocabulary. Let U and V be matrices storing the vector representations of the outside and center words respectively in the Vocabulary.
+</p>
+<p>\[ U \in R^{d \; \text{x} \; |V|}, V \in R^{d \; \text{x} \; |V|} \]</p>
+<div class="container py-4 py-md-5 px-4 px-md-3 text-body-secondary">
+    <div class="row" >
+      <div class="col-lg-3 mb-3">
+        <img width="700px" src="../_static/nlp/word2vec/word2vec-matrices.png"></img>
+      </div>
+    </div>
+</div>
+</section>
+<section id="model">
+<h3>Model<a class="headerlink" href="#model" title="Permalink to this heading">¶</a></h3>
+<p>Given this setup, there are two models to learn the word representations,</p>
+<ul>
+<li>Skip gram: Given the centre word, compute how likely the outside word will occur in the context window of this centre word</li>
+<li>Continuous Bag Of Words (CBOW): Given the context (surrounding words), compute how likely the centre word will occur</li>
+</ul>
+<p>The rest of the article will use skip gram model while the CBOW model can be implemented in a similar manner.</p>
+<p>
+Word2vec is a probabilistic model specified as follows, where \(u_w\) refers to the column of \(U\) corresponding to word \(w\) (and likewise for \(V\)). Given the centre word \(c\), this computes the probability of outside word \(o\) occurring in the context window of centre word.
+</p>
+<div class="container py-4 py-md-5 px-4 px-md-3 text-body-secondary">
+    <div class="row" >
+      <div class="col-lg-3 mb-3">
+        <img width="600px" src="../_static/nlp/word2vec/word2vec-model.png"></img>
+      </div>
+    </div>
+</div>
+<p>
+  Where
+  <ul>
+    <li>\(v_c\): Center word representation of a specific word \(c\). Stored as one column in the matrix \(V\).</li>
+    <li>\(u_o\): Outside word representation of a specific word \(o\). Stored as one column in the matrix \(U\).</li>
+  </ul>
+</p>
+<br>
+</section>
+<section id="intuition">
+<h3>Intuition<a class="headerlink" href="#intuition" title="Permalink to this heading">¶</a></h3>
+<p>We want the model to assign high probabilities (ideally 1) for outside words which are more likely to occur in the context window of centre word. At the same time, we want the model to assign low probabilities (ideally 0) to words which are least likely to occur in the context window of centre word.</p>
+<p>
+  How do we express this mathematically ? For a given centre word and outside word pair, Let us have two vectors, \(y\) and \(\hat{y}\) of length Vocab, 
+  <ul>
+    <li>\(y\): Expected probability of outside word for a given centre word: Will be one for the actual outside word, zero for all other words</li>
+    <li>\(\hat{y}\): Probabilities of outside words to occur in context of this centre word as predicted by the model</li>
+  </ul>
+</p>
+<div class="container py-4 py-md-5 px-4 px-md-3 text-body-secondary">
+    <div class="row" >
+      <div class="col-lg-3 mb-3">
+        <img width="400px" src="../_static/nlp/word2vec/word2vec-y-yhat.png"></img>
+      </div>
+    </div>
+</div>
+<p>
+One way to quantify how good or bad the model’s predictions are is by using the cross entropy between the true distribution \(y\) and the predicted distribution \(\hat{y}\), for a particular center word c and a particular outside word \(o\). Accordingly the Cross Entropy loss objective is given by,
+</p>
+<p>
+  \[ L_{naive-softmax}(v_c, o, U) =  - \sum_{w \in \mathcal{V}} y_w log(\hat{y_w})   \]
+</p>
+<p>
+Since \(y\) is 0 for all but one word, this reduces to. 
+\[ L_{naive-softmax}(v_c, o, U) = − log (\hat{y_o}) \]
+\[ L_{naive-softmax}(v_c, o, U) = − log P(O = o|C = c) \]
+</p>
+<p>{{&lt; callout info &gt;}}
+<b>Intuition</b>: We now have a method to quantify the loss based on the how likely the center and outside words are likely to occur within a context window,</p>
+  <ul>
+    <li>If \(\hat{y_o}\) is 1, loss is 0, model's prediction is perfect</li>
+    <li>Closer \(\hat{y_o}\) is to 1, closer the loss is to 0</li>
+    <li>and further away it is from 1, larger the loss is.</li>
+  </ul>
+{{< /callout >}}
+<p>
+This is the loss function, the objective is to minimise this loss over the entire corpus of windows and all the documents in the training data. 
+</p>
+<p>
+  Let \(D\) be a set of documents \({d}\) where each document is a sequence of words \( w_{1}^d,....w_{m}^d, \), with all \( w ∈ V\). Let k be a positive-integer window size. Center word takes on the value of each word \(w_{i}\) in each document, and for each such \(w_{i}\), the corresponding outside words are {\( w_{i−k}, . . . , w_{i−1}, w_{i+1}, . . . , w_{i+k} \)}.
+</p>
+<p>
+  \[ L(U, V) =  \sum_{d \in D} \sum_{i=1}^m \sum_{j=1}^k -log \; p_{U,V}(w_{i-j}^d | w_{i}^d)   \]
+</p>
+<p>It can be observed that we are taking the sum over,</p>
+<ol class="arabic simple">
+<li><p>All documents in the corpus</p></li>
+<li><p>All words in each document</p></li>
+<li><p>All words occuring in the window of the likelihood of the outside word given the center word.</p></li>
+</ol>
+<div class="container py-4 py-md-5 px-4 px-md-3 text-body-secondary">
+    <div class="row">
+      <div class="col-lg-3 mb-3">
+        <img width="700px" src="../_static/nlp/word2vec/word2vec-corpus.png"></img>
+      </div>
+    </div>
+</div>
+</section>
+<section id="code-structuring">
+<h3>Code structuring<a class="headerlink" href="#code-structuring" title="Permalink to this heading">¶</a></h3>
+<div class="container py-4 py-md-5 px-4 px-md-3 text-body-secondary">
+    <div class="row">
+      <div class="col-lg-3 mb-3">
+        <img width="700px" src="../_static/nlp/word2vec/word2vec-code.png"></img>
+      </div>
+    </div>
+</div>
+</section>
+<section id="learning-algorithm-stochastic-gradient-descent">
+<h3>Learning Algorithm: Stochastic Gradient Descent<a class="headerlink" href="#learning-algorithm-stochastic-gradient-descent" title="Permalink to this heading">¶</a></h3>
+<p>Now that we have defined the loss function, the next objective is to minimise the loss function. In order to do this, we need gradients of loss function with respect to the word vectors. We can then use Stochastic Gradient Descent algorithm to guide the learning process and minimise the loss function.</p>
+<p>
+  \[  x_{n+1} = x_{n} - learningRate * \nabla_{x} Loss \]
+</p>
+<p>
+In this section we will derive the gradients of loss function \(L(U,V)\) with respect to centre word \(v_c\), outside word matrix \(U\). We will begin with the naive softmax first and then derive the same for the Negative Sampling variant.
+</p>
+</section>
+<section id="naive-softmax-gradient-wrt-center-word-vector">
+<h3>Naive-Softmax: Gradient wrt Center word vector<a class="headerlink" href="#naive-softmax-gradient-wrt-center-word-vector" title="Permalink to this heading">¶</a></h3>
+<p>
+\[ L_{naive-softmax}(v_c, o, U) = − log P(O = o|C = c) \]
+\[ L_{naive-softmax}(v_c, o, U) = − log (\hat{y_o}) \]
+\[ L_{naive-softmax}(v_c, o, U) = − log  \dfrac {exp(u_o^T v_c)}  {\sum_{w \in \mathcal{V}} exp(u_w^T v_c)} \]
+</p>
+<p>
+  Let us first compute the gradients of the loss with respect to the center word \(v_c\)
+</p>
+<p>
+<!--\[  \nabla_{v_c} L_{naive-softmax}(v_c, o, U)  = - \dfrac{\partial}{\partial v_c} log \dfrac {exp(u_o^T v_c)}  {\sum_{w \in Vocab} exp(u_w^T v_c)} \]-->
+\[  \nabla_{v_c} L_{naive-softmax}(v_c, o, U)  = - \nabla_{v_c} log \dfrac {exp(u_o^T v_c)}  {\sum_{w \in Vocab} exp(u_w^T v_c)} \]
+\[ = - \nabla_{v_c} ( u_o^T v_c - log \sum_{w} exp(u_w^T v_c)   ) \]
+\[ = -u_o + \dfrac{1}{\sum_{w \in \mathcal{V}} exp(u_w^T v_c)} \sum_{x \in \mathcal{V}} \nabla_{v_c} exp(u_x^T v_c)  \]
+\[ = -u_o + \dfrac{1}{\sum_{w \in \mathcal{V}} exp(u_w^T v_c)} \sum_{x \in \mathcal{V}} exp(u_x^T v_c) u_x  \]
+\[ = -u_o + \sum_{x \in \mathcal{V}} \dfrac{exp(u_x^T v_c)}{\sum_{w \in \mathcal{V}} exp(u_w^T v_c)}  u_x  \]
+\[ = -u_o + \sum_{x \in \mathcal{V}} \mathcal{P}(O = x | C = c) u_x  \]
+\[ = -u_o + \sum_{x \in \mathcal{V}} \hat{y_x} u_x  \]
+</p>
+<p>
+  The SGD update step for the center word vector \(v_c\) will now be,
+  \[ v_c^{n+1} = v_c^{n} - learningRate * \nabla_{v_c} L_{naive-softmax}(v_c, o, U) \]
+  \[ v_c^{n+1} = v_c^{n} + learningRate * (u_o - \sum_{x \in \mathcal{V}} \hat{y_x} u_x )   \]
+</p>
+<p>{{&lt; callout info &gt;}}</p>
+<p>
+<b>Intuition</b>: So what does this equation tell us,
+we have the vector for the word actually observed: \(u_o\). We subtract from that the vector, intuitively, that the model expected—in the sense that it’s the sum over all the vocabulary of the probability the model assigned to that word, multiplied by the vector that was assigned to that word. So, the \(v_c\) vector is updated to be “more like” the word vector that was actually observed than the word vector it expected. 
+</p>
+<p>
+In short, we are making \(v_c\) to be more like \(u_o\), and this is the essence of word2vec model, for a given pair of (center, outside) words vector representations should be similar to each other whereas for any two random words selected, the word representations should be very different.
+<div class="container py-4 py-md-5 px-4 px-md-3 text-body-secondary">
+    <div class="row">
+      <div class="col-lg-3 mb-3">
+        <img width="700px" src="../_static/nlp/word2vec/word2vec-vc-intuition.png"></img>
+      </div>
+    </div>
+</div>
+</p>
+{{< /callout >}}
+<p>
+  It is also interesting to note that, all the words in the vocabulary \({ u_1, u_2,....u_{|V|}   }\) are involved in order to update the center word vector \(v_c\). So let us rewrite the above equation update in terms of the outside word vector matrix \(U\). This will enable us to write vectorised code for gradient computation and thereby improve the training time.
+</p>
+<p>
+\[  \nabla_{v_c} L_{naive-softmax}(v_c, o, U)  = - (u_o - \sum_{x \in \mathcal{V}} \hat{y_x} u_x)  \]
+\[  \nabla_{v_c} L_{naive-softmax}(v_c, o, U)  = - U (y - \hat{y})  \]
+</p>
+</section>
+<section id="naive-softmax-gradient-wrt-outside-word-vectors">
+<h3>Naive-Softmax: Gradient wrt outside word vectors<a class="headerlink" href="#naive-softmax-gradient-wrt-outside-word-vectors" title="Permalink to this heading">¶</a></h3>
+<p>
+\[ L_{naive-softmax}(v_c, o, U) = − log P(O = o|C = c) \]
+\[ L_{naive-softmax}(v_c, o, U) = − log (\hat{y_o}) \]
+\[ L_{naive-softmax}(v_c, o, U) = − log  \dfrac {exp(u_o^T v_c)}  {\sum_{w \in \mathcal{V}} exp(u_w^T v_c)} \]
+</p>
+<p>
+There are two cases here, <br>
+Case 1: \(w=o\), So \(u_w\) is an outside word for this center word <br>
+</p>
+<p>
+  \[ \nabla_{u_o} L_{naive-softmax}(v_c, o, U) = - \nabla_{u_o} log  \dfrac {exp(u_o^T v_c)}  {\sum_{w \in \mathcal{V}} exp(u_w^T v_c)} \]
+  \[ = - (\nabla_{u_o} u_o^T v_c - \nabla_{u_o} log \sum_{x} exp(u_x^T v_c)) \]
+  \[ = -v_c + \nabla_{u_o} log \sum_{x \in \mathcal{V}} exp(u_x^T v_c)   \]
+  \[ = -v_c + \nabla_{u_o} log ( exp(u_o^T v_c) + \sum_{x \in \mathcal{V}, l\neq o} exp(u_x^T v_c) )    \]
+  \[ = -v_c + \dfrac{1}{exp(u_o^T v_c) + \sum_{x \in \mathcal{V}, l\neq o} exp(u_x^T v_c)} (\nabla_{u_o} exp(u_o^T v_c) + \nabla_{u_o} \sum_{x \in \mathcal{V}, l\neq o} exp(u_x^T v_c) )     \]
+</p>
+<p>
+  \[ = -v_c + \dfrac{1}{exp(u_o^T v_c) + \sum_{x \in \mathcal{V}, l\neq o} exp(u_x^T v_c)} ( exp(u_o^T v_c) v_c + 0 ) \]
+  \[ = -v_c + \dfrac{exp(u_o^T v_c)}{\sum_{x \in \mathcal{V}} exp(u_x^T v_c)} v_c \]
+  \[ = -v_c + \mathcal{P}(W=o|C=c)) v_c   \]
+  \[ = -(1 - \hat{y_o})v_c  \]
+</p> 
+<p>
+Case 2: \(w\neq o\), So  \(u_w\) is not an outside word for this center word
+</p>
+<p>
+\[ \nabla_{u_w} L_{naive-softmax}(v_c, o, U) = - \nabla_{u_w} log  \dfrac {exp(u_o^T v_c)}  {\sum_{w \in \mathcal{V}} exp(u_w^T v_c)} \]
+  \[ = - (\nabla_{u_w} u_o^T v_c - \nabla_{u_w} log \sum_{x} exp(u_x^T v_c)) \]
+  \[ = - (0 - \dfrac{exp(u_w^T v_c)}{\sum_{x \in \mathcal{V}} exp(u_x^T v_c)} v_c  )  \]
+  \[ = \dfrac{exp(u_w^T v_c)}{\sum_{x \in \mathcal{V}} exp(u_x^T v_c)} v_c \]
+  \[ = \mathcal{P}(W \neq o | C = c) v_c \]
+  \[ = \hat{y_w} v_c \]
+</p>
+<p>
+  Combining cases 1 and 2, the gradient of loss function wrt the outside word matrix \(U\) is given by,
+</p>
+<p>
+  \[ \nabla_{U} L_{naive-softmax}(v_c, o, U) = v_c [ \hat{y_1} \; \hat{y_2} ......-(1-\hat{y_o}).....\hat{y_{\mathcal{V}}}  ] \]
+  \[ \nabla_{U} L_{naive-softmax}(v_c, o, U) = - v_c(y - \hat{y}) \]
+</p>
+<p>
+  The SGD update step for the outside word vectors \(U\) will now be,
+  \[ U^{n+1} = U^{n} - learningRate * \nabla_{U} L_{naive-softmax}(v_c, o, U) \]
+  \[ U^{n+1} = U^{n} + learningRate * v_c(y - \hat{y})   \]
+</p>
+<p>{{&lt; callout info &gt;}}</p>
+<p>
+<b>Intuition</b>: So what does this equation tell us, <br>
+<ol>
+  <li>
+    One thing to be noted is the fact that all the words in the vocabulary will be updated for each (center, outside) words pair in the training data. This is computationally very expensive and the Negative-Sampling technique described in the next section is used to address this drawback.
+  </li>
+  <li>
+    For a given (center, outside) word pair, 
+      <ol>
+        <li>
+          we want \(\hat{y}\) to be close to the one for the outside word \(u_o\). The center word vector \(v_c\) is scaled by the difference \((1-\hat{y_o})\) and added to the word vector \(u_o\). So larger the difference between estimated and target value, \(v_c\) scaled by larger factor will be added to \(u_w\). <b>In essence we are making the word vector representation of the outside word \(u_o\) similar to that of the center word \(v_c\).</b>
+        </li>
+        <li>
+          we want \(\hat{y}\) to be close to 0 for all the other words in the vocabulary. The center word vector \(v_c\) is scaled by the factor \(-\hat{y_{w \neq o}}\) and added to the word vectors \(u_{w \neq o}\). <b>In essence we are making the word vector representation of non-outside words \(u_{w \neq o}\) dissimilar to that of the center word \(v_c\).</b>
+        </li>
+      </ol>
+  </li>
+</ol>
+<div class="container py-4 py-md-5 px-4 px-md-3 text-body-secondary">
+    <div class="row">
+      <div class="col-lg-3 mb-3">
+        <img width="700px" src="../_static/nlp/word2vec/word2vec-uw-intuition.png"></img>
+      </div>
+    </div>
+</div>
+</p>
+{{< /callout >}}
+</section>
+</section>
+<section id="negative-sampling">
+<h2>Negative Sampling<a class="headerlink" href="#negative-sampling" title="Permalink to this heading">¶</a></h2>
+<p>The drawback of word2vec model is that SGD update step involves using all the words in the vocabulary. This is prohibitively expensive since the total number of words in the vocabulary is massive. In order to avoid this, skip-gram with negative sampling was introduced. To see how this improves over the naive skip-gram, let us revisit the word2vec probabilistic model,</p>
+<div class="container py-4 py-md-5 px-4 px-md-3 text-body-secondary">
+    <div class="row" >
+      <div class="col-lg-3 mb-3">
+        <img width="600px" src="../_static/nlp/word2vec/word2vec-model.png"></img>
+      </div>
+    </div>
+</div>
+<p>From this, we can observe that instead of updating all the words for each context window, we can choose to update only a small number of words which do not occur in this context window. Choosing such a small set of random words, is referred to as negative sampling.</p>
+<p>
+  Let us sample \(K\) negative words \( {w_1, w_2,.... w_K} \) from the vocabulary. Their outside word vectors are respectively given by \( {u_{w_1}, u_{w_2},.... u_{w_K} } \).  For a center word \(c\) and an outside word \(o\), the negative sampling loss function is given by
+</p>
+<p>
+\[  L_{negative-sampling}(v_c, o, U) = -log(\sigma(u_o^T v_c)) - \sum_{s=1}^K log(\sigma(-u_{w_s}^T v_c))  \]
+</p>
+<p>
+  where \( \sigma() \) is the sigmoid function, <br>
+  \( \sigma(x) = \dfrac{1}{1 + exp(-x)} \) and <br>
+  \( \dfrac{\partial}{\partial x} \sigma(x) = \sigma(x) (1 - \sigma(x)) \)
+</p>
+<p>With this change to the model, the gradient calculations are modified as follows,</p>
+<section id="negative-sampling-gradient-wrt-center-word-vector">
+<h3>Negative-Sampling: Gradient wrt Center word vector<a class="headerlink" href="#negative-sampling-gradient-wrt-center-word-vector" title="Permalink to this heading">¶</a></h3>
+<p>
+\[  \nabla_{v_c} L_{negative-sampling}(v_c, o, U) = - \nabla_{v_c} log(\sigma(u_o^T v_c)) - \nabla{v_c} \sum_{s=1}^K log(\sigma(-u_{w_s}^T v_c))  \]  
+\[  = - \dfrac{1}{\sigma(u_o^T v_c)} \sigma(u_o^T v_c) (1 - \sigma(u_o^T v_c)) u_o - \sum_{s=1}^K \dfrac{1}{(1 - \sigma(u_{w_s}^T v_c))} (-\sigma(u_{w_s}^T v_c)) (1 - \sigma(u_{w_s}^T v_c)) u_{w_s} \]
+\[  = -(1 - \sigma(u_o^T v_c))u_o  - \sum_{s=1}^K (1 - \sigma(-u_{w_s}^T v_c)) (-u_{w_s})  \]
+</p>
+</section>
+<section id="negative-sampling-gradient-wrt-outside-word-matrix">
+<h3>Negative-Sampling: Gradient wrt Outside word Matrix<a class="headerlink" href="#negative-sampling-gradient-wrt-outside-word-matrix" title="Permalink to this heading">¶</a></h3>
+<p> There are two cases here,<br>
+    Case 1:When the word is an outside word \(u_{w=o}\) for this particular center word \(v_c\),
+</p>
+<p>
+  \[ \nabla_{u_o} L_{negative-sampling}(v_c, o, U) = - \nabla_{u_o} log(\sigma(u_o^T v_c)) - \nabla{u_o} \sum_{s=1}^K log(\sigma(-u_{w_s}^T v_c))  \]
+  \[ = - \dfrac{1}{\sigma(u_o^T v_c)} \sigma(u_o^T v_c) (1 - \sigma(u_o^T v_c))v_c - 0  \]
+  \[ = -(1 - \sigma(u_o^T v_c)) v_c \]
+</p>
+<p> 
+    Case 2: When the word is negatively sampled word \(u_{w \in Vocab{|w=w_s}}\) for this particular center word \(v_c\),
+</p>
+<p>
+  \[ \nabla_{u_{w_s}} L_{negative-sampling}(v_c, o, U) = - \nabla_{u_{w_s}} log(\sigma(u_o^T v_c)) - \nabla{u_{w_s}} \sum_{s=1}^K log(\sigma(-u_{w_s}^T v_c))  \]
+  \[ = 0 - \sum_{s=1}^K \dfrac{1}{(1 - \sigma(u_{w_s}^T v_c))} (-\sigma(u_{w_s}^T v_c)) (1 - \sigma(u_{w_s}^T v_c)) v_c  \]
+  \[ = (1 - \sigma(-u_{w_s}^T v_c)) v_c \]
+</p>
+</section>
+</section>
+<section id="skip-gram-accumulated-gradients-over-an-entire-context-window">
+<h2>Skip-gram: Accumulated Gradients over an entire context window<a class="headerlink" href="#skip-gram-accumulated-gradients-over-an-entire-context-window" title="Permalink to this heading">¶</a></h2>
+<p>
+The above sections derived gradients of loss function for a given pair of center and outside words. Let us now use those to compute the gradients over one particular context window, where we will have one corresponding center vector and \(m\) outside words where \(m\) is the context window size. For a given context window, let \(c = w_t\) be the center word and let \([w_{t-m},....w_{t-1}, w_t, w_{t+1},... w_{t+m}] \) be the outside words.
+</p>
+<p>
+  The total loss for the context window is then given by,
+</p>
+<p>
+  \[ L_{skip-gram}(v_c, w_{t−m}, . . . w_{t+m}, U) = \sum_{-m \leq j \leq m, j \neq 0} L(v_c, w_{t+j}, U)  \]
+</p>
+<p>
+  where, \( L(v_c, w_{t+j} , U)\) represents an arbitrary loss term for the center word \( c = w_t\) and outside word
+\( w_{t+j}\). \( L(v_c, w_{t+j} , U)\) could be \( L_{naive-softmax}(v_c, w_{t+j} , U)\) or \(L_{neg-sample}(v_c, w_{t+j} , U)\).
+</p>
+<p>
+  The total loss over a context window, is simply the sum of individual loss of each (center, outside) word pair. As a result the gradients over the entire context window will also be sum of individual gradients of loss wrt each pair of (center, outside) words,
+</p>
+<p>
+  The loss gradients over context window wrt the outside word vectors \(U\) is given by,
+  \[ \dfrac{\partial}{\partial U} L_{skip-gram}(v_c, w_{t−m}, . . . w_{t+m}, U) = \sum_{-m \leq j \leq m, j \neq 0} \dfrac{\partial}{\partial U} L(v_c, w_{t+j}, U) \]
+</p>
+<p>
+  The loss gradients over context window wrt the center word vector \(v_c\) is given by,
+  \[ \dfrac{\partial}{\partial v_c} L_{skip-gram}(v_c, w_{t−m}, . . . w_{t+m}, U) = \sum_{-m \leq j \leq m, j \neq 0} \dfrac{\partial}{\partial v_c} L(v_c, w_{t+j}, U) \]
+</p>
+<p>
+  The loss gradients over context window wrt the other center word vectors \(v_{w|w \neq c}\) is given by,
+  \[ \dfrac{\partial}{\partial v_w} L_{skip-gram}(v_c, w_{t−m}, . . . w_{t+m}, U) = 0 \]
+</p>
+<p>
+  Now that we have computed the gradients of the Loss function \( L(v_c, w_{t+j} , U)\) with respect to all the
+model parameters \(U\) and \(V\), we can now implement these in code and train the word2vec Skip-gram model.
+</p>
+</section>
+<section id="code-word2vec-using-numpy">
+<h2>Code: Word2vec using Numpy<a class="headerlink" href="#code-word2vec-using-numpy" title="Permalink to this heading">¶</a></h2>
+<p>The code is based on the template of <a class="reference external" href="https://web.stanford.edu/class/cs224n/assignments/a2.pdf">Word2Vec Assignment from Stanford’s NLP Course CS224n</a> . It uses the <a class="reference external" href="https://paperswithcode.com/dataset/sst">Stanford Sentiment Treebank Dataset</a> to train the Word2Vec Skip-gram model.</p>
+<p>We start with importing the libraries,</p>
+<div class="row">
+  <div class="col-lg-10 col-md-12 col-sm-12 col-12 mx-auto" style="overflow: scroll;">
+    <script src="https://gist.github.com/deepak-karkala/b21bef6503b8a4f214cbec2526f6474a.js"></script>
+  </div>
+</div>
+<p>The sigmoid and softmax function definitions are given by,</p>
+<div class="row">
+  <div class="col-lg-10 col-md-12 col-sm-12 col-12 mx-auto" style="height: 60vh; overflow: scroll;">
+    <script src="https://gist.github.com/deepak-karkala/4a1e0da56cc83117ce8fa56c1dc8e932.js"></script>
+  </div>
+</div>
+<p>At the top level, we define a function to train the Word2Vec model over multiple iterations of training data,</p>
+<div class="row">
+  <div class="col-lg-10 col-md-12 col-sm-12 col-12 mx-auto" style="height: 60vh; overflow: scroll;">
+    <script src="https://gist.github.com/deepak-karkala/74b8c0563a0faf5972a987c58ef0c1db.js"></script>
+  </div>
+</div>
+<p>For each iteration (or epoch), the following function will then accumulate the losses and gradients over several context windows,</p>
+<div class="row">
+  <div class="col-lg-10 col-md-12 col-sm-12 col-12 mx-auto" style="height: 60vh; overflow: scroll;">
+    <script src="https://gist.github.com/deepak-karkala/f43491550daaaaeb9da020ea28559d51.js"></script>
+  </div>
+</div>
+<p>For a given context window, the Skip-gram Model will accumulate the losses and the gradients over all pairs of (center, outside) word pairs,</p>
+<div class="row">
+  <div class="col-lg-10 col-md-12 col-sm-12 col-12 mx-auto" style="height: 60vh; overflow: scroll;">
+    <script src="https://gist.github.com/deepak-karkala/d02a7914bc93b2d5e7bdb23f35de87bc.js"></script>
+  </div>
+</div>
+<p>The Naive-Softmax Model is where we compute the loss and the gradient for one given pair of (center, outside) words. This function uses the gradient formulae derived in the earlier section,</p>
+<div class="row">
+  <div class="col-lg-10 col-md-12 col-sm-12 col-12 mx-auto" style="height: 60vh; overflow: scroll;">
+    <script src="https://gist.github.com/deepak-karkala/9e225fd138de61408f862350685c52c0.js"></script>
+  </div>
+</div>
+<p>The Word2Vec model can now be trained using the above functions. The learning rate, number of training iterations, dimensions of word vector representations, context window size are all parameters which can be tuned,</p>
+<div class="row">
+  <div class="col-lg-10 col-md-12 col-sm-12 col-12 mx-auto" style="height: 60vh; overflow: scroll;">
+    <script src="https://gist.github.com/deepak-karkala/e88666fca3f0c909315d4e15d2cae128.js"></script>
+  </div>
+</div>
+</section>
+<section id="results-visualisation">
+<h2>Results: Visualisation<a class="headerlink" href="#results-visualisation" title="Permalink to this heading">¶</a></h2>
+<p>As desired, the loss function reduces as we train the model.</p>
+<div class="container py-4 py-md-5 px-4 px-md-3 text-body-secondary">
+    <div class="row" >
+      <div class="col-lg-3 mb-3">
+        <img width="600px" src="../_static/nlp/word2vec/word2vec-loss.png"></img>
+      </div>
+    </div>
+</div>
+<p>This implies that the vector representations of words similar to each other (the ones which occur together within a context window) are pushed close to each other whereas that of random word pairs will be pushed further away from each other.</p>
+<!--
+In order to get an intuition of what the learned representations look like, word vectors were reduced to 2 dimensions using PCA and plotted,
+-->
+</section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">¶</a></h2>
+<p>Word2vec model is based on the hypothesis that the meaning of a word can be derived from the distribution of contexts in which it appears. This seemingly simple idea is one of the most influential and successful ideas in all of modern NLP and continues to be so even for training modern LLMs.</p>
+<p>Implementing word2vec from scratch using Numpy, without any high level ML frameworks, gives us better insights into probabilistic models, computation of gradients for SGD and the end to end training process of a Machine Learning Model. These vector representations of words can now be used in the downstream applications such as Sentiment Analysis, Summarisation, Question-Answering, Information Retrieval.</p>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://web.stanford.edu/class/cs224n/readings/cs224n_winter2023_lecture1_notes_draft.pdf">Stanford CS224n Lecture Notes</a></p></li>
+<li><p><a class="reference external" href="https://web.stanford.edu/class/cs224n/assignments/a2.pdf">Stanford CS224n Assignment</a></p></li>
+</ul>
+<script id="MathJax-script" type="text/javascript" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="rnn.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Recurrent Neural Networks</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="index.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Natural Language Processing</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024, Deepak Karkala
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Word2Vec</a><ul>
+<li><a class="reference internal" href="#word2vec-model">Word2Vec Model</a><ul>
+<li><a class="reference internal" href="#notation">Notation</a></li>
+<li><a class="reference internal" href="#model">Model</a></li>
+<li><a class="reference internal" href="#intuition">Intuition</a></li>
+<li><a class="reference internal" href="#code-structuring">Code structuring</a></li>
+<li><a class="reference internal" href="#learning-algorithm-stochastic-gradient-descent">Learning Algorithm: Stochastic Gradient Descent</a></li>
+<li><a class="reference internal" href="#naive-softmax-gradient-wrt-center-word-vector">Naive-Softmax: Gradient wrt Center word vector</a></li>
+<li><a class="reference internal" href="#naive-softmax-gradient-wrt-outside-word-vectors">Naive-Softmax: Gradient wrt outside word vectors</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#negative-sampling">Negative Sampling</a><ul>
+<li><a class="reference internal" href="#negative-sampling-gradient-wrt-center-word-vector">Negative-Sampling: Gradient wrt Center word vector</a></li>
+<li><a class="reference internal" href="#negative-sampling-gradient-wrt-outside-word-matrix">Negative-Sampling: Gradient wrt Outside word Matrix</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#skip-gram-accumulated-gradients-over-an-entire-context-window">Skip-gram: Accumulated Gradients over an entire context window</a></li>
+<li><a class="reference internal" href="#code-word2vec-using-numpy">Code: Word2vec using Numpy</a></li>
+<li><a class="reference internal" href="#results-visualisation">Results: Visualisation</a></li>
+<li><a class="reference internal" href="#summary">Summary</a></li>
+<li><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=b3ba4146"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/scripts/furo.js?v=4e2eecee"></script>
+    </body>
+</html>
