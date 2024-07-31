@@ -3,7 +3,7 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="prev" title="Distributed Data Parallel" href="../pytorch/distributed_data_parallel.html" />
+<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="prev" title="Device Mesh" href="../pytorch/device_mesh.html" />
 
     <!-- Generated with Sphinx 7.1.2 and Furo 2024.05.06 -->
         <title>Distributed Training - Blog documentation</title>
@@ -236,8 +236,14 @@
 <li class="toctree-l1 current has-children"><a class="reference internal" href="../index.html">Distributed Training and PyTorch</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of Distributed Training and PyTorch</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
 <li class="toctree-l2 has-children"><a class="reference internal" href="../pytorch/index.html">Pytorch</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of Pytorch</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../pytorch/state_dict.html">state_dict</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../pytorch/dp_ddp.html">DP vs DDP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pytorch/mixed_precision.html">Mixed Precision</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../pytorch/distributed_data_parallel.html">Distributed Data Parallel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pytorch/ddp_under_the_hood.html">DDP: Under the Hood</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pytorch/dp_ddp.html">DP vs DDP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pytorch/fsdp.html">FSDP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pytorch/tensor_parallelism.html">Tensor parallelism</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pytorch/pipeline_parallelism.html">Pipeline Parallelism</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../pytorch/device_mesh.html">Device Mesh</a></li>
 </ul>
 </li>
 <li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Distributed Training</a></li>
@@ -291,6 +297,12 @@
 <li><p>Learn to read PyTorch traces - What really happens when you call .forward, .backward, and .step? -
 <a class="reference external" href="https://wandb.ai/wandb/trace/reports/A-Public-Dissection-of-a-PyTorch-Training-Step--Vmlldzo5MDE3NjU">How to use PyTorch Profiler with W&amp;B</a></p></li>
 </ol>
+</section>
+<section id="activation-checkpointing">
+<h2>Activation checkpointing<a class="headerlink" href="#activation-checkpointing" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Activation checkpointing is a technique that trades compute for memory. Instead of keeping tensors needed for backward alive until they are used in gradient computation during backward, forward computation in checkpointed regions omits saving tensors for backward and recomputes them during the backward pass. Activation checkpointing can be applied to any part of a model.</p></li>
+</ul>
 </section>
 <section id="single-gpu">
 <h2>Single GPU<a class="headerlink" href="#single-gpu" title="Permalink to this heading">¶</a></h2>
@@ -389,14 +401,14 @@ Image Source:<a href="https://sebastianraschka.com/blog/2023/pytorch-faster.html
         
         <div class="related-pages">
           
-          <a class="prev-page" href="../pytorch/distributed_data_parallel.html">
+          <a class="prev-page" href="../pytorch/device_mesh.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Distributed Data Parallel</div>
+                <div class="title">Device Mesh</div>
                 
               </div>
             </a>
@@ -432,6 +444,7 @@ Image Source:<a href="https://sebastianraschka.com/blog/2023/pytorch-faster.html
             <ul>
 <li><a class="reference internal" href="#">Distributed Training</a><ul>
 <li><a class="reference internal" href="#learning-resources">Learning Resources</a></li>
+<li><a class="reference internal" href="#activation-checkpointing">Activation checkpointing</a></li>
 <li><a class="reference internal" href="#single-gpu">Single GPU</a><ul>
 <li><a class="reference internal" href="#automatic-mixed-precision">Automatic Mixed Precision</a></li>
 <li><a class="reference internal" href="#static-graphs-with-torch-compile">Static Graphs with Torch.Compile</a><ul>

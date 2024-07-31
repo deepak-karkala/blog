@@ -14,8 +14,9 @@ past_experiences/index
 ```{toctree}
 :hidden:
 
-visualisation/index
+mlops/index
 ```
+
 
 ```{toctree}
 :hidden:
@@ -45,4 +46,10 @@ distributed_training_and_pytorch/index
 :hidden:
 
 system_design/index
+```
+
+```{toctree}
+:hidden:
+
+visualisation/index
 ```
