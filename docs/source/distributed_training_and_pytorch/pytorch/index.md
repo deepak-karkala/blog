@@ -4,6 +4,12 @@
 :hidden:
 
 state_dict
-dp_ddp
+mixed_precision
 distributed_data_parallel
+ddp_under_the_hood
+dp_ddp
+fsdp
+tensor_parallelism
+pipeline_parallelism
+device_mesh
 ```
