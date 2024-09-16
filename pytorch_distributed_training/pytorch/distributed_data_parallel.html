@@ -3,7 +3,7 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" />
+<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="DDP: Under the Hood" href="ddp_under_the_hood.html" /><link rel="prev" title="Mixed Precision" href="mixed_precision.html" />
 
     <!-- Generated with Sphinx 7.1.2 and Furo 2024.05.06 -->
         <title>Distributed Data Parallel - Blog documentation</title>
@@ -211,24 +211,23 @@
   <input type="hidden" name="area" value="default">
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
-  <ul>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../past_experiences/index.html">Past Experiences</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Past Experiences</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../past_experiences/iot.html">Predictive Analytics in IoT</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../past_experiences/adas.html">ADAS</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../past_experiences/ecom.html">Ecom</a></li>
+  <ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../index.html">PyTorch, Distributed Training</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of PyTorch, Distributed Training</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 current has-children"><a class="reference internal" href="index.html">Pytorch</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Pytorch</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="general.html">General</a></li>
+<li class="toctree-l3"><a class="reference internal" href="state_dict.html">state_dict</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mixed_precision.html">Mixed Precision</a></li>
+<li class="toctree-l3 current current-page"><a class="current reference internal" href="#">Distributed Data Parallel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ddp_under_the_hood.html">DDP: Under the Hood</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dp_ddp.html">DP vs DDP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fsdp.html">FSDP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tensor_parallelism.html">Tensor parallelism</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pipeline_parallelism.html">Pipeline Parallelism</a></li>
+<li class="toctree-l3"><a class="reference internal" href="device_mesh.html">Device Mesh</a></li>
 </ul>
 </li>
-</ul>
-<ul>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp/index.html">Natural Language Processing</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Natural Language Processing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../nlp/word2vec.html">Word2Vec</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../nlp/rnn.html">Recurrent Neural Networks</a></li>
-</ul>
-</li>
-</ul>
-<ul>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../vision/index.html">Computer Vision</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Computer Vision</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../vision/image_segmentation.html">Image Segmentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../distributed_training/index.html">Distributed Training</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../optim_linear.html">Optimising Linear Layers</a></li>
 </ul>
 </li>
 </ul>
@@ -790,8 +789,26 @@ srun<span class="w"> </span>torchrun<span class="w"> </span><span class="se">\</
       <footer>
         
         <div class="related-pages">
-          
-          
+          <a class="next-page" href="ddp_under_the_hood.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">DDP: Under the Hood</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="mixed_precision.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Mixed Precision</div>
+                
+              </div>
+            </a>
         </div>
         <div class="bottom-of-page">
           <div class="left-details">
