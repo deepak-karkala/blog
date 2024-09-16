@@ -1,0 +1,569 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" />
+
+    <!-- Generated with Sphinx 7.1.2 and Furo 2024.05.06 -->
+        <title>Tensor parallelism - Blog documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=387cc868" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=36a5483c" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" /
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">Blog  documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  
+  <span class="sidebar-brand-text">Blog  documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../past_experiences/index.html">Past Experiences</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Past Experiences</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../past_experiences/iot.html">Predictive Analytics in IoT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../past_experiences/adas.html">ADAS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../past_experiences/ecom.html">Ecom</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../nlp/index.html">Natural Language Processing</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Natural Language Processing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp/word2vec.html">Word2Vec</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../nlp/rnn.html">Recurrent Neural Networks</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../vision/index.html">Computer Vision</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Computer Vision</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../vision/image_segmentation.html">Image Segmentation</a></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="../../_sources/pytorch_distributed_training/pytorch/tensor_parallelism.md.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="tensor-parallelism">
+<h1>Tensor parallelism<a class="headerlink" href="#tensor-parallelism" title="Permalink to this heading">¶</a></h1>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://pytorch.org/tutorials/intermediate/TP_tutorial.html">PyTorch Doc: Large Scale Transformer model training with Tensor Parallel (TP)</a></p></li>
+</ul>
+</section>
+<section id="how-tensor-parallel-works">
+<h2>How Tensor Parallel works?<a class="headerlink" href="#how-tensor-parallel-works" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Tensor Parallel (TP) was originally proposed in the <a class="reference external" href="https://arxiv.org/abs/1909.08053">Megatron-LM paper</a>, and it is an efficient model parallelism technique to train large scale Transformer models. Sequence Parallel (SP) we mention in this tutorial is a variant of Tensor Parallel that shards on the sequence dimension for nn.LayerNorm or RMSNorm to further save activation memory during training. As the model becomes larger, the activation memory becomes the bottleneck, so in Tensor Parallel training it usually applies Sequence Parallel to LayerNorm or RMSNorm layers.</p></li>
+</ul>
+<div class="container py-4 py-md-5 px-4 px-md-3 text-body-secondary">
+    <div class="row" >
+      <div class="col-lg-4 mb-4">
+        <img src="../../_static/distributed_training_and_pytorch/pytorch/tensor_parallelism/tp_megatron_lm.png"></img>
+      </div>
+    </div>
+</div>
+<p>At a high level, PyTorch Tensor Parallel works as follows:</p>
+<ul class="simple">
+<li><p>Sharding initialization</p>
+<ul>
+<li><p>Determine which ParallelStyle to apply to each layer and shard the initialized module by calling parallelize_module.</p></li>
+<li><p>The parallelized modules would have their model parameters be swapped to DTensors, and DTensor would be responsible to run the parallelized module using sharded computation.</p></li>
+</ul>
+</li>
+<li><p>Runtime foward/backward</p>
+<ul>
+<li><p>Depending on the input/outputs DTensor layouts user specified for each ParallelStyle, it would run proper communication operation to transform the DTensor layouts for inputs/outputs (such as allreduce, allgather and reduce_scatter).</p></li>
+<li><p>Run sharded computation for the parallelized layers to save compute/memory (for example, nn.Linear, nn.Embedding).</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="when-and-why-you-should-apply-tensor-parallel">
+<h2>When and Why you should apply Tensor Parallel ?<a class="headerlink" href="#when-and-why-you-should-apply-tensor-parallel" title="Permalink to this heading">¶</a></h2>
+<p>The PyTorch Fully Sharded Data Parallel (FSDP) already has the capability to scale model training to a specific number of GPUs. However, when it comes to further scale the model training in terms of model size and GPU quantity, many additional challenges arise that may require combining Tensor Parallel with FSDP.:</p>
+<ul class="simple">
+<li><p>As the world size (number of GPUs) is becoming excessively large (exceeding 128/256 GPUs), the FSDP collectives (such as allgather) are being dominated by ring latency. By implementing TP/SP on top of FSDP, the FSDP world size could be reduced by 8 by applying FSDP to be inter-host only, consequently decreasing the latency costs by the same amount.</p></li>
+<li><p>Hit data parallelism limit where you can not raise the global batch size to be above the number of GPUs due to both convergence and GPU memory limitations, Tensor/Sequence Parallel is the only known way to “ballpark” the global batch size and continue scaling with more GPUs. This means both model size and number of GPUs could continue to scale.</p></li>
+<li><p>For certain types of models, when local batch size becomes smaller, TP/SP can yield matrix multiplication shapes that are more optimized for floating point operations (FLOPS).</p></li>
+</ul>
+<p><b>So, when pre-training, how easy is it to hit those limits? As of now, pre-training a Large Language Model (LLM) with billions or trillions of tokens could take months, even when using thousands of GPUs.</b></p>
+<ul class="simple">
+<li><p>It will always hit limitation 1 when training LLM on a large scale. For example, Llama 2 70B trained with 2k GPUs for 35 days, multi-dimensional parallelisms are needed at 2k scale.</p></li>
+<li><p>When the Transformer model becomes larger (such as Llama2 70B), it will also quickly hit the limitation 2. One could not use FSDP alone with even local batch_size=1 due to memory and convergence constraints. For example, Llama 2 global batch size is 1K, so data parallelism alone can not be used at 2K GPUs.</p></li>
+</ul>
+</section>
+<section id="how-to-apply-tensor-parallel">
+<h2>How to apply Tensor Parallel ?<a class="headerlink" href="#how-to-apply-tensor-parallel" title="Permalink to this heading">¶</a></h2>
+<p>PyTorch Tensor Parallel APIs offers a set of module level primitives (ParallelStyle) to configure the sharding for each individual layers of the model, including:</p>
+<ul class="simple">
+<li><p>ColwiseParallel and RowwiseParallel: Shard the nn.Linear and nn.Embedding in the column or row fashion.</p></li>
+<li><p>SequenceParallel: Perform sharded computations on nn.LayerNorm, nn.Dropout, RMSNormPython, etc.</p></li>
+<li><p>PrepareModuleInput and PrepareModuleOutput: Configure the module inputs/outputs sharding layouts with proper communication operations.</p></li>
+</ul>
+</section>
+<section id="tensor-parallelism-on-llama2-model">
+<h2>Tensor Parallelism on Llama2 model<a class="headerlink" href="#tensor-parallelism-on-llama2-model" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Since Tensor Parallel shard individual tensors over a set of devices, we would need to set up the distributed environment (such as NCCL communicators) first.</p></li>
+<li><p>Tensor Parallelism is a Single-Program Multiple-Data (SPMD) sharding algorithm similar to PyTorch DDP/FSDP, and it under the hood leverages the PyTorch DTensor to perform sharding.</p></li>
+<li><p>It also utilizes the DeviceMesh abstraction (which under the hood manages ProcessGroups) for device management and sharding.</p></li>
+</ul>
+<section id="feedforward-layer">
+<h3>Feedforward layer<a class="headerlink" href="#feedforward-layer" title="Permalink to this heading">¶</a></h3>
+<p>The core TransformerBlock consists of an Attention layer and a FeedForward layer. Let us first look at the simpler FeedForward layer. For the FeedForward Layer it consists of three Linear layers, where it performs a SwiGLU style MLP, looking at its forward function:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># forward in the FeedForward layer</span>
+<span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">w2</span><span class="p">(</span><span class="n">F</span><span class="o">.</span><span class="n">silu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">w1</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">w3</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>It performs w1 and w3 matmuls concurrently and followed by a w2 matmul with the result of the combined w1/w3 linear projection results. This means we could use the idea from the Tensor Parallelism paper to shard the w1/w3 Linear layers in the colwise fashion and shard the w2 Linear layer in the rowwise fashion, so that there is only one allreduce communication happening at the end of all the three layers. With the PyTorch native Tensor Parallel, we can simply create a parallelize_plan for the FeedForward layer like below:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">torch.distributed.tensor.parallel</span> <span class="kn">import</span> <span class="n">ColwiseParallel</span><span class="p">,</span> <span class="n">RowwiseParallel</span><span class="p">,</span> <span class="n">parallelize_module</span>
+
+<span class="n">layer_tp_plan</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># by default ColwiseParallel input layouts is replicated</span>
+    <span class="c1"># and RowwiseParallel output layouts is replicated</span>
+    <span class="s2">&quot;feed_foward.w1&quot;</span><span class="p">:</span> <span class="n">ColwiseParallel</span><span class="p">(),</span>
+    <span class="s2">&quot;feed_forward.w2&quot;</span><span class="p">:</span> <span class="n">RowwiseParallel</span><span class="p">(),</span>
+    <span class="s2">&quot;feed_forward.w3&quot;</span><span class="p">:</span> <span class="n">ColwiseParallel</span><span class="p">(),</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Users would only need to specify how to shard the individual layers and the communications (for example, allreduce) will happen under the hood.</p>
+</section>
+<section id="attention-layer">
+<h3>Attention layer<a class="headerlink" href="#attention-layer" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>It consists of wq, wk, wv Linear layers to project input to q/ k / v, and then it performs attention and output projection with the wo Linear layer. Tensor Parallelism here intends to perform column-wise sharding for the q/k/v projection and row-wise sharding for the wo linear projection.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">layer_tp_plan</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># by default ColwiseParallel input layouts is replicated</span>
+    <span class="c1"># and RowwiseParallel output layouts is replicated</span>
+    <span class="s2">&quot;attention.wq&quot;</span><span class="p">:</span> <span class="n">ColwiseParallel</span><span class="p">(),</span>
+    <span class="s2">&quot;attention.wk&quot;</span><span class="p">:</span> <span class="n">ColwiseParallel</span><span class="p">(),</span>
+    <span class="s2">&quot;attention.wv&quot;</span><span class="p">:</span> <span class="n">ColwiseParallel</span><span class="p">(),</span>
+    <span class="s2">&quot;attention.wo&quot;</span><span class="p">:</span> <span class="n">RowwiseParallel</span><span class="p">(),</span>
+    <span class="s2">&quot;feed_forward.w1&quot;</span><span class="p">:</span> <span class="n">ColwiseParallel</span><span class="p">(),</span>
+    <span class="s2">&quot;feed_forward.w2&quot;</span><span class="p">:</span> <span class="n">RowwiseParallel</span><span class="p">(),</span>
+    <span class="s2">&quot;feed_forward.w3&quot;</span><span class="p">:</span> <span class="n">ColwiseParallel</span><span class="p">(),</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Finally, we need to call parallelize_module API to make the plan for each TransformerBlock effective. Under the hood, it distributes the model parameters inside Attention and FeedForward layers to DTensors, and registers communication hooks for model inputs and outputs (before and after each module respectively), if necessary:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">layer_id</span><span class="p">,</span> <span class="n">transformer_block</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">layers</span><span class="p">):</span>
+    <span class="n">layer_tp_plan</span> <span class="o">=</span> <span class="p">{</span><span class="o">...</span><span class="p">}</span>  <span class="c1"># i.e. the plan we just generated</span>
+
+    <span class="c1"># Adjust attention module to use the local number of heads</span>
+    <span class="n">attn_layer</span> <span class="o">=</span> <span class="n">transformer_block</span><span class="o">.</span><span class="n">attention</span>
+    <span class="n">attn_layer</span><span class="o">.</span><span class="n">n_heads</span> <span class="o">=</span> <span class="n">attn_layer</span><span class="o">.</span><span class="n">n_heads</span> <span class="o">//</span> <span class="n">tp_mesh</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+    <span class="n">attn_layer</span><span class="o">.</span><span class="n">n_kv_heads</span> <span class="o">=</span> <span class="n">attn_layer</span><span class="o">.</span><span class="n">n_kv_heads</span> <span class="o">//</span> <span class="n">tp_mesh</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+
+    <span class="n">parallelize_module</span><span class="p">(</span>
+        <span class="n">module</span><span class="o">=</span><span class="n">transformer_block</span><span class="p">,</span>
+        <span class="n">device_mesh</span><span class="o">=</span><span class="n">tp_mesh</span><span class="p">,</span>
+        <span class="n">parallelize_plan</span><span class="o">=</span><span class="n">layer_tp_plan</span><span class="p">,</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="apply-sequence-parallel-to-layernorm-rmsnorm-layers">
+<h3>Apply Sequence Parallel to LayerNorm/RMSNorm layers<a class="headerlink" href="#apply-sequence-parallel-to-layernorm-rmsnorm-layers" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><b>Sequence Parallel works on top of the Tensor Parallel illustrated above. Compared with basic Tensor Parallel, which only shards tensors within the Attention modules and FeedForward modules and keep their module inputs and outputs (namely activations in the forward pass and gradients in the backward pass) replicated, Sequence Parallel keeps them sharded on the sequence dimension.</b></p></li>
+</ul>
+<p>In a typical TransformerBlock, the forward function combines norm layers (LayerNorm or RMSNorm), an attention layer, a feed forward layer, and residual connections. For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># forward in a TransformerBlock</span>
+<span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">attention</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">attention_norm</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">h</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">feed_forward</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ffn_norm</span><span class="p">(</span><span class="n">h</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">out</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Next let’s adjust the layer_tp_plan to enable sequence parallel on the RMSNorm layers:</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">layer_tp_plan</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># Now the input and output of SequenceParallel has Shard(1) layouts,</span>
+    <span class="c1"># to represent the input/output tensors sharded on the sequence dimension</span>
+    <span class="s2">&quot;attention_norm&quot;</span><span class="p">:</span> <span class="n">SequenceParallel</span><span class="p">(),</span>
+    <span class="s2">&quot;attention&quot;</span><span class="p">:</span> <span class="n">PrepareModuleInput</span><span class="p">(</span>
+        <span class="n">input_layouts</span><span class="o">=</span><span class="p">(</span><span class="n">Shard</span><span class="p">(</span><span class="mi">1</span><span class="p">),),</span>
+        <span class="n">desired_input_layouts</span><span class="o">=</span><span class="p">(</span><span class="n">Replicate</span><span class="p">(),),</span>
+    <span class="p">),</span>
+    <span class="s2">&quot;attention.wq&quot;</span><span class="p">:</span> <span class="n">ColwiseParallel</span><span class="p">(),</span>
+    <span class="s2">&quot;attention.wk&quot;</span><span class="p">:</span> <span class="n">ColwiseParallel</span><span class="p">(),</span>
+    <span class="s2">&quot;attention.wv&quot;</span><span class="p">:</span> <span class="n">ColwiseParallel</span><span class="p">(),</span>
+    <span class="s2">&quot;attention.wo&quot;</span><span class="p">:</span> <span class="n">RowwiseParallel</span><span class="p">(</span><span class="n">output_layouts</span><span class="o">=</span><span class="n">Shard</span><span class="p">(</span><span class="mi">1</span><span class="p">)),</span>
+    <span class="s2">&quot;ffn_norm&quot;</span><span class="p">:</span> <span class="n">SequenceParallel</span><span class="p">(),</span>
+    <span class="s2">&quot;feed_forward&quot;</span><span class="p">:</span> <span class="n">PrepareModuleInput</span><span class="p">(</span>
+        <span class="n">input_layouts</span><span class="o">=</span><span class="p">(</span><span class="n">Shard</span><span class="p">(</span><span class="mi">1</span><span class="p">),),</span>
+        <span class="n">desired_input_layouts</span><span class="o">=</span><span class="p">(</span><span class="n">Replicate</span><span class="p">(),),</span>
+    <span class="p">),</span>
+    <span class="s2">&quot;feed_forward.w1&quot;</span><span class="p">:</span> <span class="n">ColwiseParallel</span><span class="p">(),</span>
+    <span class="s2">&quot;feed_forward.w2&quot;</span><span class="p">:</span> <span class="n">RowwiseParallel</span><span class="p">(</span><span class="n">output_layouts</span><span class="o">=</span><span class="n">Shard</span><span class="p">(</span><span class="mi">1</span><span class="p">)),</span>
+    <span class="s2">&quot;feed_forward.w3&quot;</span><span class="p">:</span> <span class="n">ColwiseParallel</span><span class="p">(),</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="apply-loss-parallel">
+<h3>Apply Loss Parallel<a class="headerlink" href="#apply-loss-parallel" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Loss Parallel is a related technique to save memory and communication when the loss function is computed, as model outputs are usually very large. In Loss Parallel, when the model outputs are sharded on the (often huge) vocabulary dimension, the cross-entropy loss can be computed efficiently, without gathering all the model outputs to every single GPU. This not only significantly reduces the memory consumption, but also improves training speed by reducing communication overhead and doing sharded computation in parallel. The picture below briefly illustrates how Loss Parallel avoids gathering all model outputs to every GPU by doing sharded computation.</p></li>
+<li><p>To apply Loss Parallel, the model predictions, usually of the shape [batch size, sequence length, vocabulary size], should be sharded on the vocabulary dimension. This can be easily done via marking the output layouts of the last linear projection layer output:</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">parallelize_module</span><span class="p">(</span>
+    <span class="n">model</span><span class="p">,</span>
+    <span class="n">tp_mesh</span><span class="p">,</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;tok_embeddings&quot;</span><span class="p">:</span> <span class="n">RowwiseParallel</span><span class="p">(</span>
+            <span class="n">input_layouts</span><span class="o">=</span><span class="n">Replicate</span><span class="p">(),</span>
+            <span class="n">output_layouts</span><span class="o">=</span><span class="n">Shard</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
+        <span class="p">),</span>
+        <span class="s2">&quot;norm&quot;</span><span class="p">:</span> <span class="n">SequenceParallel</span><span class="p">(),</span>
+        <span class="s2">&quot;output&quot;</span><span class="p">:</span> <span class="n">ColwiseParallel</span><span class="p">(</span>
+            <span class="n">input_layouts</span><span class="o">=</span><span class="n">Shard</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
+            <span class="c1"># use DTensor as the output</span>
+            <span class="n">use_local_output</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="p">),</span>
+    <span class="p">},</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="tensor-parallel-with-fsdp">
+<h2>Tensor Parallel with FSDP<a class="headerlink" href="#tensor-parallel-with-fsdp" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Since Tensor Parallelism incurs communications that block the computation, we want to make sure it runs within a fast communication channel, such as NVLink. In practice, we <b>usually apply Tensor Parallel within each host, and apply Fully Sharded Data Parallel across the hosts.</b></p></li>
+<li><p>This 2-D parallelism pattern can be easily expressed via a 2-D DeviceMesh, and we just need pass each “sub” DeviceMesh to each individual parallelism APIs:</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">torch.distributed.device_mesh</span> <span class="kn">import</span> <span class="n">init_device_mesh</span>
+<span class="kn">from</span> <span class="nn">torch.distributed.tensor.parallel</span> <span class="kn">import</span> <span class="n">ColwiseParallel</span><span class="p">,</span> <span class="n">RowwiseParallel</span><span class="p">,</span> <span class="n">parallelize_module</span>
+<span class="kn">from</span> <span class="nn">torch.distributed.fsdp</span> <span class="kn">import</span> <span class="n">FullyShardedDataParallel</span> <span class="k">as</span> <span class="n">FSDP</span>
+
+<span class="c1"># i.e. 2-D mesh is [dp, tp], training on 64 GPUs that performs 8 way DP and 8 way TP</span>
+<span class="n">mesh_2d</span> <span class="o">=</span> <span class="n">init_device_mesh</span><span class="p">(</span><span class="s2">&quot;cuda&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">tp_mesh</span> <span class="o">=</span> <span class="n">mesh_2d</span><span class="p">[</span><span class="s2">&quot;tp&quot;</span><span class="p">]</span> <span class="c1"># a submesh that connects intra-host devices</span>
+<span class="n">dp_mesh</span> <span class="o">=</span> <span class="n">mesh_2d</span><span class="p">[</span><span class="s2">&quot;dp&quot;</span><span class="p">]</span> <span class="c1"># a submesh that connects inter-host devices</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+
+<span class="n">tp_plan</span> <span class="o">=</span> <span class="p">{</span><span class="o">...</span><span class="p">}</span>
+
+<span class="c1"># apply Tensor Parallel intra-host on tp_mesh</span>
+<span class="n">model_tp</span> <span class="o">=</span> <span class="n">parallelize_module</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">tp_mesh</span><span class="p">,</span> <span class="n">tp_plan</span><span class="p">)</span>
+<span class="c1"># apply FSDP inter-host on dp_mesh</span>
+<span class="n">model_2d</span> <span class="o">=</span> <span class="n">FSDP</span><span class="p">(</span><span class="n">model_tp</span><span class="p">,</span> <span class="n">device_mesh</span><span class="o">=</span><span class="n">dp_mesh</span><span class="p">,</span> <span class="n">use_orig_params</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="container py-4 py-md-5 px-4 px-md-3 text-body-secondary">
+    <div class="row" >
+      <div class="col-lg-4 mb-4">
+        <img src="../../_static/distributed_training_and_pytorch/pytorch/tensor_parallelism/fsdp_tp.png"></img>
+      </div>
+    </div>
+</div>
+<p>Source: <a class="reference external" href="https://pytorch.org/tutorials/intermediate/TP_tutorial.html#combine-tensor-parallel-with-fully-sharded-data-parallel-together">Large Scale Transformer model training with Tensor Parallel (TP)</a></p>
+<ul class="simple">
+<li><p>FSDP and TP work on separate device dimensions, FSDP communication happens inter-host and TP communication happens intra-host</p></li>
+<li><p><b>This would allow us to easily apply Tensor Parallel within each host (intra-host) and apply FSDP across hosts (inter-hosts), with 0-code changes to the Llama model. The Tensor(Model) Parallel and Data Parallel techniques combined together provides the ability to continue increasing model size and training efficiently using a large number of GPUs.</b></p></li>
+</ul>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024, Deepak Karkala
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Tensor parallelism</a><ul>
+<li><a class="reference internal" href="#references">References</a></li>
+<li><a class="reference internal" href="#how-tensor-parallel-works">How Tensor Parallel works?</a></li>
+<li><a class="reference internal" href="#when-and-why-you-should-apply-tensor-parallel">When and Why you should apply Tensor Parallel ?</a></li>
+<li><a class="reference internal" href="#how-to-apply-tensor-parallel">How to apply Tensor Parallel ?</a></li>
+<li><a class="reference internal" href="#tensor-parallelism-on-llama2-model">Tensor Parallelism on Llama2 model</a><ul>
+<li><a class="reference internal" href="#feedforward-layer">Feedforward layer</a></li>
+<li><a class="reference internal" href="#attention-layer">Attention layer</a></li>
+<li><a class="reference internal" href="#apply-sequence-parallel-to-layernorm-rmsnorm-layers">Apply Sequence Parallel to LayerNorm/RMSNorm layers</a></li>
+<li><a class="reference internal" href="#apply-loss-parallel">Apply Loss Parallel</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#tensor-parallel-with-fsdp">Tensor Parallel with FSDP</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=b3ba4146"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/scripts/furo.js?v=4e2eecee"></script>
+    </body>
+</html>
