@@ -13,6 +13,12 @@ past_experiences/index
 ```
 -->
 
+```{toctree}
+:hidden:
+
+projects/index
+```
+
 <!--
 ```{toctree}
 :hidden:
@@ -60,7 +66,7 @@ vision/index
 ```{toctree}
 :hidden:
 
-pytorch_distributed_training/index
+pytorch/index
 ```
 
 <!--
