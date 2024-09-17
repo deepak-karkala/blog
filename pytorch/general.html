@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="state_dict" href="state_dict.html" /><link rel="prev" title="PyTorch" href="index.html" />
 
     <!-- Generated with Sphinx 7.1.2 and Furo 2024.05.06 -->
-        <title>ADAS - Blog documentation</title>
+        <title>General - Blog documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=387cc868" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=36a5483c" />
@@ -211,18 +211,18 @@
   <input type="hidden" name="area" value="default">
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
-  <ul>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../pytorch/index.html">PyTorch</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of PyTorch</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../pytorch/general.html">General</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../pytorch/state_dict.html">state_dict</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../pytorch/mixed_precision.html">Mixed Precision</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../pytorch/distributed_data_parallel.html">Distributed Data Parallel</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../pytorch/ddp_under_the_hood.html">DDP: Under the Hood</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../pytorch/dp_ddp.html">DP vs DDP</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../pytorch/fsdp.html">FSDP</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../pytorch/tensor_parallelism.html">Tensor parallelism</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../pytorch/pipeline_parallelism.html">Pipeline Parallelism</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../pytorch/device_mesh.html">Device Mesh</a></li>
+  <ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">PyTorch</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of PyTorch</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">General</a></li>
+<li class="toctree-l2"><a class="reference internal" href="state_dict.html">state_dict</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mixed_precision.html">Mixed Precision</a></li>
+<li class="toctree-l2"><a class="reference internal" href="distributed_data_parallel.html">Distributed Data Parallel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ddp_under_the_hood.html">DDP: Under the Hood</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dp_ddp.html">DP vs DDP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fsdp.html">FSDP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tensor_parallelism.html">Tensor parallelism</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pipeline_parallelism.html">Pipeline Parallelism</a></li>
+<li class="toctree-l2"><a class="reference internal" href="device_mesh.html">Device Mesh</a></li>
 </ul>
 </li>
 </ul>
@@ -245,7 +245,7 @@
         </a>
         <div class="content-icon-container">
           <div class="view-this-page">
-  <a class="muted-link" href="../_sources/past_experiences/adas.md.txt" title="View this page">
+  <a class="muted-link" href="../_sources/pytorch/general.md.txt" title="View this page">
     <svg><use href="#svg-eye"></use></svg>
     <span class="visually-hidden">View this page</span>
   </a>
@@ -265,8 +265,27 @@
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <section id="adas">
-<h1>ADAS<a class="headerlink" href="#adas" title="Permalink to this heading">¶</a></h1>
+          <section id="general">
+<h1>General<a class="headerlink" href="#general" title="Permalink to this heading">¶</a></h1>
+<ul class="simple">
+<li><p><b>PyTorch LogSoftmax vs Softmax for CrossEntropyLoss</b></p>
+<ul>
+<li><p><a class="reference external" href="https://stackoverflow.com/questions/65192475/pytorch-logsoftmax-vs-softmax-for-crossentropyloss">StackOverFlow</a></p>
+<ul>
+<li><p>Yes, NLLLoss takes log-probabilities (log(softmax(x))) as input. Why?. Because if you add a nn.LogSoftmax (or F.log_softmax) as the final layer of your model’s output, you can easily get the probabilities using torch.exp(output), and in order to get cross-entropy loss, you can directly use nn.NLLLoss. Of course, log-softmax is more stable as you said.</p></li>
+<li><p>And, there is only one log (it’s in nn.LogSoftmax). There is no log in nn.NLLLoss.</p></li>
+<li><p>nn.CrossEntropyLoss() combines nn.LogSoftmax() (that is, log(softmax(x))) and nn.NLLLoss() in one single class. Therefore, the output from the network that is passed into nn.CrossEntropyLoss needs to be the raw output of the network (called logits), not the output of the softmax function.</p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="https://pytorch.org/docs/stable/generated/torch.nn.NLLLoss.html">PyTorch NLLLoss</a></p>
+<ul>
+<li><p>The input given through a forward call is expected to contain log-probabilities of each class.</p></li>
+<li><p>Obtaining log-probabilities in a neural network is easily achieved by adding a LogSoftmax layer in the last layer of your network. You may use CrossEntropyLoss instead, if you prefer not to add an extra layer.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 </section>
 
         </article>
@@ -274,8 +293,26 @@
       <footer>
         
         <div class="related-pages">
-          
-          
+          <a class="next-page" href="state_dict.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">state_dict</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="index.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">PyTorch</div>
+                
+              </div>
+            </a>
         </div>
         <div class="bottom-of-page">
           <div class="left-details">
