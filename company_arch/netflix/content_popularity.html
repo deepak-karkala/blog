@@ -3,13 +3,13 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Tensor parallelism" href="tensor_parallelism.html" /><link rel="prev" title="DP vs DDP" href="dp_ddp.html" />
+<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Netflix and Fill" href="netflix_fill.html" /><link rel="prev" title="Worldwide Content Delivery" href="worldwide_content_delivery.html" />
 
     <!-- Generated with Sphinx 7.1.2 and Furo 2024.05.06 -->
-        <title>FSDP - Blog documentation</title>
-      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=387cc868" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=36a5483c" />
+        <title>Content Popularity for CDN - Blog documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=387cc868" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=36a5483c" />
     
     
 
@@ -179,7 +179,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../index.html"><div class="brand">Blog  documentation</div></a>
+      <a href="../../index.html"><div class="brand">Blog  documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -191,7 +191,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
         <div class="visually-hidden">Toggle table of contents sidebar</div>
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
@@ -200,38 +200,38 @@
   <aside class="sidebar-drawer">
     <div class="sidebar-container">
       
-      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
   
   
   <span class="sidebar-brand-text">Blog  documentation</span>
   
-</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
   <input type="hidden" name="check_keywords" value="yes">
   <input type="hidden" name="area" value="default">
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
-  <ul class="current">
-<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">PyTorch</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of PyTorch</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="general.html">General</a></li>
-<li class="toctree-l2"><a class="reference internal" href="state_dict.html">state_dict</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mixed_precision.html">Mixed Precision</a></li>
-<li class="toctree-l2"><a class="reference internal" href="distributed_data_parallel.html">Distributed Data Parallel</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ddp_under_the_hood.html">DDP: Under the Hood</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dp_ddp.html">DP vs DDP</a></li>
-<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">FSDP</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tensor_parallelism.html">Tensor parallelism</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pipeline_parallelism.html">Pipeline Parallelism</a></li>
-<li class="toctree-l2"><a class="reference internal" href="device_mesh.html">Device Mesh</a></li>
+  <ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../pytorch/index.html">PyTorch</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of PyTorch</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../pytorch/general.html">General</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../pytorch/state_dict.html">state_dict</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../pytorch/mixed_precision.html">Mixed Precision</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../pytorch/distributed_data_parallel.html">Distributed Data Parallel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../pytorch/ddp_under_the_hood.html">DDP: Under the Hood</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../pytorch/dp_ddp.html">DP vs DDP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../pytorch/fsdp.html">FSDP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../pytorch/tensor_parallelism.html">Tensor parallelism</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../pytorch/pipeline_parallelism.html">Pipeline Parallelism</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../pytorch/device_mesh.html">Device Mesh</a></li>
 </ul>
 </li>
 </ul>
-<ul>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../company_arch/index.html">Company architecture</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Company architecture</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../company_arch/netflix/index.html">Netflix</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Netflix</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="../company_arch/netflix/worldwide_content_delivery.html">Worldwide Content Delivery</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../company_arch/netflix/content_popularity.html">Content Popularity for CDN</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../company_arch/netflix/netflix_fill.html">Netflix and Fill</a></li>
+<ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../index.html">Company architecture</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Company architecture</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 current has-children"><a class="reference internal" href="index.html">Netflix</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Netflix</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="worldwide_content_delivery.html">Worldwide Content Delivery</a></li>
+<li class="toctree-l3 current current-page"><a class="current reference internal" href="#">Content Popularity for CDN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="netflix_fill.html">Netflix and Fill</a></li>
 </ul>
 </li>
 </ul>
@@ -256,7 +256,7 @@
         </a>
         <div class="content-icon-container">
           <div class="view-this-page">
-  <a class="muted-link" href="../_sources/pytorch/fsdp.md.txt" title="View this page">
+  <a class="muted-link" href="../../_sources/company_arch/netflix/content_popularity.md.txt" title="View this page">
     <svg><use href="#svg-eye"></use></svg>
     <span class="visually-hidden">View this page</span>
   </a>
@@ -270,81 +270,88 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
             <div class="visually-hidden">Toggle table of contents sidebar</div>
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <section id="fsdp">
-<h1>FSDP<a class="headerlink" href="#fsdp" title="Permalink to this heading">¶</a></h1>
+          <section id="content-popularity-for-cdn">
+<h1>Content Popularity for CDN<a class="headerlink" href="#content-popularity-for-cdn" title="Permalink to this heading">¶</a></h1>
 <ul class="simple">
-<li><p>Mar 2022: With PyTorch 1.11 we’re adding native support for Fully Sharded Data Parallel (FSDP). Its implementation heavily borrows from FairScale’s version while bringing more streamlined APIs and additional performance improvements. Realized performance in our experiments reached 84 TFLOPS per A100 GPU for GPT 1T model and 159 TFLOPS per A100 GPU for GPT 175B model on AWS cluster.</p></li>
-</ul>
-<section id="how-fsdp-works">
-<h2>How FSDP Works<a class="headerlink" href="#how-fsdp-works" title="Permalink to this heading">¶</a></h2>
-<ul class="simple">
-<li><p>FSDP is a type of data-parallel training, but unlike traditional data-parallel, which maintains a per-GPU copy of a model’s parameters, gradients and optimizer states, it shards all of these states across data-parallel workers and can optionally offload the sharded model parameters to CPUs.</p></li>
-</ul>
-<div class="container py-4 py-md-5 px-4 px-md-3 text-body-secondary">
-    <div class="row" >
-      <div class="col-lg-4 mb-4">
-        <img src="../../_static/distributed_training_and_pytorch/pytorch/fsdp/fsdp_workflow.png"></img>
-      </div>
-    </div>
-</div>
-<ul class="simple">
-<li><p><b>Usually, model layers are wrapped with FSDP in a nested way, so that only layers in a single FSDP instance need to gather the full parameters to a single device during forward or backward computations. The gathered full parameters will be freed immediately after computation, and the freed memory can be used for the next layer’s computation. In this way, peak GPU memory could be saved and thus training can be scaled to use a larger model size or larger batch size. To further maximize memory efficiency, FSDP can offload the parameters, gradients and optimizer states to CPUs when the instance is not active in the computation.</b></p></li>
-</ul>
-</section>
-<section id="fsdp-vs-ddp">
-<h2>FSDP VS DDP<a class="headerlink" href="#fsdp-vs-ddp" title="Permalink to this heading">¶</a></h2>
-<ul class="simple">
-<li><p>In DistributedDataParallel, (DDP) training, each process/ worker owns a replica of the model and processes a batch of data, finally it uses all-reduce to sum up gradients over different workers. In DDP the model weights and optimizer states are replicated across all workers. FSDP is a type of data parallelism that shards model parameters, optimizer states and gradients across DDP ranks.</p></li>
-<li><p>When training with FSDP, the GPU memory footprint is smaller than when training with DDP across all workers. This makes the training of some very large models feasible by allowing larger models or batch sizes to fit on device. This comes with the cost of increased communication volume. The communication overhead is reduced by internal optimizations like overlapping communication and computation.</p></li>
-<li><p>At a high level FSDP works as follow:</p>
+<li><p>How is content popularity used to optimize our CDN?</p>
 <ul>
-<li><p>In constructor</p>
+<li><p>Minimizing network distance</p>
 <ul>
-<li><p>Shard model parameters and each rank only keeps its own shard</p></li>
+<li><p>Given the finite amount of disk space available per server and the large size of the entire Netflix catalog, we cannot fit all content in every cluster of co-located servers.</p></li>
+<li><p>Many clusters that are proximally located to end-users (ISP clusters) do not have enough disk capacity to fit the entire Netflix catalog. Therefore, we cache only the most popular content on these clusters.</p></li>
 </ul>
 </li>
-<li><p>In forward path</p>
+<li><p>Organizing content into server tiers</p>
 <ul>
-<li><p>Run all_gather to collect all shards from all ranks to recover the full parameter in this FSDP unit</p></li>
-<li><p>Run forward computation</p></li>
-<li><p>Discard parameter shards it has just collected</p></li>
+<li><p>At locations that deliver very large amounts of traffic, we use a tiered infrastructure — high throughput servers (up to 100Gbps) are used to serve very popular content and high capacity storage servers (200TB+) are used to serve the tail of the catalog.</p></li>
+<li><p>We need to rank content based on popularity to properly organize it within these tiers.</p></li>
 </ul>
 </li>
-<li><p>In backward path</p>
+<li><p>Influencing content replication within a cluster</p>
 <ul>
-<li><p>Run all_gather to collect all shards from all ranks to recover the full parameter in this FSDP unit</p></li>
-<li><p>Run backward computation</p></li>
-<li><p>Run reduce_scatter to sync gradients</p></li>
-<li><p>Discard parameters.</p></li>
+<li><p>Within a cluster, we replicate titles over N servers, where N is roughly proportional to the popularity of that content.</p></li>
 </ul>
 </li>
 </ul>
 </li>
+<li><p>Why do we store multiple copies of our files?</p>
+<ul>
+<li><p>An extremely popular file, if deployed only on a single server, can overwhelm the resources of that server — while other servers may remain underutilized. This effect is not as pronounced in our deployment environment due to two crucial optimizations:</p>
+<ul>
+<li><p>Because we route traffic based on network proximity, the regional demand for even the most popular content gets shared and diffused across our network.</p></li>
+<li><p>Popular files are locked into memory rather than fetched constantly from disk. This latter memory optimization eliminates the possibility of disk I/O being the cause of a server capacity bottleneck.</p></li>
 </ul>
-<div class="container py-4 py-md-5 px-4 px-md-3 text-body-secondary">
-    <div class="row" >
-      <div class="col-lg-4 mb-4">
-        <img src="../../_static/distributed_training_and_pytorch/pytorch/fsdp/fsdp_sharding.png"></img>
-      </div>
-    </div>
-</div>
-<ul class="simple">
-<li><p><b> One way to view FSDP’s sharding is to decompose the DDP gradient all-reduce into reduce-scatter and all-gather. Specifically, during the backward pass, FSDP reduces and scatters gradients, ensuring that each rank possesses a shard of the gradients. Then it updates the corresponding shard of the parameters in the optimizer step. Finally, in the subsequent forward pass, it performs an all-gather operation to collect and combine the updated parameter shards.
-</b></p></li>
+</li>
+<li><p>Maximizing traffic by minimizing inter-server traffic variance</p>
+<ul>
+<li><p>Consistent Hashing is used to allocate content to multiple servers within a cluster. While consistent hashing on its own typically results in a reasonably well-balanced cluster, the absolute traffic variance can be high if every file is served from a single server in a given location.</p></li>
+<li><p>high popularity content (large rocks) can be broken down into less popular content (pebbles) simply by deploying multiple copies of this content.</p></li>
 </ul>
-</section>
-<section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
-<ul class="simple">
-<li><p><a class="reference external" href="https://pytorch.org/blog/introducing-pytorch-fully-sharded-data-parallel-api/">Introducing PyTorch Fully Sharded Data Parallel (FSDP) API</a></p></li>
+</li>
+<li><p>Resilience to server failures and unexpected spikes in popularity</p>
+<ul>
+<li><p>In the event that a server has failed, all of the traffic bound to that server needs to be delivered from other servers in the same cluster — or, from other more distant locations on the network. Staying within the same cluster, therefore minimizing network distance, is much preferable</p></li>
 </ul>
-</section>
+</li>
+</ul>
+</li>
+<li><p>How is our content organized?</p>
+<ul>
+<li><p>Every title is encoded in multiple formats, or encoding profiles. For example, some profiles may be used by iOS devices and others for a certain class of Smart TVs. There are video profiles, audio profiles, and profiles that contain subtitles.</p></li>
+<li><p>Which bitrate you stream at depends on the quality of your network connection, the encoding profiles your device supports, the title itself, and the Netflix plan that you are subscribed to.</p></li>
+<li><p>So for each quadruple of (title, encoding profile, bitrate, language), we need to cache one or more files. As an example, for streaming one episode of The Crown we store around 1,200 files!</p></li>
+</ul>
+</li>
+<li><p>How do we evaluate content ranking effectiveness?</p>
+<ul>
+<li><p><b>Caching efficiency</b></p>
+<ul>
+<li><p>For a cluster that is set up to service a certain segment of our traffic, caching efficiency is the ratio of bytes served by that cluster versus overall bytes served for this segment of traffic.</p></li>
+</ul>
+</li>
+<li><p>Maximizing caching efficiency at the closest possible locations translates to lesser network hops. Lesser network hops directly improves user streaming quality, and also reduces the cost of transporting network content for both ISP networks and Netflix.</p></li>
+</ul>
+</li>
+<li><p>How do we predict popularity?</p>
+<ul>
+<li><p>we predict future viewing patterns by looking at historical viewing patterns.</p></li>
+<li><p>we smooth data collected over multiple days of history to make the best prediction for the next day.</p></li>
+</ul>
+</li>
+<li><p>What granularity do we use to predict popularity?</p>
+<ul>
+<li><p>Title level: Using this ranking for content positioning causes all files associated with a title to be ranked in a single group.</p></li>
+<li><p>File level: Every file is ranked on its own popularity. Using this method, files from the same title are in different sections of the rank. However, this mechanism improves caching efficiency significantly.</p></li>
+<li><p>Orthogonally to the above 2 levels of aggregation, we compute content popularity on a regional level. This is with the intuitive presumption that members from the same country have a similar preference in content.</p></li>
+</ul>
+</li>
+</ul>
 </section>
 
         </article>
@@ -352,23 +359,23 @@
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="tensor_parallelism.html">
+          <a class="next-page" href="netflix_fill.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Tensor parallelism</div>
+                <div class="title">Netflix and Fill</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="dp_ddp.html">
+          <a class="prev-page" href="worldwide_content_delivery.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">DP vs DDP</div>
+                <div class="title">Worldwide Content Delivery</div>
                 
               </div>
             </a>
@@ -390,36 +397,15 @@
         
       </footer>
     </div>
-    <aside class="toc-drawer">
+    <aside class="toc-drawer no-toc">
       
-      
-      <div class="toc-sticky toc-scroll">
-        <div class="toc-title-container">
-          <span class="toc-title">
-            On this page
-          </span>
-        </div>
-        <div class="toc-tree-container">
-          <div class="toc-tree">
-            <ul>
-<li><a class="reference internal" href="#">FSDP</a><ul>
-<li><a class="reference internal" href="#how-fsdp-works">How FSDP Works</a></li>
-<li><a class="reference internal" href="#fsdp-vs-ddp">FSDP VS DDP</a></li>
-<li><a class="reference internal" href="#references">References</a></li>
-</ul>
-</li>
-</ul>
-
-          </div>
-        </div>
-      </div>
       
       
     </aside>
   </div>
-</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=b3ba4146"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
-    <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
-    <script src="../_static/scripts/furo.js?v=4e2eecee"></script>
+</div><script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=b3ba4146"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/scripts/furo.js?v=4e2eecee"></script>
     </body>
 </html>

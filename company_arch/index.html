@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Tensor parallelism" href="tensor_parallelism.html" /><link rel="prev" title="DP vs DDP" href="dp_ddp.html" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Netflix" href="netflix/index.html" /><link rel="prev" title="Device Mesh" href="../pytorch/device_mesh.html" />
 
     <!-- Generated with Sphinx 7.1.2 and Furo 2024.05.06 -->
-        <title>FSDP - Blog documentation</title>
+        <title>Company architecture - Blog documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=387cc868" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=36a5483c" />
@@ -191,7 +191,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
         <div class="visually-hidden">Toggle table of contents sidebar</div>
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
@@ -211,27 +211,27 @@
   <input type="hidden" name="area" value="default">
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
-  <ul class="current">
-<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">PyTorch</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of PyTorch</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="general.html">General</a></li>
-<li class="toctree-l2"><a class="reference internal" href="state_dict.html">state_dict</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mixed_precision.html">Mixed Precision</a></li>
-<li class="toctree-l2"><a class="reference internal" href="distributed_data_parallel.html">Distributed Data Parallel</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ddp_under_the_hood.html">DDP: Under the Hood</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dp_ddp.html">DP vs DDP</a></li>
-<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">FSDP</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tensor_parallelism.html">Tensor parallelism</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pipeline_parallelism.html">Pipeline Parallelism</a></li>
-<li class="toctree-l2"><a class="reference internal" href="device_mesh.html">Device Mesh</a></li>
+  <ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../pytorch/index.html">PyTorch</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of PyTorch</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/general.html">General</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/state_dict.html">state_dict</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/mixed_precision.html">Mixed Precision</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/distributed_data_parallel.html">Distributed Data Parallel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/ddp_under_the_hood.html">DDP: Under the Hood</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/dp_ddp.html">DP vs DDP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/fsdp.html">FSDP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/tensor_parallelism.html">Tensor parallelism</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/pipeline_parallelism.html">Pipeline Parallelism</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/device_mesh.html">Device Mesh</a></li>
 </ul>
 </li>
 </ul>
-<ul>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../company_arch/index.html">Company architecture</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Company architecture</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../company_arch/netflix/index.html">Netflix</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Netflix</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="../company_arch/netflix/worldwide_content_delivery.html">Worldwide Content Delivery</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../company_arch/netflix/content_popularity.html">Content Popularity for CDN</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../company_arch/netflix/netflix_fill.html">Netflix and Fill</a></li>
+<ul class="current">
+<li class="toctree-l1 current has-children current-page"><a class="current reference internal" href="#">Company architecture</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Company architecture</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="netflix/index.html">Netflix</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Netflix</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="netflix/worldwide_content_delivery.html">Worldwide Content Delivery</a></li>
+<li class="toctree-l3"><a class="reference internal" href="netflix/content_popularity.html">Content Popularity for CDN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="netflix/netflix_fill.html">Netflix and Fill</a></li>
 </ul>
 </li>
 </ul>
@@ -256,7 +256,7 @@
         </a>
         <div class="content-icon-container">
           <div class="view-this-page">
-  <a class="muted-link" href="../_sources/pytorch/fsdp.md.txt" title="View this page">
+  <a class="muted-link" href="../_sources/company_arch/index.md.txt" title="View this page">
     <svg><use href="#svg-eye"></use></svg>
     <span class="visually-hidden">View this page</span>
   </a>
@@ -270,81 +270,22 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
             <div class="visually-hidden">Toggle table of contents sidebar</div>
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <section id="fsdp">
-<h1>FSDP<a class="headerlink" href="#fsdp" title="Permalink to this heading">¶</a></h1>
-<ul class="simple">
-<li><p>Mar 2022: With PyTorch 1.11 we’re adding native support for Fully Sharded Data Parallel (FSDP). Its implementation heavily borrows from FairScale’s version while bringing more streamlined APIs and additional performance improvements. Realized performance in our experiments reached 84 TFLOPS per A100 GPU for GPT 1T model and 159 TFLOPS per A100 GPU for GPT 175B model on AWS cluster.</p></li>
+          <section id="company-architecture">
+<h1>Company architecture<a class="headerlink" href="#company-architecture" title="Permalink to this heading">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="netflix/index.html">Netflix</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="netflix/index.html#cdn">CDN</a></li>
 </ul>
-<section id="how-fsdp-works">
-<h2>How FSDP Works<a class="headerlink" href="#how-fsdp-works" title="Permalink to this heading">¶</a></h2>
-<ul class="simple">
-<li><p>FSDP is a type of data-parallel training, but unlike traditional data-parallel, which maintains a per-GPU copy of a model’s parameters, gradients and optimizer states, it shards all of these states across data-parallel workers and can optionally offload the sharded model parameters to CPUs.</p></li>
+</li>
 </ul>
-<div class="container py-4 py-md-5 px-4 px-md-3 text-body-secondary">
-    <div class="row" >
-      <div class="col-lg-4 mb-4">
-        <img src="../../_static/distributed_training_and_pytorch/pytorch/fsdp/fsdp_workflow.png"></img>
-      </div>
-    </div>
 </div>
-<ul class="simple">
-<li><p><b>Usually, model layers are wrapped with FSDP in a nested way, so that only layers in a single FSDP instance need to gather the full parameters to a single device during forward or backward computations. The gathered full parameters will be freed immediately after computation, and the freed memory can be used for the next layer’s computation. In this way, peak GPU memory could be saved and thus training can be scaled to use a larger model size or larger batch size. To further maximize memory efficiency, FSDP can offload the parameters, gradients and optimizer states to CPUs when the instance is not active in the computation.</b></p></li>
-</ul>
-</section>
-<section id="fsdp-vs-ddp">
-<h2>FSDP VS DDP<a class="headerlink" href="#fsdp-vs-ddp" title="Permalink to this heading">¶</a></h2>
-<ul class="simple">
-<li><p>In DistributedDataParallel, (DDP) training, each process/ worker owns a replica of the model and processes a batch of data, finally it uses all-reduce to sum up gradients over different workers. In DDP the model weights and optimizer states are replicated across all workers. FSDP is a type of data parallelism that shards model parameters, optimizer states and gradients across DDP ranks.</p></li>
-<li><p>When training with FSDP, the GPU memory footprint is smaller than when training with DDP across all workers. This makes the training of some very large models feasible by allowing larger models or batch sizes to fit on device. This comes with the cost of increased communication volume. The communication overhead is reduced by internal optimizations like overlapping communication and computation.</p></li>
-<li><p>At a high level FSDP works as follow:</p>
-<ul>
-<li><p>In constructor</p>
-<ul>
-<li><p>Shard model parameters and each rank only keeps its own shard</p></li>
-</ul>
-</li>
-<li><p>In forward path</p>
-<ul>
-<li><p>Run all_gather to collect all shards from all ranks to recover the full parameter in this FSDP unit</p></li>
-<li><p>Run forward computation</p></li>
-<li><p>Discard parameter shards it has just collected</p></li>
-</ul>
-</li>
-<li><p>In backward path</p>
-<ul>
-<li><p>Run all_gather to collect all shards from all ranks to recover the full parameter in this FSDP unit</p></li>
-<li><p>Run backward computation</p></li>
-<li><p>Run reduce_scatter to sync gradients</p></li>
-<li><p>Discard parameters.</p></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<div class="container py-4 py-md-5 px-4 px-md-3 text-body-secondary">
-    <div class="row" >
-      <div class="col-lg-4 mb-4">
-        <img src="../../_static/distributed_training_and_pytorch/pytorch/fsdp/fsdp_sharding.png"></img>
-      </div>
-    </div>
-</div>
-<ul class="simple">
-<li><p><b> One way to view FSDP’s sharding is to decompose the DDP gradient all-reduce into reduce-scatter and all-gather. Specifically, during the backward pass, FSDP reduces and scatters gradients, ensuring that each rank possesses a shard of the gradients. Then it updates the corresponding shard of the parameters in the optimizer step. Finally, in the subsequent forward pass, it performs an all-gather operation to collect and combine the updated parameter shards.
-</b></p></li>
-</ul>
-</section>
-<section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
-<ul class="simple">
-<li><p><a class="reference external" href="https://pytorch.org/blog/introducing-pytorch-fully-sharded-data-parallel-api/">Introducing PyTorch Fully Sharded Data Parallel (FSDP) API</a></p></li>
-</ul>
-</section>
 </section>
 
         </article>
@@ -352,23 +293,23 @@
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="tensor_parallelism.html">
+          <a class="next-page" href="netflix/index.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Tensor parallelism</div>
+                <div class="title">Netflix</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="dp_ddp.html">
+          <a class="prev-page" href="../pytorch/device_mesh.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">DP vs DDP</div>
+                <div class="title">Device Mesh</div>
                 
               </div>
             </a>
@@ -390,29 +331,8 @@
         
       </footer>
     </div>
-    <aside class="toc-drawer">
+    <aside class="toc-drawer no-toc">
       
-      
-      <div class="toc-sticky toc-scroll">
-        <div class="toc-title-container">
-          <span class="toc-title">
-            On this page
-          </span>
-        </div>
-        <div class="toc-tree-container">
-          <div class="toc-tree">
-            <ul>
-<li><a class="reference internal" href="#">FSDP</a><ul>
-<li><a class="reference internal" href="#how-fsdp-works">How FSDP Works</a></li>
-<li><a class="reference internal" href="#fsdp-vs-ddp">FSDP VS DDP</a></li>
-<li><a class="reference internal" href="#references">References</a></li>
-</ul>
-</li>
-</ul>
-
-          </div>
-        </div>
-      </div>
       
       
     </aside>
