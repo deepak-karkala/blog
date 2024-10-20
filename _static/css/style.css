@@ -1,0 +1,57 @@
+body{
+    /*font-family:"Lora", Helvetica, sans-serif;*/
+    /*font-family: 'Lora', 'Helvetica Neue', Helvetica, Arial, sans-serif;*/
+}
+
+.badge {
+  display: inline-block;
+  padding: 2px 6px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #337ab7;
+  border-radius: 5px;
+  margin-right:1em;
+}
+
+.pill {
+  border-radius: 10px;
+}
+
+.success {
+  background-color: #28a745; /* Green */
+}
+.info {
+  background-color: #17a2b8; /* Blue */
+}
+.warning {
+  background-color: #ffc107; /* Yellow */
+}
+.danger {
+  background-color: #dc3545; /* Red */
+}
+.primary {
+  background-color: #007bff; /* Blue */
+}
+.secondary {
+  background-color: #6c757d; /* Gray */
+}
+.light {
+  background-color: #f8f9fa; /* Light Gray */
+  color: black;
+}
+.dark {
+  background-color: #343a40; /* Dark Gray */
+}
+
+.embossed{
+  background-image: linear-gradient(to bottom, transparent, rgba(0,0,0,0.5));
+}
+
+.gradient{
+  background-image: linear-gradient(to right, #3ad6ed, #f982ff);
+}
+
+.shadow{
+  box-shadow: 0 0.1em 0.5em rgba(0, 0, 0, 0.6);
+}
