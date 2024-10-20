@@ -199,12 +199,12 @@ python/index
 
 ###### Contact Me
 <p>
-<a href="mailto:dkarkala01@gmail.com"><img src="/_static/vendor/icons/email_square.png" width="25" height="25"></a>&nbsp; &nbsp;
-<a href="https://www.linkedin.com/in/deepak-karkala-3465684b"><img src="/_static/vendor/icons/linkedin_square.png" width="25" height="25"></a>&nbsp; &nbsp;
-<a href="https://twitter.com/deepak_karkala"><img src="/_static/vendor/icons/twitter_square.png" width="25" height="25"></a>&nbsp; &nbsp;
-<a href="https://github.com/deepak-karkala/portfolio?tab=readme-ov-file"><img src="/_static/vendor/icons/github_square.png" width="25" height="25"></a>&nbsp; &nbsp;
-<a href="https://deepak-karkala.medium.com/"><img src="/_static/vendor/icons/medium_square.png" width="25" height="25"></a>&nbsp; &nbsp;
-<a href="https://www.deepakkarkala.com/docs/cv_deepak-karkala.pdf"><img src="/_static/vendor/icons/cv.png" width="25" height="25"></a>&nbsp; &nbsp;
+<a href="mailto:dkarkala01@gmail.com"><img src="_static/vendor/icons/email_square.png" width="25" height="25"></a>&nbsp; &nbsp;
+<a href="https://www.linkedin.com/in/deepak-karkala-3465684b"><img src="_static/vendor/icons/linkedin_square.png" width="25" height="25"></a>&nbsp; &nbsp;
+<a href="https://twitter.com/deepak_karkala"><img src="_static/vendor/icons/twitter_square.png" width="25" height="25"></a>&nbsp; &nbsp;
+<a href="https://github.com/deepak-karkala/portfolio?tab=readme-ov-file"><img src="_static/vendor/icons/github_square.png" width="25" height="25"></a>&nbsp; &nbsp;
+<a href="https://deepak-karkala.medium.com/"><img src="_static/vendor/icons/medium_square.png" width="25" height="25"></a>&nbsp; &nbsp;
+<a href="https://www.deepakkarkala.com/docs/cv_deepak-karkala.pdf"><img src="_static/vendor/icons/cv.png" width="25" height="25"></a>&nbsp; &nbsp;
 </p>
 
-<link href="../_static/css/style.css" rel="stylesheet">
+<link href="_static/css/style.css" rel="stylesheet">
