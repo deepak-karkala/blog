@@ -51,6 +51,7 @@ exclude_patterns = []
 #
 html_theme = "furo"
 html_title = "Home"
+html_favicon = "favicon.ico"
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
