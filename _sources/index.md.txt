@@ -34,7 +34,6 @@ projects/index
 publications/index
 ```
 
-
 <!--
 ```{toctree}
 :hidden:
@@ -76,7 +75,6 @@ ml_papers/index
 -->
 
 
-
 <!--
 ```{toctree}
 :hidden:
@@ -84,7 +82,6 @@ ml_papers/index
 python/index
 ```
 -->
-
 
 <!--
 ```{toctree}
@@ -102,7 +99,6 @@ system_design/index
 ```
 -->
 
-
 <!--
 ```{toctree}
 :hidden:
@@ -112,13 +108,11 @@ company_arch/index
 -->
 
 
-<!--
 ```{toctree}
 :hidden:
 
-low_level_design/index
+lld/index
 ```
--->
 
 <!--
 ```{toctree}
