@@ -884,3 +884,8 @@ class TestNearestSpotAssigned:
         assert parking_lot._num_free_spots[spot_type] == num_spots - num_vehicles
 
 ```
+
+### Resources
+
+- [Code Repository](https://github.com/deepak-karkala/system-design/tree/main/parking_lot)
+- [API reference](https://deepak-karkala.github.io/system-design/reference/parking_lot/src/main/)
