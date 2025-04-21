@@ -3,7 +3,8 @@
 ```{toctree}
 :hidden:
 
-iot
-adas
-ecom
+iot_anomaly
+iot_forecasting
+ecom_summarize
+ecom_rag
 ```
