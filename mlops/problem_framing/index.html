@@ -293,6 +293,7 @@
 <div class="toctree-wrapper compound">
 </div>
 <!--![](../../_static/mlops/problem_framing/1.png)-->
+<!--
 <img src="../../_static/mlops/problem_framing/1.png" width="400" height="400" />
 <img src="../../_static/mlops/problem_framing/2.png" width="400" height="400" />
 <img src="../../_static/mlops/problem_framing/3.png" width="400" height="400" />
@@ -303,15 +304,535 @@
 <img src="../../_static/mlops/problem_framing/8.png" width="400" height="400" />
 <img src="../../_static/mlops/problem_framing/9.png" width="400" height="400" />
 <img src="../../_static/mlops/problem_framing/10.png" width="400" height="400" />
+
 <img src="../../_static/mlops/problem_framing/mlops_probframing.png" width="400" height="400" />
 <br/>
 Click <a href="../../_static/mlops/problem_framing/mlops_probframing.png">here</a> for high resolution image.
+-->
+<hr class="docutils" />
+<section id="chapter-1-crafting-the-vision-the-art-of-ml-problem-framing">
+<h2><strong>Chapter 1: Crafting the Vision – The Art of ML Problem Framing</strong><a class="headerlink" href="#chapter-1-crafting-the-vision-the-art-of-ml-problem-framing" title="Permalink to this heading">¶</a></h2>
+<p><strong>(Progress Label: 📍Stage 1: The Restaurant Concept &amp; Vision)</strong></p>
+<section id="introduction-from-vision-to-michelin-star">
+<h3>🧑‍🍳 Introduction: From Vision to Michelin Star<a class="headerlink" href="#introduction-from-vision-to-michelin-star" title="Permalink to this heading">¶</a></h3>
+<p>Before a single ingredient is sourced, before the first pan heats up, a Michelin-starred restaurant begins with a <em>vision</em>. What kind of experience will it offer? Who are the diners it aims to delight? What defines its unique culinary identity? This foundational concept guides every subsequent decision, from menu design to kitchen layout.</p>
+<p>Similarly, building a successful Machine Learning powered application doesn’t start with complex algorithms or vast datasets. It begins with <strong>ML Problem Framing</strong>: the critical process of translating a business need into a well-defined, feasible, and measurable machine learning task. Getting this stage right is paramount; a flawed framing can lead an ML project astray, wasting resources and failing to deliver real value, no matter how sophisticated the eventual model.</p>
+<p>This chapter lays the groundwork for our “Michelin-Grade ML Kitchen.” We’ll explore how to dissect a business problem, determine if ML is the appropriate “cuisine,” define precisely what our ML “dish” should achieve, assess if we have the “kitchen capabilities” (feasibility), and establish how we’ll measure “Michelin-star” success.</p>
+<p><strong>Overall Process Flow</strong>
+Let’s visualize the ML Problem Framing process, linking it to our restaurant concept:</p>
+<img src="../../_static/mlops/problem_framing/steps.svg" width="400" height="400" />
+</section>
+<hr class="docutils" />
+<section id="understanding-the-business-objective-why-build-this-dish">
+<h3>1. Understanding the Business Objective (Why Build This ‘Dish’?)<a class="headerlink" href="#understanding-the-business-objective-why-build-this-dish" title="Permalink to this heading">¶</a></h3>
+<p>Every ML project must originate from a genuine business need or opportunity. Data scientists and ML engineers can get excited by technical challenges and state-of-the-art models, but if the project doesn’t ultimately contribute to the business’s goals, it’s unlikely to succeed or even survive.</p>
+<ul class="simple">
+<li><p><strong>Identify the Core Business Problem/Goal:</strong> What specific pain point are you trying to alleviate or what opportunity are you trying to capture? Are you aiming to reduce costs, increase revenue, improve customer satisfaction, mitigate risk, or achieve something else? Be specific.</p></li>
+<li><p><strong>Align with Stakeholders:</strong> ML projects involve diverse stakeholders (ML engineers, product managers, salespeople, infrastructure teams, domain experts, managers, legal/compliance) who often have conflicting priorities. Engage them early to understand their perspectives and agree on the project’s primary business objectives. For example:</p>
+<ul>
+<li><p><em>ML Engineers</em> might focus on model accuracy and interesting technical challenges.</p></li>
+<li><p><em>Sales</em> might prioritize features that drive immediate revenue (e.g., recommending expensive items).</p></li>
+<li><p><em>Product Managers</em> might worry about latency, user experience, and avoiding errors.</p></li>
+<li><p><em>Infrastructure/MLOps Engineers</em> might focus on scalability, maintainability, and platform stability.</p></li>
+<li><p><em>Managers</em> need to justify the ROI and ensure alignment with broader business strategy.</p></li>
+</ul>
+</li>
+<li><p><strong>Define Quantifiable Business Metrics:</strong> How will you measure the <em>business</em> impact? Vague goals like “improve user experience” are insufficient. Define concrete, measurable Key Performance Indicators (KPIs). Examples:</p>
+<ul>
+<li><p>Increase ad click-through rate (CTR) by X%.</p></li>
+<li><p>Reduce customer churn rate by Y%.</p></li>
+<li><p>Decrease manual effort in process Z by H hours per week.</p></li>
+<li><p>Increase average revenue per user (ARPU) by $A.</p></li>
+<li><p>Reduce fraudulent transaction value by $B per quarter.</p></li>
+</ul>
+</li>
+<li><p><strong>Connect ML Potential to Business Value:</strong> Crucially, hypothesize <em>how</em> an ML solution could realistically influence these business metrics. Don’t assume a better model metric automatically translates to better business outcomes. Many projects fail because this link is weak or unproven. We need evidence (often from experiments later) that improving the model’s predictions directly impacts the target KPI.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="is-machine-learning-the-right-ingredient-the-initial-feasibility-check">
+<h3>2. Is Machine Learning the Right Ingredient? (The Initial Feasibility Check)<a class="headerlink" href="#is-machine-learning-the-right-ingredient-the-initial-feasibility-check" title="Permalink to this heading">¶</a></h3>
+<p>ML is powerful but complex and resource-intensive. It introduces technical debt and operational overhead. Before committing, critically assess if ML is truly necessary and appropriate for your business problem.</p>
+<p><strong>When to Consider ML:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Complex Patterns:</strong> The problem involves patterns too complex for humans to define explicitly with rules (e.g., image recognition, natural language understanding). ML can be seen as “Software 2.0” where rules are learned, not coded.</p></li>
+<li><p><strong>Existing Data:</strong> Sufficient, relevant data is available or can be collected. ML learns from data. (Though fake-it-til-you-make-it or zero-shot learning exist, they have caveats).</p></li>
+<li><p><strong>Predictive Nature:</strong> The core task involves making predictions (forecasting, classification, estimating values). ML excels at making many cheap, approximate predictions.</p></li>
+<li><p><strong>Scale:</strong> The task needs to be performed many times, making the upfront investment in ML worthwhile. Scale also generates more data.</p></li>
+<li><p><strong>Repetitive Task:</strong> Patterns repeat often, making it easier for models to learn.</p></li>
+<li><p><strong>Changing Patterns:</strong> The underlying patterns evolve over time, making hardcoded rules brittle. ML systems can adapt through retraining/continual learning.</p></li>
+<li><p><strong>Tolerance for Error:</strong> The cost of occasional wrong predictions is acceptable or manageable. (e.g., movie recommendation vs. medical diagnosis).</p></li>
+</ol>
+<p><strong>When NOT to Use ML (or Use with Caution):</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Simple Solutions Work:</strong> If simple heuristics, rules-based systems, or traditional statistical methods can solve the problem adequately, use them! <em>Always try simple baselines first.</em></p></li>
+<li><p><strong>Insufficient/Poor Data:</strong> Not enough data, poor quality data, or inability to collect necessary data.</p></li>
+<li><p><strong>No Clear Patterns:</strong> The process might be inherently random or too chaotic for patterns to be learned reliably.</p></li>
+<li><p><strong>“Needle in a Haystack”:</strong> Extremely rare events can be very hard to predict without massive, specialized datasets and techniques.</p></li>
+<li><p><strong>High Cost of Error:</strong> Mistakes have severe consequences (financial, safety, ethical), requiring extremely high reliability often difficult for standard ML.</p></li>
+<li><p><strong>Interpretability is Paramount &amp; Models are Black Boxes:</strong> If explaining <em>exactly</em> why a prediction was made is legally or ethically essential, complex models might be unsuitable unless paired with robust interpretability techniques.</p></li>
+<li><p><strong>Not Cost-Effective:</strong> The cost of developing and maintaining the ML system outweighs the potential benefits.</p></li>
+<li><p><strong>Unethical Application:</strong> The intended use could lead to unfair discrimination, privacy violations, or other harms.</p></li>
+</ol>
+<p><strong>Assess Organizational Readiness:</strong></p>
+<ul class="simple">
+<li><p><strong>Data Maturity:</strong> Is data being collected reliably? Are there existing data pipelines? Is data quality understood?</p></li>
+<li><p><strong>ML Talent:</strong> Do you have personnel with the right skills (Data Science, ML Engineering, MLOps)? Or a plan to acquire/train them?</p></li>
+<li><p><strong>Consumer vs Enterprise ML</strong></p>
+<ul>
+<li><p>Enterprise applications might have stricter accuracy requirements but be more forgiving with latency requirements.</p></li>
+<li><p>Consumer apps ML tend to be easy to distribute but difficult to monetise. Whereas enterprise ML problems are hard to figure out unless one is extremely familiar with the system.</p></li>
+</ul>
+</li>
+<li><p><strong>Infrastructure:</strong> Do you have the necessary compute resources and platform capabilities?</p></li>
+</ul>
+<p><strong>ML Product Archetypes (Not All ML Projects Should Be Planned The Same Way)</strong></p>
+<ul class="simple">
+<li><p><strong>Software 2.0 use cases</strong>:  Taking something that software or a product does in an automated fashion today and augmenting its automation with machine learning.  Example: Code completion in IDE</p>
+<ul>
+<li><p>Is the new model truly much better?</p></li>
+<li><p>How can the performance continue to increase across iterations?</p></li>
+</ul>
+</li>
+<li><p><strong>Human-in-the-loop systems</strong>: Helping humans do their jobs better by complementing them with ML-based tools. Example: turning sketches into slides,</p>
+<ul>
+<li><p>consider more the context of the human user and what their needs might be.</p></li>
+<li><p>How good does the system actually have to be to improve the life of a human reviewing its output?</p></li>
+</ul>
+</li>
+<li><p><strong>Autonomous systems</strong>: Systems that apply machine learning to augment existing or implement new processes without human input. Example full self-driving</p>
+<ul>
+<li><p>focus heavily on the failure rate and its consequences.</p></li>
+<li><p>leveraging humans in the loop can make development more feasible by adding guardrails and reducing the potential impact of failures.</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Data Flywheels</strong></p>
+<ul class="simple">
+<li><p>Strongly consider the concept of the data flywheel. For certain ML projects, as you improve your model, your product will get better and more users will engage with the product, thereby generating more data for the model to get even better. It’s a classic virtuous cycle and truly the gold standard for ML projects.</p></li>
+<li><p><strong>Do you have a data loop?</strong></p>
+<ul>
+<li><p>To build a data flywheel, you crucially need to be able to get labeled data from users in a scalable fashion. This helps increase access to high-quality data and define a data loop.</p></li>
+</ul>
+</li>
+<li><p><strong>Can you turn more data into a better model?</strong></p>
+<ul>
+<li><p>Make sure you can actually translate data scale into better model performance.</p></li>
+</ul>
+</li>
+<li><p><strong>Does better model performance lead to better product use?</strong></p>
+<ul>
+<li><p>You need to verify that improvements with models are actually tied to users enjoying the product more and benefiting from it!</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Simple Decision Flow - Should We Use ML?</strong></p>
+<img style="background-color:#FCF1EF" src="../../_static/mlops/problem_framing/ml_feasibility.svg"/>
+</section>
+<hr class="docutils" />
+<section id="defining-the-ml-problem-translating-vision-to-recipe">
+<h3>3. Defining the ML Problem (Translating Vision to Recipe)<a class="headerlink" href="#defining-the-ml-problem-translating-vision-to-recipe" title="Permalink to this heading">¶</a></h3>
+<p>Once you’ve confirmed ML is a potential fit, you need to translate the broad business goal into a specific, technical ML problem formulation. This involves defining the inputs, the desired outputs, and the objective function that guides learning.</p>
+<ul class="simple">
+<li><p><strong>Define the Ideal Outcome vs. Model’s Goal:</strong></p>
+<ul>
+<li><p><strong>Ideal Outcome:</strong> What is the ultimate task the <em>product</em> should perform for the user/business (stated earlier)? Example: “Recommend useful videos.”</p></li>
+<li><p><strong>Model’s Goal:</strong> What specific prediction should the <em>ML model</em> make to help achieve that outcome? Example: “Predict whether a user will click ‘like’ on a video.”</p></li>
+</ul>
+</li>
+<li><p><strong>Identify the Model’s Output Type:</strong> This determines the fundamental ML task.</p>
+<ul>
+<li><p><strong>Classification:</strong> Predicts a category/class.</p>
+<ul>
+<li><p><em>Binary:</em> Two classes (e.g., spam/not spam, fraud/not fraud).</p></li>
+<li><p><em>Multiclass:</em> More than two classes, one label per input (e.g., classifying news articles into ‘Sports’, ‘Politics’, ‘Tech’).</p></li>
+<li><p><em>Multilabel:</em> More than two classes, potentially multiple labels per input (e.g., tagging an image with ‘dog’, ‘park’, ‘frisbee’). <em>Often challenging due to label annotation and varying output structure.</em></p></li>
+<li><p><em>High Cardinality:</em> Multiclass/Multilabel with a very large number of possible classes (e.g., product categorization with thousands of categories).</p></li>
+</ul>
+</li>
+<li><p><strong>Regression:</strong> Predicts a continuous numerical value (e.g., house price, temperature, delivery time).</p></li>
+<li><p><strong>Generation:</strong> Creates new data (text, images, audio). Usually involves customizing pre-trained models via prompt engineering, fine-tuning, or distillation.</p></li>
+</ul>
+</li>
+<li><p><strong>Framing Matters:</strong> The <em>same</em> business problem can often be framed as different ML tasks.</p>
+<ul>
+<li><p><em>Example:</em> Predicting the next app a user will open.</p>
+<ul>
+<li><p><em>Bad Framing (Multiclass):</em> Input: User/Context Features -&gt; Output: Probability distribution over <em>all</em> apps. (Hard to scale with new apps).</p></li>
+<li><p><em>Better Framing (Regression):</em> Input: User/Context Features + <em>App Features</em> -&gt; Output: Single probability (0-1) of opening <em>that specific app</em>. (Easier to add new apps).</p></li>
+</ul>
+</li>
+<li><p><em>Consider thresholds:</em> A regression output (e.g., probability score) can be converted to classification by applying a threshold. Sometimes, framing directly as classification is better if the business logic relies heavily on fixed thresholds.</p></li>
+</ul>
+</li>
+<li><p><strong>The Label Challenge - Proxy Labels:</strong> Often, the ideal outcome isn’t directly measurable or available as a label in your data (e.g., “is this video <em>useful</em>?”).</p>
+<ul>
+<li><p>You must choose a <strong>proxy label</strong>: a measurable feature in your dataset that <em>approximates</em> the ideal outcome.</p></li>
+<li><p><em>Examples for “useful video”:</em> Clicked ‘like’? Shared? Watched &gt; X%? Clicked play? Rewatched?</p></li>
+<li><p><em>Pitfalls:</em> Proxy labels are imperfect. Each choice can introduce bias or unintended consequences (e.g., predicting clicks might optimize for clickbait, not usefulness). Choose the proxy that best aligns with the ideal outcome and has the fewest negative side effects for <em>your</em> specific context.</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Problem Framing Examples</strong></p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Business Problem</p></th>
+<th class="head text-left"><p>Ideal Outcome</p></th>
+<th class="head text-left"><p>Model Goal (Prediction)</p></th>
+<th class="head text-left"><p>ML Task Type</p></th>
+<th class="head text-left"><p>Potential Proxy Label Issues</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Reduce customer support costs</p></td>
+<td class="text-left"><p>Route tickets efficiently</p></td>
+<td class="text-left"><p>Predict correct support dept (A,B,C)</p></td>
+<td class="text-left"><p>Multiclass Class</p></td>
+<td class="text-left"><p>N/A (assuming departments are clear)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Increase e-commerce sales</p></td>
+<td class="text-left"><p>Recommend relevant products</p></td>
+<td class="text-left"><p>Predict probability user buys item X</p></td>
+<td class="text-left"><p>Regression</p></td>
+<td class="text-left"><p>Clicks (clickbait?), Add-to-cart (abandonment?)</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Detect fraudulent credit card usage</p></td>
+<td class="text-left"><p>Block fraudulent transactions</p></td>
+<td class="text-left"><p>Predict if transaction is fraud</p></td>
+<td class="text-left"><p>Binary Class</p></td>
+<td class="text-left"><p>N/A (fraud labels usually available, though maybe sparse)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Personalize news feed</p></td>
+<td class="text-left"><p>Show engaging content</p></td>
+<td class="text-left"><p>Predict probability user clicks article</p></td>
+<td class="text-left"><p>Regression</p></td>
+<td class="text-left"><p>Click (favors controversial?), Time Spent (favors long?)</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Automatically moderate forum comments</p></td>
+<td class="text-left"><p>Remove toxic comments</p></td>
+<td class="text-left"><p>Predict if comment is toxic</p></td>
+<td class="text-left"><p>Binary Class</p></td>
+<td class="text-left"><p>Defining “toxic” objectively, edge cases, sarcasm</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<hr class="docutils" />
+<section id="assessing-feasibility-risks-can-we-execute-this-vision">
+<h3>4. Assessing Feasibility &amp; Risks (Can We Execute This Vision?)<a class="headerlink" href="#assessing-feasibility-risks-can-we-execute-this-vision" title="Permalink to this heading">¶</a></h3>
+<p>Now, dig deeper into whether the framed ML problem is realistically achievable given your constraints and potential hurdles.</p>
+<ul class="simple">
+<li><p><strong>Data Availability &amp; Quality:</strong></p>
+<ul>
+<li><p><em>Quantity:</em> Do you have <em>enough</em> labeled examples, especially for classification (often 100s-1000s per class)? Are rare classes represented?</p></li>
+<li><p><em>Quality:</em> Is the data clean, relevant, and relatively unbiased? How expensive/difficult is labeling?</p></li>
+<li><p><em>Feature Availability:</em> Will all features used for training <em>actually be available</em> at prediction time (serving)? This is a common pitfall!</p>
+<ul>
+<li><p>For example, suppose a model predicts whether a customer will click a URL, and one of the features used in training include user_age. However, when the model serves a prediction, user_age isn’t available, perhaps because the user hasn’t created an account yet.</p></li>
+</ul>
+</li>
+<li><p><em>Regulations/Privacy:</em> Are there legal or privacy constraints (GDPR, CCPA) on using the data? How will you handle user consent and data security?</p></li>
+</ul>
+</li>
+<li><p><strong>Problem Difficulty &amp; ML Limitations:</strong></p>
+<ul>
+<li><p><em>Solved Before?:</em> Has your org or the wider community (Kaggle, papers) tackled similar problems? Leverage existing work if possible.</p></li>
+<li><p><em>Human Benchmark:</em> How well can humans perform this task? This gives a baseline for expected difficulty.</p></li>
+<li><p><em>Known Hard ML Problems:</em> Be wary of tasks requiring high reliability (autonomous systems, critical healthcare), complex structured outputs, long-term planning/reasoning, or strong generalization to out-of-distribution data.</p></li>
+<li><p><em>Adversaries:</em> Will actors actively try to exploit or poison your model (e.g., spam filters, fraud detection)? This requires ongoing vigilance.</p></li>
+</ul>
+</li>
+<li><p><strong>Required Prediction Quality:</strong></p>
+<ul>
+<li><p><em>Cost of Errors:</em> What are the consequences (financial, user trust, safety, legal, ethical) of wrong predictions?</p></li>
+<li><p><em>Required Performance:</em> Does the model need near-perfect accuracy, or is “better than random” sufficient to provide value? Higher accuracy requirements exponentially increase cost and effort. Recognize diminishing returns.</p></li>
+<li><p><em>Generative AI Specifics:</em> Assess required factual accuracy (mitigating confabulations/hallucinations) and tolerance for biased/toxic/plagiarized output.</p></li>
+</ul>
+</li>
+<li><p><strong>Technical Requirements:</strong></p>
+<ul>
+<li><p><em>Latency/Throughput:</em> How fast must predictions be (milliseconds for real-time UI vs. hours for batch reports)? How many predictions per second (QPS)? (Remember latency distribution - p50, p90, p99 are often more meaningful than average).</p></li>
+<li><p><em>Compute/Memory Resources (RAM):</em> How much compute is needed for training and serving? Can the model fit on the target platform (cloud, web browser, mobile/edge device)?</p></li>
+<li><p><em>Interpretability:</em> Is explaining predictions a requirement (debugging, user trust, regulations)?</p></li>
+<li><p><em>Retraining Frequency:</em> How often does the data change? How frequently will the model need retraining? This impacts cost and infrastructure.</p></li>
+</ul>
+</li>
+<li><p><strong>Cost &amp; ROI:</strong></p>
+<ul>
+<li><p><em>Human Costs:</em> Team size, expertise needed (DS, ML Eng, MLOps, Labelers, SMEs).</p></li>
+<li><p><em>Machine Costs:</em> Compute (CPU/GPU/TPU for training/inference), storage, data licensing/labeling fees, serving costs.</p></li>
+<li><p><em>Is it Worth It?:</em> Does the estimated business value justify the projected costs and risks? Define the overall ROI and opportunity cost. Develop a cost-benefit model.</p></li>
+</ul>
+</li>
+<li><p><strong>Ethical Considerations &amp; Fairness Review:</strong></p>
+<ul>
+<li><p>Actively look for potential biases in data or model outcomes. Who might be negatively impacted?</p></li>
+<li><p>Is the intended use fair and responsible? Consider compliance requirements. Use tools like SageMaker Clarify to help detect bias early.</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Feasibility Checklist</strong></p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Category</p></th>
+<th class="head text-left"><p>Checkpoint</p></th>
+<th class="head text-left"><p>Assessment (Low/Med/High Risk or Green/Yellow/Red)</p></th>
+<th class="head text-left"><p>Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><strong>Data</strong></p></td>
+<td class="text-left"><p>Sufficient quantity &amp; quality available?</p></td>
+<td class="text-left"><p>Med</p></td>
+<td class="text-left"><p>Need more data for rare classes</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p></p></td>
+<td class="text-left"><p>Labeling feasible/affordable?</p></td>
+<td class="text-left"><p>Green</p></td>
+<td class="text-left"><p>Existing labeling pipeline</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p></p></td>
+<td class="text-left"><p>Features available at serving time?</p></td>
+<td class="text-left"><p>Green</p></td>
+<td class="text-left"><p>Verified</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p></p></td>
+<td class="text-left"><p>Privacy/Regulatory compliant?</p></td>
+<td class="text-left"><p>Yellow</p></td>
+<td class="text-left"><p>Need legal review for GDPR implications</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Problem Difficulty</strong></p></td>
+<td class="text-left"><p>Similar problems solved successfully?</p></td>
+<td class="text-left"><p>Green</p></td>
+<td class="text-left"><p>Internal team did similar project</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p></p></td>
+<td class="text-left"><p>High reliability required?</p></td>
+<td class="text-left"><p>Med</p></td>
+<td class="text-left"><p>Wrong recommendations impact revenue</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p></p></td>
+<td class="text-left"><p>Adversarial attacks likely?</p></td>
+<td class="text-left"><p>Low</p></td>
+<td class="text-left"><p>Not expected for this use case</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Prediction Quality</strong></p></td>
+<td class="text-left"><p>Cost of errors acceptable?</p></td>
+<td class="text-left"><p>Med</p></td>
+<td class="text-left"><p>Bad recommendations -&gt; churn</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p></p></td>
+<td class="text-left"><p>Can achieve necessary quality?</p></td>
+<td class="text-left"><p>Yellow</p></td>
+<td class="text-left"><p>Initial baseline shows promise, needs improvement</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Technical Requirements</strong></p></td>
+<td class="text-left"><p>Latency target achievable? (&lt;100ms p99)</p></td>
+<td class="text-left"><p>Yellow</p></td>
+<td class="text-left"><p>Simple models meet, complex ones don’t</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p></p></td>
+<td class="text-left"><p>Fits target platform/resources?</p></td>
+<td class="text-left"><p>Green</p></td>
+<td class="text-left"><p>Cloud deployment, flexible resources</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p></p></td>
+<td class="text-left"><p>Interpretability needed?</p></td>
+<td class="text-left"><p>Low</p></td>
+<td class="text-left"><p>Not a strict requirement</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Cost/ROI</strong></p></td>
+<td class="text-left"><p>Estimated cost within budget?</p></td>
+<td class="text-left"><p>Green</p></td>
+<td class="text-left"><p>Approved budget</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p></p></td>
+<td class="text-left"><p>Positive ROI projected?</p></td>
+<td class="text-left"><p>Green</p></td>
+<td class="text-left"><p>Cost-benefit model looks positive</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Ethics/Fairness</strong></p></td>
+<td class="text-left"><p>Potential bias/fairness issues identified?</p></td>
+<td class="text-left"><p>Yellow</p></td>
+<td class="text-left"><p>Potential bias against new users, needs monitoring</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<hr class="docutils" />
+<section id="defining-success-metrics-what-does-a-michelin-star-look-like">
+<h3>5. Defining Success Metrics (What Does a ‘Michelin Star’ Look Like?)<a class="headerlink" href="#defining-success-metrics-what-does-a-michelin-star-look-like" title="Permalink to this heading">¶</a></h3>
+<p>Clearly define how you will measure success <em>before</em> you start building. Distinguish between business goals and model evaluation metrics.</p>
+<ul>
+<li><p><strong>Business Success Metrics (Revisited):</strong> These are the ultimate measures of impact, tied to the original business objective (e.g., “Reduce churn by 5% within 6 months,” “Increase CTR by 10% in Q3”). Define ambitious but specific targets and the timeframe for measurement (e.g., 6 days, 6 weeks, 6 months post-launch).</p></li>
+<li><p><strong>Model Evaluation Metrics:</strong> These are technical metrics used during development to assess model performance on specific ML tasks (e.g., Accuracy, Precision, Recall, F1-Score for classification; RMSE, MAE for regression; BLEU, ROUGE for text generation).</p>
+<ul>
+<li><p><strong>Choose a Single Primary Metric:</strong> Select <em>one</em> key model metric to optimize during experimentation (e.g., prioritize Recall in fraud detection). This simplifies model comparison.</p>
+<ul>
+<li><p><strong>Handling Multiple Objectives: The Case for Decoupling</strong></p>
+<p>Often, an ML project needs to satisfy multiple, sometimes conflicting, goals. For instance, a newsfeed might aim to maximize user engagement (clicks) while also ensuring content quality and minimizing misinformation. Simply optimizing for engagement might unintentionally promote low-quality or extreme content.</p>
+<p>Two main strategies exist for handling such multi-objective problems:</p>
+<ol class="arabic simple">
+<li><p><strong>Combined Loss Function:</strong> Define individual loss functions for each objective (e.g., <code class="docutils literal notranslate"><span class="pre">quality_loss</span></code>, <code class="docutils literal notranslate"><span class="pre">engagement_loss</span></code>) and train a <em>single model</em> to minimize a weighted combination (e.g., <code class="docutils literal notranslate"><span class="pre">loss</span> <span class="pre">=</span> <span class="pre">α</span> <span class="pre">*</span> <span class="pre">quality_loss</span> <span class="pre">+</span> <span class="pre">β</span> <span class="pre">*</span> <span class="pre">engagement_loss</span></code>).</p>
+<ul class="simple">
+<li><p><em>Drawback:</em> Adjusting the balance between objectives (tuning the weights α and β) requires <strong>retraining the entire model</strong>, which can be slow and costly.</p></li>
+</ul>
+</li>
+<li><p><strong>Decoupled Models (Recommended):</strong> Train <em>separate models</em>, each optimized for a single objective (e.g., one model predicts quality, another predicts engagement). Then, combine the <em>outputs (scores)</em> from these models using weights (e.g., <code class="docutils literal notranslate"><span class="pre">final_rank_score</span> <span class="pre">=</span> <span class="pre">α</span> <span class="pre">*</span> <span class="pre">quality_score</span> <span class="pre">+</span> <span class="pre">β</span> <span class="pre">*</span> <span class="pre">engagement_score</span></code>) to make the final decision (like ranking).</p>
+<ul class="simple">
+<li><p><em>Advantages:</em></p>
+<ul>
+<li><p>Allows <strong>tuning the trade-off weights (α, β) easily and quickly without retraining</strong> the underlying models.</p></li>
+<li><p>Facilitates <strong>independent maintenance and retraining schedules</strong> for each model, which is beneficial as different objectives (like spam detection vs. quality assessment) might evolve at different speeds.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p><strong>In summary:</strong> When faced with multiple objectives, decoupling them by training separate models and combining their outputs is often the preferred approach. It offers greater flexibility in tuning the system’s behavior and simplifies long-term maintenance.</p>
+</li>
+</ul>
+</li>
+<li><p><strong>Define Acceptability Goals (Satisficing Metrics):</strong> Set minimum acceptable thresholds for other important metrics (e.g., “Precision must be &gt;= 80%,” “Latency must be &lt; 150ms p95”).</p></li>
+<li><p><strong>Custom Metrics:</strong> Consider developing custom metrics that directly reflect business objectives if standard metrics are insufficient (e.g., weighting errors based on their financial impact).</p></li>
+<li><p><strong>Model Complexity vs Impact:</strong></p>
+<ul class="simple">
+<li><p>For many tasks, a small improvement in performance can result in a huge boost in revenue or cost savings. Example: clickthrough rate in e-commerce website.</p></li>
+<li><p>For many tasks, a small improvement might not be noticeable for users. If a simple model can do a reasonable job, complex models must perform significantly better to justify the complexity.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>The Disconnect &amp; Validation:</strong> <em>Remember: Excellent model metrics DO NOT guarantee business success.</em> A model with 99% accuracy might still fail to improve the business KPI if its predictions aren’t actionable or if it optimizes for the wrong thing (e.g., predicting clicks instead of purchases).</p>
+<ul class="simple">
+<li><p>For instance, let’s say your team develops a model to increase revenue by predicting customer churn. In theory, if you can predict whether or not a customer is likely to leave the platform, you can encourage them to stay. Your team creates a model with 95% prediction quality and tests it on a small sample of users. However, revenue doesn’t increase. Customer churn actually increases. Here are some possible explanations:</p>
+<ul>
+<li><p>Predictions don’t occur early enough to be actionable. The model can only predict customer churn within a seven-day timeframe, which isn’t soon enough to offer incentives to keep them on the platform.</p></li>
+<li><p>Incomplete features. Maybe other factors contribute to customer churn that weren’t in the training dataset.</p></li>
+<li><p>Threshold isn’t high enough. The model might need to have a prediction quality of 97% or higher for it to be useful.</p></li>
+</ul>
+</li>
+<li><p>Solution: Plan for <strong>A/B testing</strong> or <strong>gradual rollouts</strong> (e.g., deploy to 1% of users) to measure the <em>actual</em> impact of the deployed model on the target <em>business</em> metrics. This validates the connection between your model and business success.</p></li>
+</ul>
+</li>
+<li><p><strong>Evaluate Progress Towards Success:</strong> Use the business metrics gathered from real-world testing to determine if the project is on track.</p>
+<ul class="simple">
+<li><p><em>Is the model moving the needle?</em> Even if evaluation metrics are mediocre, is it positively impacting business KPIs? -&gt; Worth improving.</p></li>
+<li><p><em>Is the model plateauing?</em> Great evaluation metrics, but no further improvement in business KPIs? -&gt; Maybe good enough, or the link is broken.</p></li>
+<li><p><em>Is it failing?</em> Poor evaluation metrics AND negative/no impact on business KPIs? -&gt; Re-evaluate framing or abandon.</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Business vs. Model Metrics</strong></p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>ML Use Case</p></th>
+<th class="head text-left"><p>Business Success Metric(s)</p></th>
+<th class="head text-left"><p>Primary Model Metric (Example)</p></th>
+<th class="head text-left"><p>Acceptability Goal(s) (Example)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Spam Email Filter</p></td>
+<td class="text-left"><p>Reduce user reports of spam by 30%</p></td>
+<td class="text-left"><p>Precision</p></td>
+<td class="text-left"><p>Recall &gt;= 99.5%</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Product Recommendation</p></td>
+<td class="text-left"><p>Increase conversion rate by 5%</p></td>
+<td class="text-left"><p>Purchase Prediction Accuracy</p></td>
+<td class="text-left"><p>Latency &lt; 200ms p99, Diversity Score &gt; X</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Churn Prediction</p></td>
+<td class="text-left"><p>Reduce monthly churn by 1%</p></td>
+<td class="text-left"><p>Recall (of likely churners)</p></td>
+<td class="text-left"><p>Precision &gt;= 70%</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Predictive Maintenance</p></td>
+<td class="text-left"><p>Reduce machine downtime by 15%</p></td>
+<td class="text-left"><p>F1-Score (predicting failure)</p></td>
+<td class="text-left"><p>False Positive Rate &lt; 2%</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Medical Image Diagnosis</p></td>
+<td class="text-left"><p>Improve diagnostic accuracy</p></td>
+<td class="text-left"><p>AUC</p></td>
+<td class="text-left"><p>Specificity &gt;= 98% (few false positives)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<hr class="docutils" />
+<section id="planning-the-ml-project-the-initial-kitchen-setup">
+<h3>6. Planning the ML Project (The Initial Kitchen Setup)<a class="headerlink" href="#planning-the-ml-project-the-initial-kitchen-setup" title="Permalink to this heading">¶</a></h3>
+<p>ML development is inherently experimental and uncertain. Unlike traditional software where the path is often clearer, ML involves trial-and-error. Estimating timelines is hard, and success isn’t guaranteed. Adopt an experimental mindset from the start.</p>
+<ul class="simple">
+<li><p><strong>Iterative Approach:</strong> Plan for iteration. You’ll likely revisit earlier steps (data collection, feature engineering, model selection) as you learn more. The process is cyclical, not linear.</p></li>
+<li><p><strong>Start Simple &amp; Fail Fast:</strong> Begin with simple models and baselines (even non-ML ones). Attempt approaches with lower cost/effort first. If they fail, you haven’t wasted significant resources.</p></li>
+<li><p><strong>Time-Boxing:</strong> Set specific timeframes for experiments or tasks (e.g., “Spend 2 weeks evaluating data feasibility,” “Allocate 1 sprint to build a baseline model”). Re-assess progress and feasibility at the end of each timebox.</p></li>
+<li><p><strong>Scope Management:</strong> Be prepared to scope down requirements if initial approaches prove too difficult or costly. Incremental improvements over time often lead to impactful solutions.</p></li>
+<li><p><strong>Documentation:</strong> From the outset, document assumptions, decisions, data sources, and metrics. This is crucial for reproducibility and collaboration. (This links to lineage tracking later).</p></li>
+</ul>
+<p><strong>AWS Well-Architected ML lifecycle</strong></p>
+<img src="../../_static/mlops/problem_framing/aws_well_architected.png" width="80%"/>
+<p><strong>AWS Well-Architected ML lifecycle phases</strong></p>
+<img src="../../_static/mlops/problem_framing/aws_ml_lifecycle_phases.png"/>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.aws.amazon.com/wellarchitected/latest/machine-learning-lens/machine-learning-lens.html">Source: AWS Well-Architected Framework: Machine Learning Lens</a></p></li>
+</ul>
+<p><strong>ML development phases</strong></p>
+<img src="../../_static/mlops/problem_framing/dev_phases.png"/>
+<ul class="simple">
+<li><p><a class="reference external" href="https://developers.google.com/machine-learning/managing-ml-projects/phases">Google Foundational Course: Managing ML Projects: ML development phases</a></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="real-world-examples-case-studies-from-famous-kitchens">
+<h3>7. Real-World Examples (Case Studies from Famous Kitchens)<a class="headerlink" href="#real-world-examples-case-studies-from-famous-kitchens" title="Permalink to this heading">¶</a></h3>
+<p>Let’s apply this framing process to a couple of scenarios:</p>
+<ul class="simple">
+<li><p><strong>Case Study 1: E-commerce Product Recommendation (like Amazon/Netflix)</strong></p>
+<ul>
+<li><p><em>Business Objective:</em> Increase user engagement (time on site) and purchase conversion rate. Stakeholders: Product, Sales, Eng. Business Metrics: Avg. Session Duration, Conversion Rate, Revenue per Visit.</p></li>
+<li><p><em>Is ML Needed?:</em> Yes, predicting individual user preferences at scale is complex. Simple rules (e.g., show bestsellers) are insufficient for personalization. Data (user history, item metadata) is available.</p></li>
+<li><p><em>ML Problem Framing:</em> Ideal Outcome: Show users items they will like and buy. Model Goal: Predict the probability a user <em>clicks</em> or <em>purchases</em> item X given context Y. Task: Regression (predict probability) or Classification (predict click/no-click, buy/no-buy). Proxy Labels: Click data is easy but prone to clickbait issues. Purchase data is better but sparser. Watch time/Like/Add-to-cart are other options. Need to choose carefully based on business goal.</p></li>
+<li><p><em>Feasibility:</em> Data volume is high. Latency needs to be low (&lt;200ms). Scalability is crucial. Interpretability might be useful (“Why was this recommended?”). Cost of errors (bad recommendations) is relatively low. ROI potential is high.</p></li>
+<li><p><em>Success Metrics:</em> Business: Increase Conversion Rate by X%. Model: Optimize for AUC on purchase prediction (primary), maintain Latency &lt; 200ms p99 (acceptability). A/B test against non-ML baseline (e.g., popular items).</p></li>
+</ul>
+</li>
+<li><p><strong>Case Study 2: Fraud Detection (Financial Services)</strong></p>
+<ul>
+<li><p><em>Business Objective:</em> Reduce financial losses due to fraudulent transactions. Stakeholders: Risk Mgmt, Compliance, Eng. Business Metrics: $ Value of Fraud Prevented, False Positive Rate (blocking legitimate transactions).</p></li>
+<li><p><em>Is ML Needed?:</em> Yes, fraud patterns are complex, constantly evolving, and hard to capture with static rules. Transaction data is available.</p></li>
+<li><p><em>ML Problem Framing:</em> Ideal Outcome: Block fraudulent transactions without inconveniencing legitimate users. Model Goal: Predict if a transaction is fraudulent. Task: Binary Classification (Fraud/Not Fraud). Labels: Historical fraud data exists, but is highly imbalanced (fraud is rare).</p></li>
+<li><p><em>Feasibility:</em> Data imbalance is a major challenge. High accuracy <em>and</em> low false positives needed (cost of errors is high for both false negatives - fraud loss, and false positives - customer friction). Latency must be very low for real-time blocking. Adversarial attacks are likely. Interpretability may be needed for disputes/audits.</p></li>
+<li><p><em>Success Metrics:</em> Business: Reduce Fraud Loss by Y% while keeping False Positive Rate below Z%. Model: Optimize for Recall on Fraud class (primary), maintain Precision &gt;= X% (acceptability), Latency &lt; 50ms p99.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="conclusion-the-foundation-for-culinary-excellence">
+<h3>🧑‍🍳 Conclusion: The Foundation for Culinary Excellence<a class="headerlink" href="#conclusion-the-foundation-for-culinary-excellence" title="Permalink to this heading">¶</a></h3>
+<p>Just as a clear restaurant concept, a target clientele, and a vision for the signature dish provide the essential blueprint before any cooking begins, ML Problem Framing lays the critical foundation for building impactful AI-powered applications.</p>
+<p>We’ve seen that this involves deeply understanding the business need, rigorously evaluating if ML is the right approach, carefully translating the goal into a specific ML task with appropriate outputs and labels (even proxies), assessing the feasibility across data, technical, cost, and ethical dimensions, and defining clear metrics for both model performance and ultimate business success.</p>
+<p>Neglecting this stage is like a chef trying to create a masterpiece without knowing the cuisine, the diners, or the ingredients available. By investing time in thoughtful problem framing—in crafting our vision—we set our “ML Kitchen” on the path towards creating truly valuable and successful “dishes.” The next step in our journey? Sourcing the finest ingredients – Data Discovery and Acquisition.</p>
+</section>
+<hr class="docutils" />
 <section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
+<h3>References<a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.oreilly.com/library/view/designing-machine-learning/9781098107956/">Designing Machine Learning Systems by Chip Huyen</a></p></li>
 <li><p><a class="reference external" href="https://fullstackdeeplearning.com/course/2022/">Full Stack Deep Learning - 2022 Course</a></p></li>
+<li><p><a class="reference external" href="https://docs.aws.amazon.com/wellarchitected/latest/machine-learning-lens/machine-learning-lens.html">AWS Well-Architected Framework: Machine Learning Lens</a></p></li>
+<li><p><a class="reference external" href="https://developers.google.com/machine-learning/managing-ml-projects/feasibility">Google Foundational Course: Managing ML Projects: Feasibility</a></p></li>
 </ul>
+</section>
 </section>
 </section>
 
@@ -371,7 +892,19 @@ Click <a href="../../_static/mlops/problem_framing/mlops_probframing.png">here</
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">ML Problem framing</a><ul>
+<li><a class="reference internal" href="#chapter-1-crafting-the-vision-the-art-of-ml-problem-framing"><strong>Chapter 1: Crafting the Vision – The Art of ML Problem Framing</strong></a><ul>
+<li><a class="reference internal" href="#introduction-from-vision-to-michelin-star">🧑‍🍳 Introduction: From Vision to Michelin Star</a></li>
+<li><a class="reference internal" href="#understanding-the-business-objective-why-build-this-dish">1. Understanding the Business Objective (Why Build This ‘Dish’?)</a></li>
+<li><a class="reference internal" href="#is-machine-learning-the-right-ingredient-the-initial-feasibility-check">2. Is Machine Learning the Right Ingredient? (The Initial Feasibility Check)</a></li>
+<li><a class="reference internal" href="#defining-the-ml-problem-translating-vision-to-recipe">3. Defining the ML Problem (Translating Vision to Recipe)</a></li>
+<li><a class="reference internal" href="#assessing-feasibility-risks-can-we-execute-this-vision">4. Assessing Feasibility &amp; Risks (Can We Execute This Vision?)</a></li>
+<li><a class="reference internal" href="#defining-success-metrics-what-does-a-michelin-star-look-like">5. Defining Success Metrics (What Does a ‘Michelin Star’ Look Like?)</a></li>
+<li><a class="reference internal" href="#planning-the-ml-project-the-initial-kitchen-setup">6. Planning the ML Project (The Initial Kitchen Setup)</a></li>
+<li><a class="reference internal" href="#real-world-examples-case-studies-from-famous-kitchens">7. Real-World Examples (Case Studies from Famous Kitchens)</a></li>
+<li><a class="reference internal" href="#conclusion-the-foundation-for-culinary-excellence">🧑‍🍳 Conclusion: The Foundation for Culinary Excellence</a></li>
 <li><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
