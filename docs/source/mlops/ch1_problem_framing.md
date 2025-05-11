@@ -63,6 +63,10 @@ Every ML project must originate from a genuine business need or opportunity. Dat
     *   Increase average revenue per user (ARPU) by $A.
     *   Reduce fraudulent transaction value by $B per quarter.
 *   **Connect ML Potential to Business Value:** Crucially, hypothesize *how* an ML solution could realistically influence these business metrics. Don't assume a better model metric automatically translates to better business outcomes. Many projects fail because this link is weak or unproven. We need evidence (often from experiments later) that improving the model's predictions directly impacts the target KPI.
+*   **Discuss and agree on the level of model explainability**
+    *   Discuss and agree with the business stakeholders on the acceptable level of model explainability required for the use case. Use the agreed level as a metric for evaluations and tradeoff analysis across the ML lifecycle. Explainability can help with understanding the cause of a prediction, auditing, and meeting regulatory requirements. It can be useful for building trust ensuring that the model is working as expected.
+    *   Choose good baselines – Shapley values determine the contribution that each feature made to model prediction. SHAP Baselines for Explainability are crucial to building fair and explainable ML models. Choose the baseline carefully since model explanations are based on deviations from the baseline (the baseline, in the ML context, is a hypothetical instance). You can choose a baseline with a ‘low information content’ (e.g., by constructing an average instance from the training dataset by taking either the median or average for numerical features and the mode for categorical features) or a baseline with ‘high information content’ (e.g., an instance which represents a particular class of instances that you are interested in). 
+
 
 ---
 
@@ -197,7 +201,16 @@ Now, dig deeper into whether the framed ML problem is realistically achievable g
 *   **Cost & ROI:**
     *   *Human Costs:* Team size, expertise needed (DS, ML Eng, MLOps, Labelers, SMEs).
     *   *Machine Costs:* Compute (CPU/GPU/TPU for training/inference), storage, data licensing/labeling fees, serving costs.
+        *   Perform pricing model analysis-Analyze each component of the workload. Determine if the component and resources will be running for extended periods and eligible for commitment discounts.
+        *   Use managed services to reduce total cost of ownership (TCO)
     *   *Is it Worth It?:* Does the estimated business value justify the projected costs and risks? Define the overall ROI and opportunity cost. Develop a cost-benefit model.
+*   **Define the overall environmental impact or benefit**
+    *   How does this workload support our overall sustainability mission?
+    *   How much data will we have to store and process?
+    *   What is the impact of training the model?
+    *   How often will we have to re-train?
+    *   What are the impacts resulting from customer use of this workload?
+    *   What will be the productive output compared with this total impact? 
 *   **Ethical Considerations & Fairness Review:**
     *   Actively look for potential biases in data or model outcomes. Who might be negatively impacted?
     *   Is the intended use fair and responsible? Consider compliance requirements. Use tools like SageMaker Clarify to help detect bias early.
@@ -269,6 +282,11 @@ Clearly define how you will measure success *before* you start building. Disting
     *   *Is the model moving the needle?* Even if evaluation metrics are mediocre, is it positively impacting business KPIs? -> Worth improving.
     *   *Is the model plateauing?* Great evaluation metrics, but no further improvement in business KPIs? -> Maybe good enough, or the link is broken.
     *   *Is it failing?* Poor evaluation metrics AND negative/no impact on business KPIs? -> Re-evaluate framing or abandon.
+
+*   **Monitor model compliance to business requirements**
+    *   Machine learning models degrade over time due to changes in the real world, such as data drift and concept drift. If not monitored, these changes could lead to models becoming inaccurate or even obsolete over time. It’s important to have a periodic monitoring process in place to make sure that your ML models continue to comply to your business requirements, and that deviations are captured and acted upon promptly.
+        *   Agree on the metrics to monitor - Clearly establish the metrics that you want to capture from your model monitoring process. These metrics should be tied to your business requirements and should cover your dataset-related statistics and model inference metrics.
+        *   Have an action plan on a drift–If anunacceptable drift is detected in a dataset or the model output, have an action plan to mitigate it based on the type of drift and the metrics associated. This mitigation could include kicking off a retraining pipeline, updating the model, augmenting your dataset with more instances, or enriching your feature engineering process.
 
 **Business vs. Model Metrics**
 
@@ -342,6 +360,48 @@ Neglecting this stage is like a chef trying to create a masterpiece without know
 ---
 
 
+### Project: "Trending Now" – Applying ML Problem Framing
+
+Now, let's apply the principles from this chapter to our "Trending Now Movies/TV Shows Genre Classification" MLOps project.
+
+*   **1.P.1 Defining Business Goals for the "Trending Now" App**
+    *   *Primary Goal:* To provide users with accurate and engaging genre classifications for newly released movies and TV shows, leading to increased user satisfaction and app usage.
+    *   *Secondary Goals:* To build a showcase MLOps project demonstrating best practices; to understand the effort involved in maintaining such a system.
+    *   *Stakeholders:* End-users (want accurate genres), developers (us, building the guide), potential employers/community (learning from the guide).
+    *   *Business KPIs (Conceptual):* Daily Active Users (DAU), Session Duration, User Feedback Score on Genre Accuracy, Number of movies/shows processed per day.
+*   **1.P.2 Is ML the Right Approach for Genre Classification?**
+    *   *Complexity:* Yes, genre is nuanced and can be inferred from plots/reviews which involve complex patterns.
+    *   *Data:* Assumed available via scraping (plots, reviews, existing genre tags for training).
+    *   *Predictive Nature:* Yes, we are predicting a category (genre).
+    *   *Scale:* Can scale to many movies/shows.
+    *   *Changing Patterns:* New movies/shows constantly released; review language evolves.
+    *   *Simpler Solutions:* A rule-based system (e.g., if "space" in plot, then "Sci-Fi") could be a baseline but likely insufficient for nuanced classification.
+*   **1.P.3 Framing the Genre Classification Task**
+    *   *Ideal Outcome:* Users quickly find movies/shows of genres they are interested in.
+    *   *Model Goal (XGBoost/BERT training model):* Predict the genre(s) of a movie/TV show based on its plot summary and/or aggregated user reviews.
+    *   *Model Goal (LLM for "production" inference):* Generate the genre(s) of a movie/TV show based on its plot summary and/or reviews, leveraging its broad knowledge.
+    *   *ML Task Type:* Multilabel classification (a movie can belong to multiple genres like "Action" and "Comedy").
+    *   *Proxy Labels:* For initial training, we'll rely on existing genre tags from scraped sources (e.g., TMDb). Need to be aware of potential inconsistencies or inaccuracies in these source labels.
+*   **1.P.4 Initial Feasibility for "Trending Now"**
+    *   *Data Availability:* Moderate. Scraping movie data and reviews is feasible. Quantity and quality of genre labels from sources need assessment.
+    *   *Problem Difficulty:* Moderate. Genre classification is a known problem. Using BERT embeddings for text is established.
+    *   *Prediction Quality:* For the educational XGBoost/BERT model, "good enough" for demonstration. For the LLM inference, aim for high perceived accuracy by users.
+    *   *Technical Requirements:*
+        *   Data Ingestion Pipeline: Needs to be robust to website changes.
+        *   Model Training Pipeline (XGBoost/BERT): Manageable compute for a small/medium dataset.
+        *   Inference Pipeline (LLM): Depends on API latency, cost, and rate limits.
+    *   *Cost/ROI:* Primarily educational ROI. For a real app, ROI would depend on user engagement. LLM API costs are a factor.
+    *   *Ethical Considerations:* Potential bias in training data genres (e.g., certain types of films from certain regions might be underrepresented or miscategorized in source data). Ensure diverse genres are handled.
+*   **1.P.5 Success Metrics for the "Trending Now" Genre Model and App**
+    *   *Business Success (App):* Increase in conceptual DAU (e.g., measured by guide readers engaging with project sections), positive feedback on project clarity.
+    *   *Model Success (XGBoost/BERT - Offline):*
+        *   Primary Metric: Macro F1-score (to handle genre imbalance).
+        *   Acceptability: Precision/Recall per genre > 70% (example).
+    *   *Model Success (LLM - Online/Conceptual):*
+        *   Primary Metric: User-perceived accuracy of genre (qualitative feedback, or A/B test if comparing LLM prompts).
+        *   Acceptability: Latency for LLM API response within acceptable limits for user experience.
+
+---
 
 ### References
 - [Designing Machine Learning Systems by Chip Huyen](https://www.oreilly.com/library/view/designing-machine-learning/9781098107956/)
