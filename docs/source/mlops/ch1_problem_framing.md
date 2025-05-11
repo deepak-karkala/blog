@@ -5,23 +5,23 @@
 
 ```
 
-<!--![](../../_static/mlops/problem_framing/1.png)-->
+<!--![](../_static/mlops/problem_framing/1.png)-->
 
 <!--
-<img src="../../_static/mlops/problem_framing/1.png" width="400" height="400" />
-<img src="../../_static/mlops/problem_framing/2.png" width="400" height="400" />
-<img src="../../_static/mlops/problem_framing/3.png" width="400" height="400" />
-<img src="../../_static/mlops/problem_framing/4.png" width="400" height="400" />
-<img src="../../_static/mlops/problem_framing/5.png" width="400" height="400" />
-<img src="../../_static/mlops/problem_framing/6.png" width="400" height="400" />
-<img src="../../_static/mlops/problem_framing/7.png" width="400" height="400" />
-<img src="../../_static/mlops/problem_framing/8.png" width="400" height="400" />
-<img src="../../_static/mlops/problem_framing/9.png" width="400" height="400" />
-<img src="../../_static/mlops/problem_framing/10.png" width="400" height="400" />
+<img src="../_static/mlops/problem_framing/1.png" width="400" height="400" />
+<img src="../_static/mlops/problem_framing/2.png" width="400" height="400" />
+<img src="../_static/mlops/problem_framing/3.png" width="400" height="400" />
+<img src="../_static/mlops/problem_framing/4.png" width="400" height="400" />
+<img src="../_static/mlops/problem_framing/5.png" width="400" height="400" />
+<img src="../_static/mlops/problem_framing/6.png" width="400" height="400" />
+<img src="../_static/mlops/problem_framing/7.png" width="400" height="400" />
+<img src="../_static/mlops/problem_framing/8.png" width="400" height="400" />
+<img src="../_static/mlops/problem_framing/9.png" width="400" height="400" />
+<img src="../_static/mlops/problem_framing/10.png" width="400" height="400" />
 
-<img src="../../_static/mlops/problem_framing/mlops_probframing.png" width="400" height="400" />
+<img src="../_static/mlops/problem_framing/mlops_probframing.png" width="400" height="400" />
 <br/>
-Click <a href="../../_static/mlops/problem_framing/mlops_probframing.png">here</a> for high resolution image.
+Click <a href="../_static/mlops/problem_framing/mlops_probframing.png">here</a> for high resolution image.
 -->
 
 ---
@@ -41,7 +41,7 @@ This chapter lays the groundwork for our "Michelin-Grade ML Kitchen." We'll expl
 **Overall Process Flow**
 Let's visualize the ML Problem Framing process, linking it to our restaurant concept:
 
-<img src="../../_static/mlops/problem_framing/steps.svg" width="400" height="400" />
+<img src="../_static/mlops/ch1_problem_framing/steps.svg" width="400" height="400" />
 
 ---
 
@@ -132,7 +132,7 @@ ML is powerful but complex and resource-intensive. It introduces technical debt 
 
 **Simple Decision Flow - Should We Use ML?**
 
-<img style="background-color:#FCF1EF" src="../../_static/mlops/problem_framing/ml_feasibility.svg"/>
+<img style="background-color:#FCF1EF" src="../_static/mlops/ch1_problem_framing/ml_feasibility.svg"/>
 
 
 ---
@@ -313,18 +313,18 @@ ML development is inherently experimental and uncertain. Unlike traditional soft
 
 **AWS Well-Architected ML lifecycle**
 
-<img src="../../_static/mlops/problem_framing/aws_well_architected.png" width="80%"/>
+<img src="../_static/mlops/ch1_problem_framing/aws_well_architected.png" width="80%"/>
 
 **AWS Well-Architected ML lifecycle phases**
 
-<img src="../../_static/mlops/problem_framing/aws_ml_lifecycle_phases.png"/>
+<img src="../_static/mlops/ch1_problem_framing/aws_ml_lifecycle_phases.png"/>
 
 - [Source: AWS Well-Architected Framework: Machine Learning Lens](https://docs.aws.amazon.com/wellarchitected/latest/machine-learning-lens/machine-learning-lens.html)
 
 
 **ML development phases**
 
-<img src="../../_static/mlops/problem_framing/dev_phases.png"/>
+<img src="../_static/mlops/ch1_problem_framing/dev_phases.png"/>
 
 - [Google Foundational Course: Managing ML Projects: ML development phases](https://developers.google.com/machine-learning/managing-ml-projects/phases)
 

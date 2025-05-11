@@ -45,7 +45,7 @@ MLOps encompasses the entire lifecycle of an ML model, from initial development 
 
 **End-to-End Machine Learning Workflow**
 
-<img src="../../_static/mlops/ch2_blueprint/ml_engineering.jpg"/>
+<img src="../_static/mlops/ch2_blueprint/ml_engineering.jpg"/>
 
 - [Source: mlops.org: An Overview of the End-to-End Machine Learning Workflow](https://ml-ops.org/content/end-to-end-ml-workflow)
 
@@ -56,7 +56,7 @@ MLOps encompasses the entire lifecycle of an ML model, from initial development 
 
     **The MLOps Lifecycle**
 
-    <img src="../../_static/mlops/ch2_blueprint/google_ml_lifecycle.png" width=70%/>
+    <img src="../_static/mlops/ch2_blueprint/google_ml_lifecycle.png" width=70%/>
 
     - [Google: Practitioners guide to MLOps: A framework for continuous delivery and automation of machine learning](https://services.google.com/fh/files/misc/practitioners_guide_to_mlops_whitepaper.pdf)
 
@@ -73,14 +73,14 @@ MLOps encompasses the entire lifecycle of an ML model, from initial development 
 
     **AWS Well-Architected ML lifecycle phases**
 
-    <img src="../../_static/mlops/ch2_blueprint/aws_ml_lifecycle_phases.png" width=70%/>
+    <img src="../_static/mlops/ch2_blueprint/aws_ml_lifecycle_phases.png" width=70%/>
 
     - [Source: AWS Well-Architected Framework: Machine Learning Lens](https://docs.aws.amazon.com/wellarchitected/latest/machine-learning-lens/machine-learning-lens.html)
 
 
     **Simplified MLOps End-to-End Workflow**
 
-    <img src="../../_static/mlops/ch2_blueprint/google_ml_workflow.png"/>
+    <img src="../_static/mlops/ch2_blueprint/google_ml_workflow.png"/>
 
     - [Google: Practitioners guide to MLOps: A framework for continuous delivery and automation of machine learning](https://services.google.com/fh/files/misc/practitioners_guide_to_mlops_whitepaper.pdf)
 
@@ -120,13 +120,13 @@ The MLOps Stack Canvas provides a framework to systematically plan the architect
     *   Structure: Data/Code Management, Model Management, Metadata Management blocks.
 
     **The MLOps Stack Canvas**
-    <img src="../../_static/mlops/ch2_blueprint/stack_canvas.png"/>
+    <img src="../_static/mlops/ch2_blueprint/stack_canvas.png"/>
 
     - [Source: mlops.org: MLOps Stack Canvas](https://ml-ops.org/content/mlops-stack-canvas)
 
 
     **Mapping the CRISP-ML(Q) process model to the MLOps stack**
-    <img src="../../_static/mlops/ch2_blueprint/map_process_to_stack.png" width=80%/>
+    <img src="../_static/mlops/ch2_blueprint/map_process_to_stack.png" width=80%/>
 
     - [Source: mlops.org: MLOps Stack Canvas](https://ml-ops.org/content/mlops-stack-canvas)
 
@@ -185,7 +185,7 @@ Organizations adopt MLOps practices progressively. Understanding these levels he
     *   Mapping MLOps maturity to broader organizational AI adoption stages. [MLOps Stack Canvas.md]
 
 **Aligning with AI Readiness (Tactical, Strategic, Transformational)**
-<img src="../../_static/mlops/ch2_blueprint/ai_readiness.png" width="70%"/>
+<img src="../_static/mlops/ch2_blueprint/ai_readiness.png" width="70%"/>
 
 - [Source: mlops.org: MLOps Stack Canvas](https://ml-ops.org/content/mlops-stack-canvas)
 
@@ -223,13 +223,13 @@ Successful MLOps requires a diverse team with clear roles and effective collabor
 *   **2.7.3 Structuring ML Teams for Success:** Aligning team structure with organizational ML maturity and goals (R&D vs. Embedded vs. Centralized vs. ML-First).
 
 **Key Personas**
-<img src="../../_static/mlops/ch2_blueprint/roles.png"/>
+<img src="../_static/mlops/ch2_blueprint/roles.png"/>
 
 - [Source: AWS: MLOps foundation roadmap for enterprises with Amazon SageMaker](https://aws.amazon.com/blogs/machine-learning/mlops-foundation-roadmap-for-enterprises-with-amazon-sagemaker)
 
 
 **Personas, operations, and technology summary**
-<img src="../../_static/mlops/ch2_blueprint/operations_account.png"/>
+<img src="../_static/mlops/ch2_blueprint/operations_account.png"/>
 
 - [Source: AWS: MLOps foundation roadmap for enterprises with Amazon SageMaker](https://aws.amazon.com/blogs/machine-learning/mlops-foundation-roadmap-for-enterprises-with-amazon-sagemaker)
 
