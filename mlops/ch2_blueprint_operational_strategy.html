@@ -1,0 +1,723 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Low Level Design" href="../lld/index.html" /><link rel="prev" title="ML Problem framing" href="ch1_problem_framing.html" />
+
+    <link rel="shortcut icon" href="../_static/favicon.ico"/><!-- Generated with Sphinx 7.1.2 and Furo 2024.05.06 -->
+        <title>The MLOps Blueprint &amp; Operational Strategy - Home</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=387cc868" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=36a5483c" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/style.css?v=8a7ff5ee" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" /
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">Home</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  
+  <span class="sidebar-brand-text">Home</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../projects/index.html">Projects</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Projects</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../projects/nlp/index.html">Natural Language Processing</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Natural Language Processing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/airbnb_alternate_search/about/index.html">Airbnb Listing description based Semantic Search</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../projects/cv/index.html">Computer Vision</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Computer Vision</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/ecommerce_image_segmentation/about/index.html">Image Segmentation for Ecommerce Products</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../projects/ml/index.html">Machine Learning</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of Machine Learning</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/airbnb_price_modeling/about/index.html">Predictive Price Modeling for Airbnb listings</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../publications/index.html">Patents, Papers, Thesis</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">MLOps</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of MLOps</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="ch1_problem_framing.html">ML Problem framing</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of ML Problem framing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">The MLOps Blueprint &amp; Operational Strategy</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../lld/index.html">Low Level Design</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of Low Level Design</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lld/parking_lot.html">Parking Lot</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../visualization/index.html">Data Visualization Projects</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="../_sources/mlops/ch2_blueprint_operational_strategy.md.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="the-mlops-blueprint-operational-strategy">
+<h1>The MLOps Blueprint &amp; Operational Strategy<a class="headerlink" href="#the-mlops-blueprint-operational-strategy" title="Permalink to this heading">¶</a></h1>
+<p><strong>Chapter 2: Designing the Michelin-Grade Kitchen – The MLOps Blueprint &amp; Operational Strategy</strong></p>
+<p><em>(Progress Label: 📍Stage 2: The Kitchen Blueprint &amp; Operational Plan)</em></p>
+<section id="introduction-beyond-the-recipe-architecting-the-entire-kitchen">
+<h2>🧑‍🍳 Introduction: Beyond the Recipe – Architecting the Entire Kitchen<a class="headerlink" href="#introduction-beyond-the-recipe-architecting-the-entire-kitchen" title="Permalink to this heading">¶</a></h2>
+<p>In Chapter 1, we defined the concept for our restaurant and envisioned its signature dish – the ML problem we aim to solve. But a brilliant recipe alone doesn’t guarantee a Michelin star. Success requires a meticulously designed kitchen, streamlined processes, skilled staff, and rigorous standards that ensure every plate served meets the highest quality, consistently and efficiently.</p>
+<p>Welcome to the MLOps Blueprint. This chapter moves beyond the <em>what</em> (the ML problem) to the <em>how</em>: the overarching strategy, principles, and infrastructure required to build, deploy, and maintain machine learning systems reliably and at scale. MLOps is the operational discipline – the design of our entire “Michelin-Grade Kitchen” – that transforms experimental ML models (“recipes”) into robust, value-generating products (“consistent, five-star dining experiences”).</p>
+<p>We’ll explore the core principles that guide a well-run MLOps kitchen, map out the essential production line (lifecycle), define the necessary equipment and stations (capabilities and stack), and discuss how to staff and manage the operation for sustained excellence. This chapter provides the strategic framework needed before we start setting up individual kitchen stations in the chapters that follow.</p>
+<hr class="docutils" />
+</section>
+<section id="section-2-1-what-is-mlops-defining-our-culinary-operations">
+<h2>Section 2.1: What is MLOps? (Defining Our Culinary Operations)<a class="headerlink" href="#section-2-1-what-is-mlops-defining-our-culinary-operations" title="Permalink to this heading">¶</a></h2>
+<p>MLOps stands for Machine Learning Operations. It’s an engineering culture and practice that aims to unify ML system development (Dev) and ML system operation (Ops). Think of it as an extension and adaptation of DevOps principles specifically tailored for the unique world of machine learning.</p>
+<ul class="simple">
+<li><p><strong>2.1.1 The Evolution from DevOps to MLOps</strong>
+DevOps revolutionized traditional software development by breaking down silos between development and operations teams, emphasizing automation, collaboration, and rapid iteration. MLOps inherits these goals but adapts them for ML systems. While standard software mainly deals with <em>code</em>, ML systems involve <em>code, data, and models</em> as first-class entities, each with its own lifecycle and complexities.</p></li>
+<li><p><strong>2.1.2 Unique Challenges of ML Systems vs. Traditional Software</strong>
+MLOps is necessary because ML systems introduce unique challenges not typically found in conventional software:</p>
+<ul>
+<li><p><strong>Team Skills:</strong> ML requires collaboration between data scientists (focused on experimentation), ML engineers (focused on productionization), and operations teams, often with different skill sets and cultures.</p></li>
+<li><p><strong>Experimental Nature:</strong> ML development is highly iterative and experimental. Tracking experiments and ensuring reproducibility is crucial but difficult.</p></li>
+<li><p><strong>Complex Testing:</strong> Testing involves validating not just code, but also data quality, data schemas, model quality, and fairness.</p></li>
+<li><p><strong>Complex Deployment:</strong> Deploying an ML system often means deploying a multi-step <em>pipeline</em> (for retraining), not just a static model artifact.</p></li>
+<li><p><strong>Model Decay:</strong> Models degrade in production due to changing data profiles (drift), requiring continuous monitoring and retraining (Continuous Training - CT).</p></li>
+<li><p><strong>Data Dependencies:</strong> ML models are tightly coupled with the data they were trained on. Data issues (quality, lineage, versioning) directly impact model performance.</p></li>
+</ul>
+</li>
+<li><p><strong>2.1.3 Core Goals of MLOps: Speed, Reliability, Scalability, Collaboration</strong>
+Implementing MLOps aims to achieve tangible benefits:</p>
+<ul>
+<li><p><strong>Speed:</strong> Faster experimentation and shorter development cycles (faster time-to-market).</p></li>
+<li><p><strong>Reliability:</strong> Dependable, reproducible releases and robust production systems.</p></li>
+<li><p><strong>Scalability:</strong> Ability to manage numerous models and handle growing data/traffic volumes.</p></li>
+<li><p><strong>Collaboration:</strong> Improved teamwork between data science, engineering, and operations.</p></li>
+<li><p><strong>Governance:</strong> Streamlined processes for auditability, compliance, and risk management.</p></li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+</section>
+<section id="section-2-2-the-mlops-lifecycle-an-end-to-end-workflow-mapping-the-full-production-line">
+<h2>Section 2.2: The MLOps Lifecycle: An End-to-End Workflow (Mapping the Full Production Line)<a class="headerlink" href="#section-2-2-the-mlops-lifecycle-an-end-to-end-workflow-mapping-the-full-production-line" title="Permalink to this heading">¶</a></h2>
+<p>MLOps encompasses the entire lifecycle of an ML model, from initial development to long-term operation. Several frameworks describe this lifecycle.</p>
+<p><strong>End-to-End Machine Learning Workflow</strong></p>
+<img src="../../_static/mlops/ch2_blueprint/ml_engineering.jpg"/>
+<ul class="simple">
+<li><p><a class="reference external" href="https://ml-ops.org/content/end-to-end-ml-workflow">Source: mlops.org: An Overview of the End-to-End Machine Learning Workflow</a></p></li>
+</ul>
+<ul>
+<li><p><strong>2.2.1 Overview of Key MLOps Processes</strong>
+We can adapt Google’s MLOps lifecycle or the CRISP-ML(Q) process. Both emphasize similar key stages:</p>
+<p><strong>The MLOps Lifecycle</strong></p>
+<img src="../../_static/mlops/ch2_blueprint/google_ml_lifecycle.png" width=70%/>
+<ul class="simple">
+<li><p><a class="reference external" href="https://services.google.com/fh/files/misc/practitioners_guide_to_mlops_whitepaper.pdf">Google: Practitioners guide to MLOps: A framework for continuous delivery and automation of machine learning</a></p></li>
+</ul>
+<ul class="simple">
+<li><p><strong>ML Development:</strong> Experimenting, prototyping, data prep, model training &amp; evaluation (offline). Output: Formalized training pipeline code/definition.</p></li>
+<li><p><strong>Training Operationalization:</strong> Building, testing, and deploying the training pipeline itself (CI/CD for the pipeline). Output: A deployable training pipeline.</p></li>
+<li><p><strong>Continuous Training (CT):</strong> Automatically executing the training pipeline based on triggers (new data, schedule, decay). Output: A trained, validated, and registered model.</p></li>
+<li><p><strong>Model Deployment:</strong> Packaging, testing, and deploying the <em>trained model</em> to a serving environment. Output: A prediction service.</p></li>
+<li><p><strong>Prediction Serving:</strong> Handling inference requests (online, batch, streaming). Output: Predictions.</p></li>
+<li><p><strong>Continuous Monitoring:</strong> Tracking model effectiveness (accuracy, drift) and efficiency (latency, resources). Output: Performance metrics, alerts, potential retraining triggers.</p></li>
+<li><p><strong>Data and Model Management:</strong> Central governance of ML artifacts (datasets, features, models, metadata) for auditability, reproducibility, and compliance.</p></li>
+</ul>
+</li>
+<li><p><strong>2.2.2 The Iterative and Interconnected Nature of MLOps</strong>
+This lifecycle is not linear waterfall. It’s highly iterative, with feedback loops connecting various stages. Monitoring results might trigger retraining; deployment issues might require revisiting development; new business needs identified during operation might loop back to the initial ML development phase.</p>
+<p><strong>AWS Well-Architected ML lifecycle phases</strong></p>
+<img src="../../_static/mlops/ch2_blueprint/aws_ml_lifecycle_phases.png" width=70%/>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.aws.amazon.com/wellarchitected/latest/machine-learning-lens/machine-learning-lens.html">Source: AWS Well-Architected Framework: Machine Learning Lens</a></p></li>
+</ul>
+<p><strong>Simplified MLOps End-to-End Workflow</strong></p>
+<img src="../../_static/mlops/ch2_blueprint/google_ml_workflow.png"/>
+<ul class="simple">
+<li><p><a class="reference external" href="https://services.google.com/fh/files/misc/practitioners_guide_to_mlops_whitepaper.pdf">Google: Practitioners guide to MLOps: A framework for continuous delivery and automation of machine learning</a></p></li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+</section>
+<section id="section-2-3-core-mlops-design-principles-our-kitchen-s-guiding-philosophies">
+<h2>Section 2.3: Core MLOps Design Principles (Our Kitchen’s Guiding Philosophies)<a class="headerlink" href="#section-2-3-core-mlops-design-principles-our-kitchen-s-guiding-philosophies" title="Permalink to this heading">¶</a></h2>
+<p>These principles form the bedrock of a successful MLOps implementation. [MLOps Principles.md, mlops-foundation-roadmap-for-enterprises-with-amazon-sagemaker.md (Page 14), Guidelines for developing high-quality, predictive ML solutions.md]</p>
+<ul class="simple">
+<li><p><strong>2.3.1 Automation:</strong> Automate everything possible – data pipelines, model training, testing, deployment, infrastructure provisioning (IaC). Reduces manual effort, errors, and increases speed.</p></li>
+<li><p><strong>2.3.2 Reproducibility:</strong> Ensure experiments, pipeline runs, and model predictions can be reliably reproduced. This requires meticulous versioning.</p>
+<ul>
+<li><p><em>Versioning:</em> Treat code, data, models, parameters, and environments as versioned artifacts. Use tools like Git (code), DVC (data), Model Registries (models).</p></li>
+</ul>
+</li>
+<li><p><strong>2.3.3 Continuous X:</strong> Implement CI/CD/CT/CM.</p>
+<ul>
+<li><p><em>CI (Continuous Integration):</em> Test and validate code, data, and models frequently.</p></li>
+<li><p><em>CD (Continuous Delivery/Deployment):</em> Reliably release pipeline updates and new model versions.</p></li>
+<li><p><em>CT (Continuous Training):</em> Automatically retrain models to adapt to new data/patterns.</p></li>
+<li><p><em>CM (Continuous Monitoring):</em> Constantly track production performance and health.</p></li>
+</ul>
+</li>
+<li><p><strong>2.3.4 Comprehensive Testing:</strong> Implement rigorous testing across the lifecycle.</p>
+<ul>
+<li><p><em>Data Tests:</em> Validate schema, distributions, quality.</p></li>
+<li><p><em>Model Tests:</em> Unit tests for code, training convergence checks, evaluation against metrics, fairness/bias tests.</p></li>
+<li><p><em>Infrastructure Tests:</em> Reproducibility checks, pipeline integration tests, deployment validation (canary/shadow).</p></li>
+</ul>
+</li>
+<li><p><strong>2.3.5 Monitoring and Observability:</strong> Go beyond simple metrics. Instrument systems to understand <em>why</em> failures happen. Log extensively. Track lineage.</p></li>
+<li><p><strong>2.3.6 Modularity &amp; Reusability:</strong> Design loosely coupled components (pipelines, feature logic, models) that can be independently developed, tested, deployed, and reused.</p></li>
+<li><p><strong>2.3.7 Scalability:</strong> Design systems that can handle growth in data volume, model complexity, number of models, and request load.</p></li>
+<li><p><strong>2.3.8 Collaboration &amp; Defined Roles:</strong> Foster collaboration between diverse roles (Data Science, MLE, Ops, etc.) with clear ownership and responsibilities.</p></li>
+<li><p><strong>2.3.9 Governance, Security, and Compliance by Design:</strong> Integrate checks and processes for security, compliance (e.g., GDPR, EU AI Act), auditability, and responsible AI throughout the lifecycle.</p></li>
+</ul>
+<hr class="docutils" />
+</section>
+<section id="section-2-4-the-mlops-stack-canvas-architecting-your-system-the-kitchen-layout-plan">
+<h2>Section 2.4: The MLOps Stack Canvas: Architecting Your System (The Kitchen Layout Plan)<a class="headerlink" href="#section-2-4-the-mlops-stack-canvas-architecting-your-system-the-kitchen-layout-plan" title="Permalink to this heading">¶</a></h2>
+<p>The MLOps Stack Canvas provides a framework to systematically plan the architecture and infrastructure components needed for your specific ML project. It helps translate MLOps principles and capabilities into concrete choices.</p>
+<ul>
+<li><p><strong>2.4.1 Introduction to the MLOps Stack Canvas Framework</strong></p>
+<ul class="simple">
+<li><p>Purpose: Structure workflows, architecture, and infrastructure choices.</p></li>
+<li><p>Analogy: Like a Business Model Canvas, but for MLOps tech stack.</p></li>
+<li><p>Structure: Data/Code Management, Model Management, Metadata Management blocks.</p></li>
+</ul>
+<p><strong>The MLOps Stack Canvas</strong>
+<img src="../../_static/mlops/ch2_blueprint/stack_canvas.png"/></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://ml-ops.org/content/mlops-stack-canvas">Source: mlops.org: MLOps Stack Canvas</a></p></li>
+</ul>
+<p><strong>Mapping the CRISP-ML(Q) process model to the MLOps stack</strong>
+<img src="../../_static/mlops/ch2_blueprint/map_process_to_stack.png" width=80%/></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://ml-ops.org/content/mlops-stack-canvas">Source: mlops.org: MLOps Stack Canvas</a></p></li>
+</ul>
+</li>
+<li><p><strong>2.4.2 Block 1: Value Proposition (Revisiting the “Why”)</strong></p>
+<ul class="simple">
+<li><p><em>Key Questions:</em> What problem does this ML system solve for the user/business? Why is it important? Who is the user? Who owns the production model?</p></li>
+<li><p><em>Relevant Capability:</em> Aligning with Business Goals (from Chapter 1).</p></li>
+</ul>
+</li>
+<li><p><strong>2.4.3 Block 2: Data Sources and Data Versioning (The Pantry &amp; Inventory System)</strong></p>
+<ul class="simple">
+<li><p><em>Key Questions:</em> Mandatory versioning? Data sources (owned, public, paid)? Storage (lake, DWH)? Labeling required? How to version data? Data pipeline tooling?</p></li>
+<li><p><em>Capability Deep Dive:</em> Data Ingestion, Data Storage, Data Versioning (DVC, Git LFS), Data Governance (access, privacy).</p></li>
+</ul>
+</li>
+<li><p><strong>2.4.4 Block 3: Data Analysis and Experiment Management (The Chef’s Lab Notebook)</strong></p>
+<ul class="simple">
+<li><p><em>Key Questions:</em> Language (Python, R, SQL)? Infra needs for training? Evaluation metrics (business &amp; ML)? How to track experiments (metadata, params, data)? ML Frameworks?</p></li>
+<li><p><em>Capability Deep Dive:</em> Experimentation Environments (Notebooks, IDEs), Experiment Tracking tools (MLflow, W&amp;B, Vertex AI Experiments, SageMaker Experiments), ML Frameworks (TF, PyTorch).</p></li>
+</ul>
+</li>
+<li><p><strong>2.4.5 Block 4: Feature Store and Workflows (The Spice Rack &amp; Prep Instructions)</strong></p>
+<ul class="simple">
+<li><p><em>Key Questions:</em> Mandatory? How are features computed (train vs. serve)? Infra needs? Buy vs. Make? Databases involved? APIs?</p></li>
+<li><p><em>Capability Deep Dive:</em> Feature Engineering Tools, Feature Stores (Feast, Tecton, Vertex AI Feature Store, SageMaker Feature Store), Data Processing Capabilities (Batch/Stream), Workflow Orchestration.</p></li>
+</ul>
+</li>
+<li><p><strong>2.4.6 Block 5: Foundations (DevOps &amp; Code Management) (Kitchen Utensils &amp; Basic Hygiene)</strong></p>
+<ul class="simple">
+<li><p><em>Key Questions:</em> Source control (Git)? System monitoring? Notebook versioning? Trunk-based dev? CI/CD for code? DevOps metrics (DORA)?</p></li>
+<li><p><em>Capability Deep Dive:</em> Source Control, CI/CD Systems, Testing Frameworks, Monitoring Tools (for infra).</p></li>
+</ul>
+</li>
+<li><p><strong>2.4.7 Block 6: Continuous Integration, Training, and Deployment (ML Pipeline Orchestration) (The Automated Assembly Line)</strong></p>
+<ul class="simple">
+<li><p><em>Key Questions:</em> Retraining frequency/trigger? Where (local/cloud)? Workflow definition? Distributed training needed? CI pipeline tools? Non-functional requirement testing (fairness, robustness)?</p></li>
+<li><p><em>Capability Deep Dive:</em> ML Pipeline Orchestrators (Kubeflow, SageMaker Pipelines, Airflow, Vertex AI Pipelines), CI/CD for ML Pipelines, Automated Testing Frameworks.</p></li>
+</ul>
+</li>
+<li><p><strong>2.4.8 Block 7: Model Registry and Model Versioning (The Recipe Book Archive)</strong></p>
+<ul class="simple">
+<li><p><em>Key Questions:</em> Mandatory? Where to store/track models? Versioning standards (semantic)?</p></li>
+<li><p><em>Capability Deep Dive:</em> Model Registries (MLflow, SageMaker, Vertex AI), Model Versioning Strategies.</p></li>
+</ul>
+</li>
+<li><p><strong>2.4.9 Block 8: Model Deployment &amp; Prediction Serving (The Serving Counter &amp; Delivery)</strong></p>
+<ul class="simple">
+<li><p><em>Key Questions:</em> Delivery format? Target environment? Release policy (A/B, canary)? Deployment strategy? (shadow/canary)</p></li>
+<li><p><em>Capability Deep Dive:</em> Model Serving Frameworks (TF Serving, TorchServe, Triton), Deployment Platforms (Kubernetes, Serverless, SageMaker Endpoints, Vertex AI Endpoints), Online Experimentation Tools.</p></li>
+</ul>
+</li>
+<li><p><strong>2.4.10 Block 9: ML Model, Data, and System Monitoring (Quality Control Inspector)</strong></p>
+<ul class="simple">
+<li><p><em>Key Questions:</em> Mandatory? Metrics (ML, domain)? Decay/Drift detection? Operational monitoring? Alerting strategy? Retraining triggers?</p></li>
+<li><p><em>Capability Deep Dive:</em> Monitoring Platforms (CloudWatch, Datadog, ML-specific tools like WhyLabs, Arize), Alerting Systems, Drift Detection Algorithms.</p></li>
+</ul>
+</li>
+<li><p><strong>2.4.11 Block 10: Metadata Store (The Central Kitchen Logbook)</strong></p>
+<ul class="simple">
+<li><p><em>Key Questions:</em> What metadata to collect? Governance needs? Documentation strategy (Datasheets, Model Cards)? Operational metrics?</p></li>
+<li><p><em>Capability Deep Dive:</em> ML Metadata Management Tools (MLMD, MLflow Tracking), Artifact Repositories.</p></li>
+</ul>
+</li>
+<li><p><strong>2.4.12 Overarching Considerations: Build vs. Buy, Platform Choices, Skills</strong></p>
+<ul class="simple">
+<li><p>Revisiting the Build vs. Buy decision for each component.</p></li>
+<li><p>Choosing an integrated platform vs. best-of-breed tools.</p></li>
+<li><p>Assessing required team skills vs. available tooling.</p></li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+</section>
+<section id="section-2-5-mlops-maturity-levels-phasing-the-kitchen-construction">
+<h2>Section 2.5: MLOps Maturity Levels (Phasing the Kitchen Construction)<a class="headerlink" href="#section-2-5-mlops-maturity-levels-phasing-the-kitchen-construction" title="Permalink to this heading">¶</a></h2>
+<p>Organizations adopt MLOps practices progressively. Understanding these levels helps set realistic goals.</p>
+<ul class="simple">
+<li><p><strong>2.5.1 Level 0: Manual Processes (The Home Cook Experimenting)</strong></p>
+<ul>
+<li><p><em>Characteristics:</em> Manual, script-driven, interactive; Disconnected Dev/Ops; Infrequent releases; No CI/CD; Deployment = Prediction Service only; Limited monitoring.</p></li>
+<li><p><em>Challenges:</em> Slow iteration, error-prone, reproducibility issues, model decay unnoticed.</p></li>
+</ul>
+</li>
+<li><p><strong>2.5.2 Level 1: ML Pipeline Automation (The Professional Prep Cook)</strong></p>
+<ul>
+<li><p><em>Characteristics:</em> Rapid experimentation via orchestrated pipelines; Continuous Training (CT) automated; Experimental-operational symmetry; Modular code; Continuous Delivery of models;</p></li>
+<li><p><em>Key Additions:</em> Automated Data/Model Validation, Feature Store (optional), Metadata Management, Pipeline Triggers.</p></li>
+<li><p><em>Challenges:</em> Pipeline updates are often manual; CI/CD for the pipeline itself is missing.</p></li>
+</ul>
+</li>
+<li><p><strong>2.5.3 Level 2: CI/CD Pipeline Automation (The Fully Automated Kitchen Line)</strong></p>
+<ul>
+<li><p><em>Characteristics:</em> Adds robust, automated CI/CD for rapid/reliable pipeline updates; Automated build, test, deploy of pipeline components.</p></li>
+<li><p><em>Key Additions:</em> Source Control, Test/Build Services, Deployment Services, Model Registry, Feature Store, Metadata Store, Pipeline Orchestrator (all fully integrated).</p></li>
+</ul>
+</li>
+<li><p><strong>2.5.4 Aligning with AI Readiness (Tactical, Strategic, Transformational)</strong></p>
+<ul>
+<li><p>Mapping MLOps maturity to broader organizational AI adoption stages. [MLOps Stack Canvas.md]</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Aligning with AI Readiness (Tactical, Strategic, Transformational)</strong>
+<img src="../../_static/mlops/ch2_blueprint/ai_readiness.png" width="70%"/></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://ml-ops.org/content/mlops-stack-canvas">Source: mlops.org: MLOps Stack Canvas</a></p></li>
+</ul>
+<hr class="docutils" />
+</section>
+<section id="section-2-6-documenting-mlops-architecture-architectural-decision-records-adrs">
+<h2>Section 2.6: Documenting MLOps Architecture (Architectural Decision Records - ADRs)<a class="headerlink" href="#section-2-6-documenting-mlops-architecture-architectural-decision-records-adrs" title="Permalink to this heading">¶</a></h2>
+<p>A lightweight method for capturing key architectural decisions and their rationale during the planning phase.</p>
+<ul class="simple">
+<li><p><em>Purpose:</em> Track choices made for specific MLOps components (e.g., “Why we chose MLflow for experiment tracking”).</p></li>
+<li><p><em>Format:</em> Context, Decision, Consequences.</p></li>
+<li><p>The following is a simplified example of such <a class="reference external" href="https://ml-ops.org/content/mlops-stack-canvas">ARD</a>.</p>
+<ul>
+<li><p><strong>ARD</strong>: Dataset versioning.</p></li>
+<li><p><strong>Context</strong>: As requested by the regulatory requirements, every retraining of the ML model should be in sync with the changes in the dataset.</p></li>
+<li><p><strong>Decision</strong>: The ML model should be retrained whenever a new batch of data points is collected. Therefore, we decided to use DVC to track datasets and ML models. An alternative solution would be LakeFS.</p></li>
+<li><p><strong>Consequences</strong>: We need to move our data storage to the DVC-supported storage mechanisms. Additionally, upskilling our team members is required.</p></li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+</section>
+<section id="section-2-7-roles-and-responsibilities-in-mlops-staffing-the-kitchen">
+<h2>Section 2.7: Roles and Responsibilities in MLOps (Staffing the Kitchen)<a class="headerlink" href="#section-2-7-roles-and-responsibilities-in-mlops-staffing-the-kitchen" title="Permalink to this heading">¶</a></h2>
+<p>Successful MLOps requires a diverse team with clear roles and effective collaboration.</p>
+<ul class="simple">
+<li><p><strong>2.7.1 Key Personas:</strong> Data Scientist, ML Engineer, MLOps Engineer, Data Engineer, Platform Engineer, Software Engineer, Domain Expert (SME), Product Manager, IT/Security/Compliance, Business Stakeholders.</p></li>
+<li><p><strong>2.7.2 Collaboration Models:</strong></p>
+<ul>
+<li><p><em>Approach 1:</em> Separate Teams (DS/ML vs. Platform/Ops) - Pros (specialization, easier hiring), Cons (handoffs, overhead, debugging challenges, narrow context).</p></li>
+<li><p><em>Approach 2:</em> Data Scientists Own End-to-End (“Full-Stack DS”) - Pros (faster iteration, full context), Cons (requires “unicorn” skills, potential for boilerplate).</p></li>
+<li><p><em>Approach 3:</em> Hybrid/Platform-Enabled - Specialists build tools/platforms, enabling DS/MLE to own end-to-end workflow with abstractions.</p></li>
+</ul>
+</li>
+<li><p><strong>2.7.3 Structuring ML Teams for Success:</strong> Aligning team structure with organizational ML maturity and goals (R&amp;D vs. Embedded vs. Centralized vs. ML-First).</p></li>
+</ul>
+<p><strong>Key Personas</strong>
+<img src="../../_static/mlops/ch2_blueprint/roles.png"/></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://aws.amazon.com/blogs/machine-learning/mlops-foundation-roadmap-for-enterprises-with-amazon-sagemaker">Source: AWS: MLOps foundation roadmap for enterprises with Amazon SageMaker</a></p></li>
+</ul>
+<p><strong>Personas, operations, and technology summary</strong>
+<img src="../../_static/mlops/ch2_blueprint/operations_account.png"/></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://aws.amazon.com/blogs/machine-learning/mlops-foundation-roadmap-for-enterprises-with-amazon-sagemaker">Source: AWS: MLOps foundation roadmap for enterprises with Amazon SageMaker</a></p></li>
+</ul>
+<hr class="docutils" />
+</section>
+<section id="project-trending-now-blueprinting-mlops-strategy">
+<h2>Project: “Trending Now” – Blueprinting MLOps Strategy<a class="headerlink" href="#project-trending-now-blueprinting-mlops-strategy" title="Permalink to this heading">¶</a></h2>
+<p>Let’s apply the concepts from this chapter to define the initial MLOps strategy for our “Trending Now” application.</p>
+<ul class="simple">
+<li><p><strong>2.P.1 Applying MLOps Principles to “Trending Now”</strong></p>
+<ul>
+<li><p><em>Automation:</em> Target automation for data ingestion, LLM inference calls, and potentially model retraining (if XGBoost/BERT path is further developed). CI/CD for backend API.</p></li>
+<li><p><em>Reproducibility:</em> Version control for code (FastAPI, frontend, scraping scripts), data (using DVC for scraped data/labels), model artifacts (XGBoost/BERT in registry), prompts (versioned config/code), and environment (Docker).</p></li>
+<li><p><em>Continuous X:</em> Implement CI/CD for backend/frontend. Design for potential CT for the XGBoost/BERT model based on new data or performance monitoring. Implement CM for LLM API calls (cost, latency, errors) and model outputs.</p></li>
+<li><p><em>Testing:</em> Unit tests for backend logic, data validation checks for scraped data, testing LLM prompt effectiveness (offline), integration tests for API.</p></li>
+<li><p><em>Monitoring:</em> Focus on LLM cost, latency, API errors, output quality (drift in scores/tags), operational metrics of FastAPI service.</p></li>
+<li><p><em>Modularity:</em> Separate FastAPI backend, frontend, data ingestion pipeline, inference pipeline.</p></li>
+</ul>
+</li>
+<li><p><strong>2.P.2 Using the MLOps Stack Canvas to Plan “Trending Now” Infrastructure</strong></p>
+<ul>
+<li><p><em>(Walk through key canvas blocks)</em></p></li>
+<li><p><em>Data Sources/Versioning:</em> Web scraping (APIs/HTML), store raw/processed data (e.g., S3/local Parquet), use DVC for versioning.</p></li>
+<li><p><em>Experiment Management:</em> Minimal for LLM (prompt variations tracked in Git). Required if developing XGBoost/BERT (MLflow/W&amp;B).</p></li>
+<li><p><em>Feature Store:</em> Not strictly necessary initially; features (plot/review text) are directly passed to LLM. Could be considered later if complex features are derived.</p></li>
+<li><p><em>CI/CD/CT Orchestration:</em> GitHub Actions for backend CI/CD. Simple scheduler (cron) or manual trigger for ingestion. Orchestrator less critical initially, could use basic scripts or serverless workflows (AWS Step Functions/Lambda).</p></li>
+<li><p><em>Model Registry:</em> Minimal registry needed for LLM (track prompt versions/model endpoints). Essential for XGBoost/BERT (SageMaker/MLflow).</p></li>
+<li><p><em>Deployment/Serving:</em> FastAPI backend (e.g., on AWS App Runner, Google Cloud Run, or simple EC2/VM), LLM via API.</p></li>
+<li><p><em>Monitoring:</em> CloudWatch/Datadog for basic infra/API monitoring; custom logging/analysis for LLM cost/output drift.</p></li>
+<li><p><em>Metadata Store:</em> Simple logging initially; potentially MLflow for tracking related artifacts if XGBoost/BERT is developed.</p></li>
+<li><p><em>Build vs Buy:</em> Buy LLM API. Build backend/frontend/ingestion scripts. Use open-source/managed services for MLOps components where feasible (e.g., Git, DVC, potentially MLflow).</p></li>
+</ul>
+</li>
+<li><p><strong>2.P.3 Determining the Initial MLOps Maturity Level for the Project</strong></p>
+<ul>
+<li><p>Likely starts between Level 0 and Level 1. Manual experimentation (prompt engineering), potentially automated data ingestion pipeline, manual deployment of backend service. Aim to move towards Level 1/2 for the components we build (e.g., CI/CD for backend).</p></li>
+</ul>
+</li>
+<li><p><strong>2.P.4 Defining Roles for the “Trending Now” Project Team (Conceptual)</strong></p>
+<ul>
+<li><p><em>ML Engineer/Backend Dev:</em> Builds FastAPI, integrates LLM, sets up ingestion.</p></li>
+<li><p><em>Frontend Dev:</em> Builds HTML/CSS/JS and D3.js visualization.</p></li>
+<li><p><em>(Implicit MLOps Role):</em> Responsible for deployment, monitoring setup, automation scripts. In a small team, this might overlap with the ML/Backend role initially.</p></li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+</section>
+<section id="conclusion-laying-the-kitchen-foundation">
+<h2>🧑‍🍳 Conclusion: Laying the Kitchen Foundation<a class="headerlink" href="#conclusion-laying-the-kitchen-foundation" title="Permalink to this heading">¶</a></h2>
+<p>We’ve now designed the blueprint for our Michelin-Grade ML Kitchen. We understand that MLOps is more than just deploying a model; it’s a comprehensive set of principles, processes, and capabilities focused on building and operating ML systems reliably and efficiently. We’ve mapped the entire production line, from initial development to continuous monitoring and improvement, guided by core philosophies like automation and reproducibility.</p>
+<p>Using the MLOps Stack Canvas, we’ve identified the essential “stations” and “equipment” required, considering the trade-offs and maturity needed. We also understand the importance of a skilled and collaborative kitchen crew. This strategic foundation, this MLOps blueprint, is essential before we start assembling the individual parts. With this plan in place, we are ready to start gathering the highest quality ingredients in the next chapter: Data Sourcing, Discovery, and Understanding.</p>
+<hr class="docutils" />
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://services.google.com/fh/files/misc/practitioners_guide_to_mlops_whitepaper.pdf">Google: Practitioners guide to MLOps: A framework for continuous delivery and automation of machine learning</a></p></li>
+<li><p><a class="reference external" href="https://aws.amazon.com/blogs/machine-learning/mlops-foundation-roadmap-for-enterprises-with-amazon-sagemaker/?mld_ops10">AWS: MLOps foundation roadmap for enterprises with Amazon SageMaker</a></p></li>
+<li><p><a class="reference external" href="https://ml-ops.org/content/mlops-stack-canvas">mlops.org: MLOps Stack Canvas</a></p></li>
+<li><p><a class="reference external" href="https://www.oreilly.com/library/view/designing-machine-learning/9781098107956/">Designing Machine Learning Systems by Chip Huyen</a></p></li>
+<li><p><a class="reference external" href="https://fullstackdeeplearning.com/course/2022/">Full Stack Deep Learning - 2022 Course</a></p></li>
+<li><p><a class="reference external" href="https://docs.aws.amazon.com/wellarchitected/latest/machine-learning-lens/machine-learning-lens.html">AWS Well-Architected Framework: Machine Learning Lens</a></p></li>
+</ul>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="../lld/index.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Low Level Design</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="ch1_problem_framing.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">ML Problem framing</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024, Deepak Karkala
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">The MLOps Blueprint &amp; Operational Strategy</a><ul>
+<li><a class="reference internal" href="#introduction-beyond-the-recipe-architecting-the-entire-kitchen">🧑‍🍳 Introduction: Beyond the Recipe – Architecting the Entire Kitchen</a></li>
+<li><a class="reference internal" href="#section-2-1-what-is-mlops-defining-our-culinary-operations">Section 2.1: What is MLOps? (Defining Our Culinary Operations)</a></li>
+<li><a class="reference internal" href="#section-2-2-the-mlops-lifecycle-an-end-to-end-workflow-mapping-the-full-production-line">Section 2.2: The MLOps Lifecycle: An End-to-End Workflow (Mapping the Full Production Line)</a></li>
+<li><a class="reference internal" href="#section-2-3-core-mlops-design-principles-our-kitchen-s-guiding-philosophies">Section 2.3: Core MLOps Design Principles (Our Kitchen’s Guiding Philosophies)</a></li>
+<li><a class="reference internal" href="#section-2-4-the-mlops-stack-canvas-architecting-your-system-the-kitchen-layout-plan">Section 2.4: The MLOps Stack Canvas: Architecting Your System (The Kitchen Layout Plan)</a></li>
+<li><a class="reference internal" href="#section-2-5-mlops-maturity-levels-phasing-the-kitchen-construction">Section 2.5: MLOps Maturity Levels (Phasing the Kitchen Construction)</a></li>
+<li><a class="reference internal" href="#section-2-6-documenting-mlops-architecture-architectural-decision-records-adrs">Section 2.6: Documenting MLOps Architecture (Architectural Decision Records - ADRs)</a></li>
+<li><a class="reference internal" href="#section-2-7-roles-and-responsibilities-in-mlops-staffing-the-kitchen">Section 2.7: Roles and Responsibilities in MLOps (Staffing the Kitchen)</a></li>
+<li><a class="reference internal" href="#project-trending-now-blueprinting-mlops-strategy">Project: “Trending Now” – Blueprinting MLOps Strategy</a></li>
+<li><a class="reference internal" href="#conclusion-laying-the-kitchen-foundation">🧑‍🍳 Conclusion: Laying the Kitchen Foundation</a></li>
+<li><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=b3ba4146"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/scripts/furo.js?v=4e2eecee"></script>
+    </body>
+</html>
