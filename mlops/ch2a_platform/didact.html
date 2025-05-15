@@ -1,0 +1,611 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Project Planning" href="../ch3_project_planning/index.html" /><link rel="prev" title="Monzo ML Stack" href="monzo.html" />
+
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/><!-- Generated with Sphinx 7.1.2 and Furo 2024.05.06 -->
+        <title>Didact AI - Home</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=387cc868" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=36a5483c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/style.css?v=8a7ff5ee" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" /
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">Home</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  
+  <span class="sidebar-brand-text">Home</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../projects/index.html">Projects</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Projects</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/nlp/index.html">Natural Language Processing</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Natural Language Processing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/airbnb_alternate_search/about/index.html">Airbnb Listing description based Semantic Search</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/cv/index.html">Computer Vision</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Computer Vision</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/ecommerce_image_segmentation/about/index.html">Image Segmentation for Ecommerce Products</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/ml/index.html">Machine Learning</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of Machine Learning</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/airbnb_price_modeling/about/index.html">Predictive Price Modeling for Airbnb listings</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../publications/index.html">Patents, Papers, Thesis</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../index.html">MLOps</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of MLOps</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch1_problem_framing.html">ML Problem framing</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of ML Problem framing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch2_blueprint_operational_strategy.html">The MLOps Blueprint &amp; Operational Strategy</a></li>
+<li class="toctree-l2 current has-children"><a class="reference internal" href="index.html">ML Platforms</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of ML Platforms</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="ml_platforms.html">ML Platforms: How to</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uber.html">Uber Michelangelo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="linkedin.html">LinkedIn DARWIN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="netflix.html">Netflix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="shopify.html">Shopify Merlin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="zomato.html">Zomato: Real-time ML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="coveo.html">Coveo: MLOPs at reasonable scale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="monzo.html">Monzo ML Stack</a></li>
+<li class="toctree-l3 current current-page"><a class="current reference internal" href="#">Didact AI</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch3_project_planning/index.html">Project Planning</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of Project Planning</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/prd.html">Project Requirements Document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/tech_stack.html">Tech Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/config_management.html">Config Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/pipeline_design.html">Pipeline Design</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/environment_strategy.html">Environment Strategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/cicd_branching_model.html">CI/CD Strategy and Branching Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/directory_structure.html">Directory Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/env_branchind_cicd_deployment.html">Environments, Branching, CI/CD, and Deployments Explained</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/project_management.html">Project Management for MLOps</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../lld/index.html">Low Level Design</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of Low Level Design</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../lld/parking_lot.html">Parking Lot</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../visualization/index.html">Data Visualization Projects</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="../../_sources/mlops/ch2a_platform/didact.md.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="didact-ai">
+<h1>Didact AI<a class="headerlink" href="#didact-ai" title="Permalink to this heading">¶</a></h1>
+<p><strong>Introduction</strong></p>
+<ul class="simple">
+<li><p><strong>Didact AI Goal:</strong> Build an ML-powered stock picking engine to consistently beat the market.</p></li>
+<li><p><strong>Development:</strong> Worked full-time for 2 years (2019-2021).</p></li>
+<li><p><strong>Performance:</strong> Generated outstanding returns, steadily beating S&amp;P 500 for over a year (Jun 2021 - Jul 2022).</p>
+<ul>
+<li><p><strong>Didact Total Return:</strong> +14.2% vs. S&amp;P 500 (SPY) -7.1%.</p></li>
+<li><p><strong>Key Metric:</strong> Low correlation with SPY (0.18 weekly), indicating alpha generation.</p></li>
+<li><p><strong>Downside Protection:</strong> Significantly lower downside deviation (0.39% vs 1.22% for SPY weekly) and better returns when SPY was negative (-0.31% vs -2.03% for SPY weekly).</p></li>
+</ul>
+</li>
+<li><p><strong>Reason for Shutdown:</strong> Perceived lack of Product-Market Fit (PMF) for the newsletter service.</p></li>
+<li><p><strong>Focus of Post:</strong> Architecture and technology of the engine, covering data ingestion, feature engineering, modeling, and MLOps.</p></li>
+</ul>
+<p><strong>Markets: Patterns, Regimes, Regime Shifts, and Sentiment</strong></p>
+<ul class="simple">
+<li><p><strong>Core Assumptions/Priors:</strong></p>
+<ul>
+<li><p><strong>Market Patterns:</strong> Chunks of similar price-volume actions repeated across time (e.g., chart patterns, complex multi-market time-series artifacts). Ephemeral, payoffs change as they evolve and speculators adapt.</p></li>
+<li><p><strong>Market Regimes:</strong> The “context” in which assets operate (e.g., bull/bear market, geopolitical sentiment affecting commodities). Can be fine-grained (hundreds of regimes in Didact) or coarse-grained. Didact models asset and market dynamics together using regimes.</p></li>
+<li><p><strong>Regime Shifts:</strong> Sudden switches between market regimes, often due to exogenous circumstances, reflected in asset repricing. Regimes typically last 21-35 days (mean/median); shifts can be rapid or gradual.</p></li>
+<li><p><strong>Market Sentiment:</strong> Aggregated bullish/bearish behavior across assets/classes. Best captured by relative trading volumes weighted by periodic returns (e.g., high negative returns + high volume = negative sentiment). Sentiment often moves assets in lockstep during regime shifts (“correlations tend to 1”).</p></li>
+</ul>
+</li>
+<li><p><strong>Didact’s Approach:</strong> Stitches these concepts (patterns contextualized by regimes and sentiment) to power predictions.</p></li>
+</ul>
+<p><strong>Engine architecture: A 50k ft view</strong></p>
+<ul class="simple">
+<li><p><strong>Pipeline Structure:</strong> Raw financial market data -&gt; data cleansing -&gt; feature engineering/filtering -&gt; action-oriented modules (stock picks). Includes a control panel and long-running monitoring.</p></li>
+<li><p><strong>High-Level Components:</strong></p>
+<ul>
+<li><p>Data Sources (External Providers, Internal Data Store)</p></li>
+<li><p>Data Ingestion Pipeline</p></li>
+<li><p>Data Layer (Data Store, Feature Store, Artifact Store)</p></li>
+<li><p>ML Layer (Feature Engineering, <em>Pythia</em> Forecasting Model, <em>Cassandra</em> Regime Model, <em>Socrates</em> Model Explanations)</p></li>
+<li><p>ML Ops / Monitoring Layer (Backup/Restore, Workflow Monitoring, Feature Explorer, Model Diagnostics, Performance Analytics)</p></li>
+<li><p>Output (Weekly Picks via Newsletter)</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Architecture</strong></p>
+<img src="../../_static/mlops/ch2a_platform/didact/1.png"/>
+<ul class="simple">
+<li><p><a class="reference external" href="https://principiamundi.com/posts/didact-anatomy/">Source: Didact AI: The anatomy of an ML-powered stock picking engine</a></p></li>
+</ul>
+<p><strong>Design focus</strong></p>
+<ul class="simple">
+<li><p><strong>Primary Aim:</strong> Enable rapid experimentation with <em>feature engineering</em>, believing it’s key to success over model choice.</p></li>
+<li><p><strong>Secondary Aim:</strong> Relentless focus on <em>execution speed</em>.</p>
+<ul>
+<li><p><strong>Daily Processing:</strong> Text and time-series for &gt;4000 US stocks, ETFs, macro series.</p></li>
+<li><p><strong>Feature Generation:</strong> 1000+ features per stock (cross-sector, industry, index, fund ownership).</p></li>
+<li><p><strong>Quarterly Processing:</strong> Earnings call transcripts, SEC EDGAR filings using deep learning language models (compute-intensive, batched weekly on GPU EC2 instances for cost savings).</p></li>
+</ul>
+</li>
+<li><p><strong>Performance Improvement:</strong> Raw data to insight timeline reduced from ~2.5 hours to ~14 minutes.</p></li>
+</ul>
+<p><strong>Tech stack</strong></p>
+<ul class="simple">
+<li><p><strong>ML Layer:</strong> Almost exclusively Python. Some SQL for pipeline parts, Pandas alternatives for bottlenecks. Sequential execution with input validation and quality checks.</p></li>
+<li><p><strong>Data Layer:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Data Store:</strong></p>
+<ul>
+<li><p>Initially: Postgres (speed issues with many columns as features). Eventually: DuckDB (column-oriented embedded DB, good performance, plays well with Arrow/Parquet).</p></li>
+</ul>
+</li>
+<li><p><strong>Feature Store:</strong></p>
+<ul>
+<li><p>Initially: Redis (persisted to disk) with a custom feature access layer for fine-grained engineering and aggregations.</p></li>
+<li><p>Augmented with DuckDB: Pushed basic feature engineering to SQL scripts (mimicking Pandas WINDOW functions) for rapid columnar processing.</p></li>
+</ul>
+</li>
+<li><p><strong>Artifact Store:</strong> Local disk storage, backed up daily to AWS S3 (60-day local retention). Includes serialized models, forecasts, regime metrics, training data snapshots.</p></li>
+</ol>
+</li>
+<li><p><strong>ML Ops / Monitoring Layer:</strong> Python scripts generating reports (except Feature Explorer).</p></li>
+</ul>
+<p><strong>Python environment setup</strong></p>
+<ul class="simple">
+<li><p><strong>Base:</strong> Python 3.8 Conda environment.</p></li>
+<li><p><strong>Key Packages:</strong></p>
+<ul>
+<li><p><em>Data engineering:</em> <code class="docutils literal notranslate"><span class="pre">duckdb</span></code>, <code class="docutils literal notranslate"><span class="pre">numpy</span></code>, <code class="docutils literal notranslate"><span class="pre">pandas</span></code>, <code class="docutils literal notranslate"><span class="pre">pyarrow</span></code>, <code class="docutils literal notranslate"><span class="pre">boto</span></code>, <code class="docutils literal notranslate"><span class="pre">redislite</span></code>.</p></li>
+<li><p><em>ML Modeling:</em> <code class="docutils literal notranslate"><span class="pre">jupyter</span></code>, <code class="docutils literal notranslate"><span class="pre">pandas</span></code>, <code class="docutils literal notranslate"><span class="pre">numpy</span></code>, <code class="docutils literal notranslate"><span class="pre">polars</span></code>, <code class="docutils literal notranslate"><span class="pre">joblib</span></code>, <code class="docutils literal notranslate"><span class="pre">bottleneck</span></code>, <code class="docutils literal notranslate"><span class="pre">pytorch</span></code>, <code class="docutils literal notranslate"><span class="pre">tsfresh</span></code>, <code class="docutils literal notranslate"><span class="pre">transformers</span></code> (Hugging Face), <code class="docutils literal notranslate"><span class="pre">xgboost</span></code>, <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>, <code class="docutils literal notranslate"><span class="pre">scipy</span></code>.</p></li>
+<li><p><em>ML Ops:</em> <code class="docutils literal notranslate"><span class="pre">dash</span></code> (Plotly), <code class="docutils literal notranslate"><span class="pre">fastapi</span></code>.</p></li>
+</ul>
+</li>
+<li><p><strong>Parallelism:</strong> Judicious use of <code class="docutils literal notranslate"><span class="pre">multiprocessing</span></code> for CPU-intensive tasks not suited for GPUs. (Cloud GPUs considered expensive, hence no NVidia RAPIDS).</p></li>
+</ul>
+<p><strong>Execution platform</strong></p>
+<ul class="simple">
+<li><p><strong>Infrastructure:</strong> AWS.</p></li>
+<li><p><strong>Instance:</strong> <code class="docutils literal notranslate"><span class="pre">r5a.2xlarge</span></code> EC2 (8 vCPUs, 64 GB RAM, optimized for in-memory compute) with EBS volume.</p></li>
+<li><p><strong>Self-Hosted:</strong> Redis + Postgres (initially) on the EC2 instance.</p></li>
+<li><p><strong>Backups:</strong> Private, locked-down S3 buckets.</p></li>
+</ul>
+<p><strong>Pipeline scheduling</strong></p>
+<ul class="simple">
+<li><p><strong>Frequency:</strong> Executed daily, 2 hours after market close (allows data feed refresh).</p></li>
+<li><p><strong>Data Quality:</strong> Checks on incoming data; re-polls providers if necessary.</p></li>
+<li><p><strong>Production Scheduling (Past):</strong> <code class="docutils literal notranslate"><span class="pre">cron</span></code> jobs executing shell scripts calling Python modules.</p></li>
+<li><p><strong>Current Rewrite:</strong> Moving to Apache Airflow for DAG orchestration.</p></li>
+<li><p><strong>Stock Pick Extraction:</strong> Only from Friday’s run (or last trading day of the week) to reduce cognitive burden for users.</p></li>
+</ul>
+<p><strong>Interlude: Complexity in financial data</strong></p>
+<ul class="simple">
+<li><p><strong>Multi-modal &amp; Complex:</strong> Text, time series, implicit network graphs.</p></li>
+<li><p><strong>Data Feed Examples:</strong></p>
+<ul>
+<li><p><em>Options Data:</em> Bids/asks, volumes, open interest, IV for all contracts, grouped by expiry, strike, type. Contracts expire and are replaced.</p></li>
+</ul>
+</li>
+<li><p><strong>Corporate Actions:</strong> Need tooling to track name/ticker changes, splits, spinoffs, mergers for time-series consistency (these actions are also mined as features). One-off scripts for major events (e.g., Google/Alphabet).</p></li>
+<li><p><strong>Index Reconstitutions:</strong> (S&amp;P 500, Russell) Announced in advance, trigger massive capital flows. Capturing these as features provides marginal alpha.</p></li>
+<li><p><strong>Calendar Events:</strong> Track FOMC meetings, holidays, options/futures expiry, witching days, macro releases (NFP, unemployment).</p></li>
+<li><p><strong>Text Data (Earnings Transcripts, EDGAR Filings):</strong> Use SOTA language models to infer uncertainty from changes in topics, word frequencies, sentiment. Aggregate sector/industry sentiment can be predictive.</p></li>
+</ul>
+<p><strong>The data ingestion pipeline</strong></p>
+<ul class="simple">
+<li><p><strong>Daily Raw Data:</strong> ~0.5 GB, complex, multiple feeds, cross-cutting relationships.</p></li>
+<li><p><strong>Process:</strong></p>
+<ol class="arabic simple">
+<li><p>Grab latest daily data for US stocks into Arrow DataFrames.</p></li>
+<li><p>Basic quality checks (e.g., missing data for active stocks, bad prints).</p>
+<ul>
+<li><p>Bad print detection: Unlikely implied returns, compare against corporate actions. Re-fetch if likely bad print.</p></li>
+<li><p>(Planned: Use Great Expectations for DQ tests).</p></li>
+</ul>
+</li>
+<li><p>Columnar Compression / Basic Transforms: Normalize denormalized commercial feeds. Column type casting (e.g., symbols as Categoricals), drop columns, map timestamps to <code class="docutils literal notranslate"><span class="pre">uint16</span></code> (date, time) pairs to save space.</p></li>
+<li><p>Push transformed data from DataFrames into DuckDB.</p></li>
+<li><p>Backups: ML Ops script saves updates from data store to Parquet files and pushes to AWS S3.</p></li>
+</ol>
+</li>
+</ul>
+<p><strong>Interlude: How I think about ML in markets</strong></p>
+<p>Various ways to frame financial market forecasting with ML:</p>
+<ol class="arabic simple">
+<li><p><em>Supervised Learning:</em> Regression (predict return) or classification (predict outperformance).</p></li>
+<li><p><em>Unsupervised Learning:</em> Discern market regimes as clusters with associated forward trajectories.</p></li>
+<li><p><em>Self-Supervised Learning:</em> Like classical autoregression (ARIMA) or masking/predicting parts of feature vectors.</p></li>
+<li><p><em>Learning to Rank:</em> Rank stocks by expected forward returns (from Information Retrieval).</p></li>
+<li><p><em>Recommender System:</em> Stocks as items, market regimes as users; recommend appropriate stocks for a regime (e.g., collaborative filtering).</p></li>
+<li><p><em>Reinforcement Learning:</em> Trading agents maximizing ROI by buying/selling.</p></li>
+</ol>
+<ul class="simple">
+<li><p><strong>Goal:</strong> Blend best ideas from each sub-field.</p></li>
+</ul>
+<p><strong>Feature Engineering pipeline</strong></p>
+<ul class="simple">
+<li><p><strong>Feature Vector Composition (per stock, per day EOD):</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Raw Features from Feature Groups:</strong> (Price/volumes, options chains, text sentiment).</p></li>
+<li><p><strong>Basic Intra-Group Engineering:</strong> (e.g., (Close-Low)/(High-Low) from price/volume). Scores of these.</p></li>
+<li><p><strong>Peer Contextualization/Normalization:</strong> Compare stock’s data against peers (sector, industry, index, co-ownership patterns). Compute percentiles. (Critical: maintain as-of-date reference data for peer groups).</p></li>
+<li><p><strong>Historical Contextualization:</strong> Compare stock’s data against its own history (e.g., closing price vs. last 1-year close). Percentiles, ratios, statistical measures (std dev, skew, kurtosis) on rolling windows.</p></li>
+<li><p><strong>Cross-Group Features:</strong> Combine features across groups (e.g., price-to-sales, price delta / sentiment delta).</p></li>
+<li><p><strong>Trading Strategy-Based Features:</strong> Run various strategies (technical, momentum, value, quality, etc.), capture predictions as features (idea: some strategies profitable in certain regimes).</p></li>
+<li><p><strong>Market Regime-Based Features:</strong> Current market state (VIX term structure, S&amp;P 500 vs. 200-DMA, yield curve shape, macro release trajectories).</p></li>
+</ol>
+</li>
+<li><p><strong>Piece-de-Resistance:</strong> Accuracy gap (latest predictions vs. actual realized values, as percentages) included as a feature. Helps model detect regime shifts faster.</p></li>
+</ul>
+<p><strong>Event time vs chronological time</strong></p>
+<ul class="simple">
+<li><p><strong>Chronological Time (“Clock Time”):</strong> Standard financial data aggregation (per-minute, -hour, -day).</p></li>
+<li><p><strong>Event Time:</strong> Measure “time” by event counts (e.g., per-100 trades), leading to “volume bars.”</p></li>
+<li><p><strong>Analogy:</strong> Similar to time domain vs. frequency domain in signal theory.</p></li>
+<li><p><strong>Benefit:</strong> Allows design of new ML features capturing inverted time-related info.</p></li>
+<li><p><strong>Approximation:</strong> Since trade-level data isn’t available, “invert” 1-minute data to approximate event time features.</p></li>
+</ul>
+<p><strong>ML Modeling subsystem</strong></p>
+<ul class="simple">
+<li><p><strong>Feature Matrix:</strong> ~4000 stocks, features computed for last 250 days (with forward data). ~1M data points. Sufficient for complex gradient boosted trees.</p></li>
+<li><p><strong>Model Choice Rationale:</strong></p>
+<ul>
+<li><p><em>Why Gradient Boosting (GBDTs)?</em> Better at handling imbalanced data and novel market regimes than random forests.</p></li>
+<li><p><em>Why not Deep Learning?</em> Dataset size too small. Would require different modeling approach (though ideas for transformer-based architectures exist).</p></li>
+</ul>
+</li>
+<li><p><strong><em>Pythia</em>: Forecasting Model</strong></p>
+<ul>
+<li><p><strong>Tool:</strong> <code class="docutils literal notranslate"><span class="pre">xgboost</span></code>.</p></li>
+<li><p><strong>Target:</strong> Pick stocks with &gt;75% probability of generating forward Sortino ratios &gt;2.0x that of SPY. If &gt;20 stocks, pick top 20 by probability.</p></li>
+<li><p><strong>Retraining:</strong> Daily (even if picks used weekly) to track mid-week regime shifts.</p></li>
+</ul>
+</li>
+<li><p><strong><em>Cassandra</em>: Regime Model</strong></p>
+<ul>
+<li><p>Tracks current market regime.</p></li>
+<li><p>Computes forward trajectory projections for S&amp;P 500, Nasdaq, Russell 2000.</p></li>
+<li><p>Maintains forecasts of next likely regime shifts (critical for Pythia’s performance).</p></li>
+<li><p>Focuses on subset of feature matrix related to index-level aggregated info.</p></li>
+</ul>
+</li>
+<li><p><strong><em>Socrates</em>: Model Explanations</strong></p>
+<ul>
+<li><p>Provides narrative explanations for why specific stocks were picked.</p></li>
+<li><p>Uses <code class="docutils literal notranslate"><span class="pre">shap</span></code> to generate explanations from the model, then processes for human comprehensibility.</p></li>
+<li><p>(Future: NLG for succinct sentence explanations).</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>ML Ops: Forecasting and Monitoring</strong></p>
+<ul class="simple">
+<li><p><strong>Control Plane:</strong> Mostly manual invocation (except automated backups).</p></li>
+<li><p><strong>Primary Objective:</strong> Monitor ML pipeline for errors, bugs, potential catastrophic drops in profitability (even if unlikely due to regime shift accounting).</p></li>
+<li><p><strong>Secondary Objective:</strong> Explore individual features (drifts, patterns, correlations) to inspire new feature ideas.</p></li>
+<li><p><strong>Backup/Restore:</strong></p>
+<ul>
+<li><p>Backs up: raw data (Parquet), serialized models, predictions, regime forecasts, feature matrices, training data snapshots to private AWS S3.</p></li>
+<li><p>Nothing deleted from S3.</p></li>
+<li><p>Restore module like simplified <code class="docutils literal notranslate"><span class="pre">rsync</span></code>, maintaining a time window (e.g., last 60 days).</p></li>
+</ul>
+</li>
+<li><p><strong>Workflow Monitoring:</strong> Script analyzes ML pipeline logs, sends SUCCESS/FAILURE (with diagnosis) reports via email. (Planned: browser-based admin panel).</p></li>
+<li><p><strong>Feature Explorer:</strong> Jupyter notebook based tool (early version used Plotly Dash with Bootstrap) for exploring constructed features and rapidly testing new feature ideas.</p></li>
+<li><p><strong>Model Diagnostics:</strong> Traces predictions, compares to realized returns, tracks accuracy gap evolution (backtested &amp; walkforward). Dramatic spikes may indicate fundamental market changes.</p></li>
+<li><p><strong>Performance Analytics:</strong> Tracks model performance (hypothetical portfolio returns vs. SPY) using standard trading metrics (Sortino, Sharpe, volatility, downside risk, win/loss, profit factors).</p></li>
+</ul>
+<p><strong>Tackling performance bottlenecks</strong></p>
+<p>Changes to speed up pipeline execution:</p>
+<ol class="arabic simple">
+<li><p><strong>Postgres -&gt; DuckDB (for data store):</strong> In-memory columnar processing was beneficial, especially for bulk vectorized computations during ingestion.</p></li>
+<li><p><strong>Pandas -&gt; PyArrow + DuckDB (ingestion pipeline):</strong> PyArrow for reading/cleaning, then zero-copy load into DuckDB.</p></li>
+<li><p><strong>Numpy -&gt; Bottleneck (feature engineering):</strong> Fast C-based Numpy functions saved CPU cycles.</p></li>
+<li><p><strong>Pandas -&gt; Polars (feature engineering):</strong> Rust-based DataFrame library integrated with Arrow, provided speedups (care needed as functions don’t map 1-to-1).</p></li>
+<li><p><strong>Redesigning Pipelines for Multiprocessing:</strong> Using all EC2 cores beyond vectorization.</p></li>
+</ol>
+<p><strong>Coda: Why I shut down Didact</strong></p>
+<ul class="simple">
+<li><p><strong>Market Timing:</strong> Launched newsletter (June 2021) as COVID bull run was ending.</p></li>
+<li><p><strong>Bull Market Challenge:</strong> Hard to stand out on performance alone when “everyone’s a genius” (e.g., GME).</p></li>
+<li><p><strong>Unstable Market Challenge:</strong> Easier to stand out (Didact did well against losses), but target market (retail investors) exhibits <em>loss aversion</em> and <em>endowment effect</em>, preferring to wait for old holdings to recover rather than allocate to a new systematic engine.</p></li>
+<li><p><strong>PMF Trap:</strong> This behavioral bias played a major role in shutting down the newsletter.</p></li>
+</ul>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="../ch3_project_planning/index.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Project Planning</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="monzo.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Monzo ML Stack</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024, Deepak Karkala
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=b3ba4146"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/scripts/furo.js?v=4e2eecee"></script>
+    </body>
+</html>
