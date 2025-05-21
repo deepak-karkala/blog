@@ -233,6 +233,11 @@ Successful MLOps requires a diverse team with clear roles and effective collabor
 
 - [Source: AWS: MLOps foundation roadmap for enterprises with Amazon SageMaker](https://aws.amazon.com/blogs/machine-learning/mlops-foundation-roadmap-for-enterprises-with-amazon-sagemaker)
 
+
+<img src="../_static/mlops/ch2_blueprint/roles_overlap.png"/>
+
+- [Source: Machine Learning Operations (MLOps): Overview, Definition, and Architecture](https://arxiv.org/pdf/2205.02302)
+
 ---
 
 ### Project: "Trending Now" – Blueprinting MLOps Strategy
