@@ -193,3 +193,5 @@ This chapter outlines the essential building blocks, drawing parallels across th
 - [Real-time Machine Learning Inference Platform at Zomato](https://www.youtube.com/watch?v=0-3ES1vzW14)
 
 - [Didact AI: The anatomy of an ML-powered stock picking engine](https://principiamundi.com/posts/didact-anatomy/)
+
+- [Griffin: How Instacart’s ML Platform Tripled ML Applications in a year](https://www.instacart.com/company/how-its-made/griffin-how-instacarts-ml-platform-tripled-ml-applications-in-a-year/)

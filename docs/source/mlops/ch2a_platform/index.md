@@ -18,9 +18,9 @@ didact
 ### Chapter 2a: ML Platforms
 ___
 
-*	**[Section 5.1: The MLOps Lead's Guide to Designing & Operationalizing Machine Learning Platforms](ml_platforms.md)**
+*	**[Section 2a.1: The MLOps Lead's Guide to Designing & Operationalizing Machine Learning Platforms](ml_platforms.md)**
 
-*	**[Section 5.2: ML Platforms: Industry Case Studies]**
+*	**Section 2a.2: ML Platforms: Industry Case Studies**
 	*	[Uber Michelangelo](uber.md)
 	*	[LinkedIn DARWIN](linkedin.md)
 	*	[Netflix Recommendation](netflix.md)
@@ -29,6 +29,7 @@ ___
 	*	[Coveo: MLOPs at reasonable scale](coveo.md)
 	*	[Monzo ML Stack](monzo.md)
 	*	[Didact AI](didact.md)
+	*	[Instacart Griffin](instacart.md)
 
 ___
 
