@@ -1,0 +1,688 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Facebook: Nemo" href="facebook_nemo.html" /><link rel="prev" title="Project-Trending Now: Implementing Web Scraping, Ingestion" href="ch4_project.html" />
+
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/><!-- Generated with Sphinx 7.1.2 and Furo 2024.05.06 -->
+        <title>Data Discovery Platforms: Industry Case Studies - Home</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=387cc868" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=36a5483c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/style.css?v=8a7ff5ee" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" /
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">Home</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  
+  <span class="sidebar-brand-text">Home</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../projects/index.html">Projects</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Projects</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/nlp/index.html">Natural Language Processing</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Natural Language Processing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/airbnb_alternate_search/about/index.html">Airbnb Listing description based Semantic Search</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/cv/index.html">Computer Vision</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Computer Vision</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/ecommerce_image_segmentation/about/index.html">Image Segmentation for Ecommerce Products</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/ml/index.html">Machine Learning</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of Machine Learning</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/airbnb_price_modeling/about/index.html">Predictive Price Modeling for Airbnb listings</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../publications/index.html">Patents, Papers, Thesis</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../index.html">MLOps</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of MLOps</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch1_problem_framing.html">ML Problem framing</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of ML Problem framing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch2_blueprint_operational_strategy.html">The MLOps Blueprint &amp; Operational Strategy</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch2a_platform/index.html">ML Platforms</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of ML Platforms</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/ml_platforms.html">ML Platforms: How to</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/uber.html">Uber Michelangelo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/linkedin.html">LinkedIn DARWIN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/netflix.html">Netflix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/shopify.html">Shopify Merlin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/zomato.html">Zomato: Real-time ML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/coveo.html">Coveo: MLOPs at reasonable scale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/monzo.html">Monzo ML Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/didact.html">Didact AI</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch3_project_planning/index.html">Project Planning</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of Project Planning</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/prd.html">Project Requirements Document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/tech_stack.html">Tech Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/config_management.html">Config Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/pipeline_design.html">Pipeline Design</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/environment_strategy.html">Environment Strategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/cicd_branching_model.html">CI/CD Strategy and Branching Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/directory_structure.html">Directory Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/env_branchind_cicd_deployment.html">Environments, Branching, CI/CD, and Deployments Explained</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/project_management.html">Project Management for MLOps</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current has-children"><a class="reference internal" href="index.html">Data Sourcing, Discovery</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of Data Sourcing, Discovery</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="data_sourcing_discovery.html">Data Sourcing, Discovery &amp; Understanding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch4_project.html">Project-Trending Now: Implementing Web Scraping, Ingestion</a></li>
+<li class="toctree-l3 current current-page"><a class="current reference internal" href="#">Data Discovery Platforms: Industry Case Studies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="facebook_nemo.html">Facebook: Nemo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="netflix_metacat.html">Netflix Metacat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="uber_databook.html">Uber Databook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="linkedin_datahub.html">LinkedIn Datahub</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../lld/index.html">Low Level Design</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle navigation of Low Level Design</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../lld/parking_lot.html">Parking Lot</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../visualization/index.html">Data Visualization Projects</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="../../_sources/mlops/ch4_data_discovery/industry_case_studies.md.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="data-discovery-platforms-industry-case-studies">
+<h1>Data Discovery Platforms: Industry Case Studies<a class="headerlink" href="#data-discovery-platforms-industry-case-studies" title="Permalink to this heading">¶</a></h1>
+<section id="id1">
+<h2><a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<p>In today’s data-driven enterprises, the sheer volume, variety, and velocity of data can transform a valuable asset into an overwhelming deluge. The ability to efficiently source, discover, and understand relevant, trustworthy data is no longer a luxury but a foundational necessity for innovation, operational excellence, and informed decision-making. This document synthesizes learnings from leading tech companies to provide a technical guide for MLOps leads and senior engineers on approaching data discovery.</p>
+<section id="the-why-core-motivations-goals">
+<h3>1. The “Why”: Core Motivations &amp; Goals<a class="headerlink" href="#the-why-core-motivations-goals" title="Permalink to this heading">¶</a></h3>
+<p>Companies invest in data discovery platforms to address a confluence of challenges:</p>
+<ul class="simple">
+<li><p><strong>Skyrocketing Data Volume &amp; Complexity</strong>: As organizations like Twitter, Netflix, and Uber scaled, their data ecosystems (Hadoop clusters, S3, diverse DBs) grew exponentially, making manual discovery untenable.</p></li>
+<li><p><strong>Productivity Bottlenecks</strong>: Data scientists and engineers spent an inordinate amount of time searching for the “right dataset” rather than deriving insights or building models (a common pain point at LinkedIn, Lyft, Spotify).</p></li>
+<li><p><strong>Erosion of Trust &amp; Confidence</strong>: Navigating a “sea of data resources of varying quality, complexity, relevance, and trustworthiness” (Airbnb’s challenge) leads to uncertainty and reluctance to use data outside one’s immediate sphere. Facebook’s Nemo also aimed to improve confidence in data accuracy.</p></li>
+<li><p><strong>Fragmented Landscapes &amp; Siloed Knowledge</strong>: Data often becomes isolated by tool or team, necessitating reliance on “tribal knowledge,” which is inefficient and doesn’t scale (highlighted by Airbnb, Spotify).</p></li>
+<li><p><strong>Need for Governance &amp; Compliance</strong>: With regulations like GDPR, understanding data lineage, PII, and managing data lifecycle (retention, deletion) becomes critical (a driver for Lyft’s Amundsen and future DataHub use cases).</p></li>
+<li><p><strong>Interoperability Across Tools &amp; Systems</strong>: Enabling diverse compute engines (Spark, Presto, Hive, Pig) to access varied data stores (S3, Druid, Redshift) seamlessly is a key goal, as seen with Netflix’s Metacat.</p></li>
+</ul>
+<p>The overarching goals of these platforms converge on:</p>
+<ul class="simple">
+<li><p><strong>Democratizing Data Access</strong>: Empowering all employees to be data-informed (Airbnb’s Dataportal).</p></li>
+<li><p><strong>Enhancing Discoverability &amp; Exploration</strong>: Making it easy to find relevant data assets.</p></li>
+<li><p><strong>Building Trust &amp; Understanding</strong>: Providing context, metadata, lineage, and quality signals.</p></li>
+<li><p><strong>Improving Efficiency &amp; Productivity</strong>: Reducing the time-to-insight/time-to-market.</p></li>
+<li><p><strong>Facilitating Governance &amp; Compliance</strong>.</p></li>
+</ul>
+</section>
+<section id="anatomy-of-a-data-discovery-platform-key-features-capabilities">
+<h3>2. Anatomy of a Data Discovery Platform: Key Features &amp; Capabilities<a class="headerlink" href="#anatomy-of-a-data-discovery-platform-key-features-capabilities" title="Permalink to this heading">¶</a></h3>
+<p>While implementations vary, several core features are common:</p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Feature Category</p></th>
+<th class="head text-left"><p>Description &amp; Key Aspects</p></th>
+<th class="head text-left"><p>Examples</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><strong>Unified Search</strong></p></td>
+<td class="text-left"><p>Centralized search across diverse data entities (tables, dashboards, pipelines, ML models, users, etc.). Supports keyword, faceted, and sometimes NLP.</p></td>
+<td class="text-left"><p>Airbnb Dataportal, Lyft Amundsen, LinkedIn DataHub, Facebook Nemo, Spotify Lexikon.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Rich Metadata</strong></p></td>
+<td class="text-left"><p>Technical (schema, location, types), Operational (freshness, update frequency, job stats), Business (descriptions, ownership, tags, classifications).</p></td>
+<td class="text-left"><p>All platforms. Netflix Metacat distinguishes logical vs. physical business metadata. Uber Databook uses Dragon for standardized metadata vocabulary.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Data Lineage</strong></p></td>
+<td class="text-left"><p>Visualizing upstream sources and downstream consumers of data assets. Crucial for impact analysis, trust, and debugging.</p></td>
+<td class="text-left"><p>Airbnb Dataportal, LinkedIn DataHub, Twitter DAL. Facebook Nemo uses lineage for trust signals.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Data Profiling &amp; Stats</strong></p></td>
+<td class="text-left"><p>Statistics about data content (null counts, distributions, min/max, distinct values, column popularity).</p></td>
+<td class="text-left"><p>Airbnb Dataportal (column popularity, distributions). Spotify Lexikon (schema-field consumption). Uber Databook (trends, quality indicators).</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Collaboration &amp; Social Features</strong></p></td>
+<td class="text-left"><p>User-generated content (tags, descriptions, comments), expert finders, Q&amp;A, sharing.</p></td>
+<td class="text-left"><p>Airbnb (employee/team pages). Spotify Lexikon (expert mapping, Slack bot). Uber Databook (manage issues, contact owners).</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Curation &amp; Certification</strong></p></td>
+<td class="text-left"><p>Mechanisms to highlight trusted, high-quality, or officially endorsed data assets.</p></td>
+<td class="text-left"><p>Airbnb (planned certification). LinkedIn DataHub (certified entities).</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Programmatic Access (APIs)</strong></p></td>
+<td class="text-left"><p>REST, GraphQL, or Thrift APIs for integration with other tools and enabling programmatic metadata use cases (e.g., governance, automation).</p></td>
+<td class="text-left"><p>LinkedIn DataHub (Rest.li, MCE/MAE events). Netflix Metacat (REST/Thrift). Uber Databook (RPC, GraphQL, event log).</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Data Abstraction</strong></p></td>
+<td class="text-left"><p>Presenting a logical view of data independent of physical storage, format, or location.</p></td>
+<td class="text-left"><p>Twitter DAL (logical vs. physical datasets). Netflix Metacat (canonical types for interoperability).</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Personalization</strong></p></td>
+<td class="text-left"><p>Tailoring search results and recommendations based on user role, team, query history, or other context.</p></td>
+<td class="text-left"><p>Spotify Lexikon (personalized homepage). Facebook Nemo (role, team, GBDT model for ranking). Uber Databook (planned).</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>User Interface (UI)</strong></p></td>
+<td class="text-left"><p>Intuitive web portal for browsing, searching, and exploring metadata.</p></td>
+<td class="text-left"><p>All platforms focus heavily on UI/UX. Uber Databook specifically mentions a UI redesign around Discover, Understand, Manage pillars.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="architectural-blueprints-generations-patterns">
+<h3>3. Architectural Blueprints: Generations &amp; Patterns<a class="headerlink" href="#architectural-blueprints-generations-patterns" title="Permalink to this heading">¶</a></h3>
+<p>Shirshanka Das from LinkedIn (DataHub) provides an excellent framework for understanding the evolution of metadata architectures:</p>
+<ul class="simple">
+<li><p><strong>Generation 1: Monolith Everything (Pull-based ETL)</strong></p>
+<ul>
+<li><p><strong>Description</strong>: Typically a frontend (e.g., Flask app) with a primary store (MySQL/Postgres), a search index (Elasticsearch), and possibly a graph index (Neo4j). Metadata is ingested via crawlers (pull-based) running periodically. Transformations are often embedded in ingestion jobs.</p></li>
+<li><p><strong>Examples</strong>: Original WhereHows, Lyft Amundsen, Airbnb Dataportal, Spotify Lexikon.</p></li>
+<li><p><strong>Pros</strong>: Few moving parts, quick to prototype, a single team can manage.</p></li>
+<li><p><strong>Cons</strong>: Crawler fragility (network, credentials), operational burden on source systems, metadata freshness issues, scalability limitations for diverse use cases.</p></li>
+</ul>
+</li>
+<li><p><strong>Generation 2: 3-Tier App with a Service API (Push-enabled)</strong></p>
+<ul>
+<li><p><strong>Description</strong>: A service layer is introduced in front of the metadata store, offering APIs for push-based metadata updates. Programs can also read metadata programmatically. The metadata store itself might still be a single relational DB or KV store.</p></li>
+<li><p><strong>Examples</strong>: Evolved WhereHows, commercial tools like Collibra/Alation, Marquez.</p></li>
+<li><p><strong>Pros</strong>: Better contracts via schema-ed interfaces, enables programmatic use cases (e.g., automated data deletion based on tags).</p></li>
+<li><p><strong>Cons</strong>: No inherent changelog for metadata, reactive systems are hard to build (requires polling/full scans), centralized team bottleneck for model evolution and diverse use cases.</p></li>
+</ul>
+</li>
+<li><p><strong>Generation 3: Event-Sourced Metadata (Stream-first, Decoupled)</strong></p>
+<ul>
+<li><p><strong>Description</strong>: Metadata is treated as a stream of events (changelog). Mutations generate events, which are then deterministically materialized into appropriate stores (search, graph, data lake, OLAP). This allows for an unbundled metadata database architecture. It also emphasizes extensible, strongly-typed, domain-oriented, and collaboratively defined metadata models.</p></li>
+<li><p><strong>Examples</strong>: LinkedIn DataHub, Apache Atlas, Uber Databook, Egeria.</p></li>
+<li><p><strong>Pros</strong>: Real-time subscription to changes, reliable bootstrapping/repair of indexes, efficient reactive systems, decentralized model evolution, supports diverse consumers, high metadata freshness.</p></li>
+<li><p><strong>Cons</strong>: Higher initial complexity to set up and manage multiple components.</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Common Architectural Components &amp; Considerations:</strong></p>
+<ul class="simple">
+<li><p><strong>Metadata Ingestion</strong>:</p>
+<ul>
+<li><p><strong>Push vs. Pull</strong>: LinkedIn’s DataHub strongly advocates for <strong>push</strong> (producers emit Metadata Change Events - MCEs) as more scalable, timely, and less burdensome on a central team than pull (crawlers). Uber Databook also recommends push to a Kafka topic. Netflix Metacat acts as a gateway, capturing changes.</p></li>
+<li><p><strong>APIs &amp; Event Streams</strong>: Kafka is a common choice for asynchronous ingestion (DataHub’s MCEs, Uber’s Event Log). REST/Thrift APIs for synchronous or direct updates.</p></li>
+</ul>
+</li>
+<li><p><strong>Metadata Storage</strong>:</p>
+<ul>
+<li><p><strong>Primary Store</strong>: Relational DBs (MySQL, Postgres) for structured metadata, NoSQL (LinkedIn’s Espresso, Uber’s MySQL with JSON) for flexible/document-oriented aspects.</p></li>
+<li><p><strong>Search Index</strong>: Elasticsearch is nearly ubiquitous for enabling powerful text search.</p></li>
+<li><p><strong>Graph Database</strong>: Neo4j (Airbnb), specialized graph DBs (LinkedIn) are used to model and query complex relationships (lineage, ownership, dependencies). Uber Databook represents relationships as a graph.</p></li>
+<li><p><strong>Key-Value Store</strong>: For low-latency lookups.</p></li>
+</ul>
+</li>
+<li><p><strong>Metadata Modeling</strong>:</p>
+<ul>
+<li><p><strong>Extensibility &amp; Federation</strong>: Supporting diverse, evolving metadata types from different domains without a central bottleneck. DataHub uses Pegasus with aspects. Uber Databook uses Dragon for schema definition, allowing flexible entity models. Netflix Metacat directly stores business/user metadata but federates schema metadata.</p></li>
+<li><p><strong>Relationships as First-Class Citizens</strong>: Explicitly modeling how data entities connect is crucial.</p></li>
+<li><p><strong>Standardization</strong>: Uber’s Dragon tool enforces a standard vocabulary for metadata. Netflix Metacat uses canonical data types.</p></li>
+</ul>
+</li>
+<li><p><strong>Serving Layer</strong>:</p>
+<ul>
+<li><p><strong>APIs</strong>: REST (DataHub, Metacat), GraphQL (Uber Databook UI), Thrift (Metacat) for UI and programmatic access.</p></li>
+<li><p><strong>Change Data Capture (CDC)</strong>: LinkedIn DataHub’s Metadata Audit Events (MAEs) from its Key-Value DAO enable a lambda architecture for processing metadata changes. Uber Databook’s central Event Log serves a similar purpose. Netflix Metacat has data change notifications.</p></li>
+</ul>
+</li>
+<li><p><strong>Processing/Indexing Layer</strong>:</p>
+<ul>
+<li><p>Stream processors (e.g., Samza for DataHub) consume change events (MCEs/MAEs) to update search indexes and graph views. Uber Databook builds derived storages (like search indexes) from its event log.</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Illustrative High-Level Architecture (Gen 3 Inspired):</strong>
+<img src="../../_static/mlops/ch4_data_discovery/data_discovery_architecture.svg"/></p>
+</section>
+<section id="navigating-the-labyrinth-common-challenges">
+<h3>4. Navigating the Labyrinth: Common Challenges<a class="headerlink" href="#navigating-the-labyrinth-common-challenges" title="Permalink to this heading">¶</a></h3>
+<p>Building and operating these platforms is fraught with challenges:</p>
+<ul class="simple">
+<li><p><strong>Scale</strong>: Handling millions of data assets and their relationships, and serving queries with low latency (LinkedIn, Facebook).</p></li>
+<li><p><strong>Metadata Freshness &amp; Accuracy</strong>: Keeping metadata up-to-date is paramount for trust. Pull-based systems struggle here. Event-driven architectures (Gen 3) aim to solve this.</p></li>
+<li><p><strong>Trust in Data</strong>: Beyond freshness, users need to trust the quality and lineage of data. Signals like usage, certifications, and data quality checks are vital. (Airbnb, Facebook Nemo, Uber Databook).</p></li>
+<li><p><strong>Adoption &amp; User Engagement</strong>: “It takes time for employees to change habits” (Airbnb). Making the tool intuitive, integrated into workflows (Spotify’s Slack bot), and demonstrating clear value is key.</p></li>
+<li><p><strong>Discovery vs. Curation</strong>: Finding the right balance. Pure discovery can be overwhelming without curation to highlight important/trusted assets (Lyft’s Amundsen).</p></li>
+<li><p><strong>Security vs. Democratization</strong>: How to provide broad discovery while respecting access controls and data privacy (Lyft). Nemo filters by privacy restrictions.</p></li>
+<li><p><strong>Model Extensibility &amp; Evolution</strong>: The types of data assets and the metadata associated with them constantly evolve. Rigid models become a bottleneck (DataHub’s learning).</p></li>
+<li><p><strong>Bootstrapping &amp; Backfilling Metadata</strong>: Populating the catalog initially and enriching existing assets with quality metadata is a significant effort.</p></li>
+<li><p><strong>Measuring Success</strong>: Defining and tracking metrics that reflect the platform’s impact (e.g., time saved, data usage increase, user satisfaction). Facebook Nemo noted A/B testing was slow for internal tools.</p></li>
+<li><p><strong>Centralized vs. Decentralized Contributions</strong>: A purely central team can’t scale metadata curation. Enabling distributed ownership and contribution while maintaining standards is a balancing act (Uber’s Dragon for standardization).</p></li>
+</ul>
+</section>
+<section id="wisdom-from-the-trenches-best-practices-lessons-learned">
+<h3>5. Wisdom from the Trenches: Best Practices &amp; Lessons Learned<a class="headerlink" href="#wisdom-from-the-trenches-best-practices-lessons-learned" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Push over Pull for Ingestion</strong>: More scalable, timely, and distributes responsibility (LinkedIn DataHub).</p></li>
+<li><p><strong>Generalize the Architecture</strong>: Design for diverse and evolving metadata types from the outset (LinkedIn DataHub’s “General is better than specific”).</p></li>
+<li><p><strong>Event-Driven is Key for Freshness &amp; Reactivity</strong>: A metadata changelog (e.g., Kafka) enables near real-time updates and downstream reactive systems (LinkedIn DataHub, Uber Databook).</p></li>
+<li><p><strong>Relationships are First-Class Citizens</strong>: Model and index relationships effectively, often using graph databases (Airbnb Dataportal, LinkedIn DataHub).</p></li>
+<li><p><strong>Online Access is as Important as Offline</strong>: Many use cases require querying the latest metadata online, not just offline analysis (LinkedIn DataHub).</p></li>
+<li><p><strong>Iterative Development &amp; User Focus</strong>: Start with core use cases and iterate based on user feedback (Spotify Lexikon’s journey). Uber Databook rebuilt based on extensive user research.</p></li>
+<li><p><strong>Embrace a Product Mindset</strong>: Treat the data discovery platform as a product with a focus on UI/UX (Airbnb, Spotify, Uber).</p></li>
+<li><p><strong>Integrate, Don’t Isolate</strong>: Embed discovery into existing workflows and tools (Spotify’s Slack bot, Facebook Nemo’s awareness of Presto queries).</p></li>
+<li><p><strong>Data Abstraction Simplifies Consumption</strong>: Decoupling logical data representation from physical storage aids interoperability and migration (Twitter DAL, Netflix Metacat).</p></li>
+<li><p><strong>Service Layer over Libraries</strong>: For better security, scalability, and rollout management (Twitter DAL’s learning).</p></li>
+<li><p><strong>People are Part of the Ecosystem</strong>: Facilitate connections between data consumers and domain experts (Spotify Lexikon’s expert mapping).</p></li>
+<li><p><strong>Start with Foundation</strong>: “A metadata service is something that every data platform needs, and would highly recommend that it be one of the first things to build a data platform around” (Twitter DAL).</p></li>
+<li><p><strong>“Putting metadata to work is harder than just putting metadata together.”</strong> (LinkedIn DataHub). Focus on actionable insights and integrations.</p></li>
+</ul>
+</section>
+<section id="designing-your-data-discovery-compass-a-thinking-framework-for-mlops-leads">
+<h3>6. Designing Your Data Discovery Compass: A Thinking Framework for MLOps Leads<a class="headerlink" href="#designing-your-data-discovery-compass-a-thinking-framework-for-mlops-leads" title="Permalink to this heading">¶</a></h3>
+<p>As an MLOps Lead, approaching data sourcing and discovery requires a structured thought process:</p>
+<p><strong>I. Define the North Star: Scope &amp; Objectives</strong>
+1.  <strong>Problem Definition</strong>:
+*   What specific pain points are we addressing? (e.g., ML engineer productivity finding features, model governance, data quality for training).
+*   Quantify the problem if possible (e.g., hours wasted, project delays).
+2.  <strong>Target Users &amp; Personas</strong>:
+*   Who are the primary users? (ML Engineers, Data Scientists, Data Engineers, Analysts, Governance teams).
+*   What are their key discovery workflows and needs? (e.g., finding features, understanding data distributions, lineage of training data, model dependencies).
+3.  <strong>Key Data Entities for MLOps</strong>:
+*   Core: Datasets, Features (Feature Stores), ML Models, Pipelines (ETL/ML), Experiments, Code Repositories.
+*   Supporting: Dashboards, Metrics, Users/Teams, Documentation.
+4.  <strong>Success Metrics</strong>:
+*   How will we measure success? (e.g., time-to-find data, model deployment frequency, data reuse, user satisfaction scores).</p>
+<p><strong>II. Charting the Course: Architectural &amp; Design Choices</strong></p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Decision Area</p></th>
+<th class="head text-left"><p>Key Questions &amp; Considerations</p></th>
+<th class="head text-left"><p>Potential Options &amp; Trade-offs</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><strong>Overall Architecture</strong></p></td>
+<td class="text-left"><p>Greenfield vs. Brownfield? Start simple (Gen 1) or aim for event-driven (Gen 3)? Team size &amp; expertise? Time to market? Expected scale?</p></td>
+<td class="text-left"><p>Gen 1: Faster MVP, less infra. Gen 3: More resilient, scalable, fresh, but complex. Consider open-source like DataHub/Amundsen.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Metadata Ingestion</strong></p></td>
+<td class="text-left"><p>How will metadata enter the system? Primary sources? Cadence?</p></td>
+<td class="text-left"><p>Pull (Crawlers): Easier for some sources, can be stale. Push (APIs, Events): Fresher, producer-driven, better contract. Hybrid common.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Metadata Storage</strong></p></td>
+<td class="text-left"><p>What types of queries need to be supported? (Search, graph traversal, KV lookup, analytical). Durability, availability needs.</p></td>
+<td class="text-left"><p>Combination: Relational (structured), NoSQL (flexibility), Search Index (text), Graph DB (relationships). Event Log (Kafka) as source of truth.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Metadata Model</strong></p></td>
+<td class="text-left"><p>How to represent entities &amp; relationships? Centralized vs. federated schema? How to ensure extensibility for MLOps-specific entities?</p></td>
+<td class="text-left"><p>Standardized URNs. Well-defined core entities. Aspect-based models (DataHub) or flexible schemas (Uber’s JSON in MySQL) for extensibility. Graph for relationships.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>APIs &amp; SDKs</strong></p></td>
+<td class="text-left"><p>How will users and systems interact programmatically? Read/Write needs?</p></td>
+<td class="text-left"><p>REST, GraphQL. SDKs in relevant languages (Python for ML). Event subscription for reactive systems.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>User Interface</strong></p></td>
+<td class="text-left"><p>What are the critical user journeys for discovery &amp; understanding? How to present complex MLOps info (e.g., feature lineage, model versions) intuitively?</p></td>
+<td class="text-left"><p>Modular, component-based UI. Focus on search, lineage visualization, clear metadata presentation.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>III. Equipping the Expedition: Feature Prioritization for MLOps</strong>
+1.  <strong>Must-Haves</strong>:
+*   Search for ML features, datasets, models.
+*   Detailed metadata pages for these entities (description, schema, owner, version).
+*   Lineage: Feature -&gt; Dataset -&gt; Model; Pipeline -&gt; Artifact.
+*   Basic data profiling for datasets/features.
+2.  <strong>Should-Haves</strong>:
+*   Usage statistics (e.g., “features used in top N models”).
+*   Links to code, experiment tracking, model registries.
+*   Collaboration: Tagging, comments on features/models.
+*   Data quality indicators for training data.
+3.  <strong>Could-Haves</strong>:
+*   Advanced search (NLP, semantic search for features).
+*   Personalized recommendations (“models similar to X,” “features often used with Y”).
+*   Automated metadata extraction from pipeline logs, code.
+*   Integration with monitoring/alerting for model/data drift.</p>
+<p><strong>IV. Navigational Aids: Operational &amp; Cross-Cutting Concerns</strong>
+1.  <strong>Adoption Strategy</strong>: How to onboard users and integrate into MLOps workflows? Training, documentation, champions.
+2.  <strong>Governance</strong>: Who owns metadata? How is quality maintained? Processes for curation and certification of critical ML assets.
+3.  <strong>Security</strong>: Role-based access to metadata and underlying data. PII handling.
+4.  <strong>Evolution</strong>: Plan for new MLOps entities, changing metadata needs, and platform scaling.
+5.  <strong>Build vs. Buy/Adopt</strong>: Evaluate existing open-source (DataHub, Amundsen) or commercial tools against custom build efforts.</p>
+<p><strong>Mind-Map for MLOps Data Discovery Approach:</strong>
+<img src="../../_static/mlops/ch4_data_discovery/data_discovery_mindmap.svg"/></p>
+</section>
+<section id="the-horizon-evolution-future-directions">
+<h3>7. The Horizon: Evolution &amp; Future Directions<a class="headerlink" href="#the-horizon-evolution-future-directions" title="Permalink to this heading">¶</a></h3>
+<p>The field of data discovery is continuously evolving:</p>
+<ul class="simple">
+<li><p><strong>AI-Powered Discovery</strong>: Leveraging ML for smarter search (Facebook Nemo’s GBDT model), automated tagging, anomaly detection in metadata, and generating descriptions.</p></li>
+<li><p><strong>Knowledge Graphs</strong>: Moving beyond simple asset catalogs to rich, interconnected knowledge graphs representing data, processes, people, and their relationships. Uber and LinkedIn are heavily invested here.</p></li>
+<li><p><strong>Active Metadata</strong>: Metadata that doesn’t just describe data but actively participates in governing, orchestrating, and optimizing data processes.</p></li>
+<li><p><strong>Deeper MLOps Integration</strong>: Tighter coupling with feature stores, model registries, experiment tracking, and CI/CD for ML.</p></li>
+<li><p><strong>Data Mesh Alignment</strong>: Supporting decentralized data ownership and discovery across different domains, where the data discovery platform acts as a critical federating layer.</p></li>
+<li><p><strong>Natural Language Interfaces</strong>: Enabling users to ask questions in natural language and get directed to data or insights (Facebook Nemo).</p></li>
+<li><p><strong>Proactive Insights &amp; Recommendations</strong>: Systems that surface relevant data or insights to users before they even search (Spotify Lexikon’s homepage, Airbnb’s future plans).</p></li>
+</ul>
+</section>
+<section id="conclusion">
+<h3>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this heading">¶</a></h3>
+<p>Data sourcing, discovery, and understanding are no longer ancillary concerns but core enablers of a data-driven, AI-first organization. For MLOps, where the quality, lineage, and context of data are paramount for building robust and trustworthy ML systems, a well-designed data discovery platform is an indispensable compass. By learning from the architectures, challenges, and best practices of industry leaders, organizations can build or adopt solutions that transform their data landscapes from overwhelming mazes into navigable sources of insight and innovation. The journey requires a thoughtful approach to architecture, a keen focus on user needs, and a commitment to continuous evolution.</p>
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="facebook_nemo.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Facebook: Nemo</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="ch4_project.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Project-Trending Now: Implementing Web Scraping, Ingestion</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024, Deepak Karkala
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Data Discovery Platforms: Industry Case Studies</a><ul>
+<li><a class="reference internal" href="#id1"></a><ul>
+<li><a class="reference internal" href="#the-why-core-motivations-goals">1. The “Why”: Core Motivations &amp; Goals</a></li>
+<li><a class="reference internal" href="#anatomy-of-a-data-discovery-platform-key-features-capabilities">2. Anatomy of a Data Discovery Platform: Key Features &amp; Capabilities</a></li>
+<li><a class="reference internal" href="#architectural-blueprints-generations-patterns">3. Architectural Blueprints: Generations &amp; Patterns</a></li>
+<li><a class="reference internal" href="#navigating-the-labyrinth-common-challenges">4. Navigating the Labyrinth: Common Challenges</a></li>
+<li><a class="reference internal" href="#wisdom-from-the-trenches-best-practices-lessons-learned">5. Wisdom from the Trenches: Best Practices &amp; Lessons Learned</a></li>
+<li><a class="reference internal" href="#designing-your-data-discovery-compass-a-thinking-framework-for-mlops-leads">6. Designing Your Data Discovery Compass: A Thinking Framework for MLOps Leads</a></li>
+<li><a class="reference internal" href="#the-horizon-evolution-future-directions">7. The Horizon: Evolution &amp; Future Directions</a></li>
+<li><a class="reference internal" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=b3ba4146"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/scripts/furo.js?v=4e2eecee"></script>
+    </body>
+</html>
