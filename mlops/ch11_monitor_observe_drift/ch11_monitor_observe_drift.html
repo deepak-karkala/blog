@@ -1,0 +1,691 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" />
+
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/><!-- Generated with Sphinx 7.1.2 and Furo 2024.05.06 -->
+        <title>Chapter 11: Monitoring, Observability, Drifts - Home</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=387cc868" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=36a5483c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/style.css?v=8a7ff5ee" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" /
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">Home</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  
+  <span class="sidebar-brand-text">Home</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../projects/index.html">Projects</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Projects</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/nlp/index.html">Natural Language Processing</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Natural Language Processing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/airbnb_alternate_search/about/index.html">Airbnb Listing description based Semantic Search</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/cv/index.html">Computer Vision</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Computer Vision</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/ecommerce_image_segmentation/about/index.html">Image Segmentation for Ecommerce Products</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/ml/index.html">Machine Learning</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of Machine Learning</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/airbnb_price_modeling/about/index.html">Predictive Price Modeling for Airbnb listings</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../publications/index.html">Patents, Papers, Thesis</a></li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../index.html">MLOps</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of MLOps</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch1_problem_framing.html">ML Problem framing</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of ML Problem framing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch2_blueprint_operational_strategy.html">The MLOps Blueprint &amp; Operational Strategy</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch2a_platform/index.html">ML Platforms</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of ML Platforms</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/ml_platforms.html">ML Platforms: How to</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/uber.html">Uber Michelangelo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/linkedin.html">LinkedIn DARWIN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/netflix.html">Netflix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/shopify.html">Shopify Merlin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/zomato.html">Zomato: Real-time ML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/coveo.html">Coveo: MLOPs at reasonable scale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/monzo.html">Monzo ML Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/didact.html">Didact AI</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch3_project_planning/index.html">Project Planning</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of Project Planning</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/prd.html">Project Requirements Document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/tech_stack.html">Tech Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/config_management.html">Config Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/pipeline_design.html">Pipeline Design</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/environment_strategy.html">Environment Strategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/cicd_branching_model.html">CI/CD Strategy and Branching Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/directory_structure.html">Directory Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/env_branchind_cicd_deployment.html">Environments, Branching, CI/CD, and Deployments Explained</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/project_management.html">Project Management for MLOps</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch4_data_discovery/index.html">Data Sourcing, Discovery</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of Data Sourcing, Discovery</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/data_sourcing_discovery.html">Data Sourcing, Discovery &amp; Understanding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/ch4_project.html">Project-Trending Now: Implementing Web Scraping, Ingestion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/industry_case_studies.html">Data Discovery Platforms: Industry Case Studies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/facebook_nemo.html">Facebook: Nemo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/netflix_metacat.html">Netflix Metacat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/uber_databook.html">Uber Databook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/linkedin_datahub.html">LinkedIn Datahub</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../lld/index.html">Low Level Design</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle navigation of Low Level Design</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../lld/parking_lot.html">Parking Lot</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../visualization/index.html">Data Visualization Projects</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="../../_sources/mlops/ch11_monitor_observe_drift/ch11_monitor_observe_drift.md.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="chapter-11-monitoring-observability-drifts">
+<h1>Chapter 11: Monitoring, Observability, Drifts<a class="headerlink" href="#chapter-11-monitoring-observability-drifts" title="Permalink to this heading">¶</a></h1>
+<p><strong>Chapter 11: Listening to the Diners – Production Monitoring &amp; Observability for ML Systems</strong></p>
+<p><em>(Progress Label: 📍Stage 11: Continuous Feedback &amp; Kitchen Awareness)</em></p>
+<section id="introduction-the-ever-watchful-head-chef-ensuring-consistent-excellence">
+<h2>🧑‍🍳 Introduction: The Ever-Watchful Head Chef – Ensuring Consistent Excellence<a class="headerlink" href="#introduction-the-ever-watchful-head-chef-ensuring-consistent-excellence" title="Permalink to this heading">¶</a></h2>
+<p>Our MLOps kitchen is now open for business! The “Trending Now” application, with its genre classification models and LLM-powered enrichments, is serving predictions to our users (Chapter 9). But like any Michelin-starred restaurant, the “Grand Opening” is not the end goal; it’s the beginning of a continuous commitment to excellence. A top chef doesn’t just create a magnificent dish once; they ensure every plate, every day, meets the highest standards. They constantly “listen to the diners” through feedback, observe how dishes are received, and monitor the quality of every ingredient and every step in the kitchen.</p>
+<p>In the world of MLOps, this translates to <strong>Production Monitoring and Observability</strong>. Once a model is live, it’s exposed to the dynamic, ever-changing real world, and its performance can degrade due to factors like “data downtime” or various “model failure modes.” [guide_monitor_observe_drift.md (Sec I)] This chapter is dedicated to establishing the systems and practices that allow us to be that ever-watchful head chef, constantly assessing the health and effectiveness of our deployed ML systems.</p>
+<p>We will explore the crucial distinction between monitoring (tracking knowns) and observability (investigating unknowns), delve into the various causes of ML system failures (including the notorious data distribution shifts and degenerate feedback loops), and detail what key metrics to track across data, features, model predictions, and operational health. We’ll cover techniques for detecting data and concept drift, the tools needed for effective logging, dashboarding, and alerting, and finally, how to build a comprehensive observability strategy that enables rapid root cause analysis and informed decision-making. For our “Trending Now” project, this means setting up the mechanisms to ensure our genre classifications remain accurate and our LLM integrations perform reliably.</p>
+<hr class="docutils" />
+</section>
+<section id="section-11-1-the-why-understanding-ml-system-failures-in-production">
+<h2>Section 11.1: The “Why”: Understanding ML System Failures in Production<a class="headerlink" href="#section-11-1-the-why-understanding-ml-system-failures-in-production" title="Permalink to this heading">¶</a></h2>
+<p>Before we can effectively monitor, we need to understand <em>what</em> can go wrong and <em>why</em> ML systems are particularly susceptible to unique failure modes. [guide_monitor_observe_drift.md (Sec I, II), designing-machine-learning-systems.pdf (Ch 8 - Causes of ML System Failures)]</p>
+<ul class="simple">
+<li><p><strong>11.1.1 Monitoring vs. Observability: Known Unknowns vs. Unknown Unknowns</strong> [guide_monitor_observe_drift.md (Sec I)]</p>
+<ul>
+<li><p><strong>Monitoring:</strong> Tracking pre-defined metrics to detect <em>known</em> problem states (e.g., accuracy drop, latency spike).</p></li>
+<li><p><strong>Observability:</strong> Instrumenting systems to provide deep visibility, enabling investigation and understanding of <em>novel</em> or <em>unexpected</em> issues. Includes interpretability/explainability.</p></li>
+<li><p><strong>Pillars of Data Observability (Monte Carlo/Arize):</strong> Freshness, Distribution, Volume, Schema, Lineage.</p></li>
+<li><p><strong>Pillars of ML Observability (Arize):</strong> Performance Analysis, Drift Detection, Data Quality, Explainability.</p></li>
+</ul>
+</li>
+<li><p><strong>11.1.2 Categories of ML System Failures</strong> [guide_monitor_observe_drift.md (Sec II)]</p>
+<ul>
+<li><p><strong>Software System Failures (Non-ML Specific):</strong> Dependency issues, deployment errors, hardware failures, service downtime. (Recall Google study: ~60% of ML pipeline failures).</p></li>
+<li><p><strong>ML-Specific Failures (Often Silent):</strong></p>
+<ul>
+<li><p>Data Quality Issues (leading to “Garbage In, Garbage Out”).</p></li>
+<li><p>Training-Serving Skew (initial mismatch between dev and prod).</p></li>
+<li><p><strong>Data Distribution Shifts (Ongoing Drift):</strong> Covariate, Label, Concept drift.</p></li>
+<li><p>Edge Cases (rare inputs causing catastrophic errors).</p></li>
+<li><p>Degenerate Feedback Loops (model predictions influencing future training data negatively).</p></li>
+<li><p>Cascading Model Failures (in multi-model systems).</p></li>
+<li><p>Adversarial Attacks.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>11.1.3 The “Data Downtime” Problem:</strong> When data is partial, erroneous, missing, or inaccurate, leading to model degradation. [guide_monitor_observe_drift.md (Sec I)]</p></li>
+</ul>
+<hr class="docutils" />
+</section>
+<section id="section-11-2-deep-dive-data-distribution-shifts-drift-when-the-market-changes">
+<h2>Section 11.2: Deep Dive: Data Distribution Shifts (Drift) – When the “Market” Changes<a class="headerlink" href="#section-11-2-deep-dive-data-distribution-shifts-drift-when-the-market-changes" title="Permalink to this heading">¶</a></h2>
+<p>This is a primary cause of model performance degradation in production. [guide_monitor_observe_drift.md (Sec IV), designing-machine-learning-systems.pdf (Ch 8 - Data Distribution Shifts)]</p>
+<ul class="simple">
+<li><p><strong>11.2.1 Defining Drift: Source vs. Target Distributions</strong></p>
+<ul>
+<li><p>Mathematical Formulation: <code class="docutils literal notranslate"><span class="pre">P_source(X,</span> <span class="pre">Y)</span> <span class="pre">≠</span> <span class="pre">P_target(X,</span> <span class="pre">Y)</span></code>.</p></li>
+<li><p>Decomposition: <code class="docutils literal notranslate"><span class="pre">P(X,Y)</span> <span class="pre">=</span> <span class="pre">P(Y|X)P(X)</span></code> and <code class="docutils literal notranslate"><span class="pre">P(X,Y)</span> <span class="pre">=</span> <span class="pre">P(X|Y)P(Y)</span></code>.</p></li>
+</ul>
+</li>
+<li><p><strong>11.2.2 Types of Data Distribution Shifts</strong> [guide_monitor_observe_drift.md (Sec IV.B)]</p>
+<ul>
+<li><p><strong>Covariate Shift (Input/Feature Drift):</strong> <code class="docutils literal notranslate"><span class="pre">P(X)</span></code> changes, <code class="docutils literal notranslate"><span class="pre">P(Y|X)</span></code> stable.</p></li>
+<li><p><strong>Label Shift (Prior Probability Shift):</strong> <code class="docutils literal notranslate"><span class="pre">P(Y)</span></code> changes, <code class="docutils literal notranslate"><span class="pre">P(X|Y)</span></code> stable.</p></li>
+<li><p><strong>Concept Drift (Posterior Shift/Real Concept Drift):</strong> <code class="docutils literal notranslate"><span class="pre">P(Y|X)</span></code> changes (“same input, different output”). The underlying relationship being modeled changes.</p></li>
+<li><p><strong>Feature Change (Schema Drift):</strong> Set of features itself changes (added, removed, meaning altered).</p></li>
+<li><p><strong>Label Schema Change:</strong> Set of possible target values changes.</p></li>
+<li><p><strong>Prediction Drift (Model Output Drift):</strong> <code class="docutils literal notranslate"><span class="pre">P(model_output)</span></code> changes. A symptom, not a root cause, but often a leading indicator.</p></li>
+<li><p><strong>Upstream Data Drift / Operational Data Drift:</strong> Issues in the data pipeline <em>before</em> data reaches the model.</p></li>
+</ul>
+</li>
+<li><p><strong>11.2.3 Common Causes of Drift</strong> [guide_monitor_observe_drift.md (Sec IV.C)]</p>
+<ul>
+<li><p>External Factors: Changing user behavior, economic shifts, seasonality, new trends, competitor actions, unforeseen events (e.g., COVID-19).</p></li>
+<li><p>Internal Factors (often mistaken for external): Data pipeline bugs, inconsistent preprocessing, UI/UX changes, new business processes.</p></li>
+</ul>
+</li>
+<li><p><strong>11.2.4 Statistical Methods for Drift Detection</strong> [guide_monitor_observe_drift.md (Sec V.C), designing-machine-learning-systems.pdf (Ch 8 - Detecting Data Distribution Shifts)]</p>
+<ul>
+<li><p><strong>Summary Statistics Comparison:</strong> Min, max, mean, median, variance, missing %, cardinality. Good first pass.</p></li>
+<li><p><strong>Two-Sample Hypothesis Tests:</strong> Kolmogorov-Smirnov (1D continuous), Chi-Squared (categorical), MMD (multivariate). <em>Caution: p-values can be overly sensitive with large data.</em></p></li>
+<li><p><strong>Statistical Distance/Divergence Measures (for binned data):</strong></p>
+<ul>
+<li><p>Population Stability Index (PSI).</p></li>
+<li><p>Kullback-Leibler (KL) Divergence.</p></li>
+<li><p>Jensen-Shannon (JS) Divergence.</p></li>
+<li><p>Earth Mover’s Distance (EMD) / Wasserstein Metric.</p></li>
+<li><p>L-infinity Distance.</p></li>
+</ul>
+</li>
+<li><p><strong>Binning Strategies for Numerical Features:</strong> Equal width, quantile, median-centered, custom. Handling OOD/zero bins (smoothing, infinity-edge bins). [guide_monitor_observe_drift.md (Sec V.D)]</p></li>
+</ul>
+</li>
+<li><p><strong>11.2.5 Defining Appropriate Time Scale Windows for Detection</strong> [guide_monitor_observe_drift.md (Sec V.E), designing-machine-learning-systems.pdf (Ch 8 - Time scale windows)]</p>
+<ul>
+<li><p>Abrupt vs. gradual drift.</p></li>
+<li><p>Short vs. long windows (trade-off between detection speed and false alarms).</p></li>
+<li><p>Sliding vs. cumulative windows.</p></li>
+</ul>
+</li>
+<li><p><strong>11.2.6 Handling High-Dimensional Data in Drift Detection (Embeddings, Unstructured Data)</strong> [guide_monitor_observe_drift.md (Sec VIII.E)]</p>
+<ul>
+<li><p>Monitor drift per dimension (can be noisy).</p></li>
+<li><p>Dimensionality reduction before applying tests (PCA, UMAP, t-SNE for visualization).</p></li>
+<li><p>Average Embedding Distance (AED) for embedding vectors.</p></li>
+<li><p>Compare distributions of pairwise distances or distances to centroids.</p></li>
+</ul>
+</li>
+<li><p><strong>11.2.7 Drift Tracing:</strong> Identifying which input features’ drift contributes most to prediction drift. [guide_monitor_observe_drift.md (Sec V.F)]</p></li>
+</ul>
+<hr class="docutils" />
+</section>
+<section id="section-11-3-key-metrics-artifacts-for-production-model-monitoring-the-chef-s-critical-checkpoints">
+<h2>Section 11.3: Key Metrics &amp; Artifacts for Production Model Monitoring (The Chef’s Critical Checkpoints)<a class="headerlink" href="#section-11-3-key-metrics-artifacts-for-production-model-monitoring-the-chef-s-critical-checkpoints" title="Permalink to this heading">¶</a></h2>
+<p>What specific signals should we track to understand the health and performance of our deployed ML system?</p>
+<ul class="simple">
+<li><p><strong>11.3.1 Operational Metrics (System Health – Is the Kitchen Running?)</strong> [guide_monitor_observe_drift.md (Sec VII.C), MLOps Principles.md]</p>
+<ul>
+<li><p><strong>Latency:</strong> ML Inference Latency (model only) and ML Service Latency (end-to-end). Track P50, P90, P99.</p></li>
+<li><p><strong>Throughput:</strong> Predictions Per Second (QPS), requests processed.</p></li>
+<li><p><strong>Uptime/Availability:</strong> SLOs/SLAs for the prediction service.</p></li>
+<li><p><strong>Error Rates:</strong> HTTP 5xx/4xx errors, internal model exceptions.</p></li>
+<li><p><strong>Resource Utilization:</strong> CPU, GPU, memory, disk I/O, network of serving instances.</p></li>
+</ul>
+</li>
+<li><p><strong>11.3.2 Model Performance/Accuracy-Related Metrics (Dish Quality – Requires Ground Truth or Proxy)</strong> [guide_monitor_observe_drift.md (Sec VII.A), MLOps Principles.md]</p>
+<ul>
+<li><p><strong>Ground Truth Availability Challenges:</strong> Real-time, delayed, biased, or absent.</p></li>
+<li><p><strong>Proxy Metrics:</strong> Signals correlated with true outcomes when ground truth is delayed (e.g., user engagement, late payments).</p></li>
+<li><p><strong>Core ML Metrics (Recap from Chapter 8):</strong> Accuracy, Precision, Recall, F1, AUC-ROC/PR, Log Loss, MSE/MAE, NDCG, etc., relevant to the task.</p></li>
+<li><p><strong>Business Outcome Metrics:</strong> Track relevant business KPIs alongside model metrics.</p></li>
+<li><p><strong>Cohort/Slice Analysis:</strong> Monitor performance on critical data segments to detect disparities or underperformance.</p></li>
+</ul>
+</li>
+<li><p><strong>11.3.3 Monitoring Prediction Outputs (Is the Dish Consistent?)</strong> [guide_monitor_observe_drift.md (Sec IV.B.6), designing-machine-learning-systems.pdf (Ch 8 - Monitoring predictions)]</p>
+<ul>
+<li><p><strong>Prediction Drift:</strong> Track the distribution of model outputs over time. Changes can indicate input drift or concept drift.</p></li>
+<li><p><strong>Confidence Scores:</strong> If models output confidence, monitor their distribution. A drop in average confidence can signal issues.</p></li>
+<li><p><strong>Unusual Prediction Patterns:</strong> E.g., model predicting only one class for an extended period.</p></li>
+</ul>
+</li>
+<li><p><strong>11.3.4 Monitoring Input Features (Are the Ingredients Still Good?)</strong> [guide_monitor_observe_drift.md (Sec IV.B.1), designing-machine-learning-systems.pdf (Ch 8 - Monitoring features)]</p>
+<ul>
+<li><p><strong>Data Validation Checks:</strong> Apply schema and value validation (from Chapter 4/8) to live inference data.</p></li>
+<li><p><strong>Feature Drift:</strong> Track statistical distributions of key features.</p></li>
+<li><p><strong>Focus on Critical Features:</strong> Prioritize monitoring features with high importance to the model.</p></li>
+</ul>
+</li>
+<li><p><strong>11.3.5 Monitoring Unstructured Data and Embeddings (Specialty Ingredient Checks)</strong> [guide_monitor_observe_drift.md (Sec VIII)]</p>
+<ul>
+<li><p>See Section 11.2.6 for embedding drift techniques.</p></li>
+<li><p>For raw text/images: Monitor basic properties (length, size, format) and embedding drift.</p></li>
+</ul>
+</li>
+<li><p><strong>11.3.6 Monitoring for LLMs (LLMOps)</strong> [guide_monitor_observe_drift.md (Sec VIII.G, VIII.I)]</p>
+<ul>
+<li><p>Prompt/Response text and embeddings.</p></li>
+<li><p>Token lengths (cost and context window management).</p></li>
+<li><p>LLM API call latency and error rates.</p></li>
+<li><p>User feedback, LLM-as-a-judge scores.</p></li>
+<li><p>Specialized metrics (hallucination rates, toxicity, relevance).</p></li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+</section>
+<section id="section-11-4-implementing-an-effective-monitoring-toolbox-the-chef-s-dashboard-and-alert-system">
+<h2>Section 11.4: Implementing an Effective Monitoring Toolbox (The Chef’s Dashboard and Alert System)<a class="headerlink" href="#section-11-4-implementing-an-effective-monitoring-toolbox-the-chef-s-dashboard-and-alert-system" title="Permalink to this heading">¶</a></h2>
+<p>The tools and processes for collecting, visualizing, and acting upon monitoring data. [guide_monitor_observe_drift.md (Sec IX), designing-machine-learning-systems.pdf (Ch 8 - Monitoring Toolbox)]</p>
+<ul class="simple">
+<li><p><strong>11.4.1 Structured Logging for ML Systems (Detailed Kitchen Records)</strong></p>
+<ul>
+<li><p>Log requests, predictions, features, ground truth (if available), latencies, errors, model versions.</p></li>
+<li><p>Use structured formats (JSON) for easier parsing and analysis.</p></li>
+<li><p>Distributed Tracing (OpenTelemetry) for complex microservice interactions.</p></li>
+</ul>
+</li>
+<li><p><strong>11.4.2 Dashboards and Visualization for Insights (The Head Chef’s Overview)</strong></p>
+<ul>
+<li><p>Visualize key metrics over time for different audiences (engineers, data scientists, product, business).</p></li>
+<li><p>Tools: Grafana, Kibana, Tableau, Looker, cloud provider dashboards (CloudWatch, Vertex AI Monitoring).</p></li>
+<li><p>Avoid “dashboard rot” – focus on actionable, insightful visualizations.</p></li>
+</ul>
+</li>
+<li><p><strong>11.4.3 Alerting Strategies and Avoiding Alert Fatigue (When to Call the Chef Urgently)</strong></p>
+<ul>
+<li><p><strong>Alert Policy:</strong> Conditions for triggering an alert (thresholds, duration).</p></li>
+<li><p><strong>Notification Channels:</strong> Email, Slack, PagerDuty, OpsGenie.</p></li>
+<li><p><strong>Actionable Alerts:</strong> Include context, links to dashboards, potential runbooks.</p></li>
+<li><p>Focus on high-precision alerts for critical issues to prevent fatigue.</p></li>
+</ul>
+</li>
+<li><p><strong>11.4.4 Tools and Platforms for ML Monitoring</strong> [guide_monitor_observe_drift.md (Sec IX.B), Lecture 6- Continual Learning.md (Tools for Monitoring)]</p>
+<ul>
+<li><p><strong>System Monitoring (General Purpose):</strong> Datadog, Honeycomb, New Relic, AWS CloudWatch, Prometheus + Grafana.</p></li>
+<li><p><strong>ML-Specific Monitoring/Observability Platforms:</strong></p>
+<ul>
+<li><p><em>Open Source:</em> EvidentlyAI, WhyLogs (often used with Grafana for viz).</p></li>
+<li><p><em>Commercial/SaaS:</em> Arize AI, Fiddler, ArthurAI, Superwise, Grafana Cloud ML Observability.</p></li>
+<li><p><em>Cloud Provider Native:</em> SageMaker Model Monitor, Vertex AI Model Monitoring, Azure ML Model Monitoring.</p></li>
+</ul>
+</li>
+<li><p><strong>Data Quality Tools with Monitoring Aspects:</strong> Great Expectations, TFDV (can be scheduled to run on production data).</p></li>
+</ul>
+</li>
+<li><p><strong>11.4.5 Integrating Monitoring with the MLOps Stack</strong></p>
+<ul>
+<li><p>Monitoring outputs should trigger actions (alerts, retraining pipelines via orchestrators, rollback procedures).</p></li>
+<li><p>Feedback loop to experiment tracking and model registry.</p></li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+</section>
+<section id="section-11-5-observability-going-beyond-monitoring-for-deeper-insights-understanding-the-why-behind-kitchen-issues">
+<h2>Section 11.5: Observability: Going Beyond Monitoring for Deeper Insights (Understanding the “Why” Behind Kitchen Issues)<a class="headerlink" href="#section-11-5-observability-going-beyond-monitoring-for-deeper-insights-understanding-the-why-behind-kitchen-issues" title="Permalink to this heading">¶</a></h2>
+<p>Moving from knowing <em>that</em> something is wrong to understanding <em>why</em>. [guide_monitor_observe_drift.md (Sec I, IX.D)]</p>
+<ul class="simple">
+<li><p><strong>11.5.1 Understanding System Internals from External Outputs</strong></p>
+<ul>
+<li><p>The goal: Infer internal states and causes from observable data (logs, metrics, traces).</p></li>
+<li><p>Instrumenting code and infrastructure to emit rich telemetry.</p></li>
+</ul>
+</li>
+<li><p><strong>11.5.2 Enabling Root Cause Analysis for Model Failures</strong></p>
+<ul>
+<li><p><strong>Evaluation Store Concept:</strong> Central repository of predictions, actuals, feature values, SHAP/LIME explanations for every model version and environment. [guide_monitor_observe_drift.md (Sec I)]</p></li>
+<li><p><strong>Drill-Down Capabilities:</strong> From aggregated metrics to problematic cohorts and individual predictions/features.</p></li>
+<li><p><strong>Explainability (XAI) in Production:</strong> Applying SHAP/LIME to production predictions to understand drivers of errors or drift. Monitoring shifts in feature attributions. [guide_monitor_observe_drift.md (Sec VII.B, VII.F)]</p></li>
+<li><p><strong>Correlating Data Drift with Performance Degradation:</strong> Not all drift is harmful. Observability helps link specific feature drifts to actual drops in model KPIs.</p></li>
+</ul>
+</li>
+<li><p><strong>11.5.3 The Role of an “Evaluation Store” in ML Observability</strong></p>
+<ul>
+<li><p>A central place holding predictions, actuals, feature inputs, and explanations.</p></li>
+<li><p>Enables deep dives, cohort analysis, and identifying underperforming slices.</p></li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+</section>
+<section id="project-trending-now-monitoring-the-genre-classification-service">
+<h2>Project: “Trending Now” – Monitoring the Genre Classification Service<a class="headerlink" href="#project-trending-now-monitoring-the-genre-classification-service" title="Permalink to this heading">¶</a></h2>
+<p>Applying monitoring and observability principles to our “Trending Now” application.</p>
+<ul class="simple">
+<li><p><strong>11.P.1 Defining Monitoring Metrics for “Trending Now”</strong></p>
+<ul>
+<li><p><strong>Operational Metrics (FastAPI on AWS App Runner):</strong></p>
+<ul>
+<li><p>AWS CloudWatch: Request count, HTTP 2xx/4xx/5xx errors, latency (p50, p90, p99), CPU/Memory utilization of App Runner service.</p></li>
+<li><p>Prometheus (via FastAPI exporter): Custom application metrics like active requests.</p></li>
+</ul>
+</li>
+<li><p><strong>Educational Model Path (XGBoost/BERT if deployed):</strong></p>
+<ul>
+<li><p><em>Input Feature Drift:</em> For plot summaries/reviews (e.g., monitor text length distribution, vocabulary out-of-stock rate if using fixed vocab, or embedding drift if applicable).</p></li>
+<li><p><em>Prediction Distribution Drift:</em> For predicted genres.</p></li>
+</ul>
+</li>
+<li><p><strong>LLM Service Path (Gemini API):</strong></p>
+<ul>
+<li><p><em>Operational:</em> API call latency, API error rates (from our backend logs), token usage (for cost).</p></li>
+<li><p><em>Output Quality/Drift (Conceptual - more advanced for this guide):</em></p>
+<ul>
+<li><p>Drift in LLM-generated score distribution.</p></li>
+<li><p>Drift in distribution of top N vibe tags or primary genres.</p></li>
+<li><p>(Manual/Periodic) Qualitative checks on summary quality.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>11.P.2 Setting up Dashboards and Alerts for “Trending Now”</strong></p>
+<ul>
+<li><p><strong>Grafana Dashboard:</strong></p>
+<ul>
+<li><p>Panel for App Runner operational metrics (from CloudWatch).</p></li>
+<li><p>Panel for FastAPI application metrics (from Prometheus).</p></li>
+<li><p>Panels (conceptual, based on reports from WhyLogs/EvidentlyAI) for drift in LLM scores and key input features (e.g., plot length).</p></li>
+</ul>
+</li>
+<li><p><strong>CloudWatch Alarms:</strong></p>
+<ul>
+<li><p>High HTTP 5xx error rate on App Runner.</p></li>
+<li><p>High P99 latency on App Runner.</p></li>
+<li><p>Alert if daily LLM API cost (estimated from token count logs) exceeds a budget.</p></li>
+<li><p>Alert if a scheduled WhyLogs/EvidentlyAI drift report indicates significant drift (e.g., by checking a status file written by the report job).</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>11.P.3 Implementing Logging for Root Cause Analysis in FastAPI</strong></p>
+<ul>
+<li><p>Implement structured logging (JSON format) in the FastAPI application.</p></li>
+<li><p>Include: timestamp, request ID, endpoint, input parameters (sanitized), LLM prompt (template ID + variables, not full text if sensitive), LLM response (or key parts), LLM tokens used, latency of LLM call, any errors.</p></li>
+<li><p>Push logs to AWS CloudWatch Logs.</p></li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+</section>
+<section id="conclusion-the-vigilant-kitchen-ensuring-enduring-quality-and-adaptability">
+<h2>🧑‍🍳 Conclusion: The Vigilant Kitchen – Ensuring Enduring Quality and Adaptability<a class="headerlink" href="#conclusion-the-vigilant-kitchen-ensuring-enduring-quality-and-adaptability" title="Permalink to this heading">¶</a></h2>
+<p>The “Grand Opening” was just the beginning. To maintain our MLOps kitchen’s reputation and ensure our “signature dishes” consistently delight, continuous vigilance is paramount. This chapter has equipped us with the principles and practices of Production Monitoring and Observability – the eyes and ears of our operation.</p>
+<p>We’ve learned to distinguish between reactive monitoring of known metrics and proactive observability that allows us to diagnose novel issues. We’ve dived deep into the complexities of data and concept drift, understanding their types, causes, and the statistical methods and tools like PSI, KS-tests, TFDV, and Great Expectations to detect them. We’ve established a comprehensive list of key metrics—spanning operational health, model performance, prediction outputs, and input features—and explored the unique monitoring challenges posed by unstructured data, embeddings, and LLMs. Finally, we’ve outlined how to build an effective monitoring toolbox with structured logging, insightful dashboards (Grafana), and actionable alerts (CloudWatch Alarms), all aimed at facilitating rapid root cause analysis.</p>
+<p>For our “Trending Now” project, we now have a clear plan to monitor our FastAPI service and the outputs from the Gemini LLM. This ensures we’re not just serving predictions but are actively “listening to the diners” and observing the health of our kitchen. This foundation of monitoring and observability is what enables the next crucial step in a truly adaptive MLOps lifecycle: Continuous Learning and Production Testing, which we will explore in Chapter 11, ensuring our menu not only stays fresh but gets better over time.</p>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024, Deepak Karkala
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Chapter 11: Monitoring, Observability, Drifts</a><ul>
+<li><a class="reference internal" href="#introduction-the-ever-watchful-head-chef-ensuring-consistent-excellence">🧑‍🍳 Introduction: The Ever-Watchful Head Chef – Ensuring Consistent Excellence</a></li>
+<li><a class="reference internal" href="#section-11-1-the-why-understanding-ml-system-failures-in-production">Section 11.1: The “Why”: Understanding ML System Failures in Production</a></li>
+<li><a class="reference internal" href="#section-11-2-deep-dive-data-distribution-shifts-drift-when-the-market-changes">Section 11.2: Deep Dive: Data Distribution Shifts (Drift) – When the “Market” Changes</a></li>
+<li><a class="reference internal" href="#section-11-3-key-metrics-artifacts-for-production-model-monitoring-the-chef-s-critical-checkpoints">Section 11.3: Key Metrics &amp; Artifacts for Production Model Monitoring (The Chef’s Critical Checkpoints)</a></li>
+<li><a class="reference internal" href="#section-11-4-implementing-an-effective-monitoring-toolbox-the-chef-s-dashboard-and-alert-system">Section 11.4: Implementing an Effective Monitoring Toolbox (The Chef’s Dashboard and Alert System)</a></li>
+<li><a class="reference internal" href="#section-11-5-observability-going-beyond-monitoring-for-deeper-insights-understanding-the-why-behind-kitchen-issues">Section 11.5: Observability: Going Beyond Monitoring for Deeper Insights (Understanding the “Why” Behind Kitchen Issues)</a></li>
+<li><a class="reference internal" href="#project-trending-now-monitoring-the-genre-classification-service">Project: “Trending Now” – Monitoring the Genre Classification Service</a></li>
+<li><a class="reference internal" href="#conclusion-the-vigilant-kitchen-ensuring-enduring-quality-and-adaptability">🧑‍🍳 Conclusion: The Vigilant Kitchen – Ensuring Enduring Quality and Adaptability</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=b3ba4146"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/scripts/furo.js?v=4e2eecee"></script>
+    </body>
+</html>

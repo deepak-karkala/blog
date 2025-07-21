@@ -1,0 +1,753 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" />
+
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/><!-- Generated with Sphinx 7.1.2 and Furo 2024.05.06 -->
+        <title>How to train DL Models - Home</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=387cc868" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=36a5483c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/style.css?v=8a7ff5ee" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" /
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">Home</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  
+  <span class="sidebar-brand-text">Home</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../projects/index.html">Projects</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Projects</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/nlp/index.html">Natural Language Processing</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Natural Language Processing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/airbnb_alternate_search/about/index.html">Airbnb Listing description based Semantic Search</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/cv/index.html">Computer Vision</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Computer Vision</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/ecommerce_image_segmentation/about/index.html">Image Segmentation for Ecommerce Products</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/ml/index.html">Machine Learning</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of Machine Learning</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/airbnb_price_modeling/about/index.html">Predictive Price Modeling for Airbnb listings</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../publications/index.html">Patents, Papers, Thesis</a></li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../index.html">MLOps</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of MLOps</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch1_problem_framing.html">ML Problem framing</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of ML Problem framing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch2_blueprint_operational_strategy.html">The MLOps Blueprint &amp; Operational Strategy</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch2a_platform/index.html">ML Platforms</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of ML Platforms</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/ml_platforms.html">ML Platforms: How to</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/uber.html">Uber Michelangelo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/linkedin.html">LinkedIn DARWIN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/netflix.html">Netflix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/shopify.html">Shopify Merlin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/zomato.html">Zomato: Real-time ML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/coveo.html">Coveo: MLOPs at reasonable scale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/monzo.html">Monzo ML Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/didact.html">Didact AI</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch3_project_planning/index.html">Project Planning</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of Project Planning</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/prd.html">Project Requirements Document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/tech_stack.html">Tech Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/config_management.html">Config Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/pipeline_design.html">Pipeline Design</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/environment_strategy.html">Environment Strategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/cicd_branching_model.html">CI/CD Strategy and Branching Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/directory_structure.html">Directory Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/env_branchind_cicd_deployment.html">Environments, Branching, CI/CD, and Deployments Explained</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/project_management.html">Project Management for MLOps</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch4_data_discovery/index.html">Data Sourcing, Discovery</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of Data Sourcing, Discovery</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/data_sourcing_discovery.html">Data Sourcing, Discovery &amp; Understanding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/ch4_project.html">Project-Trending Now: Implementing Web Scraping, Ingestion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/industry_case_studies.html">Data Discovery Platforms: Industry Case Studies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/facebook_nemo.html">Facebook: Nemo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/netflix_metacat.html">Netflix Metacat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/uber_databook.html">Uber Databook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/linkedin_datahub.html">LinkedIn Datahub</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../lld/index.html">Low Level Design</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle navigation of Low Level Design</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../lld/parking_lot.html">Parking Lot</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../visualization/index.html">Data Visualization Projects</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="../../_sources/mlops/ch7_model_development/dl_training_playbook.md.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="how-to-train-dl-models">
+<h1>How to train DL Models<a class="headerlink" href="#how-to-train-dl-models" title="Permalink to this heading">¶</a></h1>
+<p><strong>Deep Learning Training Playbook: From Pixels to Production Performance</strong></p>
+<p>Training deep learning models, especially at scale, is often perceived as a dark art. While the underlying mathematics can be complex, the process of achieving state-of-the-art results is increasingly becoming an engineering discipline. This playbook is for MLOps Leads and experienced engineers. It distills hard-won lessons, best practices from industry leaders (Google, OpenAI, and insights from practitioners like Karpathy), and foundational principles to provide a robust thinking framework. Our aim is not just to list techniques, but to cultivate a mindset of systematic experimentation, rigorous debugging, and strategic scaling, transforming the “art” into a repeatable, efficient, and governable “science.”</p>
+<hr class="docutils" />
+<p><strong>Chapter 1: The MLOps Lead’s Mindset &amp; Foundational Principles for DL Training</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Acknowledge the Leaky Abstraction (Karpathy):</strong></p>
+<ul class="simple">
+<li><p>Deep learning libraries (TensorFlow, PyTorch, JAX) provide powerful tools, but they are not magic black boxes. <code class="docutils literal notranslate"><span class="pre">model.fit()</span></code> is the beginning, not the end.</p></li>
+<li><p><strong>MLOps Lead Takeaway:</strong> Foster a team culture that encourages understanding the mechanics (backprop, optimizers, loss functions) rather than just “plugging and playing.” This is crucial for effective debugging and innovation.</p></li>
+</ul>
+</li>
+<li><p><strong>Embrace that Neural Net Training Fails Silently (Karpathy):</strong></p>
+<ul class="simple">
+<li><p>Unlike traditional software, misconfigured or subtly bugged DL training often doesn’t crash; it just performs poorly or sub-optimally in difficult-to-diagnose ways.</p></li>
+<li><p><strong>MLOps Lead Takeaway:</strong> Implement rigorous, multi-faceted monitoring and validation at <em>every</em> stage. Instill a “paranoid, defensive” approach to experimentation.</p></li>
+</ul>
+</li>
+<li><p><strong>The Scientific Method for Model Improvement (GDLTP - Part 3):</strong></p>
+<ul class="simple">
+<li><p><strong>Iterative &amp; Incremental:</strong> Start simple, then incrementally add complexity and make improvements based on strong evidence.</p></li>
+<li><p><strong>Hypothesis-Driven:</strong> Each experiment or change should test a clear hypothesis.</p></li>
+<li><p><strong>Prioritize Insight:</strong> In early stages, focus on understanding the problem, sensitivities, and interactions over greedily maximizing a single validation metric.</p></li>
+<li><p><strong>MLOps Lead Takeaway:</strong> Structure your team’s work into well-defined experimental rounds with clear goals. Document learnings, not just final metrics.</p></li>
+</ul>
+</li>
+<li><p><strong>Data is (Still) King (Karpathy - “Become one with the data”, Google Rules of ML):</strong></p>
+<ul class="simple">
+<li><p>The most significant gains often come from better data and features, not just fancier algorithms or more tuning.</p></li>
+<li><p><strong>MLOps Lead Takeaway:</strong> Ensure robust data pipelines, rigorous data validation, and that your team <em>deeply</em> understands the data they are working with. This includes distributions, biases, quality issues, and the semantics of features. (Connects to Feature Engineering Compendium).</p></li>
+</ul>
+</li>
+<li><p><strong>Simplicity First, Complexity Later (Karpathy, GDLTP “start simple”, Google Rules of ML - Rule #4):</strong></p>
+<ul class="simple">
+<li><p>Start with the simplest model and infrastructure that can achieve a reasonable baseline.</p></li>
+<li><p>Complexity should be justified by significant, evidence-backed performance gains.</p></li>
+<li><p><strong>MLOps Lead Takeaway:</strong> Resist the urge for “resume-driven development” or premature optimization. A simple, working pipeline is the foundation for all future improvements.</p></li>
+</ul>
+</li>
+</ol>
+<hr class="docutils" />
+<p><strong>Chapter 2: Phase 1 - Laying the Groundwork: Your First DL Pipeline &amp; Baselines</strong></p>
+<p><em>(Combines Karpathy’s Steps 1 &amp; 2, GDLTP “Starting a New Project”, Google Rules of ML Phase I)</em></p>
+<ol class="arabic simple">
+<li><p><strong>Deep Data Understanding (Karpathy - Step 1):</strong></p>
+<ul class="simple">
+<li><p><strong>Action:</strong> Spend significant time manually inspecting data samples (images, text, tabular rows). Look for patterns, anomalies, corrupted data, label noise, imbalances, biases.</p></li>
+<li><p><strong>Tools:</strong> Visualization, simple scripts for filtering/sorting/counting.</p></li>
+<li><p><strong>Output:</strong> Qualitative understanding, hypotheses about important features, potential data quality issues to address.</p></li>
+<li><p><strong>MLOps Lead Takeaway:</strong> Allocate time for this. Don’t let the team rush into coding. This step informs all subsequent decisions.</p></li>
+</ul>
+</li>
+<li><p><strong>End-to-End Training &amp; Evaluation Skeleton (Karpathy - Step 2):</strong></p>
+<ul class="simple">
+<li><p><strong>Action:</strong> Build the simplest possible pipeline that ingests data, trains a trivial model, and produces evaluation metrics.</p></li>
+<li><p><strong>Key Principles for the Skeleton:</strong></p>
+<ul>
+<li><p><strong>Fixed Random Seeds:</strong> For reproducibility.</p></li>
+<li><p><strong>Simplify:</strong> Disable augmentations, complex regularizers, learning rate decay initially.</p></li>
+<li><p><strong>Meaningful Evaluation:</strong> Evaluate on a representative, fixed validation set. Add significant digits to metrics.</p></li>
+<li><p><strong>Verify Loss &#64; Init:</strong> Ensure the initial loss matches theoretical expectations (e.g., <code class="docutils literal notranslate"><span class="pre">-log(1/num_classes)</span></code> for softmax).</p></li>
+<li><p><strong>Initialize Well:</strong> Initialize the final layer bias appropriately for the task (e.g., to match data mean for regression, or prior probabilities for imbalanced classification).</p></li>
+<li><p><strong>Establish Baselines:</strong></p>
+<ul>
+<li><p><strong>Human Baseline:</strong> How well can a human perform this task?</p></li>
+<li><p><strong>Input-Independent Baseline:</strong> Model performance when inputs are zeroed out (does the model learn anything from the actual input?).</p></li>
+<li><p><strong>Simple Heuristic/Rule-Based Baseline:</strong> (Google Rules of ML - Rule #1, #3) Can a non-ML solution provide a decent starting point?</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>MLOps Lead Takeaway:</strong> This skeleton is your sanity check. If it doesn’t work reliably, nothing more complex will.</p></li>
+</ul>
+</li>
+<li><p><strong>Choosing Initial Components (GDLTP - “Starting a New Project”):</strong></p>
+<ul class="simple">
+<li><p><strong>Model Architecture:</strong></p>
+<ul>
+<li><p><strong>Guidance:</strong> Start with a known, published architecture closest to your problem. Don’t invent novel architectures at this stage. (Karpathy - “Don’t be a hero”).</p></li>
+<li><p><strong>Considerations:</strong> Simplicity, speed of training for initial experiments.</p></li>
+</ul>
+</li>
+<li><p><strong>Optimizer:</strong></p>
+<ul>
+<li><p><strong>Guidance:</strong> Use well-established, popular optimizers.</p></li>
+<li><p><strong>Recommendations:</strong> SGD with Nesterov momentum, Adam/NAdam.</p></li>
+<li><p><strong>Strategy:</strong> Start with fixed optimizer hyperparameters (e.g., Adam defaults for beta1, beta2, epsilon) and only tune the learning rate initially. More optimizer HPs can be tuned later.</p></li>
+</ul>
+</li>
+<li><p><strong>Batch Size:</strong></p>
+<ul>
+<li><p><strong>Primary Role:</strong> Governs training speed and resource utilization. <em>Not</em> a primary tool for tuning validation performance directly (GDLTP - FAQ).</p></li>
+<li><p><strong>Strategy:</strong></p>
+<ol class="arabic simple">
+<li><p>Determine feasible range based on accelerator memory.</p></li>
+<li><p>Estimate training throughput (examples/sec) for different batch sizes.</p></li>
+<li><p>Choose a size that maximizes throughput or balances speed with resource cost. Often, the largest batch size that fits and doesn’t slow down per-step time is a good start.</p></li>
+</ol>
+</li>
+<li><p><strong>Caveat:</strong> Changing batch size often requires re-tuning other HPs (especially LR and regularization).</p></li>
+<li><p><strong>Batch Norm Interaction:</strong> (GDLTP - “Additional Guidance”) BN statistics might need a “virtual” batch size different from the gradient computation batch size (Ghost BN).</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Essential Sanity Checks on the First Pipeline (Karpathy - Step 2, Google Rules of ML - Phase I):</strong></p>
+<ul class="simple">
+<li><p><strong>Overfit a Single Batch:</strong> Take 2-10 examples, increase model capacity (if needed), and ensure you can drive training loss to (near) zero. Visualize predictions vs. labels. If this fails, there’s a bug.</p></li>
+<li><p><strong>Verify Decreasing Training Loss:</strong> With a slightly larger model than the initial toy model, confirm training loss goes down as expected.</p></li>
+<li><p><strong>Visualize Data “Just Before the Net”:</strong> Decode and visualize the exact tensors (data and labels) being fed into <code class="docutils literal notranslate"><span class="pre">model(x)</span></code>. This catches many preprocessing/augmentation bugs.</p></li>
+<li><p><strong>Visualize Prediction Dynamics:</strong> Plot predictions on a fixed test batch over training epochs. Gives intuition about stability and learning progress.</p></li>
+<li><p><strong>Use Backprop to Chart Dependencies:</strong> Ensure gradients flow correctly and that there’s no unintended information mixing (e.g., across batch dimension in custom layers).</p></li>
+</ul>
+</li>
+</ol>
+<hr class="docutils" />
+<p><strong>Chapter 3: Phase 2 - Iterative Improvement &amp; Systematic Hyperparameter Tuning</strong></p>
+<p><em>(Combines GDLTP “Scientific Approach”, Karpathy Steps 3-6, Google “Rules of ML” Phase II)</em></p>
+<ol class="arabic simple">
+<li><p><strong>The Incremental Tuning Loop (GDLTP):</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Pick a Goal:</strong> e.g., try a new regularizer, understand impact of an HP, minimize validation error. Scope it narrowly.</p></li>
+<li><p><strong>Design Experiments:</strong> Identify scientific, nuisance, and fixed HPs. Create studies.</p></li>
+<li><p><strong>Learn from Results:</strong> Analyze training/loss curves, check search space boundaries.</p></li>
+<li><p><strong>Adopt Candidate Change:</strong> Based on strong evidence, considering variance.</p></li>
+</ol>
+</li>
+<li><p><strong>Overfitting the Training Set (Karpathy - Step 3):</strong></p>
+<ul class="simple">
+<li><p><strong>Goal:</strong> Get a model large/complex enough to achieve very low training loss. This ensures the model <em>can</em> learn the task.</p></li>
+<li><p><strong>Strategy:</strong></p>
+<ul>
+<li><p><strong>Pick the Model:</strong> Start with a standard architecture (e.g., ResNet for images). Don’t reinvent the wheel initially.</p></li>
+<li><p><strong>Optimizer:</strong> Adam (e.g., LR 3e-4) is forgiving for initial experiments. SGD might outperform later but needs more careful tuning.</p></li>
+<li><p><strong>Complexify Incrementally:</strong> Add features/layers one by one, verifying performance improvements.</p></li>
+<li><p><strong>Learning Rate Decay:</strong> Disable initially, or be very careful with defaults if reusing code. Tune it at the very end.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Regularization (Karpathy - Step 4):</strong></p>
+<ul class="simple">
+<li><p><strong>Goal:</strong> Improve validation performance by reducing overfitting (trading some training performance).</p></li>
+<li><p><strong>Hierarchy of Techniques:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Get More Data:</strong> The best regularizer.</p></li>
+<li><p><strong>Data Augmentation:</strong> “Half-fake data.” Geometric transforms, color jitter for images; back-translation, synonym replacement for text.</p></li>
+<li><p><strong>Creative Augmentation:</strong> Domain randomization, simulation, GANs (if applicable).</p></li>
+<li><p><strong>Pretraining:</strong> Use models pre-trained on larger datasets (e.g., ImageNet for vision, BERT for NLP). Hugely beneficial.</p></li>
+<li><p><strong>Smaller Input Dimensionality:</strong> Remove noisy/less important features.</p></li>
+<li><p><strong>Smaller Model Size:</strong> Pruning, knowledge distillation, architecture changes (e.g., global average pooling instead of FC layers).</p></li>
+<li><p><strong>Decrease Batch Size:</strong> Can have a regularizing effect due to noisier gradients (interacts with Batch Norm).</p></li>
+<li><p><strong>Dropout:</strong> Use judiciously, can interact negatively with Batch Norm.</p></li>
+<li><p><strong>Weight Decay (L2 Regularization):</strong> Common and effective.</p></li>
+<li><p><strong>Early Stopping:</strong> Monitor validation loss and stop when it starts to degrade. (GDLTP recommends retrospective checkpoint selection instead of prospective early stopping during HPO).</p></li>
+<li><p><strong>Try a Larger Model (then early stop):</strong> Sometimes a larger model, early-stopped, outperforms a smaller model trained to convergence.</p></li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p><strong>Hyperparameter Optimization (HPO) (Karpathy - Step 5, GDLTP “Scientific Approach”):</strong></p>
+<ul class="simple">
+<li><p><strong>Scientific vs. Nuisance vs. Fixed HPs:</strong></p>
+<ul>
+<li><p><strong>Scientific:</strong> The HP whose effect you’re trying to measure (e.g., activation function type).</p></li>
+<li><p><strong>Nuisance:</strong> HPs that need to be optimized for each setting of scientific HPs to ensure fair comparison (e.g., learning rate when comparing different model depths). Optimizer HPs (LR, momentum, Adam betas) are often nuisance HPs.</p></li>
+<li><p><strong>Fixed:</strong> HPs held constant. Conclusions are conditioned on these fixed values.</p></li>
+</ul>
+</li>
+<li><p><strong>Search Strategy:</strong></p>
+<ul>
+<li><p><strong>Random Search &gt; Grid Search:</strong> More efficient when some HPs are more important than others (Karpathy).</p></li>
+<li><p><strong>Quasi-Random Search (GDLTP):</strong> Preferred during exploration for its good coverage and ability to marginalize out nuisance HPs.</p></li>
+<li><p><strong>Bayesian Optimization (GDLTP):</strong> Use for final exploitation phase once search spaces are well-understood. Tools like Open-Source Vizier, Optuna, Ray Tune.</p></li>
+</ul>
+</li>
+<li><p><strong>Search Space Design:</strong></p>
+<ul>
+<li><p>Define sensible ranges (log scale for LR, etc.).</p></li>
+<li><p>Check boundaries: if best points are at the edge, expand the space (GDLTP).</p></li>
+<li><p>Ensure enough points are sampled.</p></li>
+</ul>
+</li>
+<li><p><strong>Analyzing Results:</strong></p>
+<ul>
+<li><p><strong>Loss Curves (GDLTP, Karpathy):</strong> Check for overfitting (validation loss increasing), high step-to-step variance (problematic for reproducibility), saturation (could training be shorter?), training loss increasing (bug!).</p></li>
+<li><p><strong>Isolation Plots (GDLTP):</strong> Plot validation performance vs. a scientific HP, after “optimizing away” nuisance HPs (by taking the best trial in each slice).</p></li>
+<li><p><strong>Automate Plot Generation:</strong> (GDLTP) For consistency and thoroughness.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Squeezing Out the Last Drops (Karpathy - Step 6):</strong></p>
+<ul class="simple">
+<li><p><strong>Ensembles:</strong> Almost always gives a ~2% boost. Distill to a single model if inference cost is an issue.</p></li>
+<li><p><strong>Leave it Training:</strong> DL models can continue to improve for surprisingly long times.</p></li>
+</ul>
+</li>
+</ol>
+<hr class="docutils" />
+<p><strong>Chapter 4: Advanced Training Techniques - Scaling &amp; Efficiency</strong></p>
+<p><em>(Combines OpenAI “Techniques”, GDLTP “Compute-bound Training”, Meta DSI insights)</em></p>
+<ol class="arabic simple">
+<li><p><strong>Understanding Compute-Bound vs. Not Compute-Bound Regimes (GDLTP):</strong></p>
+<ul class="simple">
+<li><p><strong>Compute-Bound:</strong> Training time is the limit. Longer/faster training should improve loss. Optimal training time = “as long as you can afford.” Speeding up is improving.</p></li>
+<li><p><strong>Not Compute-Bound:</strong> Can train as long as needed. Risk of overfitting if training too long without benefit. Focus on finding optimal <code class="docutils literal notranslate"><span class="pre">max_train_steps</span></code>.</p></li>
+<li><p><strong>Meta DSI:</strong> Highlights DSI pipeline can be the bottleneck, underutilizing expensive DSAs. Optimizing input pipeline is crucial.</p></li>
+</ul>
+</li>
+<li><p><strong>Parallelism Strategies for Large Models (OpenAI):</strong></p>
+<ul class="simple">
+<li><p><strong>Data Parallelism:</strong> Same model, different data subsets on multiple GPUs. Requires gradient synchronization (e.g., AllReduce). Model must fit on one GPU (unless offloading techniques are used).</p></li>
+<li><p><strong>Pipeline Parallelism:</strong> Model layers partitioned sequentially across GPUs. Reduces memory per GPU. Needs micro-batching to mitigate “bubbles” (idle time). (e.g., GPipe, PipeDream).</p></li>
+<li><p><strong>Tensor Parallelism:</strong> Operations within a layer (e.g., matrix multiplications in Transformers) split across GPUs. (e.g., Megatron-LM).</p></li>
+<li><p><strong>Sequence Parallelism:</strong> Input sequence split across a dimension (e.g., time) for more granular processing, reducing peak memory.</p></li>
+<li><p><strong>Mixture-of-Experts (MoE):</strong> Only a fraction of network (experts) active per input. Experts can be on different GPUs. Scales parameter count without proportional compute increase. (e.g., GShard, Switch Transformer).</p></li>
+<li><p><strong>MLOps Lead Takeaway:</strong> Choice depends on model architecture, network bandwidth, and memory constraints. Often, a hybrid approach is best (e.g., Data + Tensor Parallelism).</p></li>
+</ul>
+</li>
+<li><p><strong>Memory Saving Techniques (OpenAI):</strong></p>
+<ul class="simple">
+<li><p><strong>Activation Checkpointing (Gradient Checkpointing/Recomputation):</strong> Store only a subset of activations, recompute others during backward pass. Trades compute for memory.</p></li>
+<li><p><strong>Mixed Precision Training (FP16/BF16):</strong> Use lower precision for weights/activations. Faster compute on modern accelerators, less memory. Requires careful handling of numerical stability (e.g., loss scaling).</p></li>
+<li><p><strong>Optimizer State Offloading/Partitioning (e.g., ZeRO):</strong> Distribute optimizer states, gradients, and parameters across data parallel workers, materializing only when needed.</p></li>
+<li><p><strong>Memory-Efficient Optimizers (e.g., Adafactor):</strong> Optimizers that inherently require less state.</p></li>
+<li><p><strong>Compression:</strong> For activations (Gist) or gradients (DALL-E).</p></li>
+</ul>
+</li>
+<li><p><strong>Optimizing the Input Pipeline (GDLTP - “Additional Guidance”, Meta DSI):</strong></p>
+<ul class="simple">
+<li><p><strong>Bottleneck Identification:</strong> Use profilers (Perfetto for JAX, TF Profiler).</p></li>
+<li><p><strong>Common Issues:</strong> Data not co-located (network latency), expensive online preprocessing, synchronization barriers.</p></li>
+<li><p><strong>Meta DSI - DPP (Data PreProcessing Service):</strong> A disaggregated service to offload online preprocessing from trainers, scaling independently to eliminate data stalls. Shows importance of dedicated preprocessing infra.</p></li>
+<li><p><strong>Interventions:</strong> Prefetching (<code class="docutils literal notranslate"><span class="pre">tf.data.Dataset.prefetch</span></code>), offline preprocessing where possible, removing unused features early, parallel data loading.</p></li>
+</ul>
+</li>
+</ol>
+<hr class="docutils" />
+<p><strong>Chapter 5: MLOps Integration - Operationalizing the Training Process</strong></p>
+<p><em>(Combines Google MLOps CI/CD, GDLTP “Additional Guidance”)</em></p>
+<ol class="arabic simple">
+<li><p><strong>Continuous Training (CT):</strong></p>
+<ul class="simple">
+<li><p><strong>Definition:</strong> Automatically retraining models in production. (Google MLOps Level 1).</p></li>
+<li><p><strong>Triggers:</strong> Schedule (daily/weekly), new data availability, model performance degradation, concept/data drift.</p></li>
+<li><p><strong>Requires:</strong> Orchestrated ML pipelines, automated data/model validation, metadata management.</p></li>
+</ul>
+</li>
+<li><p><strong>CI/CD for ML Training Pipelines (Google MLOps Level 2):</strong></p>
+<ul class="simple">
+<li><p><strong>Source Control:</strong> For all code (feature engineering, model architecture, training pipeline definition).</p></li>
+<li><p><strong>CI (Pipeline Continuous Integration):</strong></p>
+<ul>
+<li><p>Build source code, packages, container images.</p></li>
+<li><p>Unit tests (feature logic, model methods).</p></li>
+<li><p>Tests for training convergence, numerical stability (no NaNs).</p></li>
+<li><p>Tests for component artifact generation, integration between pipeline components.</p></li>
+</ul>
+</li>
+<li><p><strong>CD (Pipeline Continuous Delivery):</strong></p>
+<ul>
+<li><p>Deploy pipeline artifacts (e.g., compiled pipeline spec, containers) to target environments (dev, staging, prod).</p></li>
+<li><p>Automated execution of the deployed pipeline to train models.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Model Evaluation in Automated Pipelines:</strong></p>
+<ul class="simple">
+<li><p><strong>Periodic Evaluations during Training (GDLTP):</strong> At regular <em>step</em> intervals (not time). On a sampled validation set.</p></li>
+<li><p><strong>Retrospective Checkpoint Selection (GDLTP):</strong> Save N best checkpoints during a run and select the best at the end, rather than relying on the final one or heuristic early stopping.</p></li>
+<li><p><strong>Online Evaluation / A/B Testing:</strong> For deployed models to assess real-world impact.</p></li>
+</ul>
+</li>
+<li><p><strong>Experiment Tracking &amp; Artifact Management (GDLTP):</strong></p>
+<ul class="simple">
+<li><p>Log HPs, configs, metrics, links to code/data for each trial.</p></li>
+<li><p>Store model checkpoints, evaluation results, visualizations.</p></li>
+<li><p>Tools: MLflow, Neptune, Weights &amp; Biases, Kubeflow Metadata, Vertex AI Experiments, SageMaker Experiments.</p></li>
+</ul>
+</li>
+<li><p><strong>Batch Normalization Considerations in Distributed Settings (GDLTP):</strong></p>
+<ul class="simple">
+<li><p>BN stats (mean/variance) are batch-dependent.</p></li>
+<li><p><strong>Ghost Batch Norm:</strong> Decouple BN stats calculation batch size from gradient batch size.</p></li>
+<li><p>Synchronize EMA stats across hosts before saving checkpoints.</p></li>
+</ul>
+</li>
+<li><p><strong>Multi-Host Training Specifics (GDLTP):</strong></p>
+<ul class="simple">
+<li><p>Log/checkpoint only on one host.</p></li>
+<li><p>Ensure consistent RNG seeds for initialization, different seeds for data shuffling.</p></li>
+<li><p>Shard data files across hosts.</p></li>
+</ul>
+</li>
+</ol>
+<hr class="docutils" />
+<p><strong>Chapter 6: The MLOps Lead’s DL Training Framework - Mind Map</strong></p>
+<div class="highlight-mermaid notranslate"><div class="highlight"><pre><span></span>mindmap
+  root((DL Training Playbook for MLOps Lead))
+    ::icon(fa fa-brain)
+    **I. Mindset &amp; Foundations**
+      Leaky Abstractions
+      Silent Failures
+      Scientific Method &amp; Iteration
+      Data Centricity
+      Simplicity First
+
+    **II. Phase1: Infrastructure &amp; Baselines**
+      Deep Data Understanding
+      End-to-End Pipeline Skeleton
+        Fixed Seeds, Simple Config
+        Verify Initial Loss &amp; Biases
+        Baselines (Human, Input-Independent, Heuristic)
+      Initial Architecture Choices
+        Model: Standard, Simple
+        Optimizer: Common (SGD, Adam fixed)
+        Batch Size: Maximize Throughput
+      Crucial Sanity Checks
+        Overfit Single Batch
+        Visualize Data &amp; Predictions
+
+    **III. Phase2: Iterative Improvement &amp; Tuning**
+      Incremental Tuning Loop (Goal, Design, Learn, Adopt)
+      Overfitting Training Set (Focus: Low Training Loss)
+      Regularization Strategies
+        More Data / Augmentation
+        Pretraining
+        Model/Input Size Reduction
+        Dropout, Weight Decay, Early Stopping
+      Hyperparameter Optimization (HPO)
+        Scientific vs Nuisance vs Fixed HPs
+        Search: Random -&gt; Bayesian
+        Search Space Design &amp; Analysis (Boundaries, Density)
+        Learning from Loss Curves (Overfitting, Variance, Saturation)
+        Isolation Plots
+        Learning Rate Schedules (Linear/Cosine, Adam Tuning)
+
+    **IV. Phase3: Scaling Large Network Training**
+      **(A) Parallelism Techniques (OpenAI)**
+        Data Parallelism (AllReduce)
+        Pipeline Parallelism (Microbatching, GPipe)
+        Tensor Parallelism (Megatron-LM)
+        Sequence Parallelism
+        Mixture-of-Experts (MoE)
+      **(B) Memory Saving Designs (OpenAI)**
+        Activation Checkpointing
+        Mixed Precision Training
+        Optimizer State Offloading (ZeRO)
+        Memory Efficient Optimizers
+      **(C) Input Pipeline Optimization (Meta DSI, GDLTP)**
+        Profiling, Prefetching
+        Disaggregated Preprocessing (e.g., Meta DPP)
+
+    **V. Phase4: MLOps Integration &amp; Continuous Improvement**
+      Continuous Training (CT) - Automated Retraining
+        Triggers (Schedule, New Data, Decay)
+      CI/CD for Training Pipelines
+        Source Control for all code
+        Automated Build &amp; Test of pipeline components
+        Automated Deployment of pipelines
+      Automated Model Evaluation
+        Periodic Evals (step-based)
+        Retrospective Checkpoint Selection
+      Experiment Tracking &amp; Artifact Management
+      Production Monitoring (Freshness, Silent Failures)
+      Handling Distributed Training Nuances (BN, RNGs)
+
+    **VI. Debugging &amp; Troubleshooting**
+      Optimization Failures (GDLTP FAQ)
+        Learning Rate Warmup
+        Gradient Clipping
+        Optimizer Choice
+        Architectural Best Practices (Residuals, Norm)
+      Visualizations (Karpathy)
+        Data before net, Prediction dynamics, Gradients
+
+    %% Conceptual Colors
+    style I. Mindset &amp; Foundations fill:#AliceBlue
+    style II. Phase1: Infrastructure &amp; Baselines fill:#LightCyan
+    style III. Phase2: Iterative Improvement &amp; Tuning fill:#PaleTurquoise
+    style IV. Phase3: Scaling Large Network Training fill:#LightGoldenRodYellow
+    style V. Phase4: MLOps Integration &amp; Continuous Improvement fill:#Thistle
+    style VI. Debugging &amp; Troubleshooting fill:#LavenderBlush
+</pre></div>
+</div>
+<hr class="docutils" />
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024, Deepak Karkala
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=b3ba4146"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/scripts/furo.js?v=4e2eecee"></script>
+    </body>
+</html>

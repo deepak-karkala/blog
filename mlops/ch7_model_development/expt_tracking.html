@@ -1,0 +1,755 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" />
+
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/><!-- Generated with Sphinx 7.1.2 and Furo 2024.05.06 -->
+        <title>ML Expt tracking, Data Lineage, Model Registry - Home</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=387cc868" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=36a5483c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/style.css?v=8a7ff5ee" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" /
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">Home</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  
+  <span class="sidebar-brand-text">Home</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../projects/index.html">Projects</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Projects</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/nlp/index.html">Natural Language Processing</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Natural Language Processing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/airbnb_alternate_search/about/index.html">Airbnb Listing description based Semantic Search</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/cv/index.html">Computer Vision</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Computer Vision</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/ecommerce_image_segmentation/about/index.html">Image Segmentation for Ecommerce Products</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/ml/index.html">Machine Learning</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of Machine Learning</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/airbnb_price_modeling/about/index.html">Predictive Price Modeling for Airbnb listings</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../publications/index.html">Patents, Papers, Thesis</a></li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../index.html">MLOps</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of MLOps</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch1_problem_framing.html">ML Problem framing</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of ML Problem framing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch2_blueprint_operational_strategy.html">The MLOps Blueprint &amp; Operational Strategy</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch2a_platform/index.html">ML Platforms</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of ML Platforms</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/ml_platforms.html">ML Platforms: How to</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/uber.html">Uber Michelangelo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/linkedin.html">LinkedIn DARWIN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/netflix.html">Netflix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/shopify.html">Shopify Merlin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/zomato.html">Zomato: Real-time ML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/coveo.html">Coveo: MLOPs at reasonable scale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/monzo.html">Monzo ML Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/didact.html">Didact AI</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch3_project_planning/index.html">Project Planning</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of Project Planning</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/prd.html">Project Requirements Document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/tech_stack.html">Tech Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/config_management.html">Config Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/pipeline_design.html">Pipeline Design</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/environment_strategy.html">Environment Strategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/cicd_branching_model.html">CI/CD Strategy and Branching Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/directory_structure.html">Directory Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/env_branchind_cicd_deployment.html">Environments, Branching, CI/CD, and Deployments Explained</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/project_management.html">Project Management for MLOps</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch4_data_discovery/index.html">Data Sourcing, Discovery</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of Data Sourcing, Discovery</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/data_sourcing_discovery.html">Data Sourcing, Discovery &amp; Understanding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/ch4_project.html">Project-Trending Now: Implementing Web Scraping, Ingestion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/industry_case_studies.html">Data Discovery Platforms: Industry Case Studies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/facebook_nemo.html">Facebook: Nemo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/netflix_metacat.html">Netflix Metacat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/uber_databook.html">Uber Databook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/linkedin_datahub.html">LinkedIn Datahub</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../lld/index.html">Low Level Design</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle navigation of Low Level Design</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../lld/parking_lot.html">Parking Lot</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../visualization/index.html">Data Visualization Projects</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="../../_sources/mlops/ch7_model_development/expt_tracking.md.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="ml-expt-tracking-data-lineage-model-registry">
+<h1>ML Expt tracking, Data Lineage, Model Registry<a class="headerlink" href="#ml-expt-tracking-data-lineage-model-registry" title="Permalink to this heading">¶</a></h1>
+<section id="i-ml-experiment-tracking-the-foundation-of-iterative-development">
+<h2>I. ML Experiment Tracking: The Foundation of Iterative Development<a class="headerlink" href="#i-ml-experiment-tracking-the-foundation-of-iterative-development" title="Permalink to this heading">¶</a></h2>
+<p>(Sources: Neptune “ML Experiment Tracking”, Neptune “ML Experiment Management”, Google MLOps Guide Fig 4)</p>
+<ol class="arabic">
+<li><p><strong>What is ML Experiment Tracking?</strong></p>
+<ul class="simple">
+<li><p><strong>Definition:</strong> The systematic process of saving all relevant information (metadata) associated with each machine learning experiment run.</p></li>
+<li><p><strong>Goal:</strong> To enable reproducibility, comparison, debugging, collaboration, and informed decision-making throughout the model development lifecycle.</p></li>
+</ul>
+</li>
+<li><p><strong>Why Does It Matter? The MLOps Lead’s Perspective:</strong></p>
+<ul class="simple">
+<li><p><strong>Organization &amp; Discoverability:</strong> Centralizes scattered experiment results, regardless of where they were run (local, cloud, notebooks). Prevents “lost” work and tribal knowledge.</p></li>
+<li><p><strong>Reproducibility:</strong> Enables re-running experiments by capturing code, data, environment, and parameters. Critical for debugging and validation.</p></li>
+<li><p><strong>Efficient Comparison &amp; Analysis:</strong> Allows side-by-side comparison of metrics, parameters, learning curves, visualizations, and artifacts. Speeds up identification of what works and what doesn’t.</p></li>
+<li><p><strong>Collaboration &amp; Knowledge Sharing:</strong> Provides a single source of truth for the team. Facilitates easy sharing of results and progress with stakeholders via persistent links or dashboards.</p></li>
+<li><p><strong>Live Monitoring &amp; Resource Management:</strong> Allows real-time tracking of running experiments, early stopping of unpromising runs, and monitoring hardware consumption for efficiency.</p></li>
+<li><p><strong>Debugging:</strong> Helps pinpoint issues by comparing a failed run to a successful one, looking at code diffs, environment changes, or data shifts.</p></li>
+</ul>
+</li>
+<li><p><strong>What to Track: The MLOps Lead’s Checklist</strong> (Neptune “ML Experiment Tracking”, Chip Huyen Ch. 6)</p>
+<ul class="simple">
+<li><p><strong>Core Essentials (Must-Haves):</strong></p>
+<ul>
+<li><p><strong>Code Versions:</strong> Git commit hashes, script snapshots (especially for uncommitted changes or notebooks). Tools like <code class="docutils literal notranslate"><span class="pre">nbdime</span></code>, <code class="docutils literal notranslate"><span class="pre">jupytext</span></code>.</p></li>
+<li><p><strong>Data Versions:</strong> Hashes of datasets/data pointers (e.g., MD5, DVC tracked files). Crucial to link model performance to the exact data used. (See Section II: Data Lineage &amp; Provenance).</p></li>
+<li><p><strong>Hyperparameters:</strong> All parameters influencing the experiment (learning rate, batch size, architecture details, feature engineering steps). Log explicitly, avoid “magic numbers”. Config files (YAML, Hydra) are good practice.</p></li>
+<li><p><strong>Environment:</strong> Dependencies (e.g., <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code>, <code class="docutils literal notranslate"><span class="pre">conda.yml</span></code>, Dockerfile). Ensures consistent runtime.</p></li>
+<li><p><strong>Evaluation Metrics:</strong> Key performance indicators on training, validation, and (sparingly) test sets. Log multiple relevant metrics.</p></li>
+</ul>
+</li>
+<li><p><strong>Highly Recommended:</strong></p>
+<ul>
+<li><p><strong>Model Artifacts:</strong> Serialized model weights/checkpoints (e.g., .h5, .pth, .pkl), especially the best performing ones.</p></li>
+<li><p><strong>Learning Curves:</strong> Metrics over epochs/steps for both training and validation sets.</p></li>
+<li><p><strong>Performance Visualizations:</strong> Confusion matrices, ROC/PR curves, prediction distributions.</p></li>
+<li><p><strong>Run Logs:</strong> Standard output/error streams.</p></li>
+<li><p><strong>Hardware Consumption:</strong> CPU/GPU/memory usage during training.</p></li>
+<li><p><strong>Experiment Notes/Tags:</strong> Qualitative observations, hypotheses being tested.</p></li>
+</ul>
+</li>
+<li><p><strong>Advanced/Context-Specific:</strong></p>
+<ul>
+<li><p><strong>Feature Importance/Explanations:</strong> SHAP values, LIME outputs, attention maps.</p></li>
+<li><p><strong>Sample Predictions:</strong> Examples of good/bad predictions, especially for vision or NLP tasks.</p></li>
+<li><p><strong>Gradient Norms/Weight Distributions:</strong> For deep learning debugging.</p></li>
+<li><p><strong>For LLMs:</strong> Prompts, chain configurations, specific metrics (ROUGE, BLEU), inference time.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Setting Up Experiment Tracking: Build vs. Buy vs. Self-Host</strong> (Neptune “ML Experiment Tracking”)</p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Approach</p></th>
+<th class="head text-left"><p>Pros</p></th>
+<th class="head text-left"><p>Cons</p></th>
+<th class="head text-left"><p>MLOps Lead Considerations</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><strong>Spreadsheets/Naming Conventions</strong></p></td>
+<td class="text-left"><p>Simple to start.</p></td>
+<td class="text-left"><p>Error-prone, not scalable, hard to collaborate, no live tracking, poor for complex metadata.</p></td>
+<td class="text-left"><p><strong>Strongly discourage</strong> for any serious project. Only for very small, solo, short-term explorations.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Git for Metadata Files</strong></p></td>
+<td class="text-left"><p>Leverages existing VCS skills.</p></td>
+<td class="text-left"><p>Not designed for ML artifacts, poor comparison for &gt;2 runs, difficult organization for many experiments.</p></td>
+<td class="text-left"><p>Better than spreadsheets but quickly hits limitations for ML-specific needs.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Build Your Own Tracker</strong></p></td>
+<td class="text-left"><p>Full control, tailored to specific needs.</p></td>
+<td class="text-left"><p>High development &amp; maintenance effort, risk of reinventing the wheel, requires diverse engineering skills.</p></td>
+<td class="text-left"><p>Only if existing tools are truly insufficient AND significant engineering resources are available. Often a distraction from core ML work.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Self-Host Open Source Tool</strong></p></td>
+<td class="text-left"><p>No vendor lock-in, data stays on-premise, customizable.</p></td>
+<td class="text-left"><p>Maintenance overhead (infra, updates, security), may lack dedicated support.</p></td>
+<td class="text-left"><p>Suitable if strict data residency is a must or high customization is needed, and team has infra/ops capabilities. Assess community support.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>SaaS Experiment Tracker</strong></p></td>
+<td class="text-left"><p>Fully managed, scalable, expert support, rich features, rapid iteration.</p></td>
+<td class="text-left"><p>Vendor dependency, data on third-party cloud (usually with strong security/compliance).</p></td>
+<td class="text-left"><p>Often the most efficient for teams wanting to focus on ML. Evaluate based on features, integrations, security, pricing, and support. Examples: Neptune.ai.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul class="simple">
+<li><p><strong>Key for MLOps Lead:</strong> Champion the adoption of a dedicated experiment tracking tool. The productivity gains and risk reduction far outweigh the effort of manual methods.</p></li>
+</ul>
+</li>
+</ol>
+<hr class="docutils" />
+</section>
+<section id="ii-data-lineage-provenance-understanding-the-story-behind-the-data">
+<h2>II. Data Lineage &amp; Provenance: Understanding the “Story Behind the Data”<a class="headerlink" href="#ii-data-lineage-provenance-understanding-the-story-behind-the-data" title="Permalink to this heading">¶</a></h2>
+<p>(Source: Neptune “Data Lineage in ML”)</p>
+<ol class="arabic">
+<li><p><strong>Definitions:</strong></p>
+<ul class="simple">
+<li><p><strong>Data Lineage:</strong> Tracks data’s journey from origin to consumption, including transformations and processes it underwent. Focuses on <strong>metadata (data about the data)</strong>.</p></li>
+<li><p><strong>Data Provenance:</strong> Broader than lineage. Includes lineage but also tracks systems and processes that <em>influence</em> the data.</p></li>
+</ul>
+</li>
+<li><p><strong>Why It’s Crucial for MLOps:</strong></p>
+<ul class="simple">
+<li><p><strong>Reproducibility:</strong> Essential for reproducing models and debugging. If input data or its processing changes, the model outcome will change.</p></li>
+<li><p><strong>Impact Analysis:</strong> Understand how changes in upstream data sources or processing steps affect downstream models and business outcomes.</p></li>
+<li><p><strong>Debugging:</strong> Trace back data issues (e.g., data quality degradation, schema changes) to their source.</p></li>
+<li><p><strong>Governance &amp; Compliance:</strong> Provides audit trails for data usage, transformations, and model training, critical for regulated industries.</p></li>
+<li><p><strong>Data Quality &amp; Trust:</strong> Helps ensure data integrity by understanding its origins and transformations.</p></li>
+<li><p><strong>Efficiency:</strong> Prevents re-computation or re-engineering of data pipelines if lineage is clear.</p></li>
+</ul>
+</li>
+<li><p><strong>Methods of Data Lineage Tracing:</strong></p>
+<ul class="simple">
+<li><p><strong>Data Tagging:</strong> Relies on transformation tools consistently tagging data. Best for closed systems.</p></li>
+<li><p><strong>Self-Contained Lineage:</strong> Lineage within a controlled data environment (e.g., data lake, data warehouse).</p></li>
+<li><p><strong>Parsing:</strong> Analyzing code (SQL, Python) and transformation logic to infer lineage. Can be complex and language-dependent.</p></li>
+<li><p><strong>Pattern-Based Lineage:</strong> Infers lineage by observing data patterns. Technology-agnostic but can miss code-driven transformations.</p></li>
+</ul>
+</li>
+<li><p><strong>Data Lineage Across the ML Pipeline:</strong></p>
+<ul class="simple">
+<li><p><strong>Data Gathering:</strong> Track source systems, ingestion methods, initial validation.</p></li>
+<li><p><strong>Data Processing:</strong> Log all transformations, filters, feature engineering steps, versions of scripts.</p></li>
+<li><p><strong>Data Storing &amp; Access:</strong> Track storage locations, access permissions, data versions.</p></li>
+<li><p><strong>Data Querying:</strong> For training data generation, log the queries and data snapshots used.</p></li>
+</ul>
+</li>
+<li><p><strong>Best Practices for Data Lineage (from an MLOps perspective):</strong></p>
+<ul class="simple">
+<li><p><strong>Automation:</strong> Manual lineage tracking is not scalable. Leverage tools that automatically capture lineage or integrate with lineage systems.</p></li>
+<li><p><strong>Granularity:</strong> Track lineage at a level that is useful for debugging and reproducibility (e.g., dataset version, feature transformation script version).</p></li>
+<li><p><strong>Integration with Experiment Tracking:</strong> Link experiment runs to specific versions of datasets and preprocessing code.</p></li>
+<li><p><strong>Integration with Feature Stores:</strong> Feature stores inherently manage lineage for features.</p></li>
+<li><p><strong>Metadata Validation:</strong> Ensure captured lineage information is accurate and complete.</p></li>
+</ul>
+</li>
+<li><p><strong>Tools for Data Lineage (often overlapping with data cataloging or broader data management):</strong></p>
+<ul class="simple">
+<li><p>Talend Data Catalog, IBM DataStage, Datameer</p></li>
+<li><p>Open-source: Apache Atlas, OpenLineage, Marquez</p></li>
+<li><p><strong>Experiment trackers (like Neptune.ai)</strong> can capture crucial parts of data lineage by versioning data inputs (hashes, paths) and code.</p></li>
+<li><p><strong>DVC (Data Version Control):</strong> While primarily for data versioning, DVC pipelines (<code class="docutils literal notranslate"><span class="pre">dvc.yaml</span></code>) implicitly define data lineage for stages.</p></li>
+</ul>
+<div class="highlight-mermaid notranslate"><div class="highlight"><pre><span></span>graph LR
+    subgraph &quot;Data Sources&quot;
+        DS1[Source DB]
+        DS2[API Feed]
+        DS3[File Uploads]
+    end
+    subgraph &quot;Ingestion &amp; Staging&quot;
+        I[Ingest Process]
+        S[Staging Area/Lake]
+    end
+    subgraph &quot;Transformation &amp; Feature Engineering&quot;
+        T1[Preprocessing Script V1]
+        T2[Feature Engineering Script V2.1]
+        FS[Feature Store]
+    end
+    subgraph &quot;Model Training &amp; Experimentation&quot;
+        D_Train[Training Dataset V3.2]
+        M_Exp[Experiment Run ID: exp_abc]
+        M_Art[Model Artifact: model_v1.2.pkl]
+    end
+    subgraph &quot;Deployment &amp; Serving&quot;
+        Dep[Deployed Model V1.2]
+        Pred[Predictions]
+    end
+
+    DS1 -- Ingested_by --&gt; I
+    DS2 -- Ingested_by --&gt; I
+    DS3 -- Ingested_by --&gt; I
+    I -- Loads_to --&gt; S
+    S -- Input_for --&gt; T1
+    T1 -- Output_to --&gt; S_Processed[Processed Data V1]
+    S_Processed -- Input_for --&gt; T2
+    T2 -- Populates --&gt; FS
+    FS -- Source_for --&gt; D_Train
+    D_Train -- Used_in --&gt; M_Exp
+    M_Exp -- Produces --&gt; M_Art
+    M_Art -- Registered_and_Deployed_as --&gt; Dep
+    Dep -- Generates --&gt; Pred
+
+    classDef data fill:#lightblue,stroke:#333,stroke-width:2px;
+    classDef process fill:#lightgreen,stroke:#333,stroke-width:2px;
+    classDef artifact fill:#lightyellow,stroke:#333,stroke-width:2px;
+
+    class DS1,DS2,DS3,S,S_Processed,D_Train,FS data;
+    class I,T1,T2,M_Exp,Dep process;
+    class M_Art,Pred artifact;
+</pre></div>
+</div>
+</li>
+</ol>
+<hr class="docutils" />
+</section>
+<section id="iii-ml-model-registry-centralized-governance-and-lifecycle-management">
+<h2>III. ML Model Registry: Centralized Governance and Lifecycle Management<a class="headerlink" href="#iii-ml-model-registry-centralized-governance-and-lifecycle-management" title="Permalink to this heading">¶</a></h2>
+<p>(Sources: Neptune “ML Model Registry”, Google MLOps Guide Fig 4, Practitioners Guide to MLOps)</p>
+<ol class="arabic">
+<li><p><strong>What is a Model Registry?</strong></p>
+<ul class="simple">
+<li><p><strong>Definition:</strong> A centralized system for storing, versioning, managing, and governing trained machine learning models and their associated metadata throughout their lifecycle (from development to production and retirement).</p></li>
+<li><p><strong>Distinction from Model Repository/Store:</strong> A repository might just store model files. A registry adds lifecycle management, versioning, metadata, and governance. A model store is a broader concept, potentially including a registry.</p></li>
+</ul>
+</li>
+<li><p><strong>Why a Model Registry is Essential for MLOps:</strong></p>
+<ul class="simple">
+<li><p><strong>Centralized Storage &amp; Discoverability:</strong> Single source of truth for all trained models, making them easy to find, audit, and reuse.</p></li>
+<li><p><strong>Version Control for Models:</strong> Tracks different versions of a model, allowing rollback and comparison. Essential as models are retrained or improved.</p></li>
+<li><p><strong>Standardized Hand-off:</strong> Bridges the gap between data science (experimentation) and MLOps/engineering (deployment). Provides a clear point for promoting models.</p></li>
+<li><p><strong>Governance &amp; Compliance:</strong> Facilitates review, approval, and auditing of models before deployment. Stores documentation (e.g., model cards) and evidence of validation.</p></li>
+<li><p><strong>Automation &amp; CI/CD/CT Integration:</strong> Enables automated pipelines to register new model versions, trigger deployment workflows, and manage model stages (e.g., staging, production, archived).</p></li>
+<li><p><strong>Improved Security:</strong> Can manage access controls for models, especially those trained on sensitive data.</p></li>
+</ul>
+</li>
+<li><p><strong>Key Features and Functionalities of a Model Registry:</strong> (Practitioners Guide to MLOps, Neptune “ML Model Registry”)</p>
+<ul class="simple">
+<li><p><strong>Model Registration:</strong> Ability to “publish” a trained model from an experiment tracking system or training pipeline.</p></li>
+<li><p><strong>Model Versioning:</strong> Automatically assigns and tracks versions for each registered model.</p></li>
+<li><p><strong>Metadata Storage:</strong> Stores comprehensive metadata:</p>
+<ul>
+<li><p>Link to the experiment run that produced it (lineage to code, data, params).</p></li>
+<li><p>Evaluation metrics (offline and online).</p></li>
+<li><p>Model artifacts (weights, serialized model file).</p></li>
+<li><p>Runtime dependencies (e.g., library versions).</p></li>
+<li><p>Model documentation (model cards, intended use, limitations).</p></li>
+<li><p>Owner, creation date, stage.</p></li>
+</ul>
+</li>
+<li><p><strong>Model Staging &amp; Transitions:</strong> Defines and manages model lifecycle stages (e.g., “Development”, “Staging”, “Production”, “Archived”). Supports workflows for promoting/demoting models.</p></li>
+<li><p><strong>API Access:</strong> Programmatic interface for CI/CD systems, monitoring tools, and serving platforms to interact with the registry.</p></li>
+<li><p><strong>UI for Management:</strong> A web interface for browsing, searching, comparing, and managing models and their versions.</p></li>
+<li><p><strong>Annotation &amp; Tagging:</strong> Ability to add custom tags and descriptions.</p></li>
+<li><p><strong>Access Control:</strong> Manages permissions for who can register, approve, or deploy models.</p></li>
+</ul>
+</li>
+<li><p><strong>Model Registry in the MLOps Workflow:</strong> (Google MLOps Levels, Practitioners Guide to MLOps Fig 3, 15)</p>
+<div class="highlight-mermaid notranslate"><div class="highlight"><pre><span></span>graph TD
+    A[Experimentation &amp; Training Pipeline] --&gt;|Trained Model &amp; Metadata| B(Model Registry);
+    B -- Stage: Staging --&gt; C{Validation &amp; QA};
+    C -- Approved --&gt; D[CI/CD for Deployment];
+    D -- Deploy --&gt; E(Production Serving Environment);
+    E -- Feedback/Metrics --&gt; F(Model Monitoring);
+    F -- Performance Degradation --&gt; A;
+    B -- Discover/Fetch Model --&gt; E;
+
+    subgraph &quot;Model Lifecycle Stages within Registry&quot;
+        direction LR
+        Dev[Development Models]
+        Staging[Staging Models]
+        Prod[Production Models]
+        Arch[Archived Models]
+        Dev --&gt; Staging;
+        Staging --&gt; Prod;
+        Prod --&gt; Arch;
+    end
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>MLOps Level 0 (Manual):</strong> Data scientist manually registers the model. Ops team manually pulls for deployment.</p></li>
+<li><p><strong>MLOps Level 1 (ML Pipeline Automation):</strong> Automated training pipeline registers validated models. Deployment might still be manual or semi-automated.</p></li>
+<li><p><strong>MLOps Level 2 (CI/CD Pipeline Automation):</strong> Fully automated CI/CD pipeline interacts with the registry to manage model promotion and deployment based on triggers and approvals.</p></li>
+</ul>
+</li>
+<li><p><strong>Build vs. Maintain vs. Buy for Model Registry:</strong> (Similar considerations as Experiment Tracking)</p>
+<ul class="simple">
+<li><p><strong>Building:</strong> Very complex due to diverse needs (storage, API, UI, versioning, workflow). Rarely justifiable.</p></li>
+<li><p><strong>Maintaining Open Source (e.g., MLflow Model Registry):</strong> Offers good features. Requires infra setup, maintenance, and expertise. Good for teams wanting control and having ops capabilities.</p></li>
+<li><p><strong>Buying/SaaS (e.g., Verta.ai, Neptune.ai, cloud provider registries like Vertex AI Model Registry, SageMaker Model Registry):</strong></p>
+<ul>
+<li><p><strong>Pros:</strong> Fully managed, feature-rich, vendor support, faster to get started.</p></li>
+<li><p><strong>Cons:</strong> Potential vendor lock-in, cost, data residency concerns for some.</p></li>
+</ul>
+</li>
+<li><p><strong>MLOps Lead’s Role:</strong> Evaluate based on team size, MLOps maturity, existing stack, budget, and specific governance/compliance needs. Integration with existing experiment tracking and deployment tools is key.</p></li>
+</ul>
+</li>
+</ol>
+<hr class="docutils" />
+</section>
+<section id="iv-connecting-the-dots-the-mlops-lead-s-unified-view">
+<h2>IV. Connecting the Dots: The MLOps Lead’s Unified View<a class="headerlink" href="#iv-connecting-the-dots-the-mlops-lead-s-unified-view" title="Permalink to this heading">¶</a></h2>
+<p>Experiment tracking, data lineage, and model registries are not isolated components but interconnected pillars of a mature MLOps ecosystem.</p>
+<ul class="simple">
+<li><p><strong>Experiment Tracking</strong> feeds into the <strong>Model Registry</strong>: Successful experiments yield candidate models that are registered. The metadata logged during tracking (parameters, data versions, code versions, metrics) becomes crucial for the registry entry, providing lineage and context.</p></li>
+<li><p><strong>Data Lineage</strong> underpins both: Knowing what data (and its transformations) went into an experiment run (tracked) and thus into a registered model is fundamental for reproducibility, debugging, and governance.</p></li>
+<li><p><strong>Model Registry</strong> enables <strong>Deployment and Monitoring</strong>: It provides a stable, versioned source for deployment systems. Monitoring systems feedback performance metrics to the registry, informing decisions about retraining or rollback.</p></li>
+</ul>
+<p><strong>MLOps Lead’s Strategic Decisions Framework:</strong></p>
+<ol class="arabic">
+<li><p><strong>Define the “What” and “Why” for Tracking:</strong></p>
+<ul class="simple">
+<li><p>What metadata is <em>essential</em> for your team to reproduce, debug, and compare experiments effectively? (Start with the core list, expand as needed).</p></li>
+<li><p>Why is this specific piece of metadata important for your project’s goals (e.g., compliance, debugging speed, performance improvement)?</p></li>
+</ul>
+</li>
+<li><p><strong>Establish Data Handling Protocols:</strong></p>
+<ul class="simple">
+<li><p>How will data versions be managed and linked to experiments? (DVC, S3 versioning + hashes, feature store).</p></li>
+<li><p>How will data lineage be captured or inferred for key datasets used in model training?</p></li>
+</ul>
+</li>
+<li><p><strong>Design the Model Lifecycle Flow:</strong></p>
+<ul class="simple">
+<li><p>What are the stages a model goes through from experiment to production (and potentially archive)?</p></li>
+<li><p>Who is responsible for approvals at each stage? What are the criteria?</p></li>
+<li><p>How will models be promoted through these stages (manual, semi-automated, fully automated via CI/CD)?</p></li>
+</ul>
+</li>
+<li><p><strong>Tooling Selection - Holistic View:</strong></p>
+<ul class="simple">
+<li><p>Does your chosen experiment tracker integrate well or offer model registry capabilities?</p></li>
+<li><p>Does your model registry integrate with your deployment and monitoring tools?</p></li>
+<li><p>Does your data infrastructure support adequate lineage tracking?</p></li>
+<li><p>Consider the overall MLOps stack and aim for seamless integration rather than siloed tools.</p></li>
+</ul>
+<div class="highlight-mermaid notranslate"><div class="highlight"><pre><span></span>graph LR
+    subgraph &quot;Development &amp; Experimentation Phase&quot;
+        A[Ideation/Hypothesis] --&gt; B(Code Versioning - Git);
+        B --&gt; C(Data Preparation &amp; Versioning - DVC/Feature Store);
+        C --&gt; D(Hyperparameter Configuration - YAML/Hydra);
+        D --&gt; E(Environment Setup - Docker/Conda);
+        E --&gt; F[ML Experiment Run];
+        F --&gt; G[Experiment Tracking System - Neptune/MLflow];
+        G -- Log --&gt; H(Code Hash);
+        G -- Log --&gt; I(Data Hash/Path);
+        G -- Log --&gt; J(Parameters);
+        G -- Log --&gt; K(Environment Config);
+        G -- Log --&gt; L(Metrics);
+        G -- Log --&gt; M(Model Artifacts/Checkpoints);
+        G -- Log --&gt; N(Visualizations);
+    end
+
+    subgraph &quot;Model Governance &amp; Lifecycle Management&quot;
+        O[Model Registry - Neptune/MLflow/Vertex AI];
+        M --&gt;|Register Model| O;
+        L -- Link to Model Version --&gt; O;
+        I -- Link to Model Version --&gt; O;
+        H -- Link to Model Version --&gt; O;
+        J -- Link to Model Version --&gt; O;
+        O -- Model Stages --&gt; P{Staging};
+        P -- Validation/QA --&gt; Q{Production};
+        Q -- Trigger Retraining/Rollback --&gt; F;
+        Q -- Serve for Inference --&gt; R[Deployment Platform];
+    end
+
+    subgraph &quot;Data Lineage&quot;
+        S[Source Data Systems] --&gt; T(ETL/Data Pipelines);
+        T -- Transformation Logic --&gt; U(Processed Data for Training);
+        U --&gt; C;
+        classDef MLOpsTool fill:#f9f,stroke:#333,stroke-width:2px;
+        class G,O MLOpsTool;
+    end
+
+    R --&gt; V(Application / End Users);
+    V -- Feedback / New Data --&gt; S;
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024, Deepak Karkala
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">ML Expt tracking, Data Lineage, Model Registry</a><ul>
+<li><a class="reference internal" href="#i-ml-experiment-tracking-the-foundation-of-iterative-development">I. ML Experiment Tracking: The Foundation of Iterative Development</a></li>
+<li><a class="reference internal" href="#ii-data-lineage-provenance-understanding-the-story-behind-the-data">II. Data Lineage &amp; Provenance: Understanding the “Story Behind the Data”</a></li>
+<li><a class="reference internal" href="#iii-ml-model-registry-centralized-governance-and-lifecycle-management">III. ML Model Registry: Centralized Governance and Lifecycle Management</a></li>
+<li><a class="reference internal" href="#iv-connecting-the-dots-the-mlops-lead-s-unified-view">IV. Connecting the Dots: The MLOps Lead’s Unified View</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=b3ba4146"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/scripts/furo.js?v=4e2eecee"></script>
+    </body>
+</html>

@@ -1,0 +1,722 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" />
+
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/><!-- Generated with Sphinx 7.1.2 and Furo 2024.05.06 -->
+        <title>Guide: Production Testing &amp; Experimentation - Home</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=387cc868" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=36a5483c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/style.css?v=8a7ff5ee" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" /
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">Home</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  
+  <span class="sidebar-brand-text">Home</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../projects/index.html">Projects</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Projects</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/nlp/index.html">Natural Language Processing</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Natural Language Processing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/airbnb_alternate_search/about/index.html">Airbnb Listing description based Semantic Search</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/cv/index.html">Computer Vision</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Computer Vision</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/ecommerce_image_segmentation/about/index.html">Image Segmentation for Ecommerce Products</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/ml/index.html">Machine Learning</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of Machine Learning</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/airbnb_price_modeling/about/index.html">Predictive Price Modeling for Airbnb listings</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../publications/index.html">Patents, Papers, Thesis</a></li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../index.html">MLOps</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of MLOps</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch1_problem_framing.html">ML Problem framing</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of ML Problem framing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch2_blueprint_operational_strategy.html">The MLOps Blueprint &amp; Operational Strategy</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch2a_platform/index.html">ML Platforms</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of ML Platforms</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/ml_platforms.html">ML Platforms: How to</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/uber.html">Uber Michelangelo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/linkedin.html">LinkedIn DARWIN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/netflix.html">Netflix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/shopify.html">Shopify Merlin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/zomato.html">Zomato: Real-time ML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/coveo.html">Coveo: MLOPs at reasonable scale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/monzo.html">Monzo ML Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/didact.html">Didact AI</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch3_project_planning/index.html">Project Planning</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of Project Planning</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/prd.html">Project Requirements Document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/tech_stack.html">Tech Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/config_management.html">Config Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/pipeline_design.html">Pipeline Design</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/environment_strategy.html">Environment Strategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/cicd_branching_model.html">CI/CD Strategy and Branching Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/directory_structure.html">Directory Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/env_branchind_cicd_deployment.html">Environments, Branching, CI/CD, and Deployments Explained</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/project_management.html">Project Management for MLOps</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch4_data_discovery/index.html">Data Sourcing, Discovery</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of Data Sourcing, Discovery</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/data_sourcing_discovery.html">Data Sourcing, Discovery &amp; Understanding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/ch4_project.html">Project-Trending Now: Implementing Web Scraping, Ingestion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/industry_case_studies.html">Data Discovery Platforms: Industry Case Studies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/facebook_nemo.html">Facebook: Nemo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/netflix_metacat.html">Netflix Metacat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/uber_databook.html">Uber Databook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/linkedin_datahub.html">LinkedIn Datahub</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../lld/index.html">Low Level Design</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle navigation of Low Level Design</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../lld/parking_lot.html">Parking Lot</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../visualization/index.html">Data Visualization Projects</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="../../_sources/mlops/ch12_retrain_online_testing/guide_prod_testing_expt.md.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="guide-production-testing-experimentation">
+<h1>Guide: Production Testing &amp; Experimentation<a class="headerlink" href="#guide-production-testing-experimentation" title="Permalink to this heading">¶</a></h1>
+<p><strong>Objective:</strong> To equip MLOps Leads with a clear mental model and decision framework for implementing robust online testing, A/B testing, and experimentation in ML systems. This guide focuses on bridging the gap between offline validation and real-world impact.</p>
+<p><strong>Core Principle:</strong> <em>“In God we trust, all others must bring data.”</em> - W. Edwards Deming. In ML, this means production data from live experiments.</p>
+<hr class="docutils" />
+<section id="why-test-in-production-the-uncomfortable-truth">
+<h2>1. Why Test in Production? The Uncomfortable Truth<a class="headerlink" href="#why-test-in-production-the-uncomfortable-truth" title="Permalink to this heading">¶</a></h2>
+<p>Offline evaluation (cross-validation, hold-out sets) is essential but insufficient. Production is a different beast:</p>
+<ul class="simple">
+<li><p><strong>Data &amp; Concept Drift:</strong> Real-world data distributions change over time, sometimes rapidly. Models degrade.</p>
+<ul>
+<li><p><em>Reference:</em> “Monitoring Machine Learning Models in Production” (Chip Huyen) often discusses this challenge and the need for continuous monitoring.</p></li>
+</ul>
+</li>
+<li><p><strong>Hidden Stratification &amp; Feedback Loops:</strong> Offline datasets might not capture complex interactions or how the model’s predictions influence user behavior, which in turn influences future data (e.g., recommendation systems creating filter bubbles).</p></li>
+<li><p><strong>Engineering Reality:</strong> Latency, throughput, integration issues, and unexpected edge cases only fully manifest in the live environment. Models that are accurate offline might be too slow or resource-intensive for production SLAs.</p></li>
+<li><p><strong>True Business Impact:</strong> Offline metrics (AUC, F1-score) are proxies. Online metrics (Click-Through Rate (CTR), conversion, revenue, engagement, user satisfaction, task completion rate) are the ground truth for business value.</p></li>
+<li><p><strong>Causal Inference:</strong> Correlation in offline data doesn’t imply causation. Experiments are needed to establish causal links between model changes and business outcomes. A model might <em>correlate</em> with higher sales offline, but an experiment will show if it <em>causes</em> higher sales.</p></li>
+</ul>
+<p><strong>MLOps Lead Takeaway:</strong> Your primary goal is not just to deploy models, but to deploy <em>impactful</em> models. Production testing is how you measure and prove that impact, manage risk, and drive iterative improvement.</p>
+<hr class="docutils" />
+</section>
+<section id="the-spectrum-of-online-testing-experimentation-strategies">
+<h2>2. The Spectrum of Online Testing &amp; Experimentation Strategies<a class="headerlink" href="#the-spectrum-of-online-testing-experimentation-strategies" title="Permalink to this heading">¶</a></h2>
+<p>Not all production testing is created equal. The choice depends on risk, goals, and system maturity.</p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Strategy</p></th>
+<th class="head text-left"><p>Description</p></th>
+<th class="head text-left"><p>Primary Goal(s)</p></th>
+<th class="head text-left"><p>Key Use Cases</p></th>
+<th class="head text-left"><p>Risk Profile</p></th>
+<th class="head text-left"><p>When to Use</p></th>
+<th class="head text-left"><p>Key Metrics to Watch</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><strong>Shadow Deployment (Dark Launch)</strong></p></td>
+<td class="text-left"><p>New model runs alongside old, processing live requests. Predictions not shown to users.</p></td>
+<td class="text-left"><p>System stability, performance testing, data parity, operational readiness.</p></td>
+<td class="text-left"><p>Infrastructure testing, sanity checks for new models, data collection for future training/analysis, comparing prediction distributions.</p></td>
+<td class="text-left"><p>Low</p></td>
+<td class="text-left"><p>Pre-flight check before user-facing tests. High-risk model changes (e.g., new architecture, significant feature engineering).</p></td>
+<td class="text-left"><p>Latency, error rates, resource usage, prediction diffs (vs. old model), data integrity.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Canary Release</strong></p></td>
+<td class="text-left"><p>New model exposed to a small subset of users (e.g., 1-5%).</p></td>
+<td class="text-left"><p>Gradual rollout, risk mitigation, early feedback on real user impact.</p></td>
+<td class="text-left"><p>Risky features, major model architecture changes, initial validation of business impact on a small scale.</p></td>
+<td class="text-left"><p>Medium-Low</p></td>
+<td class="text-left"><p>When confidence is moderate, and quick rollback is crucial. Assessing initial user reaction and impact.</p></td>
+<td class="text-left"><p>All Shadow metrics + core business KPIs for the canary segment, model performance on live data.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>A/B Testing (Split Testing)</strong></p></td>
+<td class="text-left"><p>Two or more versions (A: control, B: treatment, C, D…) randomly shown to distinct user segments.</p></td>
+<td class="text-left"><p>Causal impact assessment, hypothesis validation, direct comparison of alternatives.</p></td>
+<td class="text-left"><p>Comparing distinct model versions, UI changes affecting ML output, new features driven by ML.</p></td>
+<td class="text-left"><p>Medium</p></td>
+<td class="text-left"><p>Gold standard for impact measurement. Needs statistical significance, clear hypothesis.</p></td>
+<td class="text-left"><p>Primary business KPI (e.g., conversion), secondary KPIs, segment-level performance.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Interleaving</strong></p></td>
+<td class="text-left"><p>For ranking systems: results from two rankers are mixed and presented. User interactions (clicks, purchases) on items from each ranker determine preference.</p></td>
+<td class="text-left"><p>Directly compare ranking quality from user feedback, especially when absolute metrics are hard to define.</p></td>
+<td class="text-left"><p>Search relevance, recommendation ranking, feed ordering.</p></td>
+<td class="text-left"><p>Medium</p></td>
+<td class="text-left"><p>When direct preference is more insightful than aggregate metrics. Good for subtle ranking changes.</p></td>
+<td class="text-left"><p>Click-through rates on items from each ranker, win-rate of one ranker over another.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Multi-Armed Bandits (MAB)</strong></p></td>
+<td class="text-left"><p>Dynamically allocates traffic to best-performing variant, balancing exploration (trying out variants) &amp; exploitation (using the current best).</p></td>
+<td class="text-left"><p>Maximize reward during the experiment, faster optimization towards the best option.</p></td>
+<td class="text-left"><p>Short-term campaigns, headline optimization, recommendation carousel tuning, ad creative selection.</p></td>
+<td class="text-left"><p>Medium-High</p></td>
+<td class="text-left"><p>When speed to optimize is critical, and regret minimization (opportunity cost of not showing the best option) is key. Useful when variants are many or change often.</p></td>
+<td class="text-left"><p>Cumulative reward (e.g., total clicks, conversions), convergence rate of arms.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Mermaid Diagram: Decision Flow for Online Testing Strategy</strong></p>
+<div class="highlight-mermaid notranslate"><div class="highlight"><pre><span></span>graph TD
+    Start((Start: New Model/Feature Ready)) --&gt; IsRiskCritical{High Risk of System Failure or Severe Negative User Impact?};
+    IsRiskCritical -- Yes --&gt; Shadow[Shadow Deployment];
+    Shadow --&gt; MonitorInfraPreds{Monitor System &amp; Prediction Parity};
+    MonitorInfraPreds -- OK --&gt; AssessUserImpactRisk{Ready for User-Facing Test / Moderate Risk?};
+    MonitorInfraPreds -- Not OK --&gt; Debug[Debug &amp; Iterate Model/Infra];
+    IsRiskCritical -- No --&gt; AssessUserImpactRisk;
+    AssessUserImpactRisk -- Yes --&gt; Canary[Canary Release to 1-5% Users];
+    Canary --&gt; MonitorKeyMetricsSmall{Monitor Key Business &amp; Model Metrics on Small Segment};
+    MonitorKeyMetricsSmall -- OK --&gt; FullExperimentNeeded{Need Statistically Significant Comparison?};
+    MonitorKeyMetricsSmall -- Not OK --&gt; RollbackAnalyze[Rollback &amp; Analyze Failure];
+    AssessUserImpactRisk -- No --&gt; FullExperimentNeeded;
+    FullExperimentNeeded -- Yes --&gt; IsRankingProblem{Is it Primarily a Ranking Problem?};
+    IsRankingProblem -- Yes --&gt; Interleaving[Interleaving Experiment];
+    Interleaving --&gt; AnalyzePrefs[Analyze User Preferences &amp; Win Rates];
+    IsRankingProblem -- No --&gt; NeedDynamicOpt{Need to Optimize Reward Dynamically &amp; Quickly?};
+    NeedDynamicOpt -- Yes --&gt; MAB[Multi-Armed Bandit];
+    MAB --&gt; MonitorCumulativeReward[Monitor Cumulative Reward &amp; Arm Performance];
+    NeedDynamicOpt -- No --&gt; ABTest[A/B Test or Gradual Rollout];
+    ABTest --&gt; AnalyzeStatisticalResults[Analyze Results Statistically];
+    AnalyzeStatisticalResults -- PositiveImpact --&gt; Ship[Ship Winning Version];
+    AnalyzeStatisticalResults -- InconclusiveOrNegative --&gt; IterateDiscard[Iterate/Discard Change];
+    AnalyzePrefs -- ClearWinner --&gt; Ship;
+    MonitorCumulativeReward -- BestArmIdentified --&gt; Ship;
+    FullExperimentNeeded -- No --&gt; SimpleRollout[Simple Rollout with Enhanced Monitoring];
+    SimpleRollout --&gt; MonitorKPIs[Monitor Overall KPIs &amp; System Health];
+</pre></div>
+</div>
+<p><em>Reference:</em> Many companies like Netflix (“Netflix Experimentation Platform”), Booking.com, Microsoft (“Exponent - A/B testing system”), Google (“Overlapping Experiment Infrastructure” paper) have extensive blogs/papers on their experimentation platforms which cover these strategies. Uber’s “Athena” is another example.</p>
+<hr class="docutils" />
+</section>
+<section id="designing-effective-experiments-the-scientific-method-in-mlops">
+<h2>3. Designing Effective Experiments: The Scientific Method in MLOps<a class="headerlink" href="#designing-effective-experiments-the-scientific-method-in-mlops" title="Permalink to this heading">¶</a></h2>
+<p>A poorly designed experiment is worse than no experiment; it can lead to wrong conclusions and wasted effort.</p>
+<p><strong>Key Steps &amp; Considerations:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Hypothesis Formulation:</strong></p>
+<ul class="simple">
+<li><p><strong>What:</strong> A clear, testable statement about the expected impact. “Deploying recommendation model V2, which uses collaborative filtering instead of content-based filtering (V1), will increase the average number of items added to cart per user session by 5% for active users over a 2-week period, because it provides more diverse and relevant suggestions.”</p></li>
+<li><p><strong>Why:</strong> Guides metric selection, experiment design, and interpretation. Forces clarity of thought.</p></li>
+<li><p><strong>MLOps Lead Focus:</strong> Ensure hypotheses are S.M.A.R.T. (Specific, Measurable, Achievable, Relevant, Time-bound) and directly tied to business objectives and model capabilities.</p></li>
+</ul>
+</li>
+<li><p><strong>Metric Selection:</strong></p>
+<ul class="simple">
+<li><p><strong>Overall Evaluation Criteria (OEC) / North Star Metric:</strong> The primary business metric you aim to improve (e.g., revenue per user, daily active users). Should be sensitive enough to detect change but robust against noise.</p></li>
+<li><p><strong>Guardrail Metrics:</strong> System health (latency, error rate, CPU/memory), critical business KPIs that <em>must not</em> be harmed (e.g., unsubscribe rate, overall site stability). These act as constraints.</p>
+<ul>
+<li><p><em>Reference:</em> Microsoft often talks about OEC and guardrails in their experimentation papers.</p></li>
+</ul>
+</li>
+<li><p><strong>Local/Driver Metrics (Model-Specific):</strong> Technical model performance on live traffic segments (e.g., live CTR for a recommender, precision&#64;k for search). Help diagnose <em>why</em> the OEC changed (or didn’t).</p></li>
+<li><p><strong>Trade-off:</strong> Too many success metrics lead to “metric ambiguity” or conflicting signals. One primary OEC is ideal, supported by diagnostic metrics.</p></li>
+<li><p><em>Example:</em> A model might improve local CTR but decrease overall session time (guardrail) or user satisfaction (harder to measure OEC).</p></li>
+</ul>
+</li>
+<li><p><strong>User Segmentation &amp; Randomization:</strong></p>
+<ul class="simple">
+<li><p><strong>Unit of Diversion:</strong> The entity being randomized (e.g., user ID, session ID, device ID, cookie ID). Must be consistent for a given user throughout the experiment. User ID is often preferred for long-term effects.</p></li>
+<li><p><strong>Randomization Algorithm:</strong> Ensures unbiased assignment to control and treatment groups. Typically involves hashing the unit of diversion ID and assigning to buckets.</p></li>
+<li><p><strong>Targeting/Segmentation:</strong> Experiments might only be relevant for specific user segments (e.g., new users, users in a specific geo, users on a particular app version). Ensure your platform supports this.</p></li>
+<li><p><strong>Challenge - SUTVA (Stable Unit Treatment Value Assumption):</strong> The potential outcome of one unit should not be affected by the treatment assignment of other units (no interference). Violated in social networks, marketplaces.</p>
+<ul>
+<li><p><em>Solutions:</em> Graph-based randomization (cluster users), time-sliced experiments, or acknowledging and trying to measure the interference.</p></li>
+<li><p><em>Reference:</em> LinkedIn, Facebook Engineering blogs discuss SUTVA challenges.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Experiment Sizing &amp; Duration:</strong></p>
+<ul class="simple">
+<li><p><strong>Statistical Power (1 - β):</strong> Probability of detecting an effect if it truly exists. Typically aim for 80-90%.</p></li>
+<li><p><strong>Minimum Detectable Effect (MDE):</strong> Smallest change in the OEC that is considered practically significant for the business.</p></li>
+<li><p><strong>Baseline Conversion Rate &amp; Variance:</strong> For the OEC. Historical data is needed.</p></li>
+<li><p><strong>Significance Level (α):</strong> Probability of a Type I error (false positive). Typically 5% (p-value &lt; 0.05).</p></li>
+<li><p><strong>MLOps Lead Focus:</strong> Balance speed of iteration with statistical rigor. Underpowered tests lead to false negatives. Don’t stop experiments early just because a metric <em>looks</em> good (peeking problem) unless using sequential testing methods.</p></li>
+<li><p><em>Tools:</em> Evan Miller’s “Sample Size Calculator,” Python libraries (e.g., <code class="docutils literal notranslate"><span class="pre">statsmodels.stats.power</span></code>).</p></li>
+<li><p><em>Duration Factors:</em> Business cycles (e.g., weekly patterns), learning effects (users take time to adapt), novelty effects (initial excitement wears off).</p></li>
+</ul>
+</li>
+<li><p><strong>Instrumentation &amp; Logging:</strong></p>
+<ul class="simple">
+<li><p><strong>What:</strong> Reliable, consistent, and timely logging of exposures (which user saw which variant at what time) and outcomes (user actions related to metrics).</p></li>
+<li><p><strong>Why:</strong> Data is the lifeblood of analysis. “Trustworthy A/B tests” depend critically on this.</p></li>
+<li><p><strong>MLOps Lead Focus:</strong> Ensure logging is robust, schema-enforced, versioned, and auditable. Discrepancies here invalidate experiments. Work closely with data engineering to build a source of truth for experiment data.</p></li>
+</ul>
+</li>
+<li><p><strong>Analysis &amp; Interpretation:</strong></p>
+<ul class="simple">
+<li><p><strong>Statistical Tests:</strong> t-tests, Z-tests, Chi-squared tests for proportions, Mann-Whitney U for non-normal distributions. Choose based on metric type and distribution.</p></li>
+<li><p><strong>P-values &amp; Confidence Intervals:</strong> P-value indicates statistical significance; CI provides a range for the true effect size.</p></li>
+<li><p><strong>Practical Significance:</strong> Is the observed lift meaningful for the business, even if statistically significant? An 0.01% lift might be stat-sig but practically irrelevant.</p></li>
+<li><p><strong>Segmentation Analysis:</strong> Did the model impact different user groups differently? (e.g., new vs. returning, different demographics). This can uncover hidden issues or opportunities.</p></li>
+<li><p><strong>Novelty &amp; Learning Effects:</strong> Monitor metrics over time within the experiment.</p></li>
+<li><p><strong>A/A Testing:</strong> Run experiments where control and treatment are identical. Helps validate the experimentation system (expect non-significant results) and understand inherent variance.</p></li>
+<li><p><em>Reference:</em> “Trustworthy Online Controlled Experiments” (Kohavi, Tang, Xu) is a bible for this.</p></li>
+</ul>
+</li>
+</ol>
+<hr class="docutils" />
+</section>
+<section id="advanced-topics-challenges-the-mlops-lead-role">
+<h2>4. Advanced Topics, Challenges &amp; The MLOps Lead Role<a class="headerlink" href="#advanced-topics-challenges-the-mlops-lead-role" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Experimentation Platforms:</strong></p>
+<ul>
+<li><p><strong>Core Components:</strong> Assignment service (bucketing users), parameter management (feature flags), logging ingestion, metrics computation engine, results dashboard/API.</p></li>
+<li><p><strong>Build vs. Buy:</strong> Building is complex (Spotify, Netflix, Airbnb, Google built their own). Buying (Optimizely, VWO, Statsig, Eppo, LaunchDarkly for flagging) or using OSS (Wasabi) can accelerate.</p></li>
+<li><p><strong>MLOps Lead Focus:</strong> Drive the strategy. Evaluate based on integration needs, scalability, team skills, cost, desired level of control, and how it fits into the broader MLOps ecosystem (e.g., CI/CD for experiments). An internal platform often becomes a product in itself, requiring dedicated resources.</p></li>
+<li><p><em>Reference:</em> “Building an Experimentation Platform” series by various companies. Statsig’s blog is excellent on practical implementation.</p></li>
+</ul>
+</li>
+<li><p><strong>Sequential Testing &amp; Early Stopping:</strong></p>
+<ul>
+<li><p>Techniques like AGILE (from Microsoft) or using Sequential Probability Ratio Tests (SPRTs) allow for continuous monitoring and stopping experiments as soon as significance (or futility) is reached.</p></li>
+<li><p><strong>Trade-off:</strong> Can speed up iteration significantly but are more complex statistically. Requires careful calibration to control error rates.</p></li>
+<li><p><em>Reference:</em> “Online Controlled Experiments and A/B Testing” (Georgiev) course material often covers this.</p></li>
+</ul>
+</li>
+<li><p><strong>Bandit Algorithms for Personalization &amp; Optimization:</strong></p>
+<ul>
+<li><p>Contextual bandits can learn which model/variant works best for different user contexts (segments) dynamically, optimizing the explore/exploit trade-off.</p></li>
+<li><p><strong>Challenge:</strong> Infrastructure complexity, ensuring sufficient exploration for all arms/contexts, off-policy evaluation (evaluating how a different bandit policy would have performed).</p></li>
+<li><p><em>Reference:</em> Vowpal Wabbit (Microsoft), research papers on contextual bandits (e.g., by John Langford, Alex Strehl).</p></li>
+</ul>
+</li>
+<li><p><strong>Monitoring Post-Launch Degradation &amp; Feedback Loops:</strong></p>
+<ul>
+<li><p>Continuous monitoring of live model predictions against ground truth (when available) or proxy metrics is vital.</p></li>
+<li><p><strong>Drift Detection:</strong> Statistical tests for data drift (input features change, e.g., KS test, Population Stability Index) and concept drift (relationship between features and target changes, often detected by performance metric decay).</p></li>
+<li><p><strong>Feedback Loops:</strong> Be aware of how model outputs influence future inputs. This is particularly strong in recommenders. Experimentation helps break these loops for evaluation.</p></li>
+<li><p><em>Tools:</em> Evidently AI, WhyLabs, Arize AI, Fiddler AI, custom monitoring dashboards.</p></li>
+</ul>
+</li>
+<li><p><strong>Ethical Considerations &amp; Fairness in Experimentation:</strong></p>
+<ul>
+<li><p>Ensure experiments don’t unfairly disadvantage or discriminate against protected user groups.</p></li>
+<li><p>Monitor for disparate impact across sensitive attributes (e.g., race, gender, age) both in terms of model performance and treatment effects.</p></li>
+<li><p><strong>MLOps Lead Focus:</strong> Champion responsible AI practices. Integrate fairness checks into the experimentation workflow. Ensure user privacy is respected in data collection.</p></li>
+</ul>
+</li>
+<li><p><strong>Organizational Culture &amp; Experimentation Velocity:</strong></p>
+<ul>
+<li><p>Fostering a culture of experimentation: leadership buy-in, psychological safety to fail (many hypotheses will be wrong), clear communication of results, robust review processes.</p></li>
+<li><p><strong>Experimentation Velocity:</strong> Number of experiments run per unit time. A key indicator of learning speed.</p></li>
+<li><p><strong>MLOps Lead Focus:</strong> Be an evangelist for data-driven decision-making. Streamline processes to increase velocity without sacrificing quality. Provide education and resources.</p></li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+</section>
+<section id="mlops-lead-mindset-decision-framework">
+<h2>5. MLOps Lead Mindset &amp; Decision Framework<a class="headerlink" href="#mlops-lead-mindset-decision-framework" title="Permalink to this heading">¶</a></h2>
+<p><strong>Thinking Framework: The Iterative Experimentation Cycle</strong></p>
+<div class="highlight-mermaid notranslate"><div class="highlight"><pre><span></span>graph TD
+    A[Ideate &amp; Hypothesize] --&gt; B{Design Experiment: Metrics Segments Power};
+    B --&gt; C[Implement: Feature Flags Tracking Model Variants];
+    C --&gt; D[QA &amp; Pre-flight: A/A tests Shadow mode];
+    D --&gt; E[Launch &amp; Monitor: Guardrails Key Metrics];
+    E --&gt; F{Analyze Results: Statsig Practicalsig Segments};
+    F -- Learn &amp; Decide --&gt; G{Ship Iterate or Discard?};
+    G -- Ship --&gt; H[Rollout &amp; Monitor Long-term: Drift Degradation];
+    G -- Iterate/Discard --&gt; A;
+    H -- New Insights/Drift --&gt; A;
+</pre></div>
+</div>
+<p><strong>Key Questions for an MLOps Lead:</strong></p>
+<ul class="simple">
+<li><p><strong>Strategic Alignment:</strong> How does this experiment/model change support our overarching business goals? Is the MDE aligned with meaningful business impact?</p></li>
+<li><p><strong>Risk Management:</strong> What are the potential negative impacts? Do we have robust rollback plans, kill switches, and well-defined guardrail metrics with alerts?</p></li>
+<li><p><strong>Scientific Rigor:</strong> Is the experimental design sound? Are we mitigating biases? Is the unit of randomization appropriate? Are we powered correctly?</p></li>
+<li><p><strong>Operational Efficiency:</strong> How can we accelerate the experimentation cycle? Can we automate setup, monitoring, or analysis? Is our tooling adequate?</p></li>
+<li><p><strong>Scalability &amp; Reusability:</strong> Can our infrastructure and processes support an increasing number of concurrent experiments? Are we building reusable components?</p></li>
+<li><p><strong>Knowledge Sharing:</strong> How are results and learnings documented and disseminated? How do we build institutional memory?</p></li>
+<li><p><strong>Team Enablement:</strong> Does the team have the skills and tools to run experiments effectively? What training is needed?</p></li>
+<li><p><strong>Ethical &amp; Responsible AI:</strong> Are we considering fairness, privacy, and potential societal impacts?</p></li>
+</ul>
+<p><strong>Trade-offs to Navigate (The Lead’s Balancing Act):</strong></p>
+<ul class="simple">
+<li><p><strong>Speed vs. Rigor:</strong> Shipping fast vs. ensuring statistical certainty. Often, “good enough” evidence is better than waiting for perfection if the cost of delay is high.</p></li>
+<li><p><strong>Exploration vs. Exploitation:</strong> (Especially for MABs and overall strategy) Learning about new, potentially better options vs. cashing in on known good options.</p></li>
+<li><p><strong>Complexity vs. Simplicity:</strong> Sophisticated experimental designs vs. simple, easy-to-understand tests. Start simple.</p></li>
+<li><p><strong>Standardization vs. Flexibility:</strong> Centralized platform and rules vs. allowing teams bespoke solutions. Aim for a “paved road” with options for “off-roading” when justified.</p></li>
+<li><p><strong>Cost vs. Benefit:</strong> Cost of running experiments (infra, time) vs. potential gains.</p></li>
+</ul>
+<p><strong>Best Practices Summary for MLOps Leads:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Champion a “Test Everything” Culture:</strong> Encourage hypothesis-driven development for ML.</p></li>
+<li><p><strong>Invest in a Robust Experimentation Platform:</strong> Whether built or bought, it’s foundational.</p></li>
+<li><p><strong>Standardize Core Components:</strong> Logging, metrics definitions, feature flagging, analysis reporting.</p></li>
+<li><p><strong>Automate Relentlessly:</strong> Setup, monitoring, alerting, and parts of analysis/reporting.</p></li>
+<li><p><strong>Prioritize Education &amp; Training:</strong> On experimental design, statistical concepts, and tool usage.</p></li>
+<li><p><strong>Establish Clear Governance:</strong> Review processes for experiment design and results interpretation.</p></li>
+<li><p><strong>Integrate with CI/CD:</strong> Make experimentation a natural part of the model deployment lifecycle.</p></li>
+<li><p><strong>Document &amp; Share Learnings:</strong> Create an experiment repository and foster a community of practice.</p></li>
+<li><p><strong>Monitor for the Long Haul:</strong> Deployed models aren’t static. Continuously track their performance and impact.</p></li>
+</ol>
+<hr class="docutils" />
+</section>
+<section id="essential-tools-infrastructure-components">
+<h2>6. Essential Tools &amp; Infrastructure Components<a class="headerlink" href="#essential-tools-infrastructure-components" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Feature Flagging System:</strong> (e.g., LaunchDarkly, Unleash (OSS), Flagsmith, Optimizely Rollouts, custom-built using tools like Consul/etcd).</p>
+<ul>
+<li><p><em>MLOps Lead Role:</em> Ensure it integrates with model serving, supports dynamic configuration, and allows for precise targeting.</p></li>
+</ul>
+</li>
+<li><p><strong>Experimentation Platform/Service:</strong></p>
+<ul>
+<li><p>Manages experiment definitions, user assignment (bucketing), parameter management, and often results analysis.</p></li>
+<li><p>(e.g., Statsig, Eppo, Optimizely Full Stack, VWO, Google Optimize, custom like Netflix’s Abacus, LinkedIn’s XLNT).</p></li>
+<li><p><em>MLOps Lead Role:</em> Drive selection/build, ensure scalability, reliability, and integration with data stack.</p></li>
+</ul>
+</li>
+<li><p><strong>Data Collection &amp; Processing Pipeline:</strong></p>
+<ul>
+<li><p>(e.g., Kafka/Kinesis for event streaming, Spark/Flink for processing, Airflow/Dagster for orchestration).</p></li>
+<li><p><em>MLOps Lead Role:</em> Guarantee data quality, low latency for critical events, and schema consistency.</p></li>
+</ul>
+</li>
+<li><p><strong>Analytical Data Store:</strong> (e.g., Snowflake, BigQuery, Redshift, Databricks Lakehouse, ClickHouse for high-cardinality analytics).</p>
+<ul>
+<li><p><em>MLOps Lead Role:</em> Ensure efficient storage and query performance for large experiment datasets.</p></li>
+</ul>
+</li>
+<li><p><strong>Metrics Computation Layer:</strong> (e.g., dbt for transformations, custom SQL/Python jobs, specialized metrics stores).</p>
+<ul>
+<li><p><em>MLOps Lead Role:</em> Enforce standardized metric definitions and reliable computation.</p></li>
+</ul>
+</li>
+<li><p><strong>Dashboarding &amp; Visualization Tools:</strong> (e.g., Tableau, Looker, PowerBI, Superset, Grafana, custom React frontends).</p>
+<ul>
+<li><p><em>MLOps Lead Role:</em> Ensure dashboards are intuitive, provide actionable insights, and support self-service for common queries.</p></li>
+</ul>
+</li>
+<li><p><strong>Statistical Analysis Tools/Libraries:</strong></p>
+<ul>
+<li><p>Python (statsmodels, scipy.stats, custom libraries for specific tests), R.</p></li>
+<li><p><em>MLOps Lead Role:</em> Promote best practices in statistical analysis, provide templates or wrapper libraries.</p></li>
+</ul>
+</li>
+<li><p><strong>Monitoring &amp; Alerting System:</strong> (e.g., Prometheus, Grafana, Datadog, New Relic, Sentry).</p>
+<ul>
+<li><p><em>MLOps Lead Role:</em> Ensure guardrail metrics are closely monitored during experiments with automated alerts.</p></li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+<p><strong>Conclusion:</strong></p>
+<p>Online testing and experimentation are the bedrock of data-driven ML product development. For an MLOps Lead, mastering this domain means shifting from merely deploying models to delivering quantifiable, continuous improvement in business outcomes. It requires a holistic approach encompassing statistical acumen, robust engineering, product intuition, and strong leadership to cultivate an organizational culture that embraces experimentation. The journey is iterative, marked by constant learning and refinement of both models and the experimentation processes themselves.</p>
+<p>This guide provides the mental models and strategic considerations for an MLOps Lead to successfully navigate this complex but rewarding landscape.</p>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024, Deepak Karkala
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Guide: Production Testing &amp; Experimentation</a><ul>
+<li><a class="reference internal" href="#why-test-in-production-the-uncomfortable-truth">1. Why Test in Production? The Uncomfortable Truth</a></li>
+<li><a class="reference internal" href="#the-spectrum-of-online-testing-experimentation-strategies">2. The Spectrum of Online Testing &amp; Experimentation Strategies</a></li>
+<li><a class="reference internal" href="#designing-effective-experiments-the-scientific-method-in-mlops">3. Designing Effective Experiments: The Scientific Method in MLOps</a></li>
+<li><a class="reference internal" href="#advanced-topics-challenges-the-mlops-lead-role">4. Advanced Topics, Challenges &amp; The MLOps Lead Role</a></li>
+<li><a class="reference internal" href="#mlops-lead-mindset-decision-framework">5. MLOps Lead Mindset &amp; Decision Framework</a></li>
+<li><a class="reference internal" href="#essential-tools-infrastructure-components">6. Essential Tools &amp; Infrastructure Components</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=b3ba4146"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/scripts/furo.js?v=4e2eecee"></script>
+    </body>
+</html>

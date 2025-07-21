@@ -1,0 +1,702 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" />
+
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/><!-- Generated with Sphinx 7.1.2 and Furo 2024.05.06 -->
+        <title>A/B Testing &amp; Experimentation: Industry lessons - Home</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=387cc868" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=36a5483c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/style.css?v=8a7ff5ee" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" /
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">Home</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  
+  <span class="sidebar-brand-text">Home</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../projects/index.html">Projects</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Projects</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/nlp/index.html">Natural Language Processing</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Natural Language Processing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/airbnb_alternate_search/about/index.html">Airbnb Listing description based Semantic Search</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/cv/index.html">Computer Vision</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Computer Vision</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/ecommerce_image_segmentation/about/index.html">Image Segmentation for Ecommerce Products</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/ml/index.html">Machine Learning</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of Machine Learning</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/airbnb_price_modeling/about/index.html">Predictive Price Modeling for Airbnb listings</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../publications/index.html">Patents, Papers, Thesis</a></li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../index.html">MLOps</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of MLOps</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch1_problem_framing.html">ML Problem framing</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of ML Problem framing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch2_blueprint_operational_strategy.html">The MLOps Blueprint &amp; Operational Strategy</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch2a_platform/index.html">ML Platforms</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of ML Platforms</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/ml_platforms.html">ML Platforms: How to</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/uber.html">Uber Michelangelo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/linkedin.html">LinkedIn DARWIN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/netflix.html">Netflix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/shopify.html">Shopify Merlin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/zomato.html">Zomato: Real-time ML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/coveo.html">Coveo: MLOPs at reasonable scale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/monzo.html">Monzo ML Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/didact.html">Didact AI</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch3_project_planning/index.html">Project Planning</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of Project Planning</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/prd.html">Project Requirements Document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/tech_stack.html">Tech Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/config_management.html">Config Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/pipeline_design.html">Pipeline Design</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/environment_strategy.html">Environment Strategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/cicd_branching_model.html">CI/CD Strategy and Branching Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/directory_structure.html">Directory Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/env_branchind_cicd_deployment.html">Environments, Branching, CI/CD, and Deployments Explained</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/project_management.html">Project Management for MLOps</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch4_data_discovery/index.html">Data Sourcing, Discovery</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of Data Sourcing, Discovery</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/data_sourcing_discovery.html">Data Sourcing, Discovery &amp; Understanding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/ch4_project.html">Project-Trending Now: Implementing Web Scraping, Ingestion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/industry_case_studies.html">Data Discovery Platforms: Industry Case Studies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/facebook_nemo.html">Facebook: Nemo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/netflix_metacat.html">Netflix Metacat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/uber_databook.html">Uber Databook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/linkedin_datahub.html">LinkedIn Datahub</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../lld/index.html">Low Level Design</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle navigation of Low Level Design</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../lld/parking_lot.html">Parking Lot</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../visualization/index.html">Data Visualization Projects</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="../../_sources/mlops/ch12_retrain_online_testing/guide_ab_testing_industry_lessons.md.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="a-b-testing-experimentation-industry-lessons">
+<h1>A/B Testing &amp; Experimentation: Industry lessons<a class="headerlink" href="#a-b-testing-experimentation-industry-lessons" title="Permalink to this heading">¶</a></h1>
+<p>This document synthesizes insights from numerous articles published by leading tech companies like Netflix, Airbnb, Google, Uber, LinkedIn, Spotify, DoorDash, Facebook, Pinterest, Twitter, Shopify, Booking.com, Stitch Fix, Zalando, Traveloka, Dropbox, Better, Intuit, Grab and Lyft, detailing their A/B testing and experimentation methodologies, platforms, challenges, and innovations.</p>
+<p><strong>I. Evolution and Philosophy of Experimentation Platforms</strong></p>
+<p>Companies universally acknowledge A/B testing (online controlled experimentation) as the gold standard for data-driven product development and decision-making. The journey often starts with ad-hoc, manual A/B tests and evolves towards sophisticated, centralized platforms.</p>
+<ol class="arabic simple">
+<li><p><strong>Early Stages (The “Stone Age” or “Crawl” Phase):</strong></p>
+<ul class="simple">
+<li><p><strong>LinkedIn (Pre T-REX):</strong> Initial A/B tests involved manual bucket allocation (e.g., <code class="docutils literal notranslate"><span class="pre">member_id</span> <span class="pre">mod</span> <span class="pre">1000</span></code>) with no centralized tracking, leading to scaling issues and unreliable results. Test definitions were scattered in codebases, and deployment was tied to service releases.</p></li>
+<li><p><strong>Zalando (Octopus - Crawl Phase &lt; 2016):</strong> Teams set up tests individually. The first centralized platform, Octopus, focused on execution due to few initial customers, with manual analysis as a fallback. A key challenge was the lack of cross-functional knowledge between engineers and data scientists.</p></li>
+<li><p><strong>Traveloka (Pre-EXP &lt; 2018):</strong> The first Experiments API had predefined filters and returned a single treatment parameter. It used a “look-up” caching mechanism for user assignment.</p></li>
+</ul>
+</li>
+<li><p><strong>Maturing Platforms (The “Walk” and “Run” Phases):</strong></p>
+<ul class="simple">
+<li><p><strong>Airbnb (ERF, 2014):</strong> Started as a tool to define metrics and compute them for a small set of experiments. Scaled to handle ~500 concurrent experiments and ~2500 distinct metrics daily.</p></li>
+<li><p><strong>Netflix (XP Platform):</strong> Evolved to support extensive A/B testing for every product change, from UI redesigns and personalized homepages to adaptive streaming algorithms and even title artwork. Handles vast scale and diverse test types.</p></li>
+<li><p><strong>LinkedIn (T-REX):</strong> Introduced concepts of “test” (hypothesis/feature) and “experiment” (single stage of testing/release with specific allocation). Deployed Lix DSL for defining experiments, enabling decoupling from application code and fast updates. Utilizes multi-level caching for low-latency evaluation.</p></li>
+<li><p><strong>Uber (XP):</strong> Moved from an older system (Morpheus) that struggled with correctness and flexibility to a new platform built on “parameters” (decoupling code from experiments) and a unified configuration stack (Flipr integration). The new system focuses on correctness by design, ensuring comparable cohorts.</p></li>
+<li><p><strong>DoorDash (Curie &amp; Dash-AB):</strong> Developed Curie as an experimentation analysis platform to standardize processes, improve accuracy with scientifically sound methodologies (e.g., CRSE, variance reduction), and centralize results. Dash-AB serves as the central statistical engine.</p></li>
+<li><p><strong>Spotify (New Experimentation Platform):</strong> Rebuilt their platform focusing on ease of use, coordination (domains, timelines, exclusivity), holdbacks for cumulative impact, and a “salt machine” for dynamic user reshuffling without stopping all experiments.</p></li>
+<li><p><strong>Zalando (Octopus - Walk &amp; Run Phases 2016+):</strong> Focused on establishing experimentation culture, improving data tracking, A/B test design quality, and analysis methods. Rebuilt the analysis system in Spark for scalability. Key challenges included data quality (SRM) and long runtimes.</p></li>
+<li><p><strong>Traveloka (EXP Platform, 2018):</strong> Adopted Facebook’s Planout framework for scalability, product context specificity, and better treatment parameter hygiene. Components include Ops Frontend/Backend and a client library using hashing for deterministic assignment.</p></li>
+<li><p><strong>Pinterest (A/B Testing Platform):</strong> Focused on real-time config changes, lightweight setup process, client-agnostic APIs, and a scalable analytics dashboard. Uses a UI for config, QA workflow, and simplified APIs.</p></li>
+<li><p><strong>Twitter (Duck Duck Goose - DDG):</strong> Created in 2010, processes terabytes of data. Engineers define eligibility, treatment buckets, hypothesis, and metrics. Uses Scalding pipelines for offline processing.</p></li>
+<li><p><strong>Dropbox (ML XR):</strong> Leverages machine learning (Expected Revenue - XR) to create a short-term proxy metric for long-term user satisfaction (subscriptions), accelerating experiment analysis from months to days.</p></li>
+<li><p><strong>Lyft:</strong> Focuses on addressing network effects, real-world dynamism, diverse lines of business, and fostering experimentation culture.</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>II. Experimentation Platform Architecture &amp; Core Components</strong></p>
+<p>Most mature platforms share common architectural elements:</p>
+<ol class="arabic simple">
+<li><p><strong>Configuration Management:</strong></p>
+<ul class="simple">
+<li><p><strong>UI-driven Configuration:</strong> Pinterest, LinkedIn (T-REX), Traveloka (EXP), DoorDash (Curie) provide web UIs for setting up experiments, defining targeting rules, allocating traffic, and managing the experiment lifecycle. This reduces errors and standardizes setup.</p></li>
+<li><p><strong>Real-time Updates:</strong> Pinterest, LinkedIn, Uber emphasize the ability to change experiment configurations (ramp up/down, shut down) in real-time without code deploys, often using systems that push serialized configs to services (e.g., LinkedIn’s Lix DSL, Traveloka’s compiled Planout config).</p></li>
+<li><p><strong>Parameters/Feature Flags:</strong> Uber’s new platform uses “parameters” as the core abstraction, decoupling client code from specific experiments. Experiments override parameter values. This is a common pattern, where experimentation is an overriding layer on top of a feature flagging or remote configuration system (e.g., Uber’s Flipr).</p></li>
+<li><p><strong>Domain-Specific Language (DSL):</strong> LinkedIn’s Lix DSL (Lisp-like) defines segmentation and randomized splits, offering flexibility and deterministic evaluation. Twitter uses a lightweight DSL for defining event-based metrics.</p></li>
+</ul>
+</li>
+<li><p><strong>Assignment &amp; Randomization Engine:</strong></p>
+<ul class="simple">
+<li><p><strong>Randomization Unit:</strong> Platforms support various units: users (most common), sessions (Lyft, Netflix), devices, requests, listings, clusters (LinkedIn, Facebook for network effects), regions (Lyft, Netflix for quasi-experiments), time-splits (DoorDash, Lyft). DoorDash’s Dash-AB and Uber’s new platform are designed to be generic regarding randomization units.</p></li>
+<li><p><strong>Deterministic Hashing:</strong> Most platforms (e.g., Stitch Fix, Traveloka, LinkedIn, Uber) use deterministic hashing (e.g., SHA1 of experiment_id + randomization_unit_id + salt) to assign units to variants. This ensures consistency for users across sessions without needing to store every assignment.</p></li>
+<li><p><strong>Bucketing &amp; Allocation:</strong> Users are hashed into a fixed number of buckets (e.g., 0-999). Treatment groups are then defined as ranges of these buckets. Uber uses a tree structure for treatment groups to allow complex splits and dynamic changes.</p></li>
+<li><p><strong>Stratified Sampling:</strong> Netflix uses stratified sampling to ensure homogeneity across key dimensions (country, device type) in experiment cells, mitigating bias from purely random sampling. LinkedIn also used stratification for cluster randomization.</p></li>
+<li><p><strong>“Salt Machine” (Spotify):</strong> A system using a tree of “salts” for hashing users into buckets, allowing reshuffling for new experiments without stopping all ongoing ones, critical for maintaining randomization integrity with high experiment velocity.</p></li>
+</ul>
+</li>
+<li><p><strong>Client Libraries/SDKs:</strong></p>
+<ul class="simple">
+<li><p>Provide an interface for applications to fetch treatment assignments (e.g., Pinterest <code class="docutils literal notranslate"><span class="pre">get_group</span></code>, <code class="docutils literal notranslate"><span class="pre">activate_experiment</span></code>; LinkedIn <code class="docutils literal notranslate"><span class="pre">experimentationClient.getTreatment</span></code>).</p></li>
+<li><p>Uber has SDKs for all languages and clients, incorporating caching, fallback to default values for reliability, and prefetching capabilities.</p></li>
+<li><p>Traveloka’s client library syncs compiled Planout configs and calculates treatment locally.</p></li>
+</ul>
+</li>
+<li><p><strong>Logging &amp; Data Pipeline:</strong></p>
+<ul class="simple">
+<li><p><strong>Exposure Logging:</strong> Critical for analysis. Logs are generated when a user is exposed to an experiment or a feature controlled by an experiment is accessed (e.g., Pinterest <code class="docutils literal notranslate"><span class="pre">activate_experiment</span></code>, Uber’s SDKs log on parameter access).</p></li>
+<li><p><strong>Data Ingestion:</strong> Events are typically sent to a streaming system like Kafka (Netflix, Pinterest) and then processed by batch or stream systems.</p></li>
+<li><p><strong>Data Processing:</strong></p>
+<ul>
+<li><p><strong>Airbnb (ERF):</strong> Migrated from monolithic Hive queries to dynamically generated Airflow DAGs, computing by “Event Source” (query defining several metrics) rather than per experiment or per metric.</p></li>
+<li><p><strong>Twitter (DDG):</strong> Uses Scalding pipelines in three stages: 1. Aggregate raw sources to per-user, per-hour metrics. 2. Join with experiment impressions, calculate per-user aggregates for experiment duration. 3. Roll up all experiment data for dashboards.</p></li>
+<li><p><strong>Netflix:</strong> Data engineering systems join test metadata with core data sets (member interactions, streaming logs).</p></li>
+</ul>
+</li>
+<li><p><strong>Data Storage:</strong> Processed data is stored in data warehouses (Hive, Spark) and often also in low-latency databases for serving results (e.g., Twitter uses Manhattan; Netflix uses Cassandra, EVCache, Elasticsearch; DoorDash uses PostgreSQL).</p></li>
+</ul>
+</li>
+<li><p><strong>Analysis &amp; Reporting:</strong></p>
+<ul class="simple">
+<li><p><strong>Automated Analysis:</strong> Platforms like DoorDash’s Curie and Netflix’s XP automate the generation of experiment results, applying standardized statistical methods.</p></li>
+<li><p><strong>Metrics Management:</strong></p>
+<ul>
+<li><p><strong>Airbnb:</strong> Metric hierarchy (Core, Target, Certified metrics).</p></li>
+<li><p><strong>Twitter:</strong> Three types of metrics: built-in, experimenter-defined (via DSL), imported (custom aggregates). Metrics organized into “metric groups.”</p></li>
+<li><p><strong>DoorDash (Curie):</strong> Allows data scientists to define metrics via SQL Jinja templates. Moving towards a standardized metrics repository (uMetric at Uber).</p></li>
+<li><p><strong>Netflix:</strong> Democratized and modular XP allows direct contribution of metrics, causal inference methods, and visualizations.</p></li>
+</ul>
+</li>
+<li><p><strong>Dashboards &amp; UI:</strong> Most platforms provide a web UI (e.g., Netflix’s ABlaze, Pinterest’s experiment web app, DoorDash’s Curie WebUI) for experiment setup, monitoring, and result visualization.</p></li>
+<li><p><strong>Statistical Engines:</strong></p>
+<ul>
+<li><p><strong>DoorDash (Dash-AB):</strong> Centralized Python library for statistical analysis, supporting various metric types (continuous, proportional, ratio), variance calculation methods (regression, Delta method, bootstrapping), CRSE, and variance reduction (CUPED/CUPAC).</p></li>
+<li><p><strong>Uber (Statistics Engine):</strong> Handles different metric types, outlier detection, variance reduction (CUPED, DiD for pre-experiment bias), and various p-value calculation methods (Welch’s t-test, Mann-Whitney U, Chi-squared, Delta method, bootstrap).</p></li>
+<li><p><strong>Zalando (Octopus):</strong> Initially wrapped an open-source stats library, later rebuilt analysis in Spark. Uses two-sided t-tests.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p><strong>III. Experiment Design &amp; Methodologies</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Standard A/B/N Testing:</strong> The foundational method, comparing one or more treatments against a control.</p></li>
+<li><p><strong>Randomization Units:</strong> As mentioned, user-level is common. Others include:</p>
+<ul class="simple">
+<li><p><strong>Time-Split (Switchback):</strong> Used when interference is high (e.g., logistics, pricing). All units in a region/time window get the same treatment, then switch. (DoorDash, Lyft, Uber). DoorDash found ORS (Operations Research Scientists) implementing their own switchback experiments in production to be most effective.</p></li>
+<li><p><strong>Cluster-Randomized:</strong> Groups of users (e.g., social graph clusters) are randomized. (LinkedIn, Facebook for network effects).</p></li>
+<li><p><strong>Geo/Region-Split:</strong> Randomization by geographic area, often using synthetic controls for analysis. (Lyft, Netflix for marketing campaigns).</p></li>
+<li><p><strong>Session-Split:</strong> Randomization at the session level. (Lyft).</p></li>
+<li><p><strong>Hardware-Split:</strong> For testing hardware like e-bikes. (Lyft).</p></li>
+</ul>
+</li>
+<li><p><strong>Targeting and Segmentation:</strong></p>
+<ul class="simple">
+<li><p>Experiments are often targeted to specific user segments (e.g., by country, language, OS, user tenure).</p></li>
+<li><p><strong>Airbnb (ERF):</strong> Supports “dimensional cuts” (slicing metrics by user/event attributes), precomputing many dimensions. ERF Explorer allows interactive analysis.</p></li>
+<li><p><strong>Lix DSL (LinkedIn):</strong> Enables complex segmentation rules.</p></li>
+</ul>
+</li>
+<li><p><strong>Holdouts:</strong></p>
+<ul class="simple">
+<li><p><strong>Universal/Global Holdouts:</strong> A small percentage of users are held back from all (or a broad category of) product changes for an extended period (e.g., a quarter). Used to measure the cumulative, long-term impact of multiple shipped features. (Disney Streaming/Hulu, Spotify, Uber).</p>
+<ul>
+<li><p><strong>Disney/Hulu:</strong> Uses 3-month enrollment + 1-month evaluation. Found cumulative effects smaller than summed individual effects due to cannibalization and novelty wearing off.</p></li>
+<li><p><strong>Spotify:</strong> Uses quarterly holdbacks within “domains.”</p></li>
+</ul>
+</li>
+<li><p><strong>Reusable Holdout (Google):</strong> A method to preserve statistical validity in adaptive data analysis, allowing multiple hypotheses to be tested on the same holdout data by carefully managing the “information budget.”</p></li>
+</ul>
+</li>
+<li><p><strong>Overlapping Experiments &amp; Layering (Google):</strong></p>
+<ul class="simple">
+<li><p>A system allowing multiple experiments to run on overlapping user populations by ensuring that parameters being modified by different experiments are orthogonal. Experiments are assigned to “layers,” and users can be in multiple experiments if they are in different layers. Traffic is divided among layers and then within layers among experiments.</p></li>
+</ul>
+</li>
+<li><p><strong>Sequential Testing:</strong></p>
+<ul class="simple">
+<li><p>Allows continuous monitoring and early stopping if an effect (positive or negative) is detected, while controlling false positive rates.</p></li>
+<li><p><strong>Uber:</strong> Uses mixture Sequential Probability Ratio Test (mSPRT) for outage detection and monitoring key metrics, with jackknife/bootstrap for variance estimation under correlated data and FDR control for multiple metrics.</p></li>
+<li><p><strong>Spotify:</strong> Offers sequential testing in its platform; if chosen, results are available as the experiment runs.</p></li>
+<li><p><strong>Stitch Fix (Optimal Testing):</strong> Explores minimizing time-to-discovery in an “experiment-rich regime” using sequential testing and Bayesian methods, characterizing optimal rejection/continuation thresholds.</p></li>
+</ul>
+</li>
+<li><p><strong>Interleaving (Airbnb):</strong></p>
+<ul class="simple">
+<li><p>For search ranking, interleaving blends results from two rankers (control and treatment) and presents them to the same user. User interactions (clicks, bookings) determine preference.</p></li>
+<li><p>Uses “team drafting” to ensure fairness and “competitive pairs” to focus on real differences, improving sensitivity.</p></li>
+<li><p>Complex attribution logic is needed due to multi-search-to-booking user journeys.</p></li>
+<li><p>Achieved 50x speedup over A/B tests for ranking, with 82% consistency. Not suitable for rankers with set-level optimization.</p></li>
+</ul>
+</li>
+<li><p><strong>Time-Lagged Conversions (Better - Convoys library):</strong></p>
+<ul class="simple">
+<li><p>Models conversions that don’t happen immediately using survival analysis (Kaplan-Meier for non-parametric estimation) and parametric models (Weibull, Gamma distributions) to predict eventual conversion rates and times.</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>IV. Statistical Analysis &amp; Metrics</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Core Statistical Concepts:</strong></p>
+<ul class="simple">
+<li><p><strong>Netflix’s Blog Series:</strong> Provides excellent, intuitive explanations of:</p>
+<ul>
+<li><p>False Positives (Type I error), Statistical Significance, p-values, Rejection Regions, Confidence Intervals. Conventionally, α = 0.05.</p></li>
+<li><p>False Negatives (Type II error), Statistical Power (1-β). Conventionally, power = 80%. Power depends on effect size, sample size, and underlying metric variability.</p></li>
+</ul>
+</li>
+<li><p>These concepts are fundamental to experiment design (sample size calculation) and result interpretation.</p></li>
+</ul>
+</li>
+<li><p><strong>Variance Reduction Techniques:</strong> Crucial for increasing experiment sensitivity (power) and reducing required sample sizes/durations.</p>
+<ul class="simple">
+<li><p><strong>CUPED (Controlled-experiment Using Pre-Experiment Data):</strong> Uses pre-experiment data (e.g., the same metric from a prior period) as a covariate to reduce variance in the outcome metric. Widely adopted (Microsoft, DoorDash, Netflix, LinkedIn, Booking.com, Spotify).</p>
+<ul>
+<li><p><strong>DoorDash (CUPAC - Control Using Predictions As Covariates):</strong> Extends CUPED by using ML model predictions (based on pre-experiment features uncorrelated with treatment) as the covariate. Showed significant power improvements (e.g., ~40% reduction in test length for ASAP metric).</p></li>
+<li><p><strong>Dropbox (ML XR):</strong> Uses ML-predicted Expected Revenue (XR) as a short-term proxy for long-term LTV, accelerating A/B test analysis. XR lift is used, and a ~3% systematic uncertainty from the model is accounted for.</p></li>
+</ul>
+</li>
+<li><p><strong>Regression Adjustment:</strong> More general form of covariate control. Facebook uses a cluster-based regression adjustment for network experiments.</p></li>
+<li><p><strong>Trigger Analysis / Overtracking Correction (Booking.com, Airbnb):</strong></p>
+<ul>
+<li><p><strong>Overtracking:</strong> Including non-treatable users in an experiment dilutes the treatment effect and increases variance. If an experiment overtracks by a factor <code class="docutils literal notranslate"><span class="pre">k</span></code> (k untreatable users for every 1 treatable), the required sample size to detect the same effect on the treatable population increases by <code class="docutils literal notranslate"><span class="pre">k²</span> <span class="pre">*</span> <span class="pre">(σ²_o</span> <span class="pre">/</span> <span class="pre">σ²_t)</span></code>.</p></li>
+<li><p><strong>Trigger Analysis:</strong> Analyzing only users who were actually exposed to the differentiated experience. This effectively reduces <code class="docutils literal notranslate"><span class="pre">k</span></code>.</p></li>
+<li><p>Bot traffic can be a form of overtracking.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Metric Types &amp; Calculation:</strong></p>
+<ul class="simple">
+<li><p><strong>Airbnb (ERF):</strong> Defines metrics in a common configuration language.</p></li>
+<li><p><strong>DoorDash (Curie/Dash-AB):</strong> Supports continuous, proportional, and ratio metrics. Uses linear models, bootstrapping, and Delta method for p-value/SE.</p></li>
+<li><p><strong>Uber (XP):</strong> Categorizes metrics as proportion, continuous, and ratio. Uses Welch’s t-test, Mann-Whitney U, Chi-squared, Delta method, bootstrap.</p></li>
+<li><p><strong>Netflix (XP):</strong> Supports high-performance bootstrap for compressed data to estimate quantile treatment effects.</p></li>
+<li><p><strong>Spotify:</strong> Developed a computationally efficient Poisson bootstrap method for comparing quantiles at scale, approximating the distribution of ordered indexes selected in bootstrap samples with a Binomial distribution.</p></li>
+</ul>
+</li>
+<li><p><strong>Heterogeneous Treatment Effects (HTE) / Uplift Modeling:</strong></p>
+<ul class="simple">
+<li><p><strong>DoorDash:</strong> Uses HTE models (S-learner, T-learner, X-learner meta-learners with LightGBM as base) to personalize promotions for churned customers, identifying subpopulations with positive reactions to reduce costs.</p></li>
+<li><p><strong>Uber:</strong> Emphasizes going “Beyond Average Treatment Effects” by calculating Quantile Treatment Effects (QTEs) using quantile regression. This helps understand impact on different parts of the outcome distribution (e.g., p95 ETA).</p></li>
+</ul>
+</li>
+<li><p><strong>Handling Multiple Comparisons:</strong></p>
+<ul class="simple">
+<li><p><strong>Lyft:</strong> Uses Benjamini-Hochberg for Multiple Hypothesis Testing (MHT) correction when multiple primary metrics are used.</p></li>
+<li><p><strong>Uber:</strong> Applies BH correction for FDR control when monitoring multiple metrics in sequential tests.</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>V. Addressing Specific Experimentation Challenges</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Interference / Network Effects:</strong> When treatment of one unit affects outcomes of another.</p>
+<ul class="simple">
+<li><p><strong>LinkedIn:</strong> Developed a method to detect interference by running an “A/B test of A/B tests.” They cluster the social graph and split clusters into two arms: one with individual-level randomization, the other with cluster-level randomization. A significant difference in estimated effects (using a Hausman-like test) indicates interference. Used reLDG for clustering.</p></li>
+<li><p><strong>Facebook (Network Experimentation at Scale):</strong> Deploys cluster-randomized experiments, often using graph clustering (e.g., Louvain). Introduces cluster-based regression adjustment to improve precision, finding imbalanced clusters can be superior. Leverages “trigger logging” (logging exposure only when a unit calls the service and receives a treatment assignment) for further variance reduction.</p></li>
+<li><p><strong>Lyft:</strong> Uses time-split tests and region-split tests (with synthetic controls) to manage network effects.</p></li>
+<li><p><strong>DoorDash:</strong> Relies heavily on switchback tests (region/time window randomization) for logistics experiments due to strong network effects.</p></li>
+</ul>
+</li>
+<li><p><strong>Resource Constraints / Two-Sided Marketplaces:</strong></p>
+<ul class="simple">
+<li><p><strong>Stitch Fix (Virtual Warehouse):</strong> For inventory-constrained experiments, they virtually partition inventory between variants (e.g., 50 shirts for variant A, 50 for B out of 100 total). This prevents one variant from depleting resources available to the other, ensuring valid estimation of what would happen if a variant were rolled out. Also used to test different inventory strategies.</p></li>
+<li><p><strong>Uber/Lyft/DoorDash:</strong> Two-sided marketplaces inherently have interference. Switchback/time-split/geo-split designs are common.</p></li>
+</ul>
+</li>
+<li><p><strong>Small Sample Sizes / Low Power:</strong></p>
+<ul class="simple">
+<li><p><strong>Netflix (Quasi Experiments):</strong> For non-member experiments (e.g., TV ad impact) with small numbers of geo units, they use re-randomization for balance, Difference-in-Differences (DID), and Dynamic Linear Models (DLMs, similar to Google’s CausalImpact) for time-series analysis, especially with multiple on/off interventions. For member-focused tests without historical outcomes (e.g., new show promotion), they use rich member data with propensity score matching and regression adjustment.</p></li>
+<li><p>Variance reduction techniques (CUPED/CUPAC) are key.</p></li>
+</ul>
+</li>
+<li><p><strong>Scalability and Performance of Experimentation Engine:</strong></p>
+<ul class="simple">
+<li><p><strong>LinkedIn (Lix Engine Rewrite):</strong> Rewrote their Clojure-based engine in Java. Optimized evaluation tree data structures (plain arrays vs. node objects) for lower memory and faster traversal. Used auto-generated stubs for type resolution instead of reflection. Implemented short-circuiting for remote calls. Resulted in ~20x speedup.</p></li>
+<li><p><strong>Airbnb (ERF Scaling):</strong> Moved from monolithic Hive queries to Airflow DAGs, computing by “Event Source.”</p></li>
+<li><p><strong>Twitter (DDG Pipeline Scaling):</strong> Employed Hadoop MapReduce optimizations like <code class="docutils literal notranslate"><span class="pre">RawComparator</span></code> for Thrift objects (<code class="docutils literal notranslate"><span class="pre">OrderedSerialization</span></code> in Scalding) for ~30% compute time saving.</p></li>
+</ul>
+</li>
+<li><p><strong>Experiment Velocity &amp; Capacity:</strong></p>
+<ul class="simple">
+<li><p><strong>DoorDash:</strong> Increased consumer-facing experiment capacity 4x by using “Dynamic Values” infrastructure for parallel, mutually exclusive experiments. Quadrupled experiment capacity again by improving sensitivity with CUPED. Increased logistics experiment capacity 1000% via a fail-fast culture, scalable processes (standardized metrics, two-zone system for interaction testing, weekly cadence), optimal statistical methods (CUPAC, switchback optimization), and platform automation (Curie).</p></li>
+<li><p><strong>Spotify:</strong> New platform aims to allow autonomous teams to start/stop experiments anytime. “Salt machine” helps manage allocations.</p></li>
+<li><p><strong>Zalando:</strong> Evolved platform to handle more concurrent tests, focusing on scalability and trustworthiness.</p></li>
+</ul>
+</li>
+<li><p><strong>Long-Term Effects &amp; Cumulative Impact:</strong></p>
+<ul class="simple">
+<li><p><strong>Universal Holdouts:</strong> (Disney, Spotify, Uber) - A small user segment is held out from all (or a category of) new features for months/quarters. At the end, a single experiment compares this holdout group to users who received all shipped features, measuring the true cumulative impact. Disney found this crucial as summed individual experiment uplifts often overestimated actual cumulative impact due to cannibalization or novelty effects wearing off.</p></li>
+<li><p><strong>Airbnb (Future Incremental Value - FIV):</strong> Uses Propensity Score Matching (PSM) to estimate the long-term (1-year) causal effect of actions (e.g., a booking) on outcomes like revenue. This addresses the short duration of typical A/B tests and selection bias. The platform ingests client configs defining focal/complement groups and automates the PSM pipeline.</p></li>
+</ul>
+</li>
+<li><p><strong>Experiment Guardrails (Airbnb):</strong></p>
+<ul class="simple">
+<li><p>A system to prevent negative impacts on key metrics. Defines three types of guardrails:</p>
+<ul>
+<li><p><strong>Impact Guardrail:</strong> Escalates if global average treatment effect is more negative than a threshold <code class="docutils literal notranslate"><span class="pre">t</span></code>.</p></li>
+<li><p><strong>Power Guardrail:</strong> Ensures standard error is small enough (<code class="docutils literal notranslate"><span class="pre">StdErr</span> <span class="pre">&lt;</span> <span class="pre">0.8</span> <span class="pre">*</span> <span class="pre">t</span></code>) for reasonable FPR and power. Threshold <code class="docutils literal notranslate"><span class="pre">t</span></code> adjusts with global coverage (<code class="docutils literal notranslate"><span class="pre">t</span> <span class="pre">=</span> <span class="pre">T</span> <span class="pre">/</span> <span class="pre">sqrt(coverage)</span></code>).</p></li>
+<li><p><strong>Stat Sig Negative Guardrail:</strong> Escalates for any statistically significant negative impact on critical metrics.</p></li>
+</ul>
+</li>
+<li><p>Flags ~25 experiments/month; 20% are stopped.</p></li>
+</ul>
+</li>
+<li><p><strong>Quasi-Experiments &amp; Causal Inference (when A/B is not feasible):</strong></p>
+<ul class="simple">
+<li><p><strong>Netflix:</strong> Uses DID, synthetic controls, DLMs for geo-based marketing campaigns or when randomization is impossible. Uses propensity scores and doubly robust estimators for observational studies.</p></li>
+<li><p><strong>Airbnb (ACE - Artificial Counterfactual Estimation):</strong> ML-based causal inference for non-randomizable scenarios. Trains an ML model on a holdout (non-treated) group to predict counterfactual outcomes for the treated group. Addresses ML model bias (from regularization/overfitting) using A/A tests for debiasing and constructing empirical CIs.</p></li>
+<li><p><strong>Shopify:</strong> Mentions using quasi-experiments and counterfactuals. (Article link was 404, so details are missing).</p></li>
+<li><p><strong>Facebook (Constrained Bayesian Optimization):</strong> Optimizes system parameters (e.g., ranking, compiler flags) via noisy A/B tests where direct evaluation is expensive. Uses Gaussian Processes (GPs) and Expected Improvement (EI). Derives Noisy Expected Improvement (NEI) integrating over posterior of true function values, optimized with quasi-Monte Carlo (QMC) for efficiency. Handles noisy constraints.</p></li>
+<li><p><strong>Uber (Bayesian Optimal Experimental Design - OED with Pyro):</strong> Focuses on designing experiments to maximize information gain, especially when evaluations are costly. Uses variational inference within the Pyro probabilistic programming language.</p></li>
+</ul>
+</li>
+<li><p><strong>Multi-Armed Bandits (MABs):</strong></p>
+<ul class="simple">
+<li><p><strong>Stitch Fix:</strong> Integrated MABs into their platform. Data scientists implement reward models as microservices. Platform handles policies (ε-greedy, Thompson Sampling, custom proportional policies) and deterministic allocation. Supports contextual bandits.</p></li>
+<li><p><strong>Uber:</strong> Uses MABs for content optimization (e.g., email subject lines) and hyperparameter tuning for ML models (e.g., Uber Eats feed ranking) using contextual MABs and Bayesian optimization.</p></li>
+<li><p><strong>Traveloka &amp; Spotify:</strong> Mention MABs as part of their advanced experimentation capabilities.</p></li>
+</ul>
+</li>
+<li><p><strong>Experimentation on External Platforms (e.g., Google Ads - DoorDash):</strong></p>
+<ul class="simple">
+<li><p>Leverages Google Adwords’ “campaign drafts and experiments” for A/B testing bidding strategies.</p></li>
+<li><p>Success metric: Cost-Per-Acquisition (CPA) at comparable spend levels.</p></li>
+<li><p>Challenge: Calculating standard deviation for CPA (a ratio metric with unknown distribution) with limited weekly historical data. Solution: Bootstrapping (randomly sampling weekdays to form new weekly cohorts) to enlarge dataset and empirically estimate std dev.</p></li>
+<li><p>Runs A/A tests for campaign warm-up/stabilization.</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>VI. Culture &amp; Process</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Democratization &amp; Standardization:</strong></p>
+<ul class="simple">
+<li><p><strong>Netflix:</strong> XP is democratized, allowing data scientists to contribute metrics, methods, and visualizations. Broad accessibility of results.</p></li>
+<li><p><strong>DoorDash (Curie &amp; Dash-AB):</strong> Standardization of analysis and metrics improves quality and shareability.</p></li>
+<li><p><strong>Spotify (Search Team Journey):</strong> Emphasized a roadmap (individual experiment quality -&gt; cross-experiment quality -&gt; total business impact measurement) and “constant injection of energy” (support, templates, champions) to build culture.</p></li>
+<li><p><strong>Zalando:</strong> Company-wide training, embedded A/B test owners, peer reviews for causal inference research.</p></li>
+</ul>
+</li>
+<li><p><strong>Decision Making &amp; Governance:</strong></p>
+<ul class="simple">
+<li><p><strong>Airbnb (Experiment Guardrails):</strong> Formal process for escalating experiments with potential negative impact.</p></li>
+<li><p><strong>Spotify:</strong> Experiment Planner requires specifying success/guardrail metrics, MDE, and test type (one/two-sided, superiority/non-inferiority) upfront.</p></li>
+<li><p><strong>Lyft:</strong> Guided hypothesis workflow to pre-register hypotheses and primary/guardrail metrics. Results and decision tracking to align on investment trade-offs.</p></li>
+<li><p><strong>Twitter (Experimenting to solve Cramming):</strong> For the 280-char limit, ran multiple experiments grouped by countries with similar “cramming” behavior to reduce within-group variance and improve power. Used A/A tests to check for bucketing bias.</p></li>
+</ul>
+</li>
+<li><p><strong>Fail-Fast, Learn-Fast:</strong></p>
+<ul class="simple">
+<li><p><strong>DoorDash:</strong> Explicitly fosters a culture of failing fast to learn fast, operating at the lowest level of detail, and intellectual honesty.</p></li>
+<li><p>This is a common theme, as rapid iteration is a primary goal of experimentation.</p></li>
+</ul>
+</li>
+<li><p><strong>Quality Assurance:</strong></p>
+<ul class="simple">
+<li><p><strong>Pinterest:</strong> Implemented a review tool and helper group for experiment changes. PR links required for code changes. Test-only copies of experiments.</p></li>
+<li><p><strong>Spotify:</strong> Automated validity checks: Sample Ratio Mismatch (SRM), pre-exposure activity differences, crash increases, property collisions.</p></li>
+<li><p><strong>DoorDash (Dash-AB):</strong> Imbalance tests (Chi-square for SRM), flicker tests.</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>VII. Future Directions &amp; Open Challenges (as highlighted by Netflix &amp; Facebook)</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Computational Causal Inference (CompCI - Netflix):</strong></p>
+<ul class="simple">
+<li><p>Developing performant, general, and robust software for causal inference.</p></li>
+<li><p>Optimizing for sparse data, efficient counterfactual matrix creation, vectorization for multiple KPIs/treatments, efficient bootstrap (e.g., bag of little bootstraps).</p></li>
+<li><p>Structuring software to enable detection of causal identification.</p></li>
+<li><p>Handling cyclic causal graphs, autocorrelation in time-series data, marginal treatment effects with non-randomized subsequent treatments, and time-varying treatment availability.</p></li>
+</ul>
+</li>
+<li><p><strong>Network Experimentation (Facebook):</strong></p>
+<ul class="simple">
+<li><p>Improving cluster design for bias-variance trade-off.</p></li>
+<li><p>Developing model-based alternatives to agnostic design-based analysis for network experiments.</p></li>
+</ul>
+</li>
+<li><p><strong>Adaptive Experimentation &amp; OED (Uber, Facebook):</strong></p>
+<ul class="simple">
+<li><p>Moving towards more adaptive experiments (e.g., contextual bandits, reinforcement learning) to dynamically optimize and respond to changing conditions.</p></li>
+<li><p>Bayesian Optimal Experimental Design to choose designs that maximize information gain, especially when evaluations are costly.</p></li>
+</ul>
+</li>
+</ol>
+<p>This synthesis shows a clear trend towards more sophisticated, scalable, and automated experimentation platforms. While A/B testing remains central, there’s significant work in variance reduction, handling interference, long-term/cumulative effects, causal inference beyond A/B, and integrating ML for both analysis acceleration (e.g., proxy metrics) and direct optimization (e.g., MABs). A strong data-driven culture, supported by robust processes and education, is equally vital for success.</p>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024, Deepak Karkala
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=b3ba4146"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/scripts/furo.js?v=4e2eecee"></script>
+    </body>
+</html>

@@ -1,0 +1,916 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" />
+
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/><!-- Generated with Sphinx 7.1.2 and Furo 2024.05.06 -->
+        <title>A/B Testing - Home</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=387cc868" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=36a5483c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/style.css?v=8a7ff5ee" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" /
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">Home</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  
+  <span class="sidebar-brand-text">Home</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../projects/index.html">Projects</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Projects</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/nlp/index.html">Natural Language Processing</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Natural Language Processing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/airbnb_alternate_search/about/index.html">Airbnb Listing description based Semantic Search</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/cv/index.html">Computer Vision</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Computer Vision</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/ecommerce_image_segmentation/about/index.html">Image Segmentation for Ecommerce Products</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/ml/index.html">Machine Learning</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of Machine Learning</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/airbnb_price_modeling/about/index.html">Predictive Price Modeling for Airbnb listings</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../publications/index.html">Patents, Papers, Thesis</a></li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../index.html">MLOps</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of MLOps</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch1_problem_framing.html">ML Problem framing</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of ML Problem framing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch2_blueprint_operational_strategy.html">The MLOps Blueprint &amp; Operational Strategy</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch2a_platform/index.html">ML Platforms</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of ML Platforms</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/ml_platforms.html">ML Platforms: How to</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/uber.html">Uber Michelangelo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/linkedin.html">LinkedIn DARWIN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/netflix.html">Netflix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/shopify.html">Shopify Merlin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/zomato.html">Zomato: Real-time ML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/coveo.html">Coveo: MLOPs at reasonable scale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/monzo.html">Monzo ML Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/didact.html">Didact AI</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch3_project_planning/index.html">Project Planning</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of Project Planning</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/prd.html">Project Requirements Document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/tech_stack.html">Tech Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/config_management.html">Config Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/pipeline_design.html">Pipeline Design</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/environment_strategy.html">Environment Strategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/cicd_branching_model.html">CI/CD Strategy and Branching Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/directory_structure.html">Directory Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/env_branchind_cicd_deployment.html">Environments, Branching, CI/CD, and Deployments Explained</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/project_management.html">Project Management for MLOps</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch4_data_discovery/index.html">Data Sourcing, Discovery</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of Data Sourcing, Discovery</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/data_sourcing_discovery.html">Data Sourcing, Discovery &amp; Understanding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/ch4_project.html">Project-Trending Now: Implementing Web Scraping, Ingestion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/industry_case_studies.html">Data Discovery Platforms: Industry Case Studies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/facebook_nemo.html">Facebook: Nemo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/netflix_metacat.html">Netflix Metacat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/uber_databook.html">Uber Databook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/linkedin_datahub.html">LinkedIn Datahub</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../lld/index.html">Low Level Design</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle navigation of Low Level Design</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../lld/parking_lot.html">Parking Lot</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../visualization/index.html">Data Visualization Projects</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="../../_sources/mlops/ch12_retrain_online_testing/guide_ab_testing.md.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="a-b-testing">
+<h1>A/B Testing<a class="headerlink" href="#a-b-testing" title="Permalink to this heading">¶</a></h1>
+<p>This document synthesizes insights from Eppo, Netflix, and Microsoft, along with expert perspectives, covering the lifecycle of experimentation, advanced testing methodologies, feature management, and best practices for deploying and evaluating machine learning models in production.</p>
+<section id="part-1-foundations-of-digital-experimentation">
+<h2>Part 1: Foundations of Digital Experimentation<a class="headerlink" href="#part-1-foundations-of-digital-experimentation" title="Permalink to this heading">¶</a></h2>
+<p><strong>1.1. What is Digital Experimentation?</strong>
+Digital experimentation is the systematic process of testing and iterating on digital products, features, or marketing strategies by making deliberate changes and measuring their impact on user behavior and Key Performance Indicators (KPIs). Its purpose is to empower businesses to make data-driven decisions, understand user behavior (pain points, preferences, drop-offs), drive conversions (e.g., purchases, sign-ups), and improve overall performance (engagement, satisfaction).</p>
+<p><strong>1.2. Core Experimentation Types:</strong></p>
+<ul class="simple">
+<li><p><strong>A/B Testing (Split Testing):</strong></p>
+<ul>
+<li><p><strong>Definition:</strong> Compares two or more variations (A/B/n) of a webpage, app feature, email, or ad by randomly splitting an audience. Typically, only one element is changed at a time between versions A (control/status quo) and B (variation) to isolate its impact.</p></li>
+<li><p><strong>“A/B testing vs. Split testing”:</strong> For 95% of people, these terms are synonymous. A subtle distinction sometimes made is that “split testing” can refer to testing entirely different versions of a page/app (potentially without a status quo control, e.g., testing two new email designs), while “A/B testing” usually implies a control. However, the core concept of splitting traffic to compare variations is the same. Splitting traffic via random assignment is crucial for creating comparable groups and ensuring a controlled experiment.</p></li>
+<li><p><strong>A/B/n Testing:</strong> An extension of A/B testing where “n” represents any number of variations beyond two. Useful for exploring a wider range of ideas simultaneously.</p></li>
+</ul>
+</li>
+<li><p><strong>Multivariate Testing (MVT):</strong> Tests multiple variables and their combinations simultaneously (e.g., headline + image + CTA button color) to understand how different elements interact and influence each other. It helps uncover synergies that A/B testing might miss.</p></li>
+<li><p><strong>Multi-Armed Bandit (MAB) Testing:</strong> A dynamic approach that automatically adjusts traffic allocation to different variations based on their real-time performance. It learns which variation is performing best and directs more traffic to it, useful for quickly identifying and capitalizing on top performers when testing multiple variations.</p></li>
+<li><p><strong>A/A Testing:</strong></p>
+<ul>
+<li><p><strong>Definition:</strong> Two <em>identical</em> versions (A and A) are tested against each other. Users are randomly split, and metrics are compared.</p></li>
+<li><p><strong>Purpose:</strong> Verifies the accuracy and reliability of the testing setup (tools, randomization, data pipeline). If significant differences are found, it indicates problems. It also serves as a teaching tool about statistical noise, p-values, and error rates.</p></li>
+<li><p><strong>Frequency:</strong> Essential when implementing a new testing tool, making major setup changes, encountering data discrepancies, or trying new experiment types (e.g., browser redirects where an A/A redirect can uncover latency issues).</p></li>
+<li><p><strong>Interpretation:</strong> Ideally, no statistically significant difference is observed. If p-values are consistently below the threshold (e.g., 0.05), it signals an issue. Advanced A/A testing involves running hundreds/thousands of (simulated) A/A tests and plotting p-value distributions to ensure uniformity, guarding against statistical biases.</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>1.3. Benefits of A/B Testing:</strong>
+(As highlighted by Eppo and Netflix product philosophy)</p>
+<ul class="simple">
+<li><p><strong>Data-Driven Decisions:</strong> Moves beyond assumptions, relying on evidence.</p></li>
+<li><p><strong>Revenue Growth &amp; Improved Margins:</strong> Identifies what resonates to maximize revenue and profitability.</p></li>
+<li><p><strong>Enhanced User Experience:</strong> Continuously refines products based on user behavior.</p></li>
+<li><p><strong>Reduced Risk:</strong> Tests ideas on a smaller scale before full implementation, minimizing costly mistakes.</p></li>
+<li><p><strong>Innovation &amp; Competitive Edge:</strong> Encourages bold experimentation, uncovers unique insights, and helps outpace competitors. Companies like Amazon, Netflix, Google, and Microsoft build their success on extensive experimentation.</p></li>
+<li><p><strong>Better Content Engagement &amp; Marketing ROI:</strong> Fine-tunes content and identifies effective marketing strategies.</p></li>
+<li><p><strong>Deeper Audience Insights:</strong> Provides valuable understanding of user behavior and preferences.</p></li>
+</ul>
+<p><strong>1.4. The Experiment Plan (Based on Eppo’s Guide by Kristi Angel):</strong>
+An experiment plan is a blueprint and contract, guiding execution, ensuring rigor, and fostering transparency.</p>
+<ul class="simple">
+<li><p><strong>Core Components:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Problem Statement:</strong> Concise description of the business problem, background, proposed solution, and desired outcomes. Links to BRDs/PRDs.</p></li>
+<li><p><strong>Hypothesis:</strong> A distilled, statistical (though often framed from a product POV) statement, e.g., “By introducing X, we expect an INCREASE/DECREASE in Y (primary metric).”</p></li>
+<li><p><strong>User Experience:</strong> Screenshots, wireframes, or descriptions of control and treatment.</p></li>
+<li><p><strong>Target Audience &amp; Triggering:</strong> Who is included (e.g., “all users,” “users entering checkout on iOS in NYC”) and where experiment allocation occurs.</p></li>
+<li><p><strong>Sampling Strategy:</strong> E.g., “100% of the population, 50% Control, 50% Treatment,” or more advanced strategies like switchbacks.</p></li>
+<li><p><strong>Metrics (Primary, Secondary, Guardrail):</strong></p>
+<ul>
+<li><p><strong>Primary:</strong> Decision-making metric; deterioration would prevent rollout.</p></li>
+<li><p><strong>Secondary:</strong> Supportive, hypothesis-generating; helps tell a robust story.</p></li>
+<li><p><strong>Guardrail:</strong> Not expected to move, but movement indicates unintended effects (e.g., page load times, unsubscribes).</p></li>
+</ul>
+</li>
+<li><p><strong>Method of Analysis:</strong> Statistical methods (t-test, DiD, CUPED++, sequential methods).</p></li>
+<li><p><strong>Baseline Measure &amp; Variance:</strong> For the primary metric, ensuring it reflects the experiment’s specific context (population, metric definition).</p></li>
+<li><p><strong>Minimum Detectable Effect (MDE):</strong> The smallest effect size considered meaningful and practically detectable. Iteratively chosen based on plausible lift and acceptable runtime.</p></li>
+<li><p><strong>Power and Significance Levels:</strong> Typically 80% power (20% false negative rate) and 5% significance level (alpha).</p></li>
+<li><p><strong>Power Calculation (Sample Size Calculation):</strong> Determines samples needed per variant.</p></li>
+<li><p><strong>Estimated Runtime:</strong> Based on sample size and traffic, usually minimum two weeks.</p></li>
+<li><p><strong>Decision Matrix:</strong> Pre-defined actions for possible outcomes (positive, negative, inconclusive) for decision metrics. Essential for objectivity and expediting post-experiment decisions.</p></li>
+</ol>
+</li>
+</ul>
+</section>
+<section id="part-2-trustworthy-experimentation-microsoft-s-framework">
+<h2>Part 2: Trustworthy Experimentation (Microsoft’s Framework)<a class="headerlink" href="#part-2-trustworthy-experimentation-microsoft-s-framework" title="Permalink to this heading">¶</a></h2>
+<p>Microsoft emphasizes a three-stage approach to ensure trustworthy A/B testing.</p>
+<p><strong>2.1. Pre-Experiment Stage:</strong>
+Ensuring a solid foundation before the experiment starts.</p>
+<ul class="simple">
+<li><p><strong>Forming a Hypothesis and Selecting Users:</strong></p>
+<ul>
+<li><p><strong>Formulate Hypothesis &amp; Success Metrics:</strong> Clear, simple, falsifiable/provable hypothesis. Metrics should include user satisfaction, guardrail, feature/engagement, and data quality. Account for statistical power and the proportion of affected traffic.</p></li>
+<li><p><strong>Choose Appropriate Unit of Randomization:</strong></p>
+<ul>
+<li><p><em>Stability of ID:</em> Cookie-based IDs are unstable; suitable for short-term tests. Monitor cookie churn.</p></li>
+<li><p><em>Network Effects:</em> If SUTVA (Stable Unit Treatment Value Assumption) is violated (user actions affect others), use cluster-level randomization.</p></li>
+<li><p><em>Enterprise Constraints:</em> Business limitations might necessitate enterprise-level randomization.</p></li>
+</ul>
+</li>
+<li><p><strong>Check and Account for Pre-Experiment Bias:</strong></p>
+<ul>
+<li><p><em>Retrospective-AA Analysis:</em> Compare metrics for treatment/control groups in the pre-experiment period.</p></li>
+<li><p><em>Seedfinder:</em> Generate metrics for many randomization seeds and pick one with least pre-experiment bias.</p></li>
+<li><p><em>Variance Reduction (e.g., CUPED/CUPED++):</em> Use pre-experiment data for the same metric to reduce bias and variance in the final analysis, increasing sensitivity.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Pre-Experiment Engineering Design Plan:</strong></p>
+<ul>
+<li><p><strong>Set Up Counterfactual Logging:</strong> For changes affecting a subset of users (e.g., a specific search answer). Log in control if the user <em>would have</em> seen the treatment. Enables apples-to-apples comparison by identifying the “intended-to-treat” population in both groups. Critical for “zoomed-in” or triggered analysis. Ensure correctness via SRM checks on the triggered population.</p></li>
+<li><p><strong>Have Custom Control and Standard Control:</strong></p>
+<ul>
+<li><p><em>Custom Control:</em> Specific to an experiment (e.g., with counterfactual logging).</p></li>
+<li><p><em>Standard Control:</em> Users not exposed to any experiment code. Comparing custom control to standard control can detect if the experiment setup itself (not the intended treatment) is causing issues.</p></li>
+</ul>
+</li>
+<li><p><strong>Review Engineering Design Choices to Avoid Bias:</strong> Prevent treatment effect leakage through shared infrastructure (e.g., shared ML model components, caches). Ensure resource availability is equal unless part of the treatment.</p></li>
+</ul>
+</li>
+<li><p><strong>Pre-Validation by Progressing Through Populations (Safe Rollout):</strong></p>
+<ul>
+<li><p><strong>Gradual Rollout Across Different User Populations:</strong> Test on internal/dogfood/beta users before general users to catch egregious issues. Results may not generalize perfectly.</p></li>
+<li><p><strong>Gradual Rollout within a User Population:</strong> Start with a small percentage (e.g., 1%) and ramp up (5%, 10%), monitoring metrics at each stage to detect regressions.</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>2.2. During-Experiment Stage:</strong>
+Monitoring and analyzing the experiment as it runs.</p>
+<ul class="simple">
+<li><p><strong>Measure Holistically and Frequently:</strong></p>
+<ul>
+<li><p><strong>Complete Metric Set (STEDI: Sensitive, Trustworthy, Efficient, Debuggable, Interpretable):</strong></p>
+<ul>
+<li><p><em>Data Quality Metrics:</em> Telemetry consistency (Error Rates, Data Loss, Join Rates, SRM).</p></li>
+<li><p><em>Overall Evaluation Criteria (OEC):</em> User satisfaction/loyalty (Session Count, Success Rate, Utility Rate).</p></li>
+<li><p><em>Local Feature/Diagnostic Metrics:</em> Usage of specific features (Feature Coverage, CTR, Messages Received).</p></li>
+<li><p><em>Guardrail Metrics:</em> Aspects not to degrade (Page Load Time, Crash Rate, Abandonment Rate).</p></li>
+</ul>
+</li>
+<li><p><strong>Measure Early and Often:</strong> Compute metrics at regular intervals (even near-real-time for critical ones). Use appropriate statistical methods for multiple hypothesis testing/early peeking (e.g., sequential testing, stronger significance for early reads).</p></li>
+</ul>
+</li>
+<li><p><strong>Monitor Metrics to Intervene when Needed:</strong></p>
+<ul>
+<li><p><strong>Set Up Alerts:</strong> For major movements in business-critical metrics (Guardrails, OECs), especially SRMs. Alerts can trigger on large movements or p-value thresholds.</p></li>
+<li><p><strong>Auto-Shutdown Egregious A/B Tests:</strong> For tests significantly degrading user experience or product (e.g., bugs leading to 404s).</p></li>
+</ul>
+</li>
+<li><p><strong>Slice the Analysis with Appropriate Segments:</strong></p>
+<ul>
+<li><p><strong>Use Stable Segments:</strong> “Static” segments (Market, Country, Browser, App version, pre-experiment activity) where users remain in the same segment value. Ensure segments are balanced and SRM-free. Avoid dynamic segments (which can be affected by treatment) for direct slicing, or use weighted metrics.</p></li>
+<li><p><strong>Segment by Date:</strong> Detect novelty effects (rapid decline of effect), learning effects, or interactions with external events (holidays, sports). A changing treatment effect over time warrants investigation.</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>2.3. Post-Experiment Stage:</strong>
+Finalizing analysis, making decisions, and institutionalizing learnings.</p>
+<ul class="simple">
+<li><p><strong>Verify Treatment Effects Do Not Invalidate Metrics:</strong></p>
+<ul>
+<li><p><strong>Ensure Metric Movements Align with Test Set-Up:</strong> Check user characteristics against target population, traffic allocation. Do coverage metrics reflect the change?</p></li>
+<li><p><strong>Check for Telemetry-Breaking Changes:</strong> If the treatment unintentionally changes how logs are collected (e.g., improved call logging reliability only in treatment), it biases metrics. Use data quality metrics to detect this.</p></li>
+<li><p><strong>Check for Imbalance in Metric Observation Units:</strong></p>
+<ul>
+<li><p><em>Rate Metrics:</em> If the denominator (itself a metric) changes significantly, it can cause misleading movements in the rate metric. Report the denominator metric separately. Use the most fine-grained denominator that doesn’t show stat-sig movement.</p></li>
+<li><p><em>Metric SRM:</em> Mismatch in the number of a metric’s observation units (e.g., more homepage loads in treatment due to engagement, skewing average Page Load Time if not accounted for). Check SRM on observation units.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Estimate the Final Impact of the Treatment:</strong></p>
+<ul>
+<li><p><strong>Segment by Triggered/Non-Triggered Users (Triggered Analysis):</strong> Zoom in on the population directly affected using counterfactual logging. Verify trigger correctness (no SRM in triggered scorecard, flat triggered-complement analysis).</p></li>
+<li><p><strong>Dilute Gains to Reflect the Trigger Rate:</strong> The delta in triggered analysis isn’t the overall impact. Dilute count metric deltas by multiplying by the user trigger rate. For ratio metrics, use more complex methods (e.g., Deng and Hu’s variance reduction approach).</p></li>
+<li><p><strong>Tradeoff Observed Metric Movements:</strong> If OEC improves but a Guardrail regresses (e.g., richer content vs. slower load time), a pre-defined weighting system or OEC framework reflecting business strategy is needed.</p></li>
+</ul>
+</li>
+<li><p><strong>Close the Loop on Experiment Results:</strong></p>
+<ul>
+<li><p><strong>When in Doubt, Reproduce Results:</strong> If results are surprising or counter-intuitive (Twyman’s Law), re-run the experiment with re-randomized users and potentially higher traffic.</p></li>
+<li><p><strong>Regularly Share Experiment Results:</strong> Foster a learning culture via reviews, “ship” emails with A/B results, and company-wide talks (e.g., Microsoft’s “Best Experiments Talks”).</p></li>
+<li><p><strong>Archive Hypothesis, Tests, and Metric Movements:</strong> Create an institutional memory/Experiment Corpus for meta-analysis, understanding metric behavior, and preventing cycles of shipping/unshipping similar changes.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="part-3-advanced-experimentation-techniques">
+<h2>Part 3: Advanced Experimentation Techniques<a class="headerlink" href="#part-3-advanced-experimentation-techniques" title="Permalink to this heading">¶</a></h2>
+<p><strong>3.1. Clustered Experiments (Eppo):</strong></p>
+<ul>
+<li><p><strong>Problem:</strong> Traditional A/B testing randomizes individual users. This isn’t sufficient when interference effects exist (one user’s treatment affects another’s experience or outcome) or when analysis units are naturally grouped.</p></li>
+<li><p><strong>Definition:</strong> Randomizes groups (clusters) of analysis units (e.g., companies, geographical regions, user segments) rather than individual units.</p></li>
+<li><p><strong>When to Use:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Session-level metrics in user-randomized experiments:</strong> Users act as clusters of sessions. Randomizing by user and analyzing session metrics can violate independence, increasing false positives.</p></li>
+<li><p><strong>Organizational-Level Interference (B2B):</strong> Users in the same organization influence each other (e.g., messaging software).</p></li>
+<li><p><strong>Market-level tests:</strong> E.g., testing a new pricing strategy in select cities.</p></li>
+</ol>
+</li>
+<li><p><strong>Statistical Challenge:</strong> Lack of independence among observations within the same cluster. Naive application of traditional stats underestimates variances.</p></li>
+<li><p><strong>Solution (Clustered Analysis):</strong></p>
+<ul class="simple">
+<li><p>Apply the delta method to the ratio of cluster-aggregated metrics and cluster size.</p></li>
+<li><p>Mathematically equivalent to Cluster Robust Standard Errors (CRSE) but more scalable.</p></li>
+<li><p>Accurately estimates variance, accounts for intra-cluster correlations.</p></li>
+<li><p>Flexible for various metrics (per-user, per-order, timeboxed, filtered).</p></li>
+<li><p>Allows advanced stats like CUPED++, Sequential Hybrid, Bayesian methods.</p></li>
+</ul>
+</li>
+<li><p><strong>Real-World Applications (Eppo Examples):</strong></p>
+<ol class="arabic simple">
+<li><p><em>Measuring Average Order Value (AOV) with User-Level Randomization:</em> Randomize at user level (cluster of orders), analyze AOV at order level.</p></li>
+<li><p><em>User-Level Conversion Rate in Company-Randomized Experiments:</em> Randomize at company level (cluster of users), analyze conversion at user level.</p></li>
+</ol>
+</li>
+<li><p><strong>Implementation (Eppo SDK Example):</strong> Pass cluster ID as primary ID, analysis unit as an attribute.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">variation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">eppoClient</span><span class="p">.</span><span class="nx">getBooleanAssignment</span><span class="p">(</span>
+<span class="w">  </span><span class="s1">&#39;enable-my-new-feature&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">companyId</span><span class="p">,</span><span class="w"> </span><span class="c1">// Cluster ID</span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nx">userId</span><span class="o">:</span><span class="w"> </span><span class="mf">123</span><span class="w"> </span><span class="cm">/* Analysis unit attribute */</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="kc">false</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p><strong>3.2. Interleaving for Ranking Algorithms (Netflix):</strong></p>
+<ul class="simple">
+<li><p><strong>Problem:</strong> Discerning wins in core metrics (retention, streaming hours) for ranking algorithms via A/B testing requires large sample sizes and long durations.</p></li>
+<li><p><strong>Solution:</strong> A two-stage online experimentation process:</p>
+<ol class="arabic simple">
+<li><p><strong>Stage 1 (Pruning):</strong> Interleaving to quickly identify promising ranking algorithms.</p></li>
+<li><p><strong>Stage 2 (Validation):</strong> Traditional A/B test on the pruned set for longer-term impact.</p></li>
+</ol>
+</li>
+<li><p><strong>Interleaving Definition:</strong> Instead of splitting users into groups A and B, a single group is exposed to an <em>interleaved ranking</em> generated by blending results from algorithms A and B. Member preference is measured by attributing engagement (e.g., viewed hours) to the algorithm that recommended the item.</p></li>
+<li><p><strong>Advantages:</strong></p>
+<ul>
+<li><p>Highly sensitive to ranking quality; detects preferences with much smaller sample sizes (&gt;100x fewer users than A/B testing for Netflix).</p></li>
+<li><p>Predictive of A/B test success; interleaving metrics correlate strongly with A/B metrics.</p></li>
+<li><p>Uses a repeated measures design, removing uncertainty from population-level consumption habits and reducing impact of heavy user imbalance.</p></li>
+</ul>
+</li>
+<li><p><strong>Addressing Position Bias:</strong> Essential that at any position, an item is equally likely to come from algorithm A or B.</p>
+<ul>
+<li><p><strong>Team Draft Interleaving:</strong> Mimics sports team selection. Captains (algorithms A and B) toss a coin for first pick, then alternate, selecting their highest-ranked available “player” (video).</p></li>
+</ul>
+</li>
+<li><p><strong>Limitations:</strong></p>
+<ul>
+<li><p>Engineering complexity for implementation and consistency checks.</p></li>
+<li><p>Relative measurement of user preference; doesn’t directly measure absolute metrics like retention (hence the second A/B test stage).</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>3.3. Automated Canary Analysis (Netflix’s Kayenta &amp; Spinnaker):</strong></p>
+<ul class="simple">
+<li><p><strong>Canary Release:</strong> Reduces deployment risk by rolling out a new version (canary) to a small subset of users alongside the stable version. Traffic is split, and key metrics are compared. If degradation occurs, canary is aborted.</p></li>
+<li><p><strong>Netflix’s Augmented Canary Process:</strong></p>
+<ul>
+<li><p><strong>Production Cluster:</strong> Unchanged, current version.</p></li>
+<li><p><strong>Baseline Cluster:</strong> Same code/config as production (typically 3 new instances to avoid long-running process effects).</p></li>
+<li><p><strong>Canary Cluster:</strong> Proposed changes (typically 3 new instances).</p></li>
+<li><p>Production gets most traffic; baseline and canary get small, equal amounts.</p></li>
+</ul>
+</li>
+<li><p><strong>Kayenta (Automated Canary Analysis Platform):</strong> Integrated with Spinnaker (CD platform).</p>
+<ul>
+<li><p><strong>Metric Retrieval:</strong> Gets key metrics (HTTP status, response times, exceptions, load avg) from sources like Prometheus, Stackdriver, Datadog, Atlas. Queries based on config file, scope (cluster, time range).</p></li>
+<li><p><strong>Judgment:</strong> Compares baseline and canary metrics.</p>
+<ol class="arabic simple">
+<li><p><em>Data Validation:</em> Ensures data exists for both. Marks “NODATA” if not.</p></li>
+<li><p><em>Data Cleaning:</em> Handles missing values (NaNs replaced with zeros for errors, removed for others).</p></li>
+<li><p><em>Metric Comparison:</em> Classifies each metric as “Pass,” “High,” or “Low.” Uses confidence intervals (Mann-Whitney U test) to detect significant differences.</p></li>
+<li><p><em>Score Computation:</em> Ratio of “Pass” metrics to total metrics (e.g., 9/10 Pass = 90% score). Used by Spinnaker to continue or rollback.</p></li>
+</ol>
+</li>
+<li><p><strong>Reporting:</strong> UI in Spinnaker shows canary score, detailed breakdown by metric, input data.</p></li>
+<li><p><strong>Additional Features:</strong> Archiving for re-running analysis with new algorithms, pluggable metric sources/judges/storage, REST API.</p></li>
+</ul>
+</li>
+<li><p><strong>Success:</strong> More flexible, less hand-tuning than legacy systems. Focuses on semantic meaning of metrics.</p></li>
+</ul>
+</section>
+<section id="part-4-key-a-b-testing-metrics-to-track-eppo">
+<h2>Part 4: Key A/B Testing Metrics to Track (Eppo)<a class="headerlink" href="#part-4-key-a-b-testing-metrics-to-track-eppo" title="Permalink to this heading">¶</a></h2>
+<p>Choosing the right metrics is crucial. Align with business goals, focus on primary vs. secondary metrics, consider the user journey.</p>
+<ol class="arabic simple">
+<li><p><strong>Revenue:</strong> Total money generated. (Total Revenue = Price * Units/Subscriptions Sold). Eppo’s warehouse-native approach ensures accurate tracking from source of truth. Improve by increasing conversion, AOV, targeting high-value users.</p></li>
+<li><p><strong>Conversion Rate:</strong> % of users completing a desired action (signup, download, purchase). (Conversion Rate = (Conversions / Total Visitors) * 100). Improve with clear CTAs, value proposition, minimizing friction, building trust.</p></li>
+<li><p><strong>Profit Margins:</strong> % of revenue kept as profit after costs. (Gross Profit Margin = (Revenue - COGS) / Revenue * 100). A/B test for impact on margins, not just conversions. Understand product/SKU mix.</p></li>
+<li><p><strong>Customer Lifetime Value (LTV):</strong> Predicted total revenue per customer. (LTV = Avg Order Value * Purchase Frequency * Customer Lifespan). Improve with excellent CX, nurturing relationships, providing long-term value.</p></li>
+<li><p><strong>User Retention Rate:</strong> % of users continuing to engage over time. (Retention Rate = [(Users at Period End - New Users Acquired) / Users at Period Start] * 100). Improve with good onboarding, support, community, loyalty rewards.</p></li>
+<li><p><strong>Customer Satisfaction Score (CSAT):</strong> Measures immediate satisfaction via surveys (e.g., 1-5 scale). (CSAT = (Positive Responses / Total Responses) * 100). Improve by easing pain points, timely feedback, closing the loop. (Note: CSAT can be subjective and require larger sample sizes).</p></li>
+<li><p><strong>Cart Abandonment Rate (E-commerce):</strong> % of shoppers adding to cart but not purchasing. (Cart Abandonment Rate = (Abandoned Carts / Shopping Sessions Initiated) * 100). Improve by simplifying checkout, transparent shipping costs, multiple payment options, retargeting.</p></li>
+<li><p><strong>Click-Through Rate (CTR):</strong> % of users clicking links/ads/CTAs after seeing them. (CTR = (Clicks / Impressions) * 100). Improve with compelling CTAs, eye-catching design, relevance.</p></li>
+<li><p><strong>Bounce Rate:</strong> % of users leaving after viewing one page/screen without further action. (Bounce Rate = (Single-interaction Sessions / Total Sessions) * 100). Improve by matching expectations, visual appeal, internal linking, error handling.</p></li>
+<li><p><strong>Average Session Duration:</strong> Time user actively engages. (Avg Session Duration = Total Time Spent / Total Sessions). Improve with content depth/value, storytelling, interaction, content series.</p></li>
+</ol>
+</section>
+<section id="part-5-feature-flag-driven-development-eppo">
+<h2>Part 5: Feature Flag-Driven Development (Eppo)<a class="headerlink" href="#part-5-feature-flag-driven-development-eppo" title="Permalink to this heading">¶</a></h2>
+<p>A software development technique where new features are wrapped in conditional code blocks (feature flags), allowing them to be turned on/off without redeployment.</p>
+<p><strong>5.1. Core Elements:</strong></p>
+<ul class="simple">
+<li><p><strong>Feature Flags:</strong> Boolean (true/false) toggles in code. Off = feature hidden; On = feature active.</p></li>
+<li><p><strong>Flag Management Systems (e.g., Eppo):</strong> Dashboards for creating, organizing, tracking flags; targeting rules (location, subscription, device); monitoring impact.</p></li>
+<li><p><strong>Deployment Pipeline Integration (CI/CD):</strong></p>
+<ul>
+<li><p><em>CI:</em> Automated testing occurs even for features behind inactive flags.</p></li>
+<li><p><em>CD:</em> Safe to push updates to production; new code is inactive until flag is turned on.</p></li>
+<li><p><em>Controlled Release:</em> Activate features via flag management system, no redeployment needed.</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>5.2. Benefits:</strong></p>
+<ul class="simple">
+<li><p><strong>Incremental Rollouts (Progressive Delivery):</strong> Release to small user percentages, monitor, gather feedback, then expand. Finds issues early, measures real-world impact.</p></li>
+<li><p><strong>Risk Mitigation:</strong> Flags act as “kill switches.” Disable problematic features instantly without code rollback. Enables confident, frequent code releases.</p></li>
+<li><p><strong>A/B Testing:</strong> Easily test variations of features with specific user segments by associating flag states with experiment variants.</p></li>
+</ul>
+<p><strong>5.3. Implementation Steps:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Setting Up Feature Flags:</strong> Choose a system (e.g., Eppo), wrap features in if-else logic checking flag status. Start simple.</p></li>
+<li><p><strong>Integrating with CI/CD Pipelines:</strong> Automate flag creation, define deployment strategies (e.g., auto-remove old flags), establish review/audit processes.</p></li>
+<li><p><strong>Managing Feature Flag Lifecycles:</strong> Document flags (purpose, creator, usage), plan for flag retirement to avoid technical debt.</p></li>
+</ol>
+<p><strong>5.4. Best Practices:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Clear Naming Conventions:</strong> E.g., <code class="docutils literal notranslate"><span class="pre">feature_name_status_date</span></code> (e.g., <code class="docutils literal notranslate"><span class="pre">new_search_testing_20240509</span></code>).</p></li>
+<li><p><strong>Monitor Metrics to Measure Impact:</strong> Track performance, user behavior, A/B test results for flagged features.</p></li>
+<li><p><strong>Keep Stakeholders Informed:</strong> Developers, PMs, Marketing/Sales.</p></li>
+</ol>
+<p><strong>5.5. Common Mistakes:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Technical Debt from Outdated Flags:</strong> Makes codebase harder to maintain, can cause unexpected interactions. Regularly audit and remove old flags.</p></li>
+<li><p><strong>Complexity of Management:</strong> Testing various flag combinations, tracking purpose/ownership. Use centralized systems, document thoroughly, consider a global “kill switch.”</p></li>
+</ol>
+</section>
+<section id="part-6-product-usage-metrics-analysis-and-strategies-eppo">
+<h2>Part 6: Product Usage - Metrics, Analysis, and Strategies (Eppo)<a class="headerlink" href="#part-6-product-usage-metrics-analysis-and-strategies-eppo" title="Permalink to this heading">¶</a></h2>
+<p>Understanding how customers interact with a product.</p>
+<p><strong>6.1. Key Metrics (some overlap with A/B testing metrics, viewed through product usage lens):</strong></p>
+<ul class="simple">
+<li><p><strong>Daily Active Users (DAU):</strong> Unique users interacting daily.</p></li>
+<li><p><strong>Monthly Active Users (MAU):</strong> Unique users interacting monthly.</p></li>
+<li><p><strong>Session Duration:</strong> Average time per session.</p></li>
+<li><p><strong>Feature Usage:</strong> How often specific features are used.</p></li>
+<li><p><strong>Retention Rate:</strong> % of users continuing product use over time.</p></li>
+<li><p><strong>Churn Rate:</strong> % of users stopping product use over time (opposite of retention).</p></li>
+<li><p><strong>Engagement Rate:</strong> How actively users interact (likes, comments, shares, tasks completed).</p></li>
+</ul>
+<p><strong>6.2. Methods for Analyzing Product Usage:</strong></p>
+<ul class="simple">
+<li><p><strong>User Analytics Tools (Google Analytics, Mixpanel, Amplitude):</strong> Track actions, patterns, trends.</p></li>
+<li><p><strong>Heatmaps (Hotjar):</strong> Visualize clicks, scrolls, hovers.</p></li>
+<li><p><strong>User Surveys and Feedback:</strong> Gather qualitative data.</p></li>
+<li><p><strong>A/B Testing (Eppo):</strong> Compare versions of features/pages.</p></li>
+</ul>
+<p><strong>6.3. Examples of Product Usage Analysis:</strong></p>
+<ul class="simple">
+<li><p><strong>E-commerce:</strong> Track user journey to identify friction in purchase funnel (e.g., high cart abandonment at shipping step).</p></li>
+<li><p><strong>Mobile App:</strong> Monitor feature usage (popular vs. underused) and session duration to improve flow.</p></li>
+<li><p><strong>Content Platform:</strong> Track content engagement (views, likes, shares) to tailor content strategy.</p></li>
+</ul>
+<p><strong>6.4. Strategies to Grow Product Usage:</strong></p>
+<ul class="simple">
+<li><p><strong>Focus on Onboarding Experience:</strong> Guide users to “aha moment” with interactive walkthroughs, checklists.</p></li>
+<li><p><strong>Prioritize User Experience (UX):</strong> Intuitive navigation, clear instructions, appealing design, fast load times.</p></li>
+<li><p><strong>Personalize User Experience:</strong> Segment users, deliver custom recommendations/content.</p></li>
+<li><p><strong>Continuous Feature Updates &amp; Improvements:</strong> Based on usage data and feedback.</p></li>
+</ul>
+</section>
+<section id="part-7-machine-learning-continual-learning-and-test-in-production-ocr-d-text-designing-machine-learning-systems">
+<h2>Part 7: Machine Learning - Continual Learning and Test in Production (OCR’d Text “Designing Machine Learning Systems”)<a class="headerlink" href="#part-7-machine-learning-continual-learning-and-test-in-production-ocr-d-text-designing-machine-learning-systems" title="Permalink to this heading">¶</a></h2>
+<p><strong>7.1. Continual Learning:</strong></p>
+<ul class="simple">
+<li><p><strong>Definition:</strong> Adapting ML models to data distribution shifts by continually updating them. Not necessarily with every sample, but often in micro-batches (e.g., every 512/1024 examples). The updated model (challenger) is evaluated against the existing one (champion) before deployment.</p></li>
+<li><p><strong>Stateless Retraining vs. Stateful Training:</strong></p>
+<ul>
+<li><p><em>Stateless:</em> Model trained from scratch each time. Requires more data, compute.</p></li>
+<li><p><em>Stateful (Fine-tuning/Incremental Learning):</em> Model continues training on new data from a previous checkpoint. Requires less data, faster convergence (Grubhub: 45x less compute, 20% purchase-through rate increase). Can potentially avoid storing old data, aiding privacy.</p></li>
+<li><p>Stateful training is mostly for <em>data iteration</em> (refreshing model with new data, same architecture). <em>Model iteration</em> (new features/architecture) often still requires training from scratch, though research explores knowledge transfer/model surgery.</p></li>
+</ul>
+</li>
+<li><p><strong>Why Continual Learning?</strong></p>
+<ul>
+<li><p>Combat sudden data distribution shifts (e.g., ride-sharing price model during an unexpected event).</p></li>
+<li><p>Adapt to rare events (e.g., Black Friday, Singles Day).</p></li>
+<li><p>Overcome continuous cold start problem (new users, existing users switching devices, infrequent users with outdated historical data). TikTok adapts to users within minutes.</p></li>
+</ul>
+</li>
+<li><p><strong>Challenges:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Fresh Data Access:</strong> Pulling new data quickly. Data warehouses can be slow. Real-time transports (Kafka, Kinesis) are faster. Labeling speed is often the bottleneck; natural labels with short feedback loops are best (dynamic pricing, CTR prediction). Stream processing for label computation is faster than batch. Programmatic labeling (Snorkel) or crowdsourcing can help.</p></li>
+<li><p><strong>Evaluation Challenge:</strong> Ensuring updates are good enough. Catastrophic failures amplify with frequent updates. Models are more susceptible to adversarial attacks. Thorough offline (Chapter 6 of source) and online (test in production) evaluation is crucial. Evaluation itself takes time.</p></li>
+<li><p><strong>Algorithm Challenge:</strong> Affects matrix-based (e.g., collaborative filtering) and tree-based models more for very fast updates. Neural networks adapt more easily. Feature extraction for partial datasets needs online computation of statistics (min, max, variance).</p></li>
+</ol>
+</li>
+<li><p><strong>Four Stages of Continual Learning Adoption:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Manual, Stateless Retraining:</strong> Ad-hoc updates when performance degrades significantly. Common for new ML teams.</p></li>
+<li><p><strong>Automated Retraining:</strong> Scripts automate retraining (pull data, featurize, train, eval, deploy) periodically (e.g., daily via Spark). Requires schedulers (Airflow, Argo), accessible data, model store (S3, SageMaker, MLflow). “Log and wait” for feature reuse.</p></li>
+<li><p><strong>Automated, Stateful Training:</strong> Reconfigure scripts to load previous checkpoint and continue training. Requires mindset shift and robust data/model lineage tracking.</p></li>
+<li><p><strong>Continual Learning (Trigger-based):</strong> Updates triggered by time, performance drops, data volume, or drift detection, not fixed schedules. Requires solid monitoring and evaluation pipelines. Holy grail: combine with edge deployment.</p></li>
+</ol>
+</li>
+</ul>
+<p><strong>7.2. How Often to Update Your Models?</strong></p>
+<ul class="simple">
+<li><p>Depends on the value of data freshness.</p></li>
+<li><p>Experiment: Train models on data from different past time windows and evaluate on current data. If a model trained a quarter ago is much worse than one trained a month ago, update more frequently. Facebook found daily retraining for ad CTR reduced loss by 1% over weekly.</p></li>
+</ul>
+<p><strong>7.3. Test in Production:</strong>
+Offline evaluation (test splits, backtests on recent data) isn’t enough due to shifting distributions.</p>
+<ul>
+<li><p><strong>Shadow Deployment:</strong></p>
+<ol class="arabic simple">
+<li><p>Deploy candidate model in parallel with existing model.</p></li>
+<li><p>Route incoming requests to both for predictions.</p></li>
+<li><p>Serve only existing model’s prediction to the user.</p></li>
+<li><p>Log new model’s predictions for analysis.</p></li>
+<li><p>Replace if satisfactory. Safe, but doubles inference cost.</p></li>
+</ol>
+</li>
+<li><p><strong>A/B Testing for Models:</strong></p>
+<ol class="arabic simple">
+<li><p>Deploy candidate alongside existing model.</p></li>
+<li><p>Route a percentage of traffic randomly to the new model, rest to existing.</p></li>
+<li><p>Monitor and analyze predictions/user feedback to determine statistically significant performance differences.</p></li>
+</ol>
+<ul class="simple">
+<li><p>Requires true randomization and sufficient sample size.</p></li>
+<li><p>Statistical significance isn’t foolproof (p-value interpretation).</p></li>
+</ul>
+</li>
+<li><p><strong>Canary Release for Models:</strong></p>
+<ol class="arabic simple">
+<li><p>Deploy candidate (canary) alongside existing model.</p></li>
+<li><p>Route a small portion of traffic to canary.</p></li>
+<li><p>If performance satisfactory, increase traffic; otherwise, abort and revert.</p></li>
+<li><p>Stop when canary serves all traffic or is aborted.</p></li>
+</ol>
+<ul class="simple">
+<li><p>Can be done without A/B testing (e.g., roll out to less critical market first).</p></li>
+<li><p>Netflix/Google use automated canary analysis (see Kayenta).</p></li>
+</ul>
+</li>
+<li><p><strong>Interleaving Experiments (for Recommender Systems):</strong> (Covered in Netflix section, relevant here too)</p>
+<ul class="simple">
+<li><p>Expose users to recommendations from both models A and B in a blended list.</p></li>
+<li><p>Measure which model’s recommendations users click on more.</p></li>
+<li><p>Netflix found it “reliably identifies best algorithms with considerably smaller sample size.”</p></li>
+<li><p>Team-draft interleaving ensures fairness against position bias.</p></li>
+</ul>
+</li>
+<li><p><strong>Bandits:</strong></p>
+<ul class="simple">
+<li><p>Balance exploitation (choosing best-performing model so far) and exploration (trying other models).</p></li>
+<li><p>Stateful: Requires online predictions, short feedback loops, mechanism to track performance and route traffic.</p></li>
+<li><p>More data-efficient than A/B testing.</p></li>
+<li><p>Algorithms: ε-greedy, Thompson Sampling, Upper Confidence Bound (UCB).</p></li>
+<li><p><em>Contextual Bandits:</em> For determining payout of each <em>action</em> (e.g., which item to recommend). Partial feedback problem. Balances showing liked items vs. items needing feedback.</p></li>
+</ul>
+</li>
+<li><p><strong>Evaluation Pipeline:</strong> Good evaluation is not just <em>what</em> tests to run, but <em>who</em> runs them and <em>how</em>. Data scientists developing models often evaluate ad-hoc, introducing bias. Clear, automated pipelines with defined thresholds are needed.</p></li>
+</ul>
+</section>
+<section id="part-8-statistical-considerations-and-pitfalls-in-a-b-testing-mode-analytics-julia-glick">
+<h2>Part 8: Statistical Considerations and Pitfalls in A/B Testing (Mode Analytics - Julia Glick)<a class="headerlink" href="#part-8-statistical-considerations-and-pitfalls-in-a-b-testing-mode-analytics-julia-glick" title="Permalink to this heading">¶</a></h2>
+<p><strong>8.1. The Purpose of A/B Testing:</strong>
+To learn about the <em>treatment effect</em> – the impact of an intervention on key metrics compared to a control/baseline. The primary job is to make <em>predictions</em> about future outcomes based on decisions.</p>
+<p><strong>8.2. The Problem with Typical A/B Tests (Null Hypothesis Significance Testing - NHST):</strong></p>
+<ul>
+<li><p>NHST estimates the difference and its uncertainty, yielding a test statistic (e.g., t-statistic). If it falls in a low-probability region under the null hypothesis (H0: no difference), H0 is rejected.</p></li>
+<li><p><em>Statistical Power:</em> Probability of correctly rejecting H0 when an effect exists. Depends on true effect size and uncertainty (sample size). Underpowered tests are common.</p></li>
+<li><p><strong>The Statistical Significance Filter:</strong></p>
+<ol class="arabic simple">
+<li><p>Ask “is it real?” using NHST (e.g., p &lt; 0.05).</p></li>
+<li><p>If not “real,” effect is considered zero for decisions.</p></li>
+<li><p>If “real,” use the observed effect size to guide decisions.</p></li>
+</ol>
+<ul class="simple">
+<li><p><strong>Problem:</strong> We’re now looking at an effect size <em>conditional</em> on statistical significance, which is no longer an unbiased estimator.</p></li>
+<li><p><strong>Result:</strong> Effect size estimates become inflated (too extreme, further from zero). More pronounced in underpowered tests. This can lead to overly optimistic forecasts or chasing illusory lifts.</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>8.3. How to Get Less Inflated Results:</strong></p>
+<ul class="simple">
+<li><p><strong>Regularization:</strong> Pulls estimates toward a central point (usually zero), introducing bias but reducing variance (bias-variance tradeoff). Addresses overfitting caused by the significance filter.</p></li>
+<li><p><strong>A Bayesian Solution (Partial Pooling):</strong></p>
+<ul>
+<li><p>Assume each A/B test’s true effect size is drawn from a common distribution (e.g., Gaussian or fatter-tailed like t-distribution, centered at 0). This is the <em>prior</em>.</p></li>
+<li><p>The observed test result is the true effect plus measurement error.</p></li>
+<li><p>Combine prior information (from past related tests) with current test data to get a <em>posterior</em> estimate.</p></li>
+<li><p><strong>Effect:</strong></p>
+<ul>
+<li><p>Highly powered tests (low standard error): Data overwhelms the prior; results shrink little.</p></li>
+<li><p>Badly underpowered tests (high standard error): Regularized heavily toward zero; “big wins” (often noise) diminish.</p></li>
+</ul>
+</li>
+<li><p>Example: A test with 0.015 lift and 0.005 SE (t=3) might be regularized to 0.0087 (t=1.7) if past similar tests showed smaller effects.</p></li>
+<li><p>Requires buy-in, as it makes lifts look smaller.</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>8.4. If Not Yet Open to Bayesian Models:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Avoid Violating NHST/OLS Assumptions:</strong> Pay as much attention to non-significant results as significant ones to avoid the filter. Difficult in practice. Looking only at effect sizes/CIs without significance testing can help, but checking if CI excludes zero is backdoor significance testing.</p></li>
+<li><p><strong>Design and Run High-Power Experiments:</strong></p>
+<ul class="simple">
+<li><p>Use past tests to inform plausible effect sizes for power analysis.</p></li>
+<li><p>High power (e.g., 90%) means the true distribution area where H0 isn’t rejected is small, so conditional estimates are less inflated.</p></li>
+<li><p>Often hard to achieve due to costs, duration, or small true effects.</p></li>
+<li><p>Powering tests for <em>wished-for</em> lifts instead of <em>probable</em> lifts is a recipe for being led astray.</p></li>
+</ul>
+</li>
+<li><p><strong>Do Informal Regularization (Mental Regularization):</strong></p>
+<ul class="simple">
+<li><p>Use domain knowledge and understanding of causal mechanisms.</p></li>
+<li><p>If a result is implausibly large or unexpected (e.g., retention lift without engagement lift for a UI change), mentally shrink it or investigate further.</p></li>
+<li><p>Be cautious; this injects human judgment, but we do it anyway. Formal regularization can be seen as an application of this.</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>Conclusion:</strong> A/B tests are the beginning, not the end, of solving a problem. Reflecting on why past decisions were made, whether using unbiased OLS or Bayesian pooling, improves learning and business outcomes.</p>
+</section>
+<section id="part-9-eppo-s-role-in-the-ecosystem">
+<h2>Part 9: Eppo’s Role in the Ecosystem<a class="headerlink" href="#part-9-eppo-s-role-in-the-ecosystem" title="Permalink to this heading">¶</a></h2>
+<p>Throughout these diverse topics, Eppo positions itself as a comprehensive, warehouse-native experimentation and feature management platform designed for rigor, precision, and trustworthiness.</p>
+<ul class="simple">
+<li><p><strong>Warehouse-Native:</strong> Integrates directly with data warehouses (Snowflake, BigQuery, Databricks, Redshift), ensuring data is from the internal source of truth, leading to accurate metrics (especially revenue, profit margins) and reducing setup for metric calculation.</p></li>
+<li><p><strong>End-to-End Platform:</strong> Covers experiment planning (hypotheses, sample size, metric alignment), design (feature flagging, advanced allocations, layers, holdouts), execution (SDKs for serving variations, diagnostics, real-time metrics), and analysis (robust statistical engine, CUPED++, sequential testing, Bayesian options, segment exploration, result sharing).</p></li>
+<li><p><strong>Statistical Rigor:</strong> Emphasizes trustworthy results, helping avoid pitfalls like the statistical significance filter by providing robust analysis and options like Bayesian methods or advanced variance reduction (CUPED++ for faster, more precise results).</p></li>
+<li><p><strong>Advanced Methodologies Support:</strong> Facilitates complex designs like Clustered Experiments and A/B/n testing.</p></li>
+<li><p><strong>Feature Flagging:</strong> Integrated for controlled rollouts, A/B testing of features, and risk mitigation.</p></li>
+<li><p><strong>Democratization &amp; Collaboration:</strong> User-friendly interface for both technical and non-technical users, fostering a data-driven culture.</p></li>
+</ul>
+<p>By combining these diverse perspectives, organizations can build a mature, reliable, and impactful experimentation and product development culture. The emphasis across all sources is on data-driven decisions, rigorous methodology, understanding statistical nuances, and leveraging technology to manage complexity and accelerate learning.</p>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024, Deepak Karkala
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">A/B Testing</a><ul>
+<li><a class="reference internal" href="#part-1-foundations-of-digital-experimentation">Part 1: Foundations of Digital Experimentation</a></li>
+<li><a class="reference internal" href="#part-2-trustworthy-experimentation-microsoft-s-framework">Part 2: Trustworthy Experimentation (Microsoft’s Framework)</a></li>
+<li><a class="reference internal" href="#part-3-advanced-experimentation-techniques">Part 3: Advanced Experimentation Techniques</a></li>
+<li><a class="reference internal" href="#part-4-key-a-b-testing-metrics-to-track-eppo">Part 4: Key A/B Testing Metrics to Track (Eppo)</a></li>
+<li><a class="reference internal" href="#part-5-feature-flag-driven-development-eppo">Part 5: Feature Flag-Driven Development (Eppo)</a></li>
+<li><a class="reference internal" href="#part-6-product-usage-metrics-analysis-and-strategies-eppo">Part 6: Product Usage - Metrics, Analysis, and Strategies (Eppo)</a></li>
+<li><a class="reference internal" href="#part-7-machine-learning-continual-learning-and-test-in-production-ocr-d-text-designing-machine-learning-systems">Part 7: Machine Learning - Continual Learning and Test in Production (OCR’d Text “Designing Machine Learning Systems”)</a></li>
+<li><a class="reference internal" href="#part-8-statistical-considerations-and-pitfalls-in-a-b-testing-mode-analytics-julia-glick">Part 8: Statistical Considerations and Pitfalls in A/B Testing (Mode Analytics - Julia Glick)</a></li>
+<li><a class="reference internal" href="#part-9-eppo-s-role-in-the-ecosystem">Part 9: Eppo’s Role in the Ecosystem</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=b3ba4146"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/scripts/furo.js?v=4e2eecee"></script>
+    </body>
+</html>

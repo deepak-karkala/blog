@@ -1,0 +1,758 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" />
+
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/><!-- Generated with Sphinx 7.1.2 and Furo 2024.05.06 -->
+        <title>Model Development - Home</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=387cc868" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=36a5483c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/style.css?v=8a7ff5ee" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" /
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">Home</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  
+  <span class="sidebar-brand-text">Home</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../projects/index.html">Projects</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Projects</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/nlp/index.html">Natural Language Processing</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Natural Language Processing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/airbnb_alternate_search/about/index.html">Airbnb Listing description based Semantic Search</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/cv/index.html">Computer Vision</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Computer Vision</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/ecommerce_image_segmentation/about/index.html">Image Segmentation for Ecommerce Products</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/ml/index.html">Machine Learning</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of Machine Learning</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/airbnb_price_modeling/about/index.html">Predictive Price Modeling for Airbnb listings</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../publications/index.html">Patents, Papers, Thesis</a></li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../index.html">MLOps</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of MLOps</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch1_problem_framing.html">ML Problem framing</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of ML Problem framing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch2_blueprint_operational_strategy.html">The MLOps Blueprint &amp; Operational Strategy</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch2a_platform/index.html">ML Platforms</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of ML Platforms</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/ml_platforms.html">ML Platforms: How to</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/uber.html">Uber Michelangelo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/linkedin.html">LinkedIn DARWIN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/netflix.html">Netflix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/shopify.html">Shopify Merlin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/zomato.html">Zomato: Real-time ML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/coveo.html">Coveo: MLOPs at reasonable scale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/monzo.html">Monzo ML Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/didact.html">Didact AI</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch3_project_planning/index.html">Project Planning</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of Project Planning</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/prd.html">Project Requirements Document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/tech_stack.html">Tech Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/config_management.html">Config Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/pipeline_design.html">Pipeline Design</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/environment_strategy.html">Environment Strategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/cicd_branching_model.html">CI/CD Strategy and Branching Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/directory_structure.html">Directory Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/env_branchind_cicd_deployment.html">Environments, Branching, CI/CD, and Deployments Explained</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/project_management.html">Project Management for MLOps</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch4_data_discovery/index.html">Data Sourcing, Discovery</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of Data Sourcing, Discovery</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/data_sourcing_discovery.html">Data Sourcing, Discovery &amp; Understanding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/ch4_project.html">Project-Trending Now: Implementing Web Scraping, Ingestion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/industry_case_studies.html">Data Discovery Platforms: Industry Case Studies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/facebook_nemo.html">Facebook: Nemo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/netflix_metacat.html">Netflix Metacat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/uber_databook.html">Uber Databook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/linkedin_datahub.html">LinkedIn Datahub</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../lld/index.html">Low Level Design</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle navigation of Low Level Design</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../lld/parking_lot.html">Parking Lot</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../visualization/index.html">Data Visualization Projects</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="../../_sources/mlops/ch7_model_development/development.md.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="model-development">
+<h1>Model Development<a class="headerlink" href="#model-development" title="Permalink to this heading">¶</a></h1>
+<section id="id1">
+<h2><a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<p><strong>Core Philosophy:</strong> Model development is an iterative, experiment-driven process aimed at delivering robust, reliable, and valuable ML solutions. As an MLOps Lead, your role is to guide this process with strategic thinking, ensuring efficiency, reproducibility, and alignment with business objectives and operational constraints.</p>
+<hr class="docutils" />
+<section id="i-setting-the-stage-foundations-for-success">
+<h3>I. Setting the Stage: Foundations for Success<a class="headerlink" href="#i-setting-the-stage-foundations-for-success" title="Permalink to this heading">¶</a></h3>
+<p>Before a single line of model code is written, strategic decisions must be made.</p>
+<ol class="arabic simple">
+<li><p><strong>Defining Success: Metrics are Paramount</strong></p>
+<ul class="simple">
+<li><p><strong>Single-Number Evaluation Metric (Andrew Ng, Zinkevich Rule #2):</strong> Crucial for rapid iteration and clear decision-making. If multiple metrics are important:</p>
+<ul>
+<li><p>Combine them (e.g., weighted average, F1-score for precision/recall).</p></li>
+<li><p>Or, use <strong>Optimizing and Satisficing Metrics (Google Quality Guidelines, Andrew Ng):</strong></p>
+<ul>
+<li><p><strong>Optimizing Metric:</strong> The primary metric to improve (e.g., accuracy, F1-score, MAE). This reflects predictive effectiveness.</p></li>
+<li><p><strong>Satisficing Metrics:</strong> Operational constraints the model <em>must</em> meet (e.g., prediction latency &lt; 200ms, model size &lt; 50MB, fairness across demographics). Models failing satisficing metrics are rejected, regardless of optimizing metric performance.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Predefined Thresholds (Google Quality Guidelines):</strong> Fix thresholds for both optimizing and satisficing metrics <em>before</em> experimentation begins.</p></li>
+<li><p><strong>Metrics Design (Zinkevich Rule #2):</strong> Make metrics design and implementation a priority. Track as much as possible in the current system <em>before</em> formalizing the ML system.</p></li>
+<li><p><strong>Business Alignment:</strong> Ensure ML metrics (e.g., log loss) are proxies for business KPIs (e.g., user engagement, revenue). Understand the translation. (Zinkevich Rule #39)</p></li>
+</ul>
+</li>
+<li><p><strong>Data Foundation: The Quality In, Quality Out Principle</strong></p>
+<ul class="simple">
+<li><p><strong>Dev/Test Sets (Andrew Ng - Yearning, Google Quality Guidelines):</strong></p>
+<ul>
+<li><p><strong>Source:</strong> Must reflect the <em>actual data distribution you expect in production</em> and want to do well on. This may differ from the training data distribution.</p></li>
+<li><p><strong>Consistency:</strong> Dev and test sets <em>must</em> come from the <em>same distribution</em>. Mismatched sets make it hard to diagnose overfitting vs. data mismatch.</p></li>
+<li><p><strong>Size:</strong></p>
+<ul>
+<li><p><strong>Dev Set:</strong> Large enough to detect meaningful differences between models (e.g., 1,000-10,000 examples, or more for detecting minute improvements).</p></li>
+<li><p><strong>Test Set:</strong> Large enough for high confidence in final performance. (Can be smaller % of total data in big data era).</p></li>
+</ul>
+</li>
+<li><p><strong>Splitting (If large dev set - Andrew Ng Yearning Ch. 17):</strong></p>
+<ul>
+<li><p><strong>Eyeball Dev Set:</strong> For manual error analysis (aim for ~100 misclassified examples to analyze).</p></li>
+<li><p><strong>Blackbox Dev Set:</strong> For automated hyperparameter tuning and model selection (avoid manual inspection).</p></li>
+</ul>
+</li>
+<li><p><strong>Preprocessing (Google Quality Guidelines):</strong> Preprocess validation and test splits <em>separately</em> from training data, using statistics (e.g., for normalization) computed <em>only</em> from training data to prevent leakage.</p></li>
+</ul>
+</li>
+<li><p><strong>Data Schema (Google Quality Guidelines):</strong> Generate and use a dataset schema (types, statistical properties) to detect anomalies during experimentation and training.</p></li>
+<li><p><strong>Baseline Model (Google Quality Guidelines):</strong> Essential for comparison. Can be a simple heuristic or a model predicting mean/mode. If your ML model isn’t better, there’s a fundamental issue.</p></li>
+</ul>
+</li>
+<li><p><strong>Initial Approach: Speed and Iteration (Andrew Ng, Zinkevich Rule #4, #16)</strong></p>
+<ul class="simple">
+<li><p><strong>Build your first system quickly, then iterate (Andrew Ng Yearning Ch. 13).</strong> Don’t aim for perfection initially.</p></li>
+<li><p><strong>Keep the first model simple and get the infrastructure right (Zinkevich Rule #4).</strong> Focus on a reliable end-to-end pipeline.</p></li>
+<li><p><strong>Plan to launch and iterate (Zinkevich Rule #16).</strong> Complexity slows future launches.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="ii-the-iterative-development-loop-experimentation-debugging-and-refinement">
+<h3>II. The Iterative Development Loop: Experimentation, Debugging, and Refinement<a class="headerlink" href="#ii-the-iterative-development-loop-experimentation-debugging-and-refinement" title="Permalink to this heading">¶</a></h3>
+<p>This is the core of model development, guided by diagnostics and analysis.</p>
+<ol class="arabic simple">
+<li><p><strong>Streamlined Experimentation &amp; Tracking (Google Quality Guidelines, Chip Huyen Ch. 6, Zinkevich)</strong></p>
+<ul class="simple">
+<li><p><strong>Standardized Evaluation Routine:</strong> Takes a model and data, produces metrics. Should be model/framework agnostic.</p></li>
+<li><p><strong>Track Every Experiment:</strong> Store hyperparameter values, feature selection, random seeds, code versions, data versions (DVC, MLflow). (Google Quality Guidelines, Chip Huyen Ch. 6)</p>
+<ul>
+<li><p><strong>What to track (Chip Huyen Ch. 6):</strong> Loss curves (train/eval), performance metrics (accuracy, F1, perplexity), sample predictions vs. ground truth, speed, system metrics (memory/CPU/GPU usage), parameter/hyperparameter values over time (learning rate, gradient norms, weight norms).</p></li>
+</ul>
+</li>
+<li><p><strong>Version Control for Everything:</strong> Code, data (challenging but crucial – DVC), model configurations.</p></li>
+</ul>
+</li>
+<li><p><strong>Debugging and Diagnostics: Understanding “What’s Wrong?” (Andrew Ng - Lecture, Yearning; Chip Huyen Ch. 6)</strong></p>
+<ul class="simple">
+<li><p><strong>Bias vs. Variance Analysis (Andrew Ng - Lecture, Yearning):</strong></p>
+<ul>
+<li><p><strong>Optimal Error Rate (Bayes Rate):</strong> Estimate using human-level performance or domain knowledge.</p></li>
+<li><p><strong>Avoidable Bias:</strong> <code class="docutils literal notranslate"><span class="pre">Training</span> <span class="pre">Error</span> <span class="pre">-</span> <span class="pre">Optimal</span> <span class="pre">Error</span> <span class="pre">Rate</span></code>.</p></li>
+<li><p><strong>Variance:</strong> <code class="docutils literal notranslate"><span class="pre">Dev</span> <span class="pre">Error</span> <span class="pre">-</span> <span class="pre">Training</span> <span class="pre">Error</span></code>.</p></li>
+<li><p><strong>High Avoidable Bias (Underfitting):</strong></p>
+<ul>
+<li><p>Try bigger model (more layers/units). (Zinkevich Rule #21 - feature weights ~ data amount)</p></li>
+<li><p>Train longer / better optimization algorithm.</p></li>
+<li><p>New model architecture.</p></li>
+<li><p>Reduce regularization.</p></li>
+<li><p>Error analysis on training set (Ng Yearning Ch. 26).</p></li>
+</ul>
+</li>
+<li><p><strong>High Variance (Overfitting):</strong></p>
+<ul>
+<li><p>Get more training data.</p></li>
+<li><p>Add regularization (L1, L2, dropout).</p></li>
+<li><p>Early stopping (use checkpoints).</p></li>
+<li><p>Feature selection/reduction.</p></li>
+<li><p>Decrease model size (caution: may increase bias).</p></li>
+<li><p>Data augmentation.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Learning Curves (Andrew Ng - Lecture, Yearning):</strong> Plot dev error (and training error) vs. number of training examples.</p>
+<ul>
+<li><p>Helps diagnose if more data will help.</p></li>
+<li><p>If training error is high and close to dev error (both plateaued above desired error): High bias. More data won’t help much.</p></li>
+<li><p>If training error is low, but large gap to dev error: High variance. More data likely helps.</p></li>
+<li><p>If training error is high, and large gap to dev error: High bias AND high variance.</p></li>
+</ul>
+</li>
+<li><p><strong>Error Analysis (Andrew Ng - Lecture, Yearning; Zinkevich Rule #26):</strong></p>
+<ul>
+<li><p>Manually examine misclassified dev set examples (~100 examples or enough to see patterns).</p></li>
+<li><p>Categorize errors (e.g., “dog mistaken for cat,” “blurry image,” “mislabeled”).</p></li>
+<li><p>Quantify: What percentage of errors fall into each category? This provides a ceiling on improvement for addressing that category.</p></li>
+<li><p>This guides where to focus efforts (e.g., data collection for specific cases, feature engineering).</p></li>
+</ul>
+</li>
+<li><p><strong>Overfit a Single Batch (Chip Huyen Ch. 6, ML Design Patterns Ch. 4):</strong> A sanity check. If your model can’t achieve near-zero loss on a tiny subset of data, there might be bugs in implementation or training routine.</p></li>
+<li><p><strong>Check for NaN values in loss/weights (Google Quality Guidelines):</strong> Especially for NNs; indicates arithmetic errors or vanishing/exploding gradients.</p></li>
+<li><p><strong>Test Infrastructure Independently (Zinkevich Rule #5):</strong> Ensure data reaches algorithm correctly, model scores are consistent between training/serving.</p></li>
+</ul>
+</li>
+<li><p><strong>Feature Engineering (Zinkevich Rules #7, #17-20, #22)</strong></p>
+<ul class="simple">
+<li><p><strong>Start with directly observed/reported features vs. learned features (Rule #17).</strong></p></li>
+<li><p><strong>Turn heuristics into features, or handle externally (Rule #7).</strong></p></li>
+<li><p><strong>Explore features that generalize across contexts (Rule #18).</strong></p></li>
+<li><p><strong>Use very specific features when you can (Rule #19).</strong></p></li>
+<li><p><strong>Combine and modify existing features in human-understandable ways (Rule #20).</strong> (Discretization, crosses).</p></li>
+<li><p><strong>Clean up features you are no longer using (Rule #22).</strong></p></li>
+</ul>
+</li>
+<li><p><strong>Addressing Training-Serving Skew (Zinkevich Rules #29, #31, #32, #37)</strong></p>
+<ul class="simple">
+<li><p><strong>Log features used at serving time and pipe them to training (Rule #29).</strong> This is the best way to ensure you train like you serve.</p></li>
+<li><p><strong>Re-use code between training and serving pipelines (Rule #32).</strong></p></li>
+<li><p><strong>Beware of data in joined tables changing between training and serving (Rule #31).</strong></p></li>
+<li><p><strong>Measure Training-Serving Skew (Rule #37):</strong> Difference in performance on training data vs. holdout vs. “next-day” data vs. live data.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="iii-ensuring-model-and-data-integrity">
+<h3>III. Ensuring Model and Data Integrity<a class="headerlink" href="#iii-ensuring-model-and-data-integrity" title="Permalink to this heading">¶</a></h3>
+<p>Quality checks are continuous.</p>
+<ol class="arabic simple">
+<li><p><strong>Data Quality Best Practices (Google Quality Guidelines, Andrew Ng Yearning)</strong></p>
+<ul class="simple">
+<li><p><strong>Address Imbalanced Classes:</strong> Use appropriate evaluation metrics (e.g., precision/recall for minority class, AUC-PR), upweighting/downsampling.</p></li>
+<li><p><strong>Understand Data Source &amp; Repeatable Preprocessing:</strong> Automate preprocessing and feature engineering.</p></li>
+<li><p><strong>Clean Mislabeled Dev/Test Set Examples (Andrew Ng Yearning Ch. 16):</strong> If it impedes ability to evaluate models. Apply fixes to both dev and test sets.</p></li>
+<li><p><strong>Handle Dropped Data Carefully (Zinkevich Rule #6):</strong> Especially when copying pipelines. Logged data might be biased (e.g., only showing seen items).</p></li>
+<li><p><strong>Dataset Schema and Statistics:</strong> Use to find anomalous/invalid data.</p></li>
+</ul>
+</li>
+<li><p><strong>Model Quality Checks (Google Quality Guidelines)</strong></p>
+<ul class="simple">
+<li><p><strong>Fundamental Learning Ability:</strong> Train on very few examples. If it doesn’t achieve high accuracy, suspect bugs.</p></li>
+<li><p><strong>Neural Network Specifics:</strong> Monitor for NaN loss, zero-value weights, visualize weight distributions over time.</p></li>
+<li><p><strong>Analyze Misclassified Instances:</strong> Especially high-confidence errors or confused classes. Can indicate mislabeled data or opportunities for new features/preprocessing.</p></li>
+<li><p><strong>Analyze Feature Importance:</strong> Prune features that don’t add value. Parsimonious models are preferred.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="iv-evaluating-model-performance-offline">
+<h3>IV. Evaluating Model Performance (Offline)<a class="headerlink" href="#iv-evaluating-model-performance-offline" title="Permalink to this heading">¶</a></h3>
+<p>Beyond a single metric, delve deeper.</p>
+<ol class="arabic simple">
+<li><p><strong>Baselines are Non-Negotiable (Google Quality Guidelines, Chip Huyen Ch. 6)</strong></p>
+<ul class="simple">
+<li><p>Random baseline</p></li>
+<li><p>Zero-rule baseline (predict most common class)</p></li>
+<li><p>Simple heuristic</p></li>
+<li><p>Existing solutions</p></li>
+<li><p>Human-level performance (HLP)</p></li>
+</ul>
+</li>
+<li><p><strong>Advanced Evaluation Techniques (Chip Huyen Ch. 6 - Offline Evaluation section)</strong></p>
+<ul class="simple">
+<li><p><strong>Perturbation Tests:</strong> Add noise to inputs to check robustness.</p></li>
+<li><p><strong>Invariance Tests:</strong> Changes to certain input features (e.g., protected attributes if fairness is a concern, or a synonym in NLP) should <em>not</em> change the output.</p></li>
+<li><p><strong>Directional Expectation Tests:</strong> Certain input changes (e.g., increasing house size) <em>should</em> predictably change the output (e.g., increase price).</p></li>
+<li><p><strong>Model Calibration:</strong> Are predicted probabilities reflective of true likelihoods? (e.g., using Platt scaling, reliability diagrams). Important for risk assessment, decision thresholds.</p></li>
+<li><p><strong>Slice-Based Evaluation:</strong> Evaluate performance on critical subsets of data (demographics, user segments, specific input types). Helps uncover hidden biases or performance gaps masked by overall metrics (Simpson’s Paradox).</p></li>
+</ul>
+</li>
+<li><p><strong>Error Analysis by Parts (Andrew Ng - Lecture, Yearning Ch. 53-57)</strong></p>
+<ul class="simple">
+<li><p>For multi-component pipelines.</p></li>
+<li><p>Attribute error to each component by providing “perfect” input to downstream components.</p></li>
+<li><p>Helps identify bottlenecks.</p></li>
+<li><p>Compare component performance to HLP for that specific sub-task.</p></li>
+<li><p>If all components are at HLP but the pipeline isn’t, the pipeline design itself might be flawed (missing information flow).</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="v-advanced-model-development-techniques">
+<h3>V. Advanced Model Development Techniques<a class="headerlink" href="#v-advanced-model-development-techniques" title="Permalink to this heading">¶</a></h3>
+<p>When simple iterations plateau.</p>
+<ol class="arabic simple">
+<li><p><strong>Ensemble Methods (Chip Huyen Ch. 6, Zinkevich Rule #40)</strong></p>
+<ul class="simple">
+<li><p><strong>Why:</strong> Often improve performance by combining diverse models.</p></li>
+<li><p><strong>Types:</strong></p>
+<ul>
+<li><p><strong>Bagging (e.g., Random Forest):</strong> Reduces variance. Trains multiple models on bootstrapped samples of data.</p></li>
+<li><p><strong>Boosting (e.g., XGBoost, LightGBM):</strong> Reduces bias. Iteratively trains models, focusing on misclassified examples from previous iterations.</p></li>
+<li><p><strong>Stacking:</strong> Trains a meta-learner on the outputs of base learners.</p></li>
+</ul>
+</li>
+<li><p><strong>Best Practice (Zinkevich Rule #40):</strong> Keep ensembles simple. Models should either be <em>only</em> an ensemble of other models’ outputs, or a base model taking features, but not both deeply nested. Enforce monotonicity if sensible (base model score up -&gt; ensemble score up).</p></li>
+</ul>
+</li>
+<li><p><strong>Transfer Learning (ML Design Patterns Ch. 4)</strong></p>
+<ul class="simple">
+<li><p><strong>Why:</strong> Leverages knowledge from pre-trained models, useful when target dataset is small.</p></li>
+<li><p><strong>How:</strong> Use a pre-trained model (e.g., on ImageNet, large text corpus) as a feature extractor (freeze early layers, train new head) or fine-tune (unfreeze some/all layers and continue training on new data with a small learning rate).</p></li>
+<li><p><strong>Bottleneck Layer:</strong> The layer in the pre-trained model whose output is used as features for the new task.</p></li>
+<li><p><strong>Fine-tuning vs. Feature Extraction:</strong></p>
+<ul>
+<li><p>Small dataset, different task: Feature extraction.</p></li>
+<li><p>Large dataset, similar task: Fine-tuning more layers.</p></li>
+<li><p>Small dataset, similar task: Fine-tuning few layers or feature extraction.</p></li>
+<li><p>Large dataset, different task: Fine-tuning more layers, but ensure sufficient capacity.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Distributed Training (Chip Huyen Ch. 6, ML Design Patterns Ch. 4)</strong></p>
+<ul class="simple">
+<li><p><strong>Why:</strong> For large models and datasets.</p></li>
+<li><p><strong>Data Parallelism:</strong> Replicate model on multiple devices, each processes a shard of data. Gradients aggregated (e.g., AllReduce for synchronous SGD, Parameter Server for asynchronous).</p></li>
+<li><p><strong>Model Parallelism:</strong> Split model across devices. Different parts of the model run on different devices.</p></li>
+<li><p><strong>Pipeline Parallelism:</strong> A form of model parallelism where micro-batches flow through stages of the model distributed on different devices, reducing idle time.</p></li>
+<li><p><strong>Challenges:</strong> Stragglers (slow workers in sync SGD), gradient staleness (async SGD), communication overhead, optimal batch size.</p></li>
+<li><p><strong>Hardware:</strong> GPUs, TPUs (ASICs) accelerate training.</p></li>
+</ul>
+</li>
+<li><p><strong>AutoML (Chip Huyen Ch. 6, ML Design Patterns Ch. 4)</strong></p>
+<ul class="simple">
+<li><p><strong>Hyperparameter Tuning (HPT):</strong></p>
+<ul>
+<li><p>Methods: Grid search, Random search, Bayesian Optimization (e.g., Keras Tuner, Optuna), Genetic Algorithms.</p></li>
+<li><p>Objective: Optimize a chosen metric on a validation set.</p></li>
+<li><p>Fully Managed HPT: Cloud services (e.g., Vertex AI Vizier) for scalable, parallel trials and learning across trials.</p></li>
+</ul>
+</li>
+<li><p><strong>Neural Architecture Search (NAS):</strong></p>
+<ul>
+<li><p>Automates model architecture design.</p></li>
+<li><p>Components: Search space (building blocks), performance estimation strategy, search strategy (RL, evolution).</p></li>
+<li><p>Very computationally expensive, but can yield highly efficient models (e.g., EfficientNets).</p></li>
+</ul>
+</li>
+<li><p><strong>Learned Optimizers:</strong> Research direction to learn the optimization update rules themselves.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="vi-mlops-integration-mindset-for-leads">
+<h3>VI. MLOps Integration &amp; Mindset for Leads<a class="headerlink" href="#vi-mlops-integration-mindset-for-leads" title="Permalink to this heading">¶</a></h3>
+<p>Bridging development with operations and strategic thinking.</p>
+<ol class="arabic">
+<li><p><strong>Reproducibility and Versioning are Key (Chip Huyen Ch. 6)</strong></p>
+<ul class="simple">
+<li><p>Track code, data (DVC, etc.), hyperparameters, environment.</p></li>
+<li><p>Ensures experiments can be rerun and models can be audited.</p></li>
+</ul>
+</li>
+<li><p><strong>Choosing Pipeline Components (Andrew Ng Yearning Ch. 50, 51)</strong></p>
+<ul class="simple">
+<li><p><strong>Data Availability:</strong> Design pipeline components for which you can easily get labeled data.</p></li>
+<li><p><strong>Task Simplicity:</strong> Break down complex problems into simpler, learnable sub-tasks for pipeline components.</p></li>
+</ul>
+</li>
+<li><p><strong>Avoiding Premature Optimization (Andrew Ng - Lecture)</strong></p>
+<ul class="simple">
+<li><p>Don’t over-engineer the “perfect” system from the start. Get a simple version working and iterate.</p></li>
+<li><p>“The only way to find out what needs work is to implement something quickly, and find out what parts break.” (Ng, paraphrased from Zinkevich).</p></li>
+</ul>
+</li>
+<li><p><strong>Thinking Framework for Prioritization (Based on Bias/Variance/Data Mismatch)</strong></p>
+<div class="highlight-mermaid notranslate"><div class="highlight"><pre><span></span>graph TD
+    A[Start: Evaluate Model] --&gt; B{High Avoidable Bias?};
+    B -- Yes --&gt; C[Focus on Bias Reduction: Bigger Model, Better Optimizer/Architecture, Reduce Regularization, Feature Engineering];
+    B -- No --&gt; D{High Variance?};
+    C --&gt; A;
+    D -- Yes --&gt; E[Focus on Variance Reduction: More Data, Augmentation, Regularization, Simpler Model/Features];
+    D -- No --&gt; F{Data Mismatch? (Train-Dev vs. Dev Error)};
+    E --&gt; A;
+    F -- Yes --&gt; G[Address Mismatch: Make Training Data More Like Dev, Synthesize Data];
+    F -- No --&gt; H[Performance Acceptable? Deploy/Monitor];
+    G --&gt; A;
+    H -- No --&gt; I[Re-evaluate: Problem Framing, Metrics, HLP, Advanced Techniques];
+    I --&gt; A;
+</pre></div>
+</div>
+</li>
+<li><p><strong>Decision Trade-offs Table:</strong></p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Decision Area</p></th>
+<th class="head text-left"><p>Option A</p></th>
+<th class="head text-left"><p>Option B</p></th>
+<th class="head text-left"><p>Considerations</p></th>
+<th class="head text-left"><p>MLOps Lead Focus</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><strong>Initial Model</strong></p></td>
+<td class="text-left"><p>Complex, State-of-the-art</p></td>
+<td class="text-left"><p>Simple, Interpretable</p></td>
+<td class="text-left"><p>Time to market, debuggability, baseline establishment, infrastructure readiness</p></td>
+<td class="text-left"><p>Bias towards simple first (Zinkevich #4), rapid iteration, validating infra.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Data Strategy</strong></p></td>
+<td class="text-left"><p>Use all available data</p></td>
+<td class="text-left"><p>Curate data similar to production</p></td>
+<td class="text-left"><p>Training-serving skew, computational cost, data consistency, representational capacity of model (Ng Yearning)</p></td>
+<td class="text-left"><p>Prioritize dev/test sets reflecting production. Add diverse training data carefully, possibly with weighting.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Addressing Errors</strong></p></td>
+<td class="text-left"><p>Add more data</p></td>
+<td class="text-left"><p>Improve model architecture/features</p></td>
+<td class="text-left"><p>Bias vs. Variance diagnosis, cost of data acquisition vs. engineering effort</p></td>
+<td class="text-left"><p>Use learning curves and error analysis to guide. Don’t default to “more data.”</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Pipeline Design</strong></p></td>
+<td class="text-left"><p>End-to-End model</p></td>
+<td class="text-left"><p>Multi-component pipeline</p></td>
+<td class="text-left"><p>Data availability for sub-tasks, task complexity of components, interpretability, debuggability (Ng Yearning)</p></td>
+<td class="text-left"><p>Favor components if sub-tasks are simpler and data is available.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>HPT Effort</strong></p></td>
+<td class="text-left"><p>Manual “Graduate Student Descent”</p></td>
+<td class="text-left"><p>Automated (Bayesian Opt, Managed Service)</p></td>
+<td class="text-left"><p>Engineer time, reproducibility, search space coverage, computational budget</p></td>
+<td class="text-left"><p>Invest in automation for significant projects; understand sensitivity of key hyperparameters.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Ensembles</strong></p></td>
+<td class="text-left"><p>Complex, multi-layered ensemble</p></td>
+<td class="text-left"><p>Simple averaging/voting or single model</p></td>
+<td class="text-left"><p>Performance gain vs. complexity (training, serving, maintenance), latency (Zinkevich #40)</p></td>
+<td class="text-left"><p>Justify complexity with significant, measurable gains. Start simple.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+</ol>
+<hr class="docutils" />
+<p><strong>Conclusion for the MLOps Lead:</strong></p>
+<p>Your primary objective during model development is to efficiently guide the team toward a model that not only performs well on its optimizing metrics but also robustly meets all satisficing (operational) criteria and delivers business value. This requires a deep understanding of the interplay between data, algorithms, and infrastructure. Embrace iteration, systematic debugging, rigorous evaluation, and strategic use of advanced techniques. Champion MLOps principles like reproducibility, versioning, and automation from the very beginning of the model development lifecycle. Your ability to ask the right diagnostic questions and make informed trade-offs will be the cornerstone of your team’s success.</p>
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024, Deepak Karkala
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Model Development</a><ul>
+<li><a class="reference internal" href="#id1"></a><ul>
+<li><a class="reference internal" href="#i-setting-the-stage-foundations-for-success">I. Setting the Stage: Foundations for Success</a></li>
+<li><a class="reference internal" href="#ii-the-iterative-development-loop-experimentation-debugging-and-refinement">II. The Iterative Development Loop: Experimentation, Debugging, and Refinement</a></li>
+<li><a class="reference internal" href="#iii-ensuring-model-and-data-integrity">III. Ensuring Model and Data Integrity</a></li>
+<li><a class="reference internal" href="#iv-evaluating-model-performance-offline">IV. Evaluating Model Performance (Offline)</a></li>
+<li><a class="reference internal" href="#v-advanced-model-development-techniques">V. Advanced Model Development Techniques</a></li>
+<li><a class="reference internal" href="#vi-mlops-integration-mindset-for-leads">VI. MLOps Integration &amp; Mindset for Leads</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=b3ba4146"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/scripts/furo.js?v=4e2eecee"></script>
+    </body>
+</html>

@@ -1,0 +1,936 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" />
+
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/><!-- Generated with Sphinx 7.1.2 and Furo 2024.05.06 -->
+        <title>Chapter 10: Deployment &amp; Serving - Home</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=387cc868" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=36a5483c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/style.css?v=8a7ff5ee" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" /
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">Home</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  
+  <span class="sidebar-brand-text">Home</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../projects/index.html">Projects</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Projects</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/nlp/index.html">Natural Language Processing</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Natural Language Processing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/airbnb_alternate_search/about/index.html">Airbnb Listing description based Semantic Search</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/cv/index.html">Computer Vision</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Computer Vision</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/ecommerce_image_segmentation/about/index.html">Image Segmentation for Ecommerce Products</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/ml/index.html">Machine Learning</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of Machine Learning</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/airbnb_price_modeling/about/index.html">Predictive Price Modeling for Airbnb listings</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../publications/index.html">Patents, Papers, Thesis</a></li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../index.html">MLOps</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of MLOps</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch1_problem_framing.html">ML Problem framing</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of ML Problem framing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch2_blueprint_operational_strategy.html">The MLOps Blueprint &amp; Operational Strategy</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch2a_platform/index.html">ML Platforms</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of ML Platforms</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/ml_platforms.html">ML Platforms: How to</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/uber.html">Uber Michelangelo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/linkedin.html">LinkedIn DARWIN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/netflix.html">Netflix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/shopify.html">Shopify Merlin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/zomato.html">Zomato: Real-time ML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/coveo.html">Coveo: MLOPs at reasonable scale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/monzo.html">Monzo ML Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/didact.html">Didact AI</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch3_project_planning/index.html">Project Planning</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of Project Planning</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/prd.html">Project Requirements Document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/tech_stack.html">Tech Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/config_management.html">Config Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/pipeline_design.html">Pipeline Design</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/environment_strategy.html">Environment Strategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/cicd_branching_model.html">CI/CD Strategy and Branching Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/directory_structure.html">Directory Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/env_branchind_cicd_deployment.html">Environments, Branching, CI/CD, and Deployments Explained</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/project_management.html">Project Management for MLOps</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch4_data_discovery/index.html">Data Sourcing, Discovery</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of Data Sourcing, Discovery</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/data_sourcing_discovery.html">Data Sourcing, Discovery &amp; Understanding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/ch4_project.html">Project-Trending Now: Implementing Web Scraping, Ingestion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/industry_case_studies.html">Data Discovery Platforms: Industry Case Studies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/facebook_nemo.html">Facebook: Nemo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/netflix_metacat.html">Netflix Metacat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/uber_databook.html">Uber Databook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/linkedin_datahub.html">LinkedIn Datahub</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../lld/index.html">Low Level Design</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle navigation of Low Level Design</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../lld/parking_lot.html">Parking Lot</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../visualization/index.html">Data Visualization Projects</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="../../_sources/mlops/ch10_deployment_serving/ch10_deployment_serving.md.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="chapter-10-deployment-serving">
+<h1>Chapter 10: Deployment &amp; Serving<a class="headerlink" href="#chapter-10-deployment-serving" title="Permalink to this heading">¶</a></h1>
+<p><strong>Chapter 10: Grand Opening – Model Deployment Strategies &amp; Serving Infrastructure</strong></p>
+<p><em>(Progress Label: 📍Stage 10: Efficient and Elegant Service to Diners)</em></p>
+<section id="introduction-from-approved-recipe-to-diner-s-table">
+<h2>🧑‍🍳 Introduction: From Approved Recipe to Diner’s Table<a class="headerlink" href="#introduction-from-approved-recipe-to-diner-s-table" title="Permalink to this heading">¶</a></h2>
+<p>The culmination of our MLOps kitchen’s efforts—from problem framing and data engineering to model development and rigorous offline validation—is this moment: the “Grand Opening.” This chapter is dedicated to the critical processes of <strong>Model Deployment and Serving</strong>, where our approved “signature dishes” (trained and validated ML models) are made accessible and operational, ready to delight our “diners” (end-users and applications) with valuable predictions.</p>
+<p>This isn’t merely about pushing a model file to a server. As an MLOps Lead, you understand that deploying and serving ML models reliably, scalably, and efficiently is a sophisticated engineering discipline. It involves strategic choices about how models are packaged, which deployment strategies to adopt across the serving spectrum (batch, online, streaming, edge), the architecture of the serving infrastructure, optimizing for inference performance and cost, and implementing robust CI/CD and progressive delivery mechanisms for safe and rapid updates. [guide_deployment_serving.md (Core Philosophy)]</p>
+<p>We will explore the nuances of packaging models for portability, selecting the right deployment strategy based on business needs and technical constraints, architecting scalable serving patterns (from serverless functions to Kubernetes clusters), and diving deep into inference optimization techniques. We will also detail how CI/CD pipelines facilitate automated, reliable deployments and how progressive delivery strategies ensure that new model versions are rolled out safely. For our “Trending Now” project, this means taking our validated genre classification model (and our LLM-based enrichment logic) and making it a live, functioning service.</p>
+<hr class="docutils" />
+</section>
+<section id="section-10-1-packaging-models-for-deployment-preparing-the-dish-for-consistent-plating">
+<h2>Section 10.1: Packaging Models for Deployment (Preparing the Dish for Consistent Plating)<a class="headerlink" href="#section-10-1-packaging-models-for-deployment-preparing-the-dish-for-consistent-plating" title="Permalink to this heading">¶</a></h2>
+<p>Before a model can be served, it must be packaged with all its necessary components to ensure it runs consistently across different environments.</p>
+<ul class="simple">
+<li><p><strong>10.1.1 Model Serialization Formats: Capturing the Essence</strong></p>
+<ul>
+<li><p><strong>Purpose:</strong> Saving the trained model (architecture and learned parameters/weights) in a portable format.</p></li>
+<li><p><strong>Common Formats:</strong></p>
+<ul>
+<li><p><strong>Pickle/Joblib (Python-specific):</strong> Common for Scikit-learn, XGBoost. Simple but can have versioning/security issues.</p></li>
+<li><p><strong>ONNX (Open Neural Network Exchange):</strong> Aims for framework interoperability (e.g., PyTorch to TensorFlow Lite). Good for portability but ensure full operator coverage for your model.</p></li>
+<li><p><strong>TensorFlow SavedModel:</strong> Standard for TensorFlow models, includes graph definition and weights.</p></li>
+<li><p><strong>PyTorch <code class="docutils literal notranslate"><span class="pre">state_dict</span></code> + TorchScript:</strong> <code class="docutils literal notranslate"><span class="pre">state_dict</span></code> for weights, TorchScript for a serializable and optimizable model graph.</p></li>
+<li><p><strong>H5 (HDF5):</strong> Often used by Keras.</p></li>
+<li><p><strong>PMML (Predictive Model Markup Language):</strong> XML-based standard, less common for deep learning.</p></li>
+</ul>
+</li>
+<li><p><strong>MLOps Consideration:</strong> Choose a format that is supported by your target serving runtime and facilitates versioning. The Model Registry (Chapter 7) should store these serialized artifacts. [guide_deployment_serving.md (III.A.1)]</p></li>
+</ul>
+</li>
+<li><p><strong>10.1.2 Containerization (Docker) for Serving: Ensuring a Consistent Kitchen Environment</strong></p>
+<ul>
+<li><p><strong>Why Docker?</strong> Packages the model, inference code, and all dependencies (libraries, OS-level packages) into a portable image. Ensures consistency between development, staging, and production serving environments.</p></li>
+<li><p><strong>Dockerfile for Serving:</strong></p>
+<ul>
+<li><p>Start from a relevant base image (e.g., Python slim, specific framework image like <code class="docutils literal notranslate"><span class="pre">tensorflow/serving</span></code>, <code class="docutils literal notranslate"><span class="pre">pytorch/pytorch:serve</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">COPY</span></code> model artifact(s) and inference/API code into the image.</p></li>
+<li><p>Install dependencies from <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code>.</p></li>
+<li><p>Define <code class="docutils literal notranslate"><span class="pre">ENTRYPOINT</span></code> or <code class="docutils literal notranslate"><span class="pre">CMD</span></code> to start the model server/API application (e.g., run <code class="docutils literal notranslate"><span class="pre">uvicorn</span> <span class="pre">main:app</span></code> for FastAPI).</p></li>
+</ul>
+</li>
+<li><p><strong>Best Practices for Serving Images:</strong> Keep images small, use official/secure base images, install only necessary dependencies, run as non-root user.</p></li>
+<li><p><strong>ML-Specific Docker Wrappers:</strong> Cog, BentoML, Truss can simplify creating serving containers by abstracting Dockerfile creation.</p></li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+</section>
+<section id="section-10-2-choosing-a-deployment-strategy-the-serving-spectrum-dine-in-takeaway-or-home-delivery">
+<h2>Section 10.2: Choosing a Deployment Strategy: The Serving Spectrum (Dine-in, Takeaway, or Home Delivery?)<a class="headerlink" href="#section-10-2-choosing-a-deployment-strategy-the-serving-spectrum-dine-in-takeaway-or-home-delivery" title="Permalink to this heading">¶</a></h2>
+<p>ML models can deliver predictions through various mechanisms, catering to different application needs.</p>
+<ul class="simple">
+<li><p><strong>10.2.1 Batch Prediction (Asynchronous Inference): Pre-cooking Popular Dishes</strong></p>
+<ul>
+<li><p><strong>Concept:</strong> Predictions are computed periodically (e.g., daily/hourly) for a large set of inputs and stored for later retrieval.</p></li>
+<li><p><strong>Use Cases:</strong> Lead scoring, daily recommendations, risk profiling, when real-time predictions aren’t critical.</p></li>
+<li><p><strong>Architecture:</strong> Workflow orchestrator (Airflow) schedules a job (Spark, Python script) that loads data, loads model from registry, generates predictions, and stores them in a DB/DWH/Data Lake.</p></li>
+<li><p><strong>Tooling:</strong> Airflow, Spark, Dask; SageMaker Batch Transform, Vertex AI Batch Predictions.</p></li>
+<li><p><strong>Pros:</strong> Cost-effective for large volumes, high throughput, allows inspection before use.</p></li>
+<li><p><strong>Cons:</strong> Stale predictions, not for dynamic inputs, delayed error detection.</p></li>
+</ul>
+</li>
+<li><p><strong>10.2.2 Online/Real-time Prediction (Synchronous Inference): Made-to-Order Dishes</strong></p>
+<ul>
+<li><p><strong>Concept:</strong> Predictions are generated on-demand in response to individual requests, typically via a network API.</p></li>
+<li><p><strong>Use Cases:</strong> Live fraud detection, interactive recommendations, dynamic pricing, search ranking.</p></li>
+<li><p><strong>Architecture:</strong> Model exposed via API (REST/gRPC), often behind a load balancer, running on scalable compute (VMs, containers, serverless).</p></li>
+<li><p><strong>Tooling:</strong> FastAPI/Flask, TensorFlow Serving, TorchServe, Triton, KServe, Seldon, Cloud Endpoints (SageMaker, Vertex AI).</p></li>
+<li><p><strong>Pros:</strong> Fresh predictions, supports dynamic inputs.</p></li>
+<li><p><strong>Cons:</strong> Infrastructure complexity, latency sensitive, requires careful online feature engineering if features are dynamic.</p></li>
+</ul>
+</li>
+<li><p><strong>10.2.3 Streaming Prediction: Continuously Seasoning Dishes with Live Feedback</strong></p>
+<ul>
+<li><p><strong>Concept:</strong> Online prediction that leverages features computed in real-time from data streams (e.g., user clicks, sensor data). A specialized form of online prediction.</p></li>
+<li><p><strong>Use Cases:</strong> Real-time anomaly detection in IoT, adaptive personalization based on in-session behavior.</p></li>
+<li><p><strong>Architecture:</strong> Involves stream processing engines (Flink, Kafka Streams, Spark Streaming) for feature computation, which then feed into an online model server.</p></li>
+<li><p><strong>Tooling:</strong> Kafka/Kinesis, Flink/Spark Streaming, Online Feature Stores.</p></li>
+<li><p><strong>Pros:</strong> Highly adaptive to immediate changes.</p></li>
+<li><p><strong>Cons:</strong> Highest complexity (streaming feature pipelines, state management).</p></li>
+</ul>
+</li>
+<li><p><strong>10.2.4 Edge Deployment (On-Device Inference): The Chef at Your Table</strong></p>
+<ul>
+<li><p><strong>Concept:</strong> Model inference runs directly on the user’s device (mobile, browser, IoT sensor, car).</p></li>
+<li><p><strong>Use Cases:</strong> Low/no internet scenarios, ultra-low latency needs (robotics, AR), data privacy (on-device processing).</p></li>
+<li><p><strong>Architecture:</strong> Optimized/compiled model deployed to edge device. May involve cloud for model updates (OTA) and telemetry.</p></li>
+<li><p><strong>Frameworks:</strong> TensorFlow Lite, PyTorch Mobile/Edge (ExecuTorch), CoreML, ONNX Runtime, Apache TVM.</p></li>
+<li><p><strong>Pros:</strong> Minimal latency, offline capability, enhanced privacy.</p></li>
+<li><p><strong>Cons:</strong> Resource constraints (compute, memory, power), model update complexity, hardware heterogeneity.</p></li>
+</ul>
+</li>
+<li><p><strong>(Decision Framework Diagram)</strong> Title: Choosing Your Deployment Strategy
+<img src="../../_static/mlops/ch10_deployment_serving/deployment_strategy_decision_framework.svg" width="100%" style="background-color: #FCF1EF;"/></p></li>
+</ul>
+<hr class="docutils" />
+</section>
+<section id="section-10-3-prediction-serving-patterns-and-architectures-the-kitchen-s-service-design">
+<h2>Section 10.3: Prediction Serving Patterns and Architectures (The Kitchen’s Service Design)<a class="headerlink" href="#section-10-3-prediction-serving-patterns-and-architectures-the-kitchen-s-service-design" title="Permalink to this heading">¶</a></h2>
+<p>How the model serving logic is structured and integrated into the broader system.</p>
+<ul class="simple">
+<li><p><strong>10.3.1 Model-as-Service (Networked Endpoints)</strong></p>
+<ul>
+<li><p><strong>API Styles: REST vs. gRPC</strong></p>
+<ul>
+<li><p><em>REST:</em> HTTP-based, JSON payloads. Pros: ubiquitous, simple. Cons: higher overhead/latency.</p></li>
+<li><p><em>gRPC:</em> HTTP/2, Protocol Buffers. Pros: high performance, efficient binary serialization, streaming. Cons: more complex client setup.</p></li>
+<li><p><em>MLOps Lead Decision:</em> REST for broad compatibility/public APIs, gRPC for internal high-performance microservices.</p></li>
+</ul>
+</li>
+<li><p><strong>Model Serving Runtimes:</strong> Specialized servers optimized for ML inference.</p>
+<ul>
+<li><p><em>TensorFlow Serving:</em> For TF SavedModels.</p></li>
+<li><p><em>TorchServe:</em> For PyTorch models (<code class="docutils literal notranslate"><span class="pre">.mar</span></code> archives).</p></li>
+<li><p><em>NVIDIA Triton Inference Server:</em> Multi-framework (TF, PyTorch, ONNX, TensorRT, Python backend), dynamic batching, concurrent model execution, ensemble scheduler. Highly performant. [guide_deployment_serving.md (V.E)]</p></li>
+<li><p><em>BentoML:</em> Python-first framework for packaging models and creating high-performance prediction services.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>10.3.2 Serverless Functions for Model Inference (The Pop-Up Kitchen Stand)</strong></p>
+<ul>
+<li><p><strong>Concept:</strong> Deploy model inference code as a function (e.g., AWS Lambda, Google Cloud Functions). Scales automatically, pay-per-use.</p></li>
+<li><p><strong>Pros:</strong> Reduced ops overhead, cost-effective for sporadic traffic.</p></li>
+<li><p><strong>Cons:</strong> Cold starts, package size limits, execution time limits, statelessness challenges.</p></li>
+<li><p><strong>Best Fit:</strong> Lightweight models, intermittent traffic.</p></li>
+</ul>
+</li>
+<li><p><strong>10.3.3 Kubernetes for Scalable and Resilient Model Hosting (The Large, Orchestrated Restaurant Chain)</strong></p>
+<ul>
+<li><p><strong>Role:</strong> Manages deployment, scaling (HPA), health, and networking of containerized model servers.</p></li>
+<li><p><strong>ML-Specific Platforms on Kubernetes:</strong></p>
+<ul>
+<li><p><em>KServe (formerly KFServing):</em> Serverless inference on K8s, inference graphs, explainability.</p></li>
+<li><p><em>Seldon Core:</em> Advanced deployments, inference graphs, A/B testing, MABs, explainers.</p></li>
+</ul>
+</li>
+<li><p><strong>Benefits:</strong> High scalability, resilience, portability, rich ecosystem.</p></li>
+<li><p><strong>Challenges:</strong> K8s complexity. Managed K8s (EKS, GKE, AKS) or higher-level platforms are preferred.</p></li>
+</ul>
+</li>
+<li><p><strong>10.3.4 Comparison of High-Level Architectures (Monolithic, Microservices, Embedded)</strong> [guide_deployment_serving.md (V.D)]</p>
+<ul>
+<li><p><strong>(Table)</strong> Summary of Pros/Cons for Monolithic, Microservice, and Embedded approaches.</p></li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+</section>
+<section id="section-10-4-inference-optimization-for-performance-and-cost-streamlining-service-for-speed-and-efficiency">
+<h2>Section 10.4: Inference Optimization for Performance and Cost (Streamlining Service for Speed and Efficiency)<a class="headerlink" href="#section-10-4-inference-optimization-for-performance-and-cost-streamlining-service-for-speed-and-efficiency" title="Permalink to this heading">¶</a></h2>
+<p>Techniques to make predictions faster and cheaper without (significantly) sacrificing accuracy.</p>
+<ul class="simple">
+<li><p><strong>10.4.1 Hardware Acceleration: Choosing the Right “Stove”</strong></p>
+<ul>
+<li><p>CPUs, GPUs (NVIDIA for inference: T4, A10, A100), TPUs (Google Edge TPUs), Custom AI Accelerators (AWS Inferentia).</p></li>
+<li><p>Trade-offs: Cost, performance per watt, framework support.</p></li>
+</ul>
+</li>
+<li><p><strong>10.4.2 Model Compression Techniques (Making the Recipe More Concise)</strong></p>
+<ul>
+<li><p><strong>Quantization:</strong> Reducing numerical precision (FP32 -&gt; FP16/BF16/INT8).</p></li>
+<li><p><strong>Pruning:</strong> Removing less important weights/structures.</p></li>
+<li><p><strong>Knowledge Distillation:</strong> Training a smaller student model to mimic a larger teacher.</p></li>
+<li><p><strong>Low-Rank Factorization &amp; Compact Architectures:</strong> Designing inherently efficient models (e.g., MobileNets).</p></li>
+</ul>
+</li>
+<li><p><strong>10.4.3 Compiler Optimizations: The Expert Prep Chef</strong></p>
+<ul>
+<li><p>Tools: Apache TVM, MLIR, XLA (for TensorFlow), TensorRT (NVIDIA).</p></li>
+<li><p>Function: Convert framework models to optimized code for specific hardware targets via Intermediate Representations (IRs). Perform graph optimizations like operator fusion.</p></li>
+</ul>
+</li>
+<li><p><strong>10.4.4 Server-Side Inference Optimizations (Efficient Kitchen Workflow)</strong></p>
+<ul>
+<li><p><strong>Adaptive/Dynamic Batching:</strong> Grouping requests server-side (Triton, TorchServe). [FSDL - Lecture 5]</p></li>
+<li><p><strong>Concurrency:</strong> Multiple model instances/threads per server.</p></li>
+<li><p><strong>Caching:</strong> Storing results for frequent identical requests.</p></li>
+<li><p><strong>GPU Sharing/Multi-Model Endpoints:</strong> Hosting multiple models on a single GPU to improve utilization (SageMaker MME, Triton).</p></li>
+<li><p><strong>Model Warmup:</strong> Pre-loading models to avoid cold start latency.</p></li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+</section>
+<section id="section-10-5-ci-cd-for-model-serving-automating-model-deployments-automating-the-kitchen-s-opening-closing-procedures">
+<h2>Section 10.5: CI/CD for Model Serving: Automating Model Deployments (Automating the Kitchen’s Opening &amp; Closing Procedures)<a class="headerlink" href="#section-10-5-ci-cd-for-model-serving-automating-model-deployments-automating-the-kitchen-s-opening-closing-procedures" title="Permalink to this heading">¶</a></h2>
+<p>Automating the build, test, and deployment of the <em>model serving application</em> and the <em>models</em> it serves.</p>
+<ul class="simple">
+<li><p><strong>10.5.1 Building and Testing Serving Components</strong></p>
+<ul>
+<li><p><strong>CI for Serving Application:</strong> Unit tests for API logic, pre/post-processing code. Build Docker image for the serving application.</p></li>
+<li><p><strong>Model Compatibility Tests (Staging):</strong> Ensure the model artifact loads correctly with the current serving application version and dependencies.</p></li>
+<li><p><strong>API Contract &amp; Integration Tests (Staging):</strong> Validate request/response schemas, interactions with Feature Store or other services.</p></li>
+<li><p><strong>Performance &amp; Load Tests (Staging):</strong> Verify SLAs are met before production.</p></li>
+</ul>
+</li>
+<li><p><strong>10.5.2 Integrating with Model Registry for Model Promotion &amp; Deployment</strong></p>
+<ul>
+<li><p>CD pipeline triggered by a new “approved-for-production” model version in the registry.</p></li>
+<li><p>Pipeline fetches the specific model artifact and deploys it to the serving environment (e.g., updates the model file in S3 for a SageMaker Endpoint, or triggers a new K8s deployment with the new model version).</p></li>
+<li><p>Uber’s Dynamic Model Loading: Service instances poll registry for model updates and load/retire models dynamically.</p></li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+</section>
+<section id="section-10-6-progressive-delivery-rollout-strategies-for-safe-updates-taste-testing-with-diners-before-full-menu-launch">
+<h2>Section 10.6: Progressive Delivery &amp; Rollout Strategies for Safe Updates (Taste-Testing with Diners Before Full Menu Launch)<a class="headerlink" href="#section-10-6-progressive-delivery-rollout-strategies-for-safe-updates-taste-testing-with-diners-before-full-menu-launch" title="Permalink to this heading">¶</a></h2>
+<p>Minimizing risk when deploying new or updated models to production.</p>
+<ul class="simple">
+<li><p><strong>10.6.1 Shadow Deployment (Silent Testing)</strong></p>
+<ul>
+<li><p>New model receives copy of live traffic, predictions logged but not served.</p></li>
+<li><p>Compares challenger vs. champion on real data without user impact.</p></li>
+</ul>
+</li>
+<li><p><strong>10.6.2 Canary Releases (Phased Rollout)</strong></p>
+<ul>
+<li><p>Gradually route small percentage of live traffic to new model. Monitor closely. Increase traffic if stable.</p></li>
+</ul>
+</li>
+<li><p><strong>10.6.3 Blue/Green Deployments (Full Switchover)</strong></p>
+<ul>
+<li><p>Two identical production environments. Deploy new model to “Green,” test. Switch all traffic. “Blue” becomes standby.</p></li>
+</ul>
+</li>
+<li><p><strong>10.6.4 Implementing and Managing Rollbacks</strong></p>
+<ul>
+<li><p>Automated or one-click rollback to previous stable version if issues detected. Requires robust versioning of models and serving configurations.</p></li>
+<li><p>Monitoring is key to trigger rollbacks.</p></li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+</section>
+<section id="project-trending-now-deploying-the-genre-classification-model-llm-inference">
+<h2>Project: “Trending Now” – Deploying the Genre Classification Model &amp; LLM Inference<a class="headerlink" href="#project-trending-now-deploying-the-genre-classification-model-llm-inference" title="Permalink to this heading">¶</a></h2>
+<p>Applying deployment concepts to our project.</p>
+<ul class="simple">
+<li><p><strong>10.P.1 Packaging the Trained XGBoost/BERT Model for Serving (Revisiting)</strong></p>
+<ul>
+<li><p><strong>XGBoost:</strong> Serialize using <code class="docutils literal notranslate"><span class="pre">joblib</span></code> or <code class="docutils literal notranslate"><span class="pre">pickle</span></code>. Discuss potential conversion to ONNX for broader compatibility if it were a more complex deployment.</p></li>
+<li><p><strong>BERT (Fine-tuned PyTorch model):</strong></p>
+<ul>
+<li><p>Option 1: Save <code class="docutils literal notranslate"><span class="pre">state_dict</span></code> and model class definition.</p></li>
+<li><p>Option 2: Convert to <strong>TorchScript (<code class="docutils literal notranslate"><span class="pre">.pt</span></code>)</strong> for a more self-contained package.</p></li>
+<li><p>Option 3: Export to <strong>ONNX</strong> for wider runtime compatibility (e.g., if targeting ONNX Runtime or TensorRT later).</p></li>
+<li><p>Decision for the guide: Focus on TorchScript or ONNX for BERT to demonstrate deployable formats.</p></li>
+</ul>
+</li>
+<li><p><strong>Containerization:</strong> The FastAPI application, along with the chosen serialized model and inference script (<code class="docutils literal notranslate"><span class="pre">predict.py</span></code>), will be packaged into a Docker image.</p></li>
+</ul>
+</li>
+<li><p><strong>10.P.2 (Conceptual) Applying Compression to the Educational BERT Model</strong></p>
+<ul>
+<li><p><em>(This would be a “what-if” exploration or a future iteration, as initial deployment might not require it for the educational model).</em></p></li>
+<li><p><strong>Scenario:</strong> If the fine-tuned BERT model’s latency on AWS App Runner (using CPU) is too high for an acceptable user experience.</p></li>
+<li><p><strong>Potential Steps:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Baseline:</strong> Measure latency and accuracy of the uncompressed fine-tuned BERT model.</p></li>
+<li><p><strong>Quantization (PTQ):</strong></p>
+<ul>
+<li><p>Use PyTorch’s dynamic quantization or static quantization (with a small calibration set from our processed data) to convert the BERT model to INT8.</p></li>
+<li><p>Package this quantized model and re-evaluate latency and accuracy.</p></li>
+</ul>
+</li>
+<li><p><strong>Pruning (Conceptual):</strong> Discuss how magnitude pruning could be applied to the BERT model using <code class="docutils literal notranslate"><span class="pre">torch.nn.utils.prune</span></code> followed by fine-tuning, and what the expected impact on size and potential for speedup would be.</p></li>
+<li><p><strong>Knowledge Distillation (Conceptual):</strong> If we had a much larger “teacher” BERT model, discuss how we could distill it into our current, smaller BERT architecture.</p></li>
+</ol>
+</li>
+<li><p><strong>MLOps Consideration:</strong> Any compression step would become part of the automated training/validation pipeline (Chapter 7), producing a compressed model artifact for registration and deployment. The CI/CD pipeline for serving (Chapter 10) would then deploy this compressed model.</p></li>
+</ul>
+</li>
+<li><p><strong>Compiler Considerations</strong></p>
+<ul>
+<li><p><strong>10.P.X.2 Conceptual Application of Compilers:</strong></p>
+<ul>
+<li><p><strong>Scenario 1: BERT Model (PyTorch) on CPU in App Runner.</strong></p>
+<ul>
+<li><p><em>Option A (Simpler):</em> Rely on PyTorch JIT (TorchScript) optimizations if the model is scripted.</p></li>
+<li><p><em>Option B (More Optimized):</em> Convert the TorchScript/ONNX BERT model to an <strong>OpenVINO IR</strong> using the Model Optimizer. The FastAPI application in the Docker container would then use the OpenVINO Inference Engine for execution. This would be expected to yield better CPU performance.</p></li>
+<li><p><em>Option C (Alternative for ONNX):</em> Use <strong>ONNX Runtime</strong> directly in the FastAPI application with its CPU execution provider. ONNX Runtime applies its own graph optimizations.</p></li>
+</ul>
+</li>
+<li><p><strong>Scenario 2: BERT Model on an NVIDIA GPU (if App Runner supported GPUs or we used EC2/ECS).</strong></p>
+<ul>
+<li><p>Export BERT to ONNX.</p></li>
+<li><p>Use <strong>NVIDIA TensorRT</strong> to build an optimized <code class="docutils literal notranslate"><span class="pre">.engine</span></code> file.</p></li>
+<li><p>The FastAPI application (or a Triton server if we scaled up) would load and run this TensorRT engine.</p></li>
+<li><p>Consider INT8 PTQ with TensorRT calibration for further speedup.</p></li>
+</ul>
+</li>
+<li><p><strong>XGBoost Model:</strong></p>
+<ul>
+<li><p>Often served directly using its native library or via ONNX Runtime if converted. Specialized compilation is less common for traditional tree-based models compared to neural networks, though runtimes like ONNX Runtime can provide some level of optimization.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>MLOps Pipeline Implication:</strong></p>
+<ul>
+<li><p>If compilation is used, the compilation step (e.g., <code class="docutils literal notranslate"><span class="pre">trtexec</span></code> for TensorRT, OpenVINO <code class="docutils literal notranslate"><span class="pre">mo</span></code> command) would become a part of the <em>model building/CI</em> process <em>after</em> training and serialization, producing the final deployable artifact (the <code class="docutils literal notranslate"><span class="pre">.engine</span></code> or IR files). This compiled artifact would then be packaged into the serving Docker image.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Hardware Accelerator Considerations</strong></p>
+<ul>
+<li><p><strong>LLM Inference:</strong></p>
+<ul>
+<li><p>This is handled by the <strong>LLM provider’s hardware infrastructure</strong> (likely powerful GPUs/TPUs). Our responsibility is managing API calls efficiently, not the underlying hardware.</p></li>
+</ul>
+</li>
+<li><p><strong>Educational XGBoost/BERT Model Serving (FastAPI on AWS App Runner):</strong></p>
+<ul>
+<li><p><strong>App Runner primarily uses CPUs.</strong></p></li>
+<li><p><strong>XGBoost:</strong> Typically runs efficiently on CPUs. No special accelerator needed for its scale in this project.</p></li>
+<li><p><strong>BERT (Educational Path):</strong></p>
+<ul>
+<li><p><em>CPU Inference:</em> For a small BERT model (e.g., DistilBERT or a small <code class="docutils literal notranslate"><span class="pre">bert-base</span></code> fine-tuned) on App Runner (CPU), performance will be modest. This is acceptable for the educational path. Optimization would involve ONNX Runtime with CPU execution provider or OpenVINO if deployed to an Intel CPU environment.</p></li>
+<li><p><em>If Latency Became Critical (Hypothetical GPU on App Runner or EC2/ECS):</em> If this educational BERT model needed very low latency, we would:</p>
+<ol class="arabic simple">
+<li><p>Choose a GPU instance (e.g., AWS G4dn with NVIDIA T4).</p></li>
+<li><p>Export BERT to ONNX.</p></li>
+<li><p>Compile to a TensorRT engine (potentially with INT8 quantization).</p></li>
+<li><p>Deploy the FastAPI service with the TensorRT engine, likely using Triton Inference Server as the backend if managing multiple models or needing advanced features.</p></li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Data Ingestion &amp; Processing (Airflow on EC2/MWAA):</strong></p>
+<ul>
+<li><p>These tasks (scraping, Pandas transformations, DVC, Redshift loading) are CPU-bound and do not typically require specialized ML accelerators. Focus is on sufficient CPU and memory for Airflow workers.
+<strong>Conclusion for “Trending Now”:</strong> Specialized hardware accelerators are less of a direct concern for our primary LLM path due to API abstraction. For the educational model, CPU inference is the baseline, with a clear conceptual path to GPU acceleration (via ONNX &amp; TensorRT) if performance requirements were to become more stringent.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Runtime Engine Considerations</strong></p>
+<ul>
+<li><p><strong>LLM Inference Path (Primary):</strong></p>
+<ul>
+<li><p>The “runtime engine” is managed by the <strong>LLM API provider</strong> (e.g., Google’s infrastructure for Gemini). We don’t directly interact with it beyond making API calls. Our FastAPI application is the client to this managed runtime.</p></li>
+</ul>
+</li>
+<li><p><strong>Educational XGBoost/BERT Model Path (FastAPI on App Runner):</strong></p>
+<ul>
+<li><p><strong>XGBoost (if served via ONNX Runtime):</strong></p>
+<ul>
+<li><p><em>Compiler (Conceptual):</em> No explicit “compilation” step like for NNs, but ONNX conversion is a form of graph translation. ONNX Runtime itself performs graph optimizations when loading the model.</p></li>
+<li><p><em>Runtime Engine:</em> <strong>ONNX Runtime</strong> (CPU Execution Provider by default on App Runner). The FastAPI app would use the <code class="docutils literal notranslate"><span class="pre">onnxruntime.InferenceSession</span></code> API.</p></li>
+</ul>
+</li>
+<li><p><strong>BERT (PyTorch, then to ONNX or TorchScript):</strong></p>
+<ul>
+<li><p><em>If TorchScript (<code class="docutils literal notranslate"><span class="pre">.pt</span></code>):</em> The <strong>PyTorch JIT Runtime</strong> (part of LibTorch, which would be a dependency in our Docker container) would load and execute the scripted model. FastAPI calls this.</p></li>
+<li><p><em>If ONNX:</em> Similar to XGBoost, <strong>ONNX Runtime</strong> would be the runtime engine used within the FastAPI application.</p></li>
+<li><p><em>If targeting TensorRT (hypothetical GPU deployment):</em></p>
+<ul>
+<li><p><em>Compiler:</em> TensorRT Builder (offline step).</p></li>
+<li><p><em>Runtime Engine:</em> TensorRT Runtime (used by the inference code, potentially wrapped by Triton if we used Triton as the server).</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Key Takeaway for the Project:</strong> For the educational path, the runtime (ONNX Runtime or PyTorch JIT) will be a library integrated <em>within</em> our FastAPI application’s Docker container, running on the App Runner CPU instances. We are not setting up a separate, standalone runtime engine process in the same way a dedicated inference server might manage multiple distinct runtime backends.</p></li>
+</ul>
+</li>
+<li><p><strong>Inference Server and Architecture Choices</strong></p>
+<ul>
+<li><p><strong>10.P.X.Y Educational XGBoost/BERT Path:</strong></p>
+<ul>
+<li><p><strong>Serving Logic:</strong> Implemented within our <strong>FastAPI</strong> application.</p></li>
+<li><p><strong>Runtime Engine(s):</strong></p>
+<ul>
+<li><p>If XGBoost is served via ONNX: <strong>ONNX Runtime</strong> (CPU execution provider).</p></li>
+<li><p>If BERT is TorchScript: <strong>PyTorch JIT Runtime</strong>.</p></li>
+<li><p>If BERT is ONNX: <strong>ONNX Runtime</strong>.</p></li>
+</ul>
+</li>
+<li><p><strong>Inference Server:</strong> Our FastAPI application itself acts as a lightweight inference server for this path. It handles HTTP requests, loads the model via the chosen runtime, and returns predictions.</p></li>
+<li><p><strong>Deployment:</strong> The FastAPI app (with model and runtime packaged in Docker) is deployed to AWS App Runner. App Runner handles scaling and load balancing.</p></li>
+</ul>
+</li>
+<li><p><strong>10.P.X.Z LLM Enrichment Path:</strong></p>
+<ul>
+<li><p><strong>Serving Logic:</strong> Implemented within the same <strong>FastAPI</strong> application.</p></li>
+<li><p><strong>Runtime Engine:</strong> N/A (The runtime is managed by the LLM API provider, e.g., Google).</p></li>
+<li><p><strong>Inference Server:</strong> Our FastAPI application acts as a client to the external LLM API and an orchestrator for the enrichment tasks.</p></li>
+<li><p><strong>Deployment:</strong> Same FastAPI app on AWS App Runner.</p></li>
+</ul>
+</li>
+<li><p><strong>Why Not a Full-Blown Inference Server (Triton, TF Serving) for This Project?</strong></p>
+<ul>
+<li><p><strong>Simplicity for Educational Focus:</strong> For the scope of this guide’s project, setting up and configuring a dedicated inference server like Triton would add significant complexity that might detract from other MLOps learning objectives.</p></li>
+<li><p><strong>FastAPI Sufficiency:</strong> FastAPI is capable of handling the moderate load expected for this educational application and directly demonstrates API creation, model loading (via libraries), and containerization.</p></li>
+<li><p><strong>LLM Abstraction:</strong> The LLM path is an API call, not direct model hosting.</p></li>
+<li><p><strong>MLOps Lead Note:</strong> In a real-world, high-QPS production scenario with multiple complex local models (especially on GPUs), migrating the XGBoost/BERT path to be served by Triton (within Kubernetes or a GPU-enabled SageMaker endpoint) would be a strong consideration for performance, utilization, and advanced features like dynamic batching. The FastAPI app might then call Triton.</p></li>
+</ul>
+</li>
+<li><p><strong>10.P.2 Designing the Inference Service (FastAPI)</strong></p>
+<ul>
+<li><p><strong>Path 1 (Educational): Serving XGBoost/BERT via REST API:</strong></p>
+<ul>
+<li><p>FastAPI endpoint that loads the serialized educational model.</p></li>
+<li><p>Endpoint accepts plot/review text, performs necessary preprocessing (consistent with training), makes prediction, returns genre.</p></li>
+</ul>
+</li>
+<li><p><strong>Path 2 (Production-Realistic): API for LLM-Powered Enrichment:</strong></p>
+<ul>
+<li><p>FastAPI endpoints for:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">POST</span> <span class="pre">/enrich-item</span></code>: Takes movie/show details (plot, reviews). Calls Gemini API for genre, summary, score, tags. Stores/returns results.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/items/{item_id}</span></code>: Retrieves enriched data.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GET</span> <span class="pre">/trending</span></code>: Implements logic to query and return trending items based on LLM scores/tags (details for ranking logic in later chapters or simplified for now).</p></li>
+</ul>
+</li>
+<li><p>Securely manage LLM API key (using strategy from Chapter 3).</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>10.P.3 Choosing Serving Infrastructure &amp; Containerization</strong></p>
+<ul>
+<li><p>Create a <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code> for the FastAPI application.</p>
+<ul>
+<li><p>Include Python base image, copy FastAPI app code, inference scripts, model artifacts (for educational path).</p></li>
+<li><p>Install dependencies from <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code>.</p></li>
+<li><p>Expose port and define CMD to run <code class="docutils literal notranslate"><span class="pre">uvicorn</span></code>.</p></li>
+</ul>
+</li>
+<li><p>Chosen platform: <strong>AWS App Runner</strong> (Serverless Containers). Justification: Ease of deployment from container image, auto-scaling, managed HTTPS.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>10.P.4 Implementing CI/CD for the Inference Service (FastAPI on AWS App Runner)</strong></p>
+<ul>
+<li><p><strong>CI Workflow (<code class="docutils literal notranslate"><span class="pre">.github/workflows/ci_fastapi.yml</span></code> - triggered on PR to <code class="docutils literal notranslate"><span class="pre">dev</span></code>/<code class="docutils literal notranslate"><span class="pre">main</span></code>):</strong></p>
+<ol class="arabic simple">
+<li><p>Checkout code.</p></li>
+<li><p>Setup Python, install dependencies (from <code class="docutils literal notranslate"><span class="pre">backend/requirements.txt</span></code>).</p></li>
+<li><p>Run linters (<code class="docutils literal notranslate"><span class="pre">flake8</span></code>, <code class="docutils literal notranslate"><span class="pre">black</span></code>) and static type checks (<code class="docutils literal notranslate"><span class="pre">mypy</span></code>) on <code class="docutils literal notranslate"><span class="pre">backend/</span></code> code.</p></li>
+<li><p>Run unit tests for FastAPI: <code class="docutils literal notranslate"><span class="pre">pytest</span> <span class="pre">backend/tests/unit/</span></code>.</p></li>
+<li><p>(If educational model is bundled) Run any specific model loading unit tests within the FastAPI context.</p></li>
+<li><p>Build Docker image for FastAPI app: <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">build</span> <span class="pre">-t</span> <span class="pre">trending-now-backend:$GITHUB_SHA</span> <span class="pre">-f</span> <span class="pre">backend/Dockerfile</span> <span class="pre">.</span></code></p></li>
+<li><p>Push Docker image to AWS ECR: <code class="docutils literal notranslate"><span class="pre">aws</span> <span class="pre">ecr</span> <span class="pre">get-login-password</span> <span class="pre">...</span> <span class="pre">|</span> <span class="pre">docker</span> <span class="pre">login</span> <span class="pre">...</span></code> then <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">push</span> <span class="pre">&lt;ecr_repo_uri&gt;:$GITHUB_SHA</span></code>.</p></li>
+<li><p>(Optional) Security scan on the pushed ECR image.</p></li>
+</ol>
+</li>
+<li><p><strong>CD Workflow to Staging (<code class="docutils literal notranslate"><span class="pre">.github/workflows/cd_staging_fastapi.yml</span></code> - triggered on merge to <code class="docutils literal notranslate"><span class="pre">dev</span></code>):</strong></p>
+<ol class="arabic simple">
+<li><p>Checkout code.</p></li>
+<li><p>Setup AWS credentials (for Terraform and App Runner).</p></li>
+<li><p>Setup Terraform.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">terraform</span> <span class="pre">apply</span></code> for Staging environment (<code class="docutils literal notranslate"><span class="pre">infrastructure/environments/staging/</span></code>) - This deploys/updates the App Runner service pointing to the new ECR image tag (<code class="docutils literal notranslate"><span class="pre">$GITHUB_SHA</span></code>).</p></li>
+<li><p>Run API Integration Tests: <code class="docutils literal notranslate"><span class="pre">pytest</span> <span class="pre">backend/tests/integration/</span> <span class="pre">--staging-url=&lt;app_runner_staging_url&gt;</span></code>.</p></li>
+<li><p>Run Load Tests (Locust): <code class="docutils literal notranslate"><span class="pre">locust</span> <span class="pre">-f</span> <span class="pre">backend/tests/load/locustfile.py</span> <span class="pre">--host=&lt;app_runner_staging_url&gt;</span> <span class="pre">--headless</span> <span class="pre">...</span></code>.</p></li>
+<li><p>(If ephemeral staging for the FastAPI service was desired and separate from Airflow/Redshift staging, add <code class="docutils literal notranslate"><span class="pre">terraform</span> <span class="pre">destroy</span></code> here. Usually, App Runner service would be persistent and just updated).</p></li>
+</ol>
+</li>
+<li><p><strong>CD Workflow to Production (<code class="docutils literal notranslate"><span class="pre">.github/workflows/cd_prod_fastapi.yml</span></code> - triggered on merge to <code class="docutils literal notranslate"><span class="pre">main</span></code> or manual approval after staging):</strong></p>
+<ol class="arabic simple">
+<li><p>(GitHub Environment with Manual Approval Gate).</p></li>
+<li><p>Checkout code.</p></li>
+<li><p>Setup AWS credentials.</p></li>
+<li><p>Setup Terraform.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">terraform</span> <span class="pre">apply</span></code> for Production environment (<code class="docutils literal notranslate"><span class="pre">infrastructure/environments/production/</span></code>) - Updates Production App Runner service to new ECR image tag.</p>
+<ul>
+<li><p><em>(Within Terraform/App Runner config, explore gradual deployment options if available, e.g., percentage-based rollout).</em></p></li>
+</ul>
+</li>
+<li><p>Run smoke tests against production URL.</p></li>
+<li><p>Notify team of deployment completion.</p></li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p><strong>10.P.5 Conceptual Progressive Delivery for the “Trending Now” Model/Service</strong></p>
+<ul>
+<li><p><strong>Scenario 1: Updating the Educational XGBoost/BERT Model Version</strong></p>
+<ol class="arabic simple">
+<li><p>A new, validated XGBoost/BERT model (e.g., <code class="docutils literal notranslate"><span class="pre">v1.2</span></code>) is registered in W&amp;B and approved for production.</p></li>
+<li><p>The CI/CD pipeline for the FastAPI service is triggered (or a dedicated model promotion pipeline).</p></li>
+<li><p>A new version of the FastAPI Docker image is built, now packaging <code class="docutils literal notranslate"><span class="pre">model_v1.2</span></code>.</p></li>
+<li><p><strong>Staging Deployment:</strong> The new image is deployed to the Staging App Runner service. All Staging tests (API, load) pass.</p></li>
+<li><p><strong>Production Rollout (using AWS App Runner’s capabilities):</strong></p>
+<ul>
+<li><p>App Runner supports percentage-based traffic shifting for new deployments.</p></li>
+<li><p>Configure the production App Runner service to deploy the new image, initially routing, say, 10% of traffic to instances running the new model version.</p></li>
+<li><p><strong>Monitoring:</strong> Closely monitor operational metrics (latency, errors on App Runner) and any available model-specific metrics (e.g., if we log prediction distributions for the 10% traffic) for the new version via CloudWatch/Grafana.</p></li>
+<li><p><strong>Incremental Increase:</strong> If stable, gradually increase traffic to the new version (e.g., 50%, then 100%) over a defined period.</p></li>
+<li><p><strong>Rollback:</strong> If issues are detected, App Runner allows for quick rollback to the previous stable deployment.</p></li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p><strong>Scenario 2: Updating LLM Prompt or Logic for Review Summarization</strong></p>
+<ol class="arabic simple">
+<li><p>A new prompt or summarization logic is developed and tested offline.</p></li>
+<li><p>Changes are made to the FastAPI service code.</p></li>
+<li><p>CI runs, builds new Docker image.</p></li>
+<li><p><strong>Staging Deployment:</strong> New image deployed to Staging App Runner. Test the <code class="docutils literal notranslate"><span class="pre">/enrich-item</span></code> endpoint with sample movie data to ensure new summaries are generated correctly.</p></li>
+<li><p><strong>Production Rollout (A/B Test or Canary for LLM logic):</strong></p>
+<ul>
+<li><p>Since App Runner’s traffic splitting might be coarse for just an API logic change without distinct model files, we might implement application-level A/B testing if we want to compare two prompts simultaneously:</p>
+<ul>
+<li><p>The FastAPI endpoint, when called, randomly (or based on a user hash) decides to use <code class="docutils literal notranslate"><span class="pre">prompt_A</span></code> or <code class="docutils literal notranslate"><span class="pre">prompt_B</span></code> for the LLM call.</p></li>
+<li><p>Log which prompt was used along with user feedback (if we had a rating system for summaries) or downstream engagement.</p></li>
+</ul>
+</li>
+<li><p>Alternatively, a simpler canary approach: deploy the new FastAPI version (with <code class="docutils literal notranslate"><span class="pre">prompt_B</span></code>) using App Runner’s percentage-based rollout. Monitor the quality of summaries generated (e.g., through sampling and manual review initially) and operational metrics.</p></li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p><strong>Shadow Deployment (Conceptual for LLM Path):</strong></p>
+<ul>
+<li><p>Modify the FastAPI <code class="docutils literal notranslate"><span class="pre">/enrich-item</span></code> endpoint:</p>
+<ul>
+<li><p>When a request comes, call the <em>current production</em> LLM prompt/logic to generate the summary served to the user.</p></li>
+<li><p>Asynchronously (or in parallel if performance allows), also call the <em>new candidate</em> LLM prompt/logic with the same input.</p></li>
+<li><p>Log both summaries (production and shadow candidate) for offline comparison.</p></li>
+<li><p>This allows evaluating a new prompt on live data without affecting users.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+</section>
+<section id="conclusion-the-doors-are-open-service-begins">
+<h2>🧑‍🍳 Conclusion: The Doors are Open, Service Begins!<a class="headerlink" href="#conclusion-the-doors-are-open-service-begins" title="Permalink to this heading">¶</a></h2>
+<p>The “Grand Opening” is a milestone, signifying that our ML models, born from data and refined through rigorous experimentation, are now live and delivering predictions. This chapter has navigated the complex terrain of model deployment and serving, from packaging models for consistency with Docker to choosing appropriate deployment strategies like batch, online, or edge. We’ve explored diverse serving architectures, including API-driven Model-as-a-Service, serverless functions, and Kubernetes-orchestrated platforms, understanding their respective trade-offs.</p>
+<p>Crucially, we delved into inference optimization – the art of making our models fast and cost-effective through compression, hardware acceleration, and clever server-side techniques. We’ve also established how CI/CD pipelines automate the deployment of our serving infrastructure and model updates, and how progressive delivery strategies like canary releases and shadow deployments ensure these updates are rolled out safely and reliably.</p>
+<p>For our “Trending Now” project, we’ve containerized our FastAPI application, which serves both our educational genre model and integrates with LLMs for advanced content enrichment, and planned its deployment to a scalable serverless platform. With our models now actively serving predictions, the next critical phase is to continuously “listen to our diners” – through robust monitoring and observability – to ensure our ML kitchen maintains its Michelin standards and adapts to evolving tastes. This will be the focus of Chapter 10.</p>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024, Deepak Karkala
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Chapter 10: Deployment &amp; Serving</a><ul>
+<li><a class="reference internal" href="#introduction-from-approved-recipe-to-diner-s-table">🧑‍🍳 Introduction: From Approved Recipe to Diner’s Table</a></li>
+<li><a class="reference internal" href="#section-10-1-packaging-models-for-deployment-preparing-the-dish-for-consistent-plating">Section 10.1: Packaging Models for Deployment (Preparing the Dish for Consistent Plating)</a></li>
+<li><a class="reference internal" href="#section-10-2-choosing-a-deployment-strategy-the-serving-spectrum-dine-in-takeaway-or-home-delivery">Section 10.2: Choosing a Deployment Strategy: The Serving Spectrum (Dine-in, Takeaway, or Home Delivery?)</a></li>
+<li><a class="reference internal" href="#section-10-3-prediction-serving-patterns-and-architectures-the-kitchen-s-service-design">Section 10.3: Prediction Serving Patterns and Architectures (The Kitchen’s Service Design)</a></li>
+<li><a class="reference internal" href="#section-10-4-inference-optimization-for-performance-and-cost-streamlining-service-for-speed-and-efficiency">Section 10.4: Inference Optimization for Performance and Cost (Streamlining Service for Speed and Efficiency)</a></li>
+<li><a class="reference internal" href="#section-10-5-ci-cd-for-model-serving-automating-model-deployments-automating-the-kitchen-s-opening-closing-procedures">Section 10.5: CI/CD for Model Serving: Automating Model Deployments (Automating the Kitchen’s Opening &amp; Closing Procedures)</a></li>
+<li><a class="reference internal" href="#section-10-6-progressive-delivery-rollout-strategies-for-safe-updates-taste-testing-with-diners-before-full-menu-launch">Section 10.6: Progressive Delivery &amp; Rollout Strategies for Safe Updates (Taste-Testing with Diners Before Full Menu Launch)</a></li>
+<li><a class="reference internal" href="#project-trending-now-deploying-the-genre-classification-model-llm-inference">Project: “Trending Now” – Deploying the Genre Classification Model &amp; LLM Inference</a></li>
+<li><a class="reference internal" href="#conclusion-the-doors-are-open-service-begins">🧑‍🍳 Conclusion: The Doors are Open, Service Begins!</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=b3ba4146"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/scripts/furo.js?v=4e2eecee"></script>
+    </body>
+</html>

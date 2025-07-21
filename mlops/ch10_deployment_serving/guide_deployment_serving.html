@@ -1,0 +1,1443 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" />
+
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/><!-- Generated with Sphinx 7.1.2 and Furo 2024.05.06 -->
+        <title>Guide: Model Deployment &amp; Serving - Home</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=387cc868" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=36a5483c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/style.css?v=8a7ff5ee" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" /
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">Home</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  
+  <span class="sidebar-brand-text">Home</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../projects/index.html">Projects</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Projects</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/nlp/index.html">Natural Language Processing</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Natural Language Processing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/airbnb_alternate_search/about/index.html">Airbnb Listing description based Semantic Search</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/cv/index.html">Computer Vision</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Computer Vision</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/ecommerce_image_segmentation/about/index.html">Image Segmentation for Ecommerce Products</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/ml/index.html">Machine Learning</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of Machine Learning</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/airbnb_price_modeling/about/index.html">Predictive Price Modeling for Airbnb listings</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../publications/index.html">Patents, Papers, Thesis</a></li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../index.html">MLOps</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of MLOps</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch1_problem_framing.html">ML Problem framing</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of ML Problem framing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch2_blueprint_operational_strategy.html">The MLOps Blueprint &amp; Operational Strategy</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch2a_platform/index.html">ML Platforms</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of ML Platforms</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/ml_platforms.html">ML Platforms: How to</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/uber.html">Uber Michelangelo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/linkedin.html">LinkedIn DARWIN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/netflix.html">Netflix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/shopify.html">Shopify Merlin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/zomato.html">Zomato: Real-time ML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/coveo.html">Coveo: MLOPs at reasonable scale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/monzo.html">Monzo ML Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/didact.html">Didact AI</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch3_project_planning/index.html">Project Planning</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of Project Planning</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/prd.html">Project Requirements Document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/tech_stack.html">Tech Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/config_management.html">Config Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/pipeline_design.html">Pipeline Design</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/environment_strategy.html">Environment Strategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/cicd_branching_model.html">CI/CD Strategy and Branching Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/directory_structure.html">Directory Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/env_branchind_cicd_deployment.html">Environments, Branching, CI/CD, and Deployments Explained</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/project_management.html">Project Management for MLOps</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch4_data_discovery/index.html">Data Sourcing, Discovery</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of Data Sourcing, Discovery</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/data_sourcing_discovery.html">Data Sourcing, Discovery &amp; Understanding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/ch4_project.html">Project-Trending Now: Implementing Web Scraping, Ingestion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/industry_case_studies.html">Data Discovery Platforms: Industry Case Studies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/facebook_nemo.html">Facebook: Nemo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/netflix_metacat.html">Netflix Metacat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/uber_databook.html">Uber Databook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/linkedin_datahub.html">LinkedIn Datahub</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../lld/index.html">Low Level Design</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle navigation of Low Level Design</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../lld/parking_lot.html">Parking Lot</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../visualization/index.html">Data Visualization Projects</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="../../_sources/mlops/ch10_deployment_serving/guide_deployment_serving.md.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="guide-model-deployment-serving">
+<h1>Guide: Model Deployment &amp; Serving<a class="headerlink" href="#guide-model-deployment-serving" title="Permalink to this heading">¶</a></h1>
+<section id="id1">
+<h2><a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<p><strong>Document Purpose:</strong> This guide provides a deep, comprehensive dive into the principles, patterns, challenges, and best practices for deploying and serving machine learning models in production. It’s designed for experienced Lead MLOps Engineers to build robust mental models and decision-making frameworks for creating scalable, reliable, and efficient ML serving solutions, drawing from extensive industry best practices and real-world implementations.</p>
+<p><strong>Core Philosophy:</strong> Model deployment and serving are not merely final steps but integral, ongoing, and iterative processes within the MLOps lifecycle. They demand a synergistic blend of software engineering rigor, astute infrastructure awareness, and ML-specific considerations to transform trained models into valuable, production-grade services. The ultimate goal is to deliver predictions reliably, efficiently, and adaptively, while consistently ensuring quality, governance, and alignment with business objectives.</p>
+<hr class="docutils" />
+<section id="i-understanding-the-ml-deployment-serving-landscape">
+<h3>I. Understanding the ML Deployment &amp; Serving Landscape<a class="headerlink" href="#i-understanding-the-ml-deployment-serving-landscape" title="Permalink to this heading">¶</a></h3>
+<p>The journey of a machine learning model from a research environment to a value-generating production asset culminates in its deployment and serving. For a Lead MLOps Engineer, a precise understanding of these foundational concepts is paramount, as ambiguities here can cascade into flawed architectural choices, operational inefficiencies, and ultimately, project failure. The persistent need to clarify these terms across industry literature suggests a common “deployment gap,” where the full scope of making a model robustly and scalably operational is often underestimated.</p>
+<ul class="simple">
+<li><p><strong>What is Model Deployment?</strong></p>
+<ul>
+<li><p>The multifaceted process of integrating a trained ML model and its associated assets—such as code, artifacts, and data dependencies—into a live production environment.</p></li>
+<li><p>This makes the model <em>available</em> to be used for its intended purpose in a real-world setting.</p></li>
+<li><p>It bridges the gap between an offline trained artifact and a live, accessible service or batch process.</p></li>
+<li><p>“Deploy” is a loose term; production is a spectrum. For some, it’s plots in notebooks; for others, it’s serving millions daily.</p></li>
+</ul>
+</li>
+<li><p><strong>What is Model Serving?</strong></p>
+<ul>
+<li><p>The operational aspect of running deployed models to handle inference requests and return predictions.</p></li>
+<li><p>Encompasses the infrastructure, APIs, and processes for real-time or batch prediction.</p></li>
+</ul>
+</li>
+<li><p><strong>Key Distinction:</strong> Deployment is the <em>act</em> of transitioning the model to production, while serving is the <em>mechanism</em> that enables interaction with it. Serving is a critical stage <em>within</em> the broader deployment process. A model can be deployed but unserved (unusable), but cannot be served without being deployed.</p>
+<ul>
+<li><p><strong>Granular View:</strong></p>
+<ul>
+<li><p><strong>Model Serving Runtime:</strong> Packages the model and sets up APIs.</p></li>
+<li><p><strong>Model Serving Platform:</strong> Provides scalable infrastructure for the runtime.</p></li>
+<li><p><strong>Model Deployment (Process):</strong> Integration of the packaged model into the serving platform.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Why is it Different from Traditional Software Deployment?</strong></p>
+<ul>
+<li><p><strong>Data Dependency:</strong> Model behavior is learned from data; prediction quality hinges on input data validity and its consistency with training data.</p></li>
+<li><p><strong>Dual Systems:</strong> ML involves distinct but interconnected training systems (pipelines) and serving systems.</p></li>
+<li><p><strong>Model Staleness &amp; Decay:</strong> Models degrade over time due to data/concept drift; they don’t “age like fine wine.”</p></li>
+<li><p><strong>Automated Decision-Making &amp; Bias:</strong> Implicit biases in data can lead to unfair or unintended outcomes.</p></li>
+<li><p><strong>Experimental Nature:</strong> ML development is iterative, often involving frequent model updates and experimentation.</p></li>
+<li><p><strong>CI/CD/CT:</strong> Continuous Integration (CI) / Continuous Delivery (CD) extends to data, schemas, models, and training pipelines. Continuous Training (CT) is a unique ML aspect concerned with automatically retraining models.</p></li>
+</ul>
+</li>
+<li><p><strong>MLOps Maturity Levels for Deployment &amp; Serving:</strong></p>
+<ul>
+<li><p><strong>Level 0 (Manual):</strong> Manual handoff from Data Science to Operations, infrequent releases, no CI/CD for models, deployment typically means deploying a prediction service as a single unit. Characterized by script-driven processes, disconnection between ML and Ops, and lack of active performance monitoring.</p></li>
+<li><p><strong>Level 1 (ML Pipeline Automation):</strong> Automated ML pipeline for CT, enabling continuous delivery of the model <em>service</em>. Emphasizes experimental-operational symmetry and modularized, containerized code for components. Includes automated data and model validation, pipeline triggers, and metadata management.</p></li>
+<li><p><strong>Level 2 (CI/CD Pipeline Automation):</strong> A robust, automated CI/CD system for the ML <em>pipeline itself</em>, allowing data scientists to rapidly explore, implement, build, test, and deploy new pipeline components and models to the target environment.</p></li>
+</ul>
+</li>
+<li><p><strong>The MLOps Lifecycle Context:</strong></p>
+<ul>
+<li><p><strong>Design &amp; Experimentation:</strong> Business understanding, data engineering (acquisition, preparation, validation, labeling, splitting), model engineering (training, evaluation, testing, packaging).</p></li>
+<li><p><strong>ML Operations (Deployment &amp; Serving):</strong> Packaging, deploying to production, exposing via serving mechanisms.</p></li>
+<li><p><strong>Monitoring &amp; Iteration:</strong> Continuous monitoring of performance, health, and data drift, feeding back to trigger retraining or new development cycles.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="ii-key-considerations-before-deployment-aligning-with-business-objectives-requirements">
+<h3>II. Key Considerations Before Deployment: Aligning with Business Objectives &amp; Requirements<a class="headerlink" href="#ii-key-considerations-before-deployment-aligning-with-business-objectives-requirements" title="Permalink to this heading">¶</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Define Success &amp; Business Value:</strong></p>
+<ul class="simple">
+<li><p>Establish clear, measurable Key Performance Indicators (KPIs) beyond technical model metrics (e.g., revenue impact, efficiency gains, user engagement).</p></li>
+<li><p>Determine acceptable error rates and the business consequences of incorrect predictions.</p></li>
+</ul>
+</li>
+<li><p><strong>Evaluate Project Requirements:</strong></p>
+<ul class="simple">
+<li><p><strong>Deployment Complexity vs. Team Capability:</strong> Align strategy with team’s MLOps expertise and available resources.</p></li>
+<li><p><strong>Real-time vs. Batch Processing:</strong> Driven by the immediacy needs of predictions.</p></li>
+<li><p><strong>Traffic Volume &amp; Resource Needs:</strong> Estimate inference load to plan for compute (CPU/GPU) and infrastructure.</p></li>
+<li><p><strong>Scaling to Zero:</strong> Is it a requirement for cost optimization in intermittent traffic scenarios?</p></li>
+<li><p><strong>Latency Constraints:</strong> Critical for online systems; impacts architecture and optimization choices.</p></li>
+<li><p><strong>Data Freshness:</strong> How up-to-date must the data for inference be?</p></li>
+</ul>
+</li>
+<li><p><strong>Techno-Economic Optimization:</strong></p>
+<ul class="simple">
+<li><p>Constantly weigh the technical complexity and cost against anticipated business value. Avoid over-engineering.</p></li>
+<li><p>What is the Minimum Viable Deployment (MVD) to achieve core business goals?</p></li>
+<li><p>What is the ROI for added complexity or cost?</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="iii-pre-deployment-preparations-building-a-solid-foundation">
+<h3>III. Pre-Deployment Preparations: Building a Solid Foundation<a class="headerlink" href="#iii-pre-deployment-preparations-building-a-solid-foundation" title="Permalink to this heading">¶</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Model Packaging &amp; Artifacts:</strong></p>
+<ul class="simple">
+<li><p><strong>Serialization:</strong> Saving the trained model (weights, architecture) in a portable format (e.g., <code class="docutils literal notranslate"><span class="pre">pickle</span></code>, <code class="docutils literal notranslate"><span class="pre">joblib</span></code>, ONNX, TensorFlow SavedModel, PyTorch <code class="docutils literal notranslate"><span class="pre">state_dict</span></code> + TorchScript).</p>
+<ul>
+<li><p><strong>Note:</strong> Exporting a model involves converting it into a format usable by another application. This includes the model definition (structure, layers, units) and parameter values. TensorFlow 2 uses <code class="docutils literal notranslate"><span class="pre">tf.keras.Model.save()</span></code>; PyTorch uses <code class="docutils literal notranslate"><span class="pre">torch.onnx.export()</span></code>.</p></li>
+</ul>
+</li>
+<li><p><strong>Dependencies:</strong> Clearly define and package all code, library versions (e.g., <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code>, <code class="docutils literal notranslate"><span class="pre">conda.yaml</span></code>), and environment dependencies.</p>
+<ul>
+<li><p><strong>Docker for Reproducibility &amp; Portability:</strong></p>
+<ul>
+<li><p><strong>Dockerfile:</strong> A text document with all commands to assemble an image. <code class="docutils literal notranslate"><span class="pre">FROM</span></code> specifies base image, <code class="docutils literal notranslate"><span class="pre">RUN</span></code> executes commands, <code class="docutils literal notranslate"><span class="pre">COPY</span></code> adds files, <code class="docutils literal notranslate"><span class="pre">CMD</span></code>/<code class="docutils literal notranslate"><span class="pre">ENTRYPOINT</span></code> defines runtime command.</p></li>
+<li><p><strong>Image Layers:</strong> Each instruction creates a layer; Docker caches layers to speed up builds. Minimize layers by chaining <code class="docutils literal notranslate"><span class="pre">RUN</span></code> commands (<code class="docutils literal notranslate"><span class="pre">apt-get</span> <span class="pre">update</span> <span class="pre">&amp;&amp;</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">-y</span> <span class="pre">...</span></code>).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">.dockerignore</span></code>:</strong> Prevents unwanted files (local data, build artifacts, <code class="docutils literal notranslate"><span class="pre">.git</span></code>) from being included, reducing image size and build context.</p></li>
+<li><p><strong>Best Practices:</strong></p>
+<ul>
+<li><p>Use official, trusted base images where possible.</p></li>
+<li><p>Keep containers ephemeral: design for stop/destroy/rebuild with minimal configuration.</p></li>
+<li><p>Install only necessary packages to minimize size and attack surface.</p></li>
+<li><p>Sort multi-line <code class="docutils literal notranslate"><span class="pre">RUN</span></code> arguments (e.g., <code class="docutils literal notranslate"><span class="pre">apt-get</span> <span class="pre">install</span></code>) alphabetically for readability and to optimize layer caching.</p></li>
+<li><p>One main process per container for better scalability, reusability, and logging.</p></li>
+<li><p>Tag images consistently (e.g., <code class="docutils literal notranslate"><span class="pre">your-repo/image-name:version</span></code>, <code class="docutils literal notranslate"><span class="pre">your-repo/image-name:latest</span></code>). Use unique tags for production deployments.</p></li>
+</ul>
+</li>
+<li><p><strong>ML-Specific Docker Wrappers:</strong> Tools like Cog (Replicate), BentoML, Truss (Baseten) simplify Dockerization for ML models by providing standard prediction service definitions and YAML for dependencies.</p></li>
+</ul>
+</li>
+<li><p><strong>Model-Agnostic Formats (e.g., ONNX):</strong> Aim for interoperability across frameworks. Allows defining a network in one language and running it elsewhere.</p>
+<ul>
+<li><p><strong>Reality Check:</strong> Translation layers can have bugs; may not support all custom operations or feature transformations.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Metadata:</strong> Essential for tracking, governance, and reproducibility. Must include model version, training data source/version, hyperparameters, evaluation metrics, code commit hash, environment details.</p></li>
+</ul>
+</li>
+<li><p><strong>Software Interfaces for ML Models:</strong></p>
+<ul class="simple">
+<li><p><strong>Why:</strong> Abstract away model implementation details, enabling consistent interaction patterns, easier integration, and interchangeability of models. “Boundaries between separate chunks of software.”</p></li>
+<li><p><strong>Design Principles:</strong> Clearly state necessary inputs and expected outputs. Focus on the interface, not the implementation details.</p></li>
+<li><p><strong>Object-Oriented Approach (MLOOP - Machine Learning Object Oriented Programming):</strong></p>
+<ul>
+<li><p>Define a base <code class="docutils literal notranslate"><span class="pre">Model</span></code> class with common methods:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">predict(input_features)</span></code>: For single instance prediction.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">predict_batch(batch_input_features)</span></code>: For batch predictions.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">serialize(path)</span></code> / <code class="docutils literal notranslate"><span class="pre">deserialize(path)</span></code> (or <code class="docutils literal notranslate"><span class="pre">save</span></code>/<code class="docutils literal notranslate"><span class="pre">load</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">to_remote(remote_path)</span></code> / <code class="docutils literal notranslate"><span class="pre">Model.from_remote(remote_path)</span></code>: For persisting/loading from object storage.</p></li>
+</ul>
+</li>
+<li><p>Create subclasses for specific ML libraries (e.g., <code class="docutils literal notranslate"><span class="pre">SklearnModel(Model)</span></code>, <code class="docutils literal notranslate"><span class="pre">TensorflowModel(Model)</span></code>) to handle library-specific implementation details (e.g., input reshaping for scikit-learn).</p></li>
+</ul>
+</li>
+<li><p><strong>Standardized API Payloads:</strong></p>
+<ul>
+<li><p>While no universal standard exists, cloud providers have their conventions (e.g., Google Cloud AI Platform’s “instances” list, Azure’s “data” list, SageMaker’s specific formats). Aspire to a consistent internal standard.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Model Registries: Centralized Model Lifecycle Management:</strong></p>
+<ul class="simple">
+<li><p><strong>Why:</strong> A versioned, centralized system to track model lineage, artifacts, metadata, and deployment stages (e.g., development, staging, production, shadow). Acts as a crucial communication layer between training and inference processes. Facilitates governance, auditability, and reproducibility.</p></li>
+<li><p><strong>Key Metadata to Store:</strong></p>
+<ul>
+<li><p>Model ID, name, version (semantic versioning is good practice).</p></li>
+<li><p>Registration date, training date.</p></li>
+<li><p>Offline evaluation metrics (accuracy, F1, RMSE, custom business metrics).</p></li>
+<li><p>Path to serialized model artifact (e.g., S3 URI, GCS path).</p></li>
+<li><p>Current deployment stage/status.</p></li>
+<li><p>Training dataset (name, version, pointer).</p></li>
+<li><p>Source code commit hash or Docker image ID of the training code/environment.</p></li>
+<li><p>Hyperparameters used for training.</p></li>
+<li><p>Publisher/owner information.</p></li>
+<li><p>Human-readable description of model purpose and changes from previous version.</p></li>
+</ul>
+</li>
+<li><p><strong>API for Registry (Example Operations):</strong></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">publish_model(model_artifact,</span> <span class="pre">name,</span> <span class="pre">version,</span> <span class="pre">metrics,</span> <span class="pre">...)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_model(name,</span> <span class="pre">version_or_stage)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">update_model_stage(name,</span> <span class="pre">version,</span> <span class="pre">new_stage)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">list_model_versions(name)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">log_metadata(name,</span> <span class="pre">version,</span> <span class="pre">key,</span> <span class="pre">value)</span></code></p></li>
+</ul>
+</li>
+<li><p><strong>Tools:</strong></p>
+<ul>
+<li><p><strong>MLflow Model Registry:</strong> Open-source, integrates with MLflow Tracking.</p></li>
+<li><p><strong>Vertex AI Model Registry (Google Cloud).</strong></p></li>
+<li><p><strong>Amazon SageMaker Model Registry.</strong></p></li>
+<li><p><strong>Azure Machine Learning Model Registry.</strong></p></li>
+<li><p><strong>Neptune:</strong> Primarily an experiment tracker, but logged artifacts and metadata can serve registry-like functions or integrate with dedicated registries.</p></li>
+<li><p>Custom solutions often built on relational databases</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Offline Testing &amp; Validation (Pre-Deployment):</strong></p>
+<ul class="simple">
+<li><p><strong>Data Validation:</strong> (Covered extensively in a separate Data Testing guide)</p>
+<ul>
+<li><p>Ensure training, validation, and test splits are representative and preprocessed consistently (avoiding data leakage).</p></li>
+<li><p>Validate against a schema (e.g., using TFDV, Great Expectations).</p></li>
+<li><p>Check for data drift/skew compared to a reference dataset.</p></li>
+</ul>
+</li>
+<li><p><strong>Model Performance on Hold-Out Dataset:</strong></p>
+<ul>
+<li><p>Evaluate against pre-defined thresholds for optimizing metrics (e.g., accuracy, F1, AUC) and satisficing metrics (e.g., latency, model size).</p></li>
+<li><p>Data splitting strategy must reflect production use (e.g., temporal splits for time-series, stratified for classification).</p></li>
+</ul>
+</li>
+<li><p><strong>Performance on Specific Examples &amp; Critical Subpopulations (Slices):</strong></p>
+<ul>
+<li><p>Ensure model doesn’t systematically underperform for important user segments (demographics, regions, lead sources) or known critical edge cases. (Tesla example of testing stop signs under various occlusions).</p></li>
+<li><p>Define slices based on domain knowledge or through error analysis.</p></li>
+</ul>
+</li>
+<li><p><strong>Behavioral Testing (e.g., using CheckList framework for NLP):</strong></p>
+<ul>
+<li><p><strong>Invariance Tests (INV):</strong> Input perturbations that <em>should not</em> change the prediction (e.g., changing names in sentiment analysis: “Mark was great” vs. “Samantha was great”).</p></li>
+<li><p><strong>Directional Expectation Tests (DIR):</strong> Input perturbations that <em>should</em> change the prediction in a specific, known direction (e.g., adding “not” should flip sentiment).</p></li>
+<li><p><strong>Minimum Functionality Tests (MFTs):</strong> Simple input-output pairs to test basic capabilities (e.g., “I love this” -&gt; positive).</p></li>
+</ul>
+</li>
+<li><p><strong>Model Robustness &amp; Perturbation Tests:</strong> Evaluate how the model handles noisy data, typos, or slight adversarial perturbations.</p></li>
+<li><p><strong>Fairness and Bias Checks:</strong> Use tools and metrics to identify and mitigate unintended biases in model predictions across different demographic groups.</p></li>
+<li><p><strong>Model Calibration Tests:</strong> Assess if predicted probabilities are well-aligned with empirical frequencies (i.e., if a model predicts 80% probability, is it correct 80% of the time?).</p></li>
+<li><p><strong>Overfitting/Underfitting Checks:</strong> Compare performance on training data versus validation/test data.</p></li>
+<li><p><strong>Regression Tests for Models:</strong> Maintain a suite of examples that previously caused bugs or critical failures, ensuring new model versions don’t reintroduce these issues.</p></li>
+<li><p><strong>Infrastructure Compatibility &amp; Contract Tests (Staging):</strong></p>
+<ul>
+<li><p>Verify that the packaged model artifact (e.g., Docker image) can be loaded and invoked successfully in a staging environment that mimics production.</p></li>
+<li><p>Test the model’s serving interface (e.g., REST API) with sample inputs and assert expected outputs.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="iv-choosing-a-deployment-strategy-the-serving-spectrum">
+<h3>IV. Choosing a Deployment Strategy: The Serving Spectrum<a class="headerlink" href="#iv-choosing-a-deployment-strategy-the-serving-spectrum" title="Permalink to this heading">¶</a></h3>
+<p>Machine learning models can deliver predictions through various mechanisms, each suited to different operational needs and constraints. The “serving spectrum” ranges from offline batch processing of large datasets to instantaneous online predictions for interactive applications, and even extends to specialized deployments on edge devices. A Lead MLOps Engineer must possess a nuanced understanding of these strategies to guide the selection of the most appropriate approach for any given ML application.</p>
+<p><strong>A. Batch Prediction (Asynchronous Inference)</strong></p>
+<ol class="arabic">
+<li><p><strong>Use Cases &amp; Scenarios:</strong></p>
+<ul class="simple">
+<li><p>Predictions are not required instantaneously; a delay (hours, days) is acceptable (e.g., daily lead scoring, weekly email recommendations).</p></li>
+<li><p>Large volumes of data need to be processed efficiently.</p></li>
+<li><p>Cost optimization is a factor (can use off-peak, cheaper compute).</p></li>
+<li><p>Universe of inputs is manageable for pre-computation OR predictions are needed for a defined set (e.g., all active users).</p></li>
+<li><p><strong>Examples:</strong> Netflix pre-computing recommendations, DoorDash demand/supply predictions.</p></li>
+</ul>
+</li>
+<li><p><strong>Architectural Patterns &amp; Components:</strong></p>
+<ul class="simple">
+<li><p><strong>Data Source:</strong> Data lake (S3, GCS), data warehouse (Snowflake, BigQuery), operational DBs.</p></li>
+<li><p><strong>Workflow Orchestrator:</strong> Apache Airflow, Kubeflow Pipelines, Prefect, Dagster, AWS Step Functions, Azure Data Factory, Google Cloud Composer. Schedules and manages the batch job.</p></li>
+<li><p><strong>Batch Prediction Job/Processor:</strong></p>
+<ul>
+<li><p>Loads model from Model Registry.</p></li>
+<li><p>Retrieves and processes input data.</p></li>
+<li><p>Generates predictions.</p></li>
+<li><p>Can run on Spark for distributed processing.</p></li>
+</ul>
+</li>
+<li><p><strong>Prediction Store:</strong> Database, data warehouse, object storage for downstream consumption.</p></li>
+</ul>
+<img src="../../_static/mlops/ch10_deployment_serving/batch_prediction.svg" style="background-color: #FCF1EF;"/>
+</li>
+<li><p><strong>Tooling:</strong></p>
+<ul class="simple">
+<li><p><strong>Orchestration:</strong> Airflow, Kubeflow, Prefect, Dagster.</p></li>
+<li><p><strong>Processing:</strong> Spark, Dask, Pandas.</p></li>
+<li><p><strong>Cloud Services:</strong> AWS SageMaker Batch Transform, Google Vertex AI Batch Predictions, Azure ML Batch Endpoints.</p></li>
+</ul>
+</li>
+<li><p><strong>Pros &amp; Cons:</strong></p>
+<ul class="simple">
+<li><p><strong>Pros:</strong> Simpler implementation, cost-effective for large volumes, high throughput, inspectable predictions before use.</p></li>
+<li><p><strong>Cons:</strong> High latency/stale predictions, unsuitable for dynamic inputs, potential for wasted compute if not all predictions are used, delayed error detection.</p></li>
+</ul>
+</li>
+<li><p><strong>Key MLOps Decision:</strong> Defining an “acceptable staleness threshold” to balance prediction freshness with compute cost and pipeline complexity. This determines the batch processing frequency.</p></li>
+</ol>
+<p><strong>B. Online/Real-time Prediction (Synchronous Inference via Model-as-Service)</strong></p>
+<ol class="arabic">
+<li><p><strong>Use Cases &amp; Scenarios:</strong></p>
+<ul class="simple">
+<li><p>Predictions needed synchronously with user requests or system events (e.g., fraud detection, live recommendations, dynamic pricing, UberEats ETA).</p></li>
+<li><p>Low latency is critical (milliseconds).</p></li>
+<li><p>Often requires near real-time features.</p></li>
+</ul>
+</li>
+<li><p><strong>Architectural Patterns &amp; Components (Model-as-Service):</strong></p>
+<ul class="simple">
+<li><p><strong>API Endpoint:</strong> Model exposed via network (REST, gRPC).</p></li>
+<li><p><strong>API Gateway:</strong> Manages requests (auth, rate limiting, routing).</p></li>
+<li><p><strong>Load Balancer:</strong> Distributes traffic across model server instances.</p></li>
+<li><p><strong>Model Serving Instances:</strong> Compute resources (VMs, containers) running the model.</p></li>
+<li><p><strong>Online Feature Store (Optional):</strong> Low-latency access to features.</p></li>
+<li><p><strong>Containerization (Docker) &amp; Orchestration (Kubernetes):</strong> Standard for scalable, resilient deployment.</p></li>
+</ul>
+<img src="../../_static/mlops/ch10_deployment_serving/online_prediction.svg" style="background-color: #FCF1EF;"/>
+</li>
+<li><p><strong>Implementation &amp; Tooling:</strong></p>
+<ul class="simple">
+<li><p><strong>Serving Logic (API Wrappers):</strong> Flask, FastAPI (Python).</p></li>
+<li><p><strong>Model Serving Runtimes:</strong> BentoML, TensorFlow Serving, TorchServe, NVIDIA Triton, Titan Takeoff.</p></li>
+<li><p><strong>Deployment Platforms (Model Serving Platforms):</strong></p>
+<ul>
+<li><p><strong>Kubernetes-based:</strong> KServe, Seldon Core, Reddit Gazette.</p></li>
+<li><p><strong>Serverless:</strong> AWS Lambda, Google Cloud Functions, Azure Functions.</p></li>
+<li><p><strong>Managed Cloud ML:</strong> SageMaker, Vertex AI, Azure ML.</p></li>
+<li><p><strong>BentoCloud.</strong></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Pros &amp; Cons:</strong></p>
+<ul class="simple">
+<li><p><strong>Pros:</strong> Fresh predictions, interactive applications, independent scaling of model service, on-demand prediction generation.</p></li>
+<li><p><strong>Cons:</strong> Higher infrastructural complexity, latency is a major challenge, online feature engineering complexity and monitoring.</p></li>
+</ul>
+</li>
+<li><p><strong>Key MLOps Challenge:</strong> Training-serving skew due to different feature generation paths for batch training and online serving. Feature Stores aim to mitigate this.</p></li>
+</ol>
+<p><strong>C. Streaming Prediction (Online Inference with Real-Time Streaming Features)</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Use Cases &amp; Scenarios:</strong></p>
+<ul class="simple">
+<li><p>Models reacting to patterns in continuous, high-velocity data streams (e.g., real-time IoT anomaly detection, adaptive personalization based on in-session clicks).</p></li>
+</ul>
+</li>
+<li><p><strong>Architectural Patterns:</strong></p>
+<ul class="simple">
+<li><p><strong>Stream Processing Engines:</strong> Apache Flink, Kafka Streams, Spark Streaming, Beam.</p></li>
+<li><p><strong>Real-time Feature Engineering Pipelines:</strong> Stateful computations on streams (windowed aggregations).</p></li>
+<li><p><strong>Hybrid Architectures (Lambda/Kappa):</strong> Combining real-time stream features with batch-processed historical context.</p></li>
+<li><p><strong>Online Feature Stores:</strong> Serve real-time computed features.
+<img src="../../_static/mlops/ch10_deployment_serving/streaming_prediction.svg" width="60%" style="background-color: #FCF1EF;"/></p></li>
+</ul>
+</li>
+<li><p><strong>Online Learning vs. Batch Learning in Streaming Contexts:</strong></p>
+<ul class="simple">
+<li><p><strong>Online Learning:</strong> Model parameters updated continuously/micro-batches. Highly adaptive, less memory, but complex, sensitive to noise, risk of catastrophic forgetting.</p></li>
+<li><p><strong>Batch Learning (Periodic Retraining):</strong> Models retrained at intervals using accumulated stream data. More stable, easier to manage, less susceptible to noise, but slower adaptation. <em>Many systems opt for frequent offline retraining.</em></p></li>
+</ul>
+</li>
+<li><p><strong>Key MLOps Decision:</strong> The “complexity-freshness frontier.” Balance the business value of extreme data freshness against the increased operational cost and complexity of true online learning or very frequent micro-batching.</p></li>
+</ol>
+<p><strong>D. Edge Deployment (On-Device Inference)</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Use Cases &amp; Scenarios:</strong></p>
+<ul class="simple">
+<li><p>Low/No internet connectivity needed (autonomous vehicles, remote sensors).</p></li>
+<li><p>Ultra-low latency requirements (real-time AR, robotics).</p></li>
+<li><p>Enhanced data privacy/security (data stays on-device, e.g., GDPR).</p></li>
+<li><p>Bandwidth/cost reduction (less data sent to cloud).</p></li>
+<li><p>Power efficiency for battery-operated devices.</p></li>
+</ul>
+</li>
+<li><p><strong>Architecture:</strong> Model weights deployed to/loaded on client device (mobile, browser, IoT). Inference runs locally. May use hybrid cloud-edge (cloud for training/updates, edge for inference).
+<img src="../../_static/mlops/ch10_deployment_serving/edge_deployment.svg" width="60%" style="background-color: #FCF1EF;"/></p></li>
+<li><p><strong>Frameworks &amp; Tooling:</strong></p>
+<ul class="simple">
+<li><p><strong>Mobile:</strong> CoreML, MLKit, TensorFlow Lite (TFLite), PyTorch Mobile/Edge (ExecuTorch).</p></li>
+<li><p><strong>Browser:</strong> TensorFlow.js, ONNX.js, WebAssembly (WASM).</p></li>
+<li><p><strong>General Edge/Compilers:</strong> Apache TVM, NVIDIA TensorRT, OctoML, TinyML, Modular.</p></li>
+</ul>
+</li>
+<li><p><strong>Challenges &amp; Considerations:</strong></p>
+<ul class="simple">
+<li><p><strong>Model Size &amp; Efficiency:</strong> Aggressive model compression is paramount.</p></li>
+<li><p><strong>Hardware Heterogeneity &amp; Resource Constraints:</strong> Limited CPU, memory, power.</p></li>
+<li><p><strong>Model Update &amp; Management:</strong> Complex (OTA updates), versioning across diverse devices.</p></li>
+<li><p><strong>Framework Maturity &amp; Debugging:</strong> Can be harder than server-side.</p></li>
+<li><p><strong>Security of On-Device Models:</strong> Susceptible to reverse engineering.</p></li>
+</ul>
+</li>
+<li><p><strong>Edge MLOps - A Specialized Discipline:</strong></p>
+<ul class="simple">
+<li><p>Requires distinct strategies for deployment, monitoring (telemetry from potentially disconnected devices), and updates.</p></li>
+<li><p>Cannot simply extend cloud-centric MLOps practices.</p></li>
+</ul>
+</li>
+<li><p><strong>Mindset for Edge Deployment:</strong></p>
+<ul class="simple">
+<li><p><strong>Start with Edge Requirement:</strong> Design architecture with device constraints <em>first</em>.</p></li>
+<li><p><strong>Iterate on Target Hardware:</strong> Test extensively on the actual edge devices.</p></li>
+<li><p><strong>Fallback Mechanisms:</strong> Essential for when on-device model fails.</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>E. Decision Framework: Choosing the Right Deployment Strategy</strong></p>
+<img src="../../_static/mlops/ch10_deployment_serving/deployment_strategy_decision_framework.svg" width="100%" style="background-color: #FCF1EF;"/>
+<p><em>This decision flow highlights that non-functional requirements (latency, data freshness, cost, operational complexity, offline needs) are primary drivers.</em></p>
+</section>
+<hr class="docutils" />
+<section id="v-prediction-serving-patterns-and-architectures">
+<h3>V. Prediction Serving Patterns and Architectures<a class="headerlink" href="#v-prediction-serving-patterns-and-architectures" title="Permalink to this heading">¶</a></h3>
+<p><strong>A. Model-as-Service: API Styles - REST vs. gRPC</strong></p>
+<p>The Model-as-Service pattern, where models are exposed as network-callable services, is a cornerstone of modern ML deployment. The choice of API profoundly impacts performance and integration.</p>
+<ul class="simple">
+<li><p><strong>REST (Representational State Transfer) APIs:</strong></p>
+<ul>
+<li><p><strong>Mechanism:</strong> Uses standard HTTP methods (POST for predictions). Data typically exchanged via JSON.</p></li>
+<li><p><strong>Pros:</strong> Ubiquitous, simple to implement and consume, human-readable payloads aid debugging, wide client library support.</p></li>
+<li><p><strong>Cons:</strong> Higher latency/overhead due to text-based serialization (JSON parsing) and HTTP/1.1 limitations. Primarily unary streaming.</p></li>
+<li><p><strong>Tools:</strong> Flask, FastAPI. Many serving frameworks (TF Serving, MLflow) offer REST endpoints.</p></li>
+</ul>
+</li>
+<li><p><strong>gRPC (Google Remote Procedure Call) Endpoints:</strong></p>
+<ul>
+<li><p><strong>Mechanism:</strong> High-performance RPC framework using HTTP/2 and Protocol Buffers (Protobufs) for binary serialization.</p></li>
+<li><p><strong>Pros:</strong> Lower latency, higher throughput (efficient Protobufs, HTTP/2 multiplexing). Supports various streaming patterns (unary, server-streaming, client-streaming, bidirectional). Strong typing via <code class="docutils literal notranslate"><span class="pre">.proto</span></code> files.</p></li>
+<li><p><strong>Cons:</strong> Binary payloads (harder to debug manually), steeper learning curve, more involved client setup (generated stubs), tighter client-server coupling. Browser support (gRPC-Web) can be complex.</p></li>
+<li><p><strong>Tools:</strong> NVIDIA Triton, TensorFlow Serving provide robust gRPC support.</p></li>
+</ul>
+</li>
+<li><p><strong>Performance:</strong> gRPC generally outperforms REST for ML inference, especially with large payloads or high QPS.</p></li>
+<li><p><strong>Decision:</strong> REST for public/simple APIs. gRPC for internal, high-performance microservice communication. Consider supporting both if diverse consumers exist.</p></li>
+</ul>
+<p><strong>B. Serverless Functions for Model Inference</strong></p>
+<p>Fully managed execution environments where code (and model) is invoked on demand.</p>
+<ul class="simple">
+<li><p><strong>Architecture:</strong> Event-driven, stateless. Model, dependencies, and inference logic packaged for the serverless platform.</p></li>
+<li><p><strong>Pros:</strong> Cost-effective for intermittent workloads (pay-per-use), automatic scaling (including to zero), reduced operational overhead.</p></li>
+<li><p><strong>Cons:</strong> Cold start latency, execution time limits, resource constraints (package size, memory, CPU), statelessness can add complexity for models needing state.</p></li>
+<li><p><strong>Best Fit:</strong> Sporadic/unpredictable traffic, lightweight models, event-triggered predictions, tolerance for some latency variability. (FSDL Recommendation: Start with serverless!)</p></li>
+</ul>
+<p><strong>C. Kubernetes for Scalable and Resilient Model Hosting</strong></p>
+<p>The de facto standard for container orchestration, enabling robust, scalable ML serving.</p>
+<ul class="simple">
+<li><p><strong>Role:</strong> Manages deployment, scaling, and resilience of containerized model servers.</p></li>
+<li><p><strong>Key K8s Concepts:</strong> Pods (model server instance), Deployments (manages replicas), Services (stable endpoint, load balancing), Horizontal Pod Autoscaler (HPA), Node Affinity/Selectors (for GPU scheduling), Resource Requests/Limits.</p></li>
+<li><p><strong>Patterns:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Direct Deployment:</strong> Package serving framework (Triton, TF Serving, custom Flask) in Docker, deploy via K8s Deployments/Services.</p></li>
+<li><p><strong>ML-Specific K8s Platforms:</strong> KServe, Seldon Core. Extend K8s with CRDs for ML inference, simplifying serverless inference, canary rollouts, explainability, monitoring. (Reddit’s Gazette is a custom K8s-based solution).</p></li>
+</ol>
+</li>
+<li><p><strong>Benefits:</strong> Scalability (HPA), resilience (auto-restart, rescheduling), resource efficiency, portability, rich ecosystem.</p></li>
+<li><p><strong>Challenges:</strong> Inherent complexity of K8s management, steep learning curve. Managed K8s (EKS, GKE, AKS) or higher-level platforms (KServe) can mitigate this.</p></li>
+<li><p><strong>Total Cost of Ownership (TCO):</strong> Crucial when evaluating K8s – includes infrastructure and significant engineering/operational effort if self-managed.</p></li>
+</ul>
+<p><strong>D. Comparison of High-Level Serving Architectures (Monolithic, Microservices, Embedded)</strong></p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Feature</p></th>
+<th class="head text-left"><p>Monolithic</p></th>
+<th class="head text-left"><p>Microservices</p></th>
+<th class="head text-left"><p>Embedded (Edge)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><strong>Description</strong></p></td>
+<td class="text-left"><p>ML model part of single app unit</p></td>
+<td class="text-left"><p>ML model as independent, network-callable service</p></td>
+<td class="text-left"><p>ML model runs directly in client app/device</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Pros</strong></p></td>
+<td class="text-left"><p>Initial simplicity</p></td>
+<td class="text-left"><p>Scalability, independent updates, fault isolation</p></td>
+<td class="text-left"><p>Lowest latency, offline use, data privacy</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Cons</strong></p></td>
+<td class="text-left"><p>Hard to scale/update, single point of failure</p></td>
+<td class="text-left"><p>Distributed system complexity, network latency</p></td>
+<td class="text-left"><p>Update complexity, resource-constrained, manageability</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>ML Use Cases</strong></p></td>
+<td class="text-left"><p>Simple prototypes, small non-critical apps</p></td>
+<td class="text-left"><p>Most production ML systems, complex apps</p></td>
+<td class="text-left"><p>Mobile AI, IoT, autonomous systems</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Scalability</strong></p></td>
+<td class="text-left"><p>Poor (scales as whole unit)</p></td>
+<td class="text-left"><p>High (individual service scaling)</p></td>
+<td class="text-left"><p>Device-limited; scales by number of devices</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Maintainability</strong></p></td>
+<td class="text-left"><p>Low (tight coupling)</p></td>
+<td class="text-left"><p>Moderate-High (loose coupling, more components)</p></td>
+<td class="text-left"><p>Low-Moderate (tied to app/device lifecycle)</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Latency</strong></p></td>
+<td class="text-left"><p>Low (if co-located) to Moderate</p></td>
+<td class="text-left"><p>Moderate (network call overhead)</p></td>
+<td class="text-left"><p>Very Low (local execution)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>E. Popular Serving Frameworks/Tools Overview</strong></p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Framework/Tool</p></th>
+<th class="head text-left"><p>Primary Use Case</p></th>
+<th class="head text-left"><p>Key Features</p></th>
+<th class="head text-left"><p>K8s Native</p></th>
+<th class="head text-left"><p>Main ML Frameworks</p></th>
+<th class="head text-left"><p>License</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><strong>NVIDIA Triton</strong></p></td>
+<td class="text-left"><p>High-performance, multi-framework GPU/CPU inference</p></td>
+<td class="text-left"><p>Dyn. batching, concurrent exec, ensembles, HTTP/gRPC, TensorRT, ONNX, TF, PyTorch, Python backend</p></td>
+<td class="text-left"><p>Yes</p></td>
+<td class="text-left"><p>All Major</p></td>
+<td class="text-left"><p>BSD-3-Clause</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>KServe</strong></p></td>
+<td class="text-left"><p>Serverless ML inference on K8s</p></td>
+<td class="text-left"><p>CRD, scale-to-zero, canary, inference graph, pre/post, TF, PyTorch, SKL, XGB</p></td>
+<td class="text-left"><p>Yes</p></td>
+<td class="text-left"><p>All Major</p></td>
+<td class="text-left"><p>Apache 2.0</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Seldon Core</strong></p></td>
+<td class="text-left"><p>Advanced ML deployment/orchestration on K8s</p></td>
+<td class="text-left"><p>Complex graphs, A/B, MAB, explainers, TF, PyTorch, SKL, XGB. V2: Kafka-based dataflow.</p></td>
+<td class="text-left"><p>Yes</p></td>
+<td class="text-left"><p>All Major</p></td>
+<td class="text-left"><p>BSL 1.1 (Paid for Prod)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>BentoML</strong></p></td>
+<td class="text-left"><p>Python-first model packaging &amp; serving</p></td>
+<td class="text-left"><p>“Bentos”, auto API gen (REST/gRPC), adapt. batching, multi-framework, Docker/K8s/Serverless deploy</p></td>
+<td class="text-left"><p>Via Cont.</p></td>
+<td class="text-left"><p>Python-based</p></td>
+<td class="text-left"><p>Apache 2.0</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>MLflow Model Serving</strong></p></td>
+<td class="text-left"><p>Serving models from MLflow ecosystem</p></td>
+<td class="text-left"><p>Standard “flavors”, local serving, REST API, cloud platform integrations</p></td>
+<td class="text-left"><p>Via Cont.</p></td>
+<td class="text-left"><p>All Major (via <code class="docutils literal notranslate"><span class="pre">pyfunc</span></code>)</p></td>
+<td class="text-left"><p>Apache 2.0</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>TensorFlow Serving</strong></p></td>
+<td class="text-left"><p>High-performance serving for TF models</p></td>
+<td class="text-left"><p>SavedModel, versioning, batching, gRPC/REST, optimized for TF</p></td>
+<td class="text-left"><p>Via Cont.</p></td>
+<td class="text-left"><p>TensorFlow</p></td>
+<td class="text-left"><p>Apache 2.0</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>TorchServe</strong></p></td>
+<td class="text-left"><p>Flexible serving for PyTorch models</p></td>
+<td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">.mar</span></code> archives, eager/script, custom handlers, versioning, batching, gRPC/REST, metrics</p></td>
+<td class="text-left"><p>Via Cont.</p></td>
+<td class="text-left"><p>PyTorch</p></td>
+<td class="text-left"><p>Apache 2.0</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Cloud Platforms (SageMaker, Vertex AI, Azure ML)</strong></p></td>
+<td class="text-left"><p>Managed end-to-end MLOps</p></td>
+<td class="text-left"><p>Auto-scaling endpoints, integration with cloud services, built-in monitoring, native &amp; custom container support</p></td>
+<td class="text-left"><p>N/A (Managed)</p></td>
+<td class="text-left"><p>All Major</p></td>
+<td class="text-left"><p>Paid</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Titan Takeoff</strong></p></td>
+<td class="text-left"><p>LLM-specific deployment &amp; self-hosting</p></td>
+<td class="text-left"><p>Proprietary inference engine for LLMs, quantization, multi-GPU, GUI, cloud/on-prem</p></td>
+<td class="text-left"><p>Via Cont.</p></td>
+<td class="text-left"><p>HuggingFace LLMs</p></td>
+<td class="text-left"><p>Paid</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<hr class="docutils" />
+<section id="vi-performance-optimization-for-inference">
+<h3>VI. Performance Optimization for Inference<a class="headerlink" href="#vi-performance-optimization-for-inference" title="Permalink to this heading">¶</a></h3>
+<p>Reducing inference latency and increasing throughput are critical for online and edge deployments.</p>
+<p><strong>A. Model Compression Techniques</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Quantization:</strong></p>
+<ul class="simple">
+<li><p><strong>What:</strong> Using fewer bits (e.g., FP16, BF16, INT8) for weights/activations.</p></li>
+<li><p><strong>Benefits:</strong> Smaller model, faster computation, less memory/power.</p></li>
+<li><p><strong>Types:</strong> Post-Training Quantization (PTQ) vs. Quantization-Aware Training (QAT). QAT usually yields better accuracy.</p></li>
+<li><p><strong>Tools:</strong> TF Lite, PyTorch, TensorRT, HuggingFace Optimum.</p></li>
+<li><p><strong>Downsides:</strong> Potential accuracy loss. Risk of under/overflow. Efficient rounding/scaling is non-trivial.</p></li>
+<li><p><strong>Roblox BERT Case Study:</strong> Quantization from 32-bit float to 8-bit int reduced latency 7x and increased throughput 8x.</p></li>
+</ul>
+</li>
+<li><p><strong>Pruning:</strong></p>
+<ul class="simple">
+<li><p><strong>What:</strong> Removing “unimportant” weights (making matrices sparse) or structures (filters, neurons).</p></li>
+<li><p><strong>Benefits:</strong> Reduces model size and computation, especially with sparse hardware support.</p></li>
+<li><p><strong>Challenges:</strong> Defining importance, iterative process (prune-finetune). Value debated.</p></li>
+</ul>
+</li>
+<li><p><strong>Knowledge Distillation:</strong></p>
+<ul class="simple">
+<li><p><strong>What:</strong> Small “student” model mimics larger “teacher” model.</p></li>
+<li><p><strong>Benefits:</strong> Student can learn complex patterns, often better than training from scratch. Architecture-agnostic.</p></li>
+<li><p><strong>Example:</strong> DistilBERT (40% smaller, 97% of BERT’s understanding, 60% faster).</p></li>
+<li><p><strong>Challenges:</strong> Needs good teacher. Can be sensitive to application/architecture. Infrequently used in practice outside popular distilled models.</p></li>
+</ul>
+</li>
+<li><p><strong>Low-Rank Factorization / Compact Architectures:</strong></p>
+<ul class="simple">
+<li><p><strong>What:</strong> Decomposing large weight matrices. Designing inherently efficient architectures.</p></li>
+<li><p><strong>Examples:</strong> MobileNets (depthwise separable convolutions), SqueezeNets.</p></li>
+<li><p><strong>Benefits:</strong> Significant parameter/FLOP reduction.</p></li>
+<li><p><strong>Challenges:</strong> Requires architectural expertise.</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>B. Hardware Acceleration &amp; Optimized Runtimes/Compilers</strong></p>
+<ul class="simple">
+<li><p><strong>Specialized Hardware:</strong> GPUs (NVIDIA), TPUs (Google), NPUs, DSPs, FPGAs, ASICs.</p></li>
+<li><p><strong>Optimized Serving Runtimes:</strong> TensorFlow Serving, TorchServe, NVIDIA Triton.</p>
+<ul>
+<li><p>These runtimes often perform graph optimizations like <strong>Operator Fusion</strong> (e.g., Conv+Bias+ReLU) to reduce memory access and kernel launch overhead.</p></li>
+</ul>
+</li>
+<li><p><strong>Compilers (Apache TVM, MLIR, XLA):</strong></p>
+<ul>
+<li><p><strong>Goal:</strong> Translate high-level framework code (TF, PyTorch) through Intermediate Representations (IRs) to optimized machine code for diverse hardware backends. “Lowering” process.</p></li>
+<li><p><strong>autoTVM / Ansor (TVM):</strong> Use ML to search for optimal operator schedules/configurations for a given hardware target. Can be slow (hours/days for complex models) but is a one-time optimization per model/hardware pair.</p></li>
+<li><p><strong>MLIR (Multi-Level IR):</strong> Google-led project for a common IR infrastructure.</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>C. Server-Side Inference Optimizations</strong></p>
+<ul class="simple">
+<li><p><strong>Concurrency:</strong> Process multiple requests in parallel (multiple model instances or threads).</p></li>
+<li><p><strong>Adaptive/Dynamic Batching:</strong> Group incoming individual requests into batches server-side to improve throughput (especially on GPUs). Requires tuning batch size and timeout.</p></li>
+<li><p><strong>Caching:</strong> Store &amp; reuse predictions for frequently seen inputs.</p></li>
+<li><p><strong>Asynchronous APIs &amp; gRPC:</strong> More efficient than synchronous REST for high throughput.</p></li>
+<li><p><strong>GPU Sharing:</strong> Run multiple model instances (or different models) on one GPU if a single instance doesn’t fully utilize it.</p></li>
+<li><p><strong>Model Warmup:</strong> Pre-load models and run dummy inferences to mitigate cold-start latency for initial real requests.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="vii-ci-cd-for-model-serving-automating-model-deployments">
+<h3>VII. CI/CD for Model Serving: Automating Model Deployments<a class="headerlink" href="#vii-ci-cd-for-model-serving-automating-model-deployments" title="Permalink to this heading">¶</a></h3>
+<p>In previous sections, we’ve meticulously prepared our “signature dishes” (models) – packaging them, optimizing for specific “ovens” (hardware), and understanding the “runtime engines” and “inference server” architectures that bring them to life. Now, we must establish the automated processes – the <strong>Continuous Integration (CI) and Continuous Delivery/Deployment (CD) pipelines</strong> – that ensure any changes to our model serving infrastructure or the models themselves are rolled out reliably, rapidly, and safely.</p>
+<p>MLOps leverages CI/CD to manage the lifecycle of model serving applications. This is distinct from, yet complementary to, the CI/CD for <em>training pipelines</em> and the Continuous Training (CT) process.</p>
+<p><strong>A. Why CI/CD for Model Serving?</strong></p>
+<p>Automating the deployment of model serving components offers significant benefits:</p>
+<ol class="arabic simple">
+<li><p><strong>Reliability &amp; Consistency:</strong> Automated builds and tests reduce human error, ensuring that the serving application and model configurations are deployed consistently across environments (Staging, Production).</p></li>
+<li><p><strong>Speed &amp; Velocity:</strong> Faster, automated releases mean new models or improvements to the serving logic can reach users more quickly.</p></li>
+<li><p><strong>Reproducibility:</strong> Every deployment is traceable to specific code versions, configurations, and model artifacts, aiding in debugging and rollbacks.</p></li>
+<li><p><strong>Reduced Operational Overhead:</strong> Automating manual deployment steps frees up engineering resources.</p></li>
+<li><p><strong>Risk Mitigation:</strong> Automated testing and progressive delivery strategies (covered in Section 9.6) minimize the impact of faulty deployments.</p></li>
+</ol>
+<p><strong>B. Scope of CI/CD in Model Serving</strong></p>
+<p>The CI/CD pipeline for model serving typically manages two types of artifacts:</p>
+<ol class="arabic simple">
+<li><p><strong>The Serving Application/Infrastructure:</strong> This includes:</p>
+<ul class="simple">
+<li><p>The API code (e.g., FastAPI, Flask application).</p></li>
+<li><p>The Dockerfile and container image for the serving application.</p></li>
+<li><p>Infrastructure as Code (IaC) for the serving platform (e.g., Terraform for AWS App Runner, Kubernetes manifests for KServe/Seldon).</p></li>
+<li><p>Configurations for the inference server (e.g., Triton model repository configuration, TF Serving model config files).</p></li>
+</ul>
+</li>
+<li><p><strong>The ML Model Artifacts (Promotion &amp; Activation):</strong> While models are <em>produced</em> by training pipelines, the CD part of model serving can be responsible for:</p>
+<ul class="simple">
+<li><p>Fetching an approved model version from the Model Registry.</p></li>
+<li><p>Making it available to the serving infrastructure (e.g., copying to a specific S3 location monitored by the server, updating a K8s deployment to use a new model image/path).</p></li>
+<li><p>Activating the new model version within the inference server (e.g., via API calls to Triton/TF Serving to load a new version and potentially switch traffic).</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>C. Continuous Integration (CI) for Serving Components</strong></p>
+<p>The CI pipeline for the model serving application is triggered by code changes to the serving logic, its Dockerfile, or its IaC.</p>
+<ul class="simple">
+<li><p><strong>Key CI Steps:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Source Code Checkout:</strong> From the feature branch or PR.</p></li>
+<li><p><strong>Linting &amp; Static Analysis:</strong> Check code quality and IaC for errors/best practices (e.g., <code class="docutils literal notranslate"><span class="pre">flake8</span></code>, <code class="docutils literal notranslate"><span class="pre">black</span></code>, <code class="docutils literal notranslate"><span class="pre">tflint</span></code>, <code class="docutils literal notranslate"><span class="pre">checkov</span></code>).</p></li>
+<li><p><strong>Unit Tests:</strong> For API handlers, any pre/post-processing logic within the serving app, utility functions. Mock external dependencies like model runtimes if testing API logic in isolation.</p></li>
+<li><p><strong>Build Serving Application Artifact:</strong></p>
+<ul>
+<li><p>Build the Docker image for the serving application (e.g., FastAPI + model loading code).</p></li>
+<li><p>Tag the image appropriately (e.g., with Git commit hash).</p></li>
+<li><p>Push the image to a container registry (ECR, GCR, Docker Hub).</p></li>
+</ul>
+</li>
+<li><p><strong>Security Scans:</strong> Scan the built container image for vulnerabilities.</p></li>
+<li><p><strong>(Optional) Local/Stubbed Model Loading Test:</strong> A quick test to ensure the application can initialize and (if embedding models directly) attempt to load a dummy or stubbed version of the model format it expects. This is <em>not</em> a full model performance test but a sanity check of the loading path.</p></li>
+</ol>
+</li>
+</ul>
+<p><strong>D. Continuous Delivery (CD) for Model Serving Applications &amp; Model Updates</strong></p>
+<p>The CD pipeline automates the release of the serving application and/or promotes new model versions through environments.</p>
+<ul class="simple">
+<li><p><strong>Triggering CD:</strong></p>
+<ul>
+<li><p><strong>For Serving Application Changes:</strong> Merge to <code class="docutils literal notranslate"><span class="pre">dev</span></code> (for Staging deployment) or <code class="docutils literal notranslate"><span class="pre">main</span></code> (for Production deployment after Staging validation).</p></li>
+<li><p><strong>For New Model Versions:</strong> An approved model in the Model Registry (e.g., W&amp;B model tagged “ready-for-staging” or “production-approved”) can trigger a specific CD workflow.</p></li>
+</ul>
+</li>
+<li><p><strong>CD to Staging Environment:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Deploy Infrastructure (if changed):</strong> Apply IaC (Terraform) changes to the Staging serving environment.</p></li>
+<li><p><strong>Deploy Serving Application:</strong> Deploy the new container image (from CI) to the Staging platform (e.g., update AWS App Runner, Kubernetes Deployment).</p></li>
+<li><p><strong>Deploy/Activate Model(s) in Staging:</strong></p>
+<ul>
+<li><p>Fetch the candidate model artifact from the Model Registry.</p></li>
+<li><p>Configure the Staging inference server to load and serve this model version.</p></li>
+</ul>
+</li>
+<li><p><strong>Run Staging Tests:</strong></p>
+<ul>
+<li><p><strong>API Contract Tests:</strong> Ensure the API behaves as expected.</p></li>
+<li><p><strong>Integration Tests:</strong> Test interaction with other staging services (e.g., feature store, logging).</p></li>
+<li><p><strong>Consistency Checks:</strong> Verify prediction consistency between offline and staging-served model.</p></li>
+<li><p><strong>Load/Performance Tests:</strong> Ensure SLAs are met.</p></li>
+<li><p><strong>End-to-End User Journey Tests (subset):</strong></p></li>
+</ul>
+</li>
+<li><p><strong>Manual Approval Gate:</strong> Requires human review and sign-off before promoting to Production.</p></li>
+<li><p><strong>(If ephemeral staging for serving tests):</strong> <code class="docutils literal notranslate"><span class="pre">terraform</span> <span class="pre">destroy</span></code> the serving aspects of staging if tests pass.</p></li>
+</ol>
+</li>
+<li><p><strong>CD to Production Environment:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Deploy/Activate Model(s) using Progressive Delivery:</strong></p>
+<ul>
+<li><p>Use the <em>same validated artifacts</em> (container image, model version) from Staging.</p></li>
+<li><p>Implement chosen strategy: Shadow, Canary, Blue/Green. This often involves updating load balancer configurations, Kubernetes manifests (e.g., Istio, KServe <code class="docutils literal notranslate"><span class="pre">InferenceService</span></code>), or cloud platform settings.</p></li>
+</ul>
+</li>
+<li><p><strong>Smoke Tests:</strong> Basic health checks and a few key predictions on the production endpoint immediately after rollout.</p></li>
+<li><p><strong>Intensive Monitoring:</strong> Closely monitor operational and model metrics during and after the progressive rollout.</p></li>
+<li><p><strong>Automated Rollback (if possible):</strong> Trigger rollback if critical metrics degrade beyond thresholds.</p></li>
+</ol>
+</li>
+</ul>
+<p><strong>E. Decoupling Model and Serving Application Deployments (Uber’s Dynamic Model Loading Example)</strong></p>
+<ul class="simple">
+<li><p><strong>Concept:</strong> The model serving application binary is deployed independently of the models it serves. Service instances dynamically discover and load/unload models based on a central configuration or model registry state.</p></li>
+<li><p><strong>Benefits:</strong></p>
+<ul>
+<li><p>Model scientists can iterate and push new model versions without requiring a full redeployment of the serving application.</p></li>
+<li><p>Serving application can be updated (e.g., for security patches, performance improvements) without affecting the currently served models.</p></li>
+<li><p>Reduces deployment coupling and allows for different release cadences.</p></li>
+</ul>
+</li>
+<li><p><strong>Implementation:</strong> Inference servers like Triton and TF Serving support this by polling a model repository path for new versions.</p></li>
+</ul>
+<p><strong>F. Conclusion for CI/CD for Serving</strong></p>
+<p>Automating the deployment of our model serving components via CI/CD is akin to having an impeccably organized and automated service line in our MLOps kitchen. It ensures that every time we update the serving logic or decide to serve a new model version, the process is swift, consistent, and rigorously tested before it reaches our “diners.”</p>
+<p>By implementing CI for our FastAPI serving application, we ensure code quality, build containerized artifacts reliably, and catch issues early. The CD pipelines then take these validated artifacts and automate their rollout to Staging for thorough operational and performance testing, and finally, after approval, to Production. This systematic approach, decoupling model training cycles from serving application updates where possible (e.g., via dynamic model loading), is fundamental to achieving the agility and reliability expected of a high-performing MLOps team.</p>
+<p>With our serving application deployment automated, we are now ready to explore the crucial strategies for progressively delivering model updates to our users, ensuring that new “dishes” are introduced safely and their impact carefully measured.</p>
+</section>
+<hr class="docutils" />
+<section id="viii-progressive-delivery-rollout-strategies-for-safe-updates">
+<h3>VIII. Progressive Delivery &amp; Rollout Strategies for Safe Updates<a class="headerlink" href="#viii-progressive-delivery-rollout-strategies-for-safe-updates" title="Permalink to this heading">¶</a></h3>
+<p>Once a new model version has passed all offline validation and its serving application components have cleared CI and staging tests, the final hurdle is deploying it to production where it will face real user traffic. Simply switching all traffic to a new model instantaneously, even after rigorous offline and staging validation, carries inherent risks. The real-world data distribution might have subtly shifted, unforeseen edge cases might emerge, or the model’s impact on business KPIs might not align with offline predictions.</p>
+<p><strong>Progressive Delivery</strong> is a set of strategies designed to mitigate these risks by gradually exposing new model versions or application updates to users, continuously monitoring their performance and impact, and allowing for rapid rollback if issues arise. This is akin to a chef first offering a new dish as a “special” to a few tables, gathering feedback, and ensuring kitchen operations can handle it before adding it to the permanent menu.</p>
+<p><strong>A. Why Progressive Delivery for ML Models?</strong></p>
+<p>Beyond general software benefits, progressive delivery is particularly crucial for ML systems:</p>
+<ol class="arabic simple">
+<li><p><strong>Managing Prediction Risk:</strong> The probabilistic nature of ML means new models can have unexpected failure modes on live data not captured in test sets.</p></li>
+<li><p><strong>Assessing Real-World Business Impact:</strong> Offline metrics are proxies. Online exposure is needed to measure true impact on KPIs (e.g., conversion, engagement, revenue).</p></li>
+<li><p><strong>Detecting Operational Issues at Scale:</strong> Latency, throughput, and resource consumption under full production load can differ from staging.</p></li>
+<li><p><strong>Building Confidence:</strong> Gradual rollouts build confidence in the new model among stakeholders before a full switch.</p></li>
+<li><p><strong>Minimizing “Blast Radius”:</strong> If a new model performs poorly or causes issues, only a small subset of users are affected, reducing the negative impact.</p></li>
+</ol>
+<p><strong>B. Key Progressive Delivery Strategies</strong></p>
+<p>Several strategies can be employed, often in combination or sequentially.</p>
+<ul class="simple">
+<li><p><strong>1. Shadow Deployment (Silent Intelligence / Dark Launch)</strong></p>
+<ul>
+<li><p><strong>Concept:</strong> The new model (challenger) is deployed alongside the current production model (champion). Live production traffic is routed to <em>both</em> models in parallel.</p></li>
+<li><p><strong>Execution:</strong></p>
+<ul>
+<li><p>The champion model’s predictions are served to users as usual.</p></li>
+<li><p>The challenger model’s predictions are <em>not</em> served to users but are logged and compared against the champion’s predictions and, if available, ground truth.</p></li>
+</ul>
+</li>
+<li><p><strong>Pros:</strong></p>
+<ul>
+<li><p><strong>Safest Form of Production Testing:</strong> Zero direct user impact from the challenger model.</p></li>
+<li><p><strong>Real Traffic Validation:</strong> Tests the challenger on actual production data patterns and volume.</p></li>
+<li><p><strong>Operational Shakedown:</strong> Excellent for identifying operational issues with the new model (latency, error rates, resource consumption at scale) before it takes live traffic.</p></li>
+<li><p><strong>Prediction Parity Check:</strong> Allows direct comparison of challenger vs. champion predictions on the same inputs.</p></li>
+</ul>
+</li>
+<li><p><strong>Cons:</strong></p>
+<ul>
+<li><p><strong>Resource Intensive:</strong> Doubles inference compute and potentially data processing/feature lookup load.</p></li>
+<li><p><strong>No Direct User Feedback/KPI Impact Measurement:</strong> Since users don’t see the challenger’s output, you can’t directly measure its impact on user behavior or business KPIs.</p></li>
+</ul>
+</li>
+<li><p><strong>MLOps Lead Focus:</strong> Ideal as a first step for high-risk changes (new architectures, major feature changes). Focus on operational stability and prediction consistency with the champion.</p></li>
+<li><p><strong>Uber’s Auto-Shadow:</strong> Platform feature to automatically shadow traffic, optimizing feature lookups for the shadow model.</p></li>
+</ul>
+</li>
+<li><p><strong>2. Canary Releases (Phased Rollout)</strong></p>
+<ul>
+<li><p><strong>Concept:</strong> The new model version is gradually rolled out to a small, incremental subset of live user traffic (e.g., 1%, 5%, 20%, 50%, 100%).</p></li>
+<li><p><strong>Execution:</strong></p>
+<ol class="arabic simple">
+<li><p>Deploy the new model alongside the old.</p></li>
+<li><p>Route a small percentage of traffic (the “canary” group) to the new model.</p></li>
+<li><p>Intensively monitor key operational and business metrics for both the canary group and the control group (on the old model).</p></li>
+<li><p>If metrics are stable and positive for the canary, gradually increase its traffic share.</p></li>
+<li><p>If issues arise, quickly roll back traffic from the canary to the old model.</p></li>
+</ol>
+</li>
+<li><p><strong>Pros:</strong></p>
+<ul>
+<li><p><strong>Limited Blast Radius:</strong> Issues affect only a small user base initially.</p></li>
+<li><p><strong>Real User Feedback &amp; KPI Measurement:</strong> Allows direct measurement of the new model’s impact on a subset of users.</p></li>
+<li><p><strong>Builds Confidence Incrementally.</strong></p></li>
+</ul>
+</li>
+<li><p><strong>Cons:</strong></p>
+<ul>
+<li><p><strong>Managing Traffic Splitting:</strong> Requires infrastructure capable of precise traffic routing (load balancers, service mesh like Istio, API gateways, or platform features like AWS SageMaker endpoint variants with traffic splitting).</p></li>
+<li><p><strong>Statistical Significance:</strong> Metrics from small canary groups might not be statistically significant initially; requires careful monitoring over time or larger canary percentages for robust conclusions.</p></li>
+<li><p><strong>Potential for User Inconsistency (if not sticky):</strong> If users are not consistently routed to the same model version during the canary phase (session stickiness), their experience might be inconsistent.</p></li>
+</ul>
+</li>
+<li><p><strong>MLOps Lead Focus:</strong> A common and effective strategy for most model updates. Define clear success/failure criteria for each canary stage. Automate monitoring and alerting for canary groups.</p></li>
+</ul>
+</li>
+<li><p><strong>3. Blue/Green Deployments (Red/Black)</strong></p>
+<ul>
+<li><p><strong>Concept:</strong> Two identical, isolated production environments are maintained: “Blue” (current live environment) and “Green” (idle standby environment).</p></li>
+<li><p><strong>Execution:</strong></p>
+<ol class="arabic simple">
+<li><p>Deploy the new model version to the Green environment.</p></li>
+<li><p>Perform thorough testing on the Green environment (using synthetic traffic or by temporarily routing internal/QA traffic).</p></li>
+<li><p>Once Green is validated, switch all live traffic (e.g., via DNS or load balancer update) from Blue to Green. Green becomes the new Blue.</p></li>
+<li><p>The old Blue environment is kept on standby for quick rollback if needed, or can be updated to become the next Green.</p></li>
+</ol>
+</li>
+<li><p><strong>Pros:</strong></p>
+<ul>
+<li><p><strong>Near-Instantaneous Switchover &amp; Rollback:</strong> Traffic redirection is typically very fast.</p></li>
+<li><p><strong>Minimizes Deployment Downtime.</strong></p></li>
+<li><p>Full environment testing before live exposure.</p></li>
+</ul>
+</li>
+<li><p><strong>Cons:</strong></p>
+<ul>
+<li><p><strong>Resource Intensive:</strong> Requires maintaining at least double the production infrastructure capacity.</p></li>
+<li><p><strong>All-or-Nothing Switch:</strong> Unlike canary, all users are switched at once (though some advanced load balancers can do gradual Blue/Green).</p></li>
+<li><p><strong>State Management:</strong> Complex for stateful applications or models that rely on persistent user sessions or caches that need warming.</p></li>
+</ul>
+</li>
+<li><p><strong>MLOps Lead Focus:</strong> Suitable for critical applications where minimizing deployment risk and enabling rapid rollback are paramount, and the cost of duplicate infrastructure is acceptable.</p></li>
+</ul>
+</li>
+<li><p><strong>4. A/B Testing (Online Controlled Experiments - OCE)</strong></p>
+<ul>
+<li><p>A/B testing can be implemented using canary infrastructure or dedicated experimentation platforms. It’s about <em>comparing</em> the impact of model A vs. model B (or more variants) on business KPIs using statistically sound methods by exposing different user segments to each model. The “delivery” is progressive in the sense that a winning model is only fully rolled out after the experiment concludes with a positive, significant result.</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>C. Implementing Traffic Splitting and Management</strong></p>
+<p>The ability to control and shift user traffic is fundamental to most progressive delivery strategies.</p>
+<ul class="simple">
+<li><p><strong>Load Balancers:</strong> Modern application load balancers (ALBs/NLBs in AWS, Google Cloud Load Balancing, NGINX, Envoy) often support weighted traffic splitting between different target groups (e.g., one target group for model V1, another for model V2).</p></li>
+<li><p><strong>API Gateways:</strong> Can also manage traffic routing and splitting based on rules or weights.</p></li>
+<li><p><strong>Service Mesh (e.g., Istio, Linkerd on Kubernetes):</strong> Provide fine-grained traffic management capabilities within a microservices architecture, including weighted routing, traffic shifting, and mirroring (for shadow deployments). KServe and Seldon Core often leverage these.</p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="https://linkerd.io/what-is-a-service-mesh/">Linkerd.io: What is a service mesh?</a></p></li>
+<li><p><a class="reference external" href="https://www.buoyant.io/what-is-a-service-mesh">Buoyant.io: What is a Service Mesh?</a></p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p><strong>Feature Flagging / Toggling Systems:</strong> Allow enabling a new model for specific users, user segments, or a percentage of traffic via dynamic configuration, without requiring a full redeployment of the application code. This decouples deployment from release.</p></li>
+<li><p><strong>Application-Level Routing:</strong> The serving application itself can contain logic to route requests to different internal model versions based on user attributes or experiment assignments. More complex to manage.</p></li>
+<li><p><strong>Cloud ML Platform Capabilities:</strong> Managed services like AWS SageMaker (endpoint variants), Vertex AI Endpoints (traffic splitting), and Azure ML often have built-in support for common progressive delivery patterns.</p></li>
+</ul>
+<p><strong>D. Implementing and Managing Rollbacks (The Safety Net)</strong></p>
+<p>Things can and do go wrong. A robust rollback strategy is non-negotiable.</p>
+<ul class="simple">
+<li><p><strong>Why Rollback?</strong> New model performs poorly on critical metrics, causes system instability, high error rates, or negative user feedback.</p></li>
+<li><p><strong>Key Requirements for Effective Rollback:</strong></p>
+<ul>
+<li><p><strong>Speed:</strong> Rollback should be as fast as possible to minimize impact.</p></li>
+<li><p><strong>Reliability:</strong> The rollback process itself must be dependable.</p></li>
+<li><p><strong>Automation:</strong> Automate rollback triggers based on critical monitoring alerts where feasible. Manual rollback should also be a well-documented and practiced procedure.</p></li>
+<li><p><strong>State Management:</strong> If models are stateful, or if there are stateful downstream dependencies, ensure rollback doesn’t lead to inconsistent states.</p></li>
+<li><p><strong>Versioning:</strong> Must have access to the previous stable version of the model artifact <em>and</em> its serving configuration. This is where a Model Registry and versioned IaC/container images are crucial.</p></li>
+</ul>
+</li>
+<li><p><strong>Rollback Mechanisms depend on Deployment Strategy:</strong></p>
+<ul>
+<li><p><strong>Canary:</strong> Shift 100% traffic back to the old version.</p></li>
+<li><p><strong>Blue/Green:</strong> Switch traffic back to the (old) Blue environment.</p></li>
+<li><p><strong>Rolling Update (Kubernetes):</strong> Initiate a rolling update back to the previous image tag.</p></li>
+<li><p><strong>Serverless (e.g., AWS Lambda Aliases):</strong> Shift traffic weight back to the previous alias/version.</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>MLOps Lead Focus:</strong> Rollback procedures <em>must</em> be tested regularly as part of deployment drills or chaos engineering practices. Don’t assume a rollback will work if it hasn’t been practiced.</p>
+<p><strong>Conclusion: Progressive Delivery &amp; Rollout Strategies for Safe Updates</strong></p>
+<p>The “Grand Opening” of our ML service is not a one-time event but the start of an ongoing process of serving, monitoring, and evolving. Progressive delivery strategies are the MLOps Lead’s essential tools for ensuring that every new “dish” or refinement to an existing one is introduced to “diners” with maximal safety and minimal disruption.</p>
+<p>By leveraging techniques like shadow deployments for operational shakedowns, canary releases for controlled exposure, and robust A/B testing for impact validation, we transform risky “big bang” deployments into manageable, data-informed rollouts. The ability to precisely manage traffic, coupled with comprehensive monitoring and well-practiced rollback procedures, builds confidence and allows our MLOps kitchen to innovate rapidly while maintaining high standards of quality and reliability.</p>
+<p>With our models now packaged, optimized, served via robust infrastructure, and deployed with careful, progressive strategies, our MLOps kitchen is fully operational. The next crucial phase is to continuously “listen to our diners” through comprehensive production monitoring and observability, ensuring our dishes remain delightful and our kitchen runs smoothly.</p>
+</section>
+<hr class="docutils" />
+<section id="ix-model-governance-in-deployment-serving">
+<h3>IX. Model Governance in Deployment &amp; Serving<a class="headerlink" href="#ix-model-governance-in-deployment-serving" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Why:</strong> Ensure models are deployed and used responsibly, ethically, and in compliance with regulations (e.g., EU AI Act) and business policies. Critical for building trust and mitigating risks.</p></li>
+<li><p><strong>Integration with MLOps:</strong> Governance should be an integral part of the MLOps lifecycle, not a final gate.</p>
+<ul>
+<li><p><strong>Strict Regulation:</strong> Comprehensive framework integrated at every MLOps step.</p></li>
+<li><p><strong>Less Regulation:</strong> Part of model management, focusing on quality assurance.</p></li>
+</ul>
+</li>
+<li><p><strong>Key Components &amp; Tasks:</strong></p>
+<ul>
+<li><p><strong>Reproducibility &amp; Validation (Leading to Deployment):</strong> Model metadata management (algorithm, features, data, hyperparameters, metrics, code versions), Model Cards, Data Sheets.</p></li>
+<li><p><strong>Observation, Visibility, Control (In Production):</strong></p>
+<ul>
+<li><p><strong>Logging:</strong> Comprehensive serving logs (requests, predictions, latencies, feature values).</p></li>
+<li><p><strong>Continuous Monitoring &amp; Evaluation:</strong> Tracking model performance, data drift, system health.</p></li>
+<li><p><strong>Cost Transparency:</strong> Monitoring ML infrastructure costs.</p></li>
+<li><p><strong>Versioning:</strong> Models, data, code for traceability and rollback.</p></li>
+</ul>
+</li>
+<li><p><strong>Monitoring &amp; Alerting:</strong> Automated alerts for performance drops, significant drift, system errors, compliance breaches.</p></li>
+<li><p><strong>Model Service Catalog/Registry:</strong> Internal inventory of models with metadata for discoverability, reusability, and governance.</p></li>
+<li><p><strong>Security:</strong></p>
+<ul>
+<li><p>Data &amp; information security for sensitive training/inference data.</p></li>
+<li><p>Secure model endpoints (authentication, authorization, RBAC, SSO).</p></li>
+<li><p>Key &amp; secret management.</p></li>
+<li><p>Protection against ML-specific attacks (e.g., adversarial attacks, model inversion - MITRE ATT&amp;CK for ML).</p></li>
+</ul>
+</li>
+<li><p><strong>Conformity &amp; Auditability:</strong></p>
+<ul>
+<li><p>Collect and maintain evidence for compliance (logs, metrics, documentation, audit trails).</p></li>
+<li><p>Conformity testing for high-risk systems (e.g., CE marking).</p></li>
+<li><p>Involve compliance and legal experts early.</p></li>
+</ul>
+</li>
+<li><p><strong>Human Oversight &amp; Explainability:</strong></p>
+<ul>
+<li><p>Mechanisms for human review, especially for high-impact or sensitive decisions.</p></li>
+<li><p>Tools for model explainability (e.g., SHAP, LIME) to understand predictions.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="x-thinking-frameworks-decision-checklists-for-mlops-leads">
+<h3>X. Thinking Frameworks &amp; Decision Checklists for MLOps Leads<a class="headerlink" href="#x-thinking-frameworks-decision-checklists-for-mlops-leads" title="Permalink to this heading">¶</a></h3>
+<p><strong>A. Deployment Strategy Selection Framework (Reiteration):</strong></p>
+<p>(As per previous Mermaid diagram, emphasizing the flow from Real-time needs -&gt; Latency -&gt; Edge/Cloud -&gt; Streaming feature needs -&gt; Specific Cloud/K8s/Serverless choices)</p>
+<p><strong>B. Checklist for Production Readiness of a Deployed Model Service:</strong></p>
+<ul class="simple">
+<li><p><strong>[ ] Model Artifacts &amp; Packaging:</strong></p>
+<ul>
+<li><p>[ ] Correct model version is packaged.</p></li>
+<li><p>[ ] All code, library, and environment dependencies are correctly specified and included (e.g., in Dockerfile).</p></li>
+<li><p>[ ] Model is serialized in the format expected by the serving runtime.</p></li>
+<li><p>[ ] Build is reproducible.</p></li>
+</ul>
+</li>
+<li><p><strong>[ ] Model Registry &amp; Metadata:</strong></p>
+<ul>
+<li><p>[ ] Model is registered with accurate version, lineage, training data details, evaluation metrics.</p></li>
+<li><p>[ ] Deployment stage is correctly set (e.g., “production”).</p></li>
+</ul>
+</li>
+<li><p><strong>[ ] Serving Infrastructure &amp; Configuration:</strong></p>
+<ul>
+<li><p>[ ] Scalability parameters (min/max instances, HPA triggers for K8s, provisioned concurrency for serverless) are configured.</p></li>
+<li><p>[ ] High availability and fault tolerance mechanisms are in place (e.g., multiple replicas, health checks).</p></li>
+<li><p>[ ] Correct hardware (CPU/GPU type and count) is allocated.</p></li>
+<li><p>[ ] Network configuration (ports, firewalls, VPCs) is correct.</p></li>
+</ul>
+</li>
+<li><p><strong>[ ] API &amp; Interface Validation:</strong></p>
+<ul>
+<li><p>[ ] API endpoint is live and accessible through the gateway/load balancer.</p></li>
+<li><p>[ ] Request and response schemas match the defined contract.</p></li>
+<li><p>[ ] Authentication and authorization mechanisms are functioning.</p></li>
+<li><p>[ ] Error handling for invalid requests is robust.</p></li>
+</ul>
+</li>
+<li><p><strong>[ ] Performance Validation (in Staging/Canary):</strong></p>
+<ul>
+<li><p>[ ] Average and percentile latencies (P50, P90, P99) are within SLA.</p></li>
+<li><p>[ ] Throughput (QPS) meets expected demand under load tests.</p></li>
+<li><p>[ ] System error rates are minimal.</p></li>
+<li><p>[ ] Resource utilization (CPU, memory, GPU) is within acceptable limits and scales appropriately.</p></li>
+</ul>
+</li>
+<li><p><strong>[ ] Monitoring &amp; Logging Integration:</strong></p>
+<ul>
+<li><p>[ ] Serving logs (request payloads, predictions, latencies, errors) are being collected and are queryable.</p></li>
+<li><p>[ ] Key model-specific metrics (e.g., prediction distribution, feature input drift if applicable) are being monitored.</p></li>
+<li><p>[ ] Alerts are configured for critical issues (e.g., high error rate, sustained high latency, service unavailability).</p></li>
+</ul>
+</li>
+<li><p><strong>[ ] Rollout &amp; Rollback Plan:</strong></p>
+<ul>
+<li><p>[ ] The current rollout strategy (e.g., canary percentage, shadow model config) is active and correctly implemented.</p></li>
+<li><p>[ ] The rollback procedure to a previous stable version is clearly defined, automated if possible, and has been tested.</p></li>
+</ul>
+</li>
+<li><p><strong>[ ] Governance, Compliance &amp; Documentation:</strong></p>
+<ul>
+<li><p>[ ] The deployed model version aligns with governance approvals.</p></li>
+<li><p>[ ] Model card or equivalent documentation is up-to-date and accessible.</p></li>
+<li><p>[ ] Access logs for audit purposes are being captured.</p></li>
+<li><p>[ ] Any PII handling or sensitive data processing is compliant with policies.</p></li>
+</ul>
+</li>
+<li><p><strong>[ ] Communication:</strong></p>
+<ul>
+<li><p>[ ] Relevant stakeholders (product, downstream services, operations) are informed about the deployment status and any potential impacts.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="xi-conclusion-the-evolving-discipline-of-ml-deployment-serving">
+<h3>XI. Conclusion: The Evolving Discipline of ML Deployment &amp; Serving<a class="headerlink" href="#xi-conclusion-the-evolving-discipline-of-ml-deployment-serving" title="Permalink to this heading">¶</a></h3>
+<p>Deploying and serving machine learning models effectively is a cornerstone of successful MLOps. It transforms a data science artifact into a value-generating production system. This requires a multi-faceted approach, blending software engineering best practices with an understanding of ML-specific challenges like model staleness, data drift, and the need for continuous validation and progressive delivery.</p>
+<p><strong>Key Takeaways for MLOps Leads:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Strategic Decoupling:</strong> Architect for agility by separating model serving from application backends (Model-as-Service) and model updates from service binary updates (via dynamic loading from model registries or re-deploying model-specific containers).</p></li>
+<li><p><strong>Contextual Strategy Selection:</strong> The choice of deployment pattern (Batch, Online, Streaming, Edge) and serving architecture (Monolithic, Microservices, Serverless, Kubernetes) is critically dependent on specific use case requirements: latency, data freshness, cost, scale, and operational capabilities. There’s no universal “best”; guide teams to the most pragmatic and effective solution.</p></li>
+<li><p><strong>Relentless Performance Optimization:</strong> Continuously strive for lower latency and higher throughput using model compression, hardware acceleration, optimized runtimes, and intelligent server-side techniques (batching, caching, concurrency).</p></li>
+<li><p><strong>Embrace Full Automation (CI/CD/CT):</strong> Implement robust CI/CD pipelines for both the serving application <em>and</em> the models themselves (via automated retraining pipelines and model registries). This is fundamental for velocity and reliability.</p></li>
+<li><p><strong>Deploy Safely with Progressive Delivery:</strong> Utilize Shadow, Canary, Blue/Green, or A/B testing strategies to de-risk deployments, validate real-world impact, and enable rapid, safe iteration. Ensure reliable and tested rollback mechanisms.</p></li>
+<li><p><strong>Integrate Governance Proactively:</strong> Embed model governance (security, compliance, auditability, fairness, transparency) throughout the MLOps lifecycle. It’s not a final checkbox but an ongoing practice.</p></li>
+<li><p><strong>Test and Monitor Continuously &amp; Comprehensively:</strong> Offline tests are vital pre-deployment checks. Online validation (e.g., A/B tests) is crucial for confirming actual business impact. Continuous monitoring of data, model, and system health is non-negotiable for sustained production performance.</p></li>
+</ol>
+<p>The field of ML deployment and serving is rapidly evolving, with new tools, techniques, and challenges emerging constantly. By understanding the core principles, diverse patterns, and leveraging the growing ecosystem of tools, Lead MLOps Engineers can guide their teams to build impactful, dependable, and responsibly operated AI-powered products. This requires not just technical depth but also strong leadership in fostering a culture of engineering excellence, continuous learning, and an unwavering focus on delivering business value reliably.</p>
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024, Deepak Karkala
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Guide: Model Deployment &amp; Serving</a><ul>
+<li><a class="reference internal" href="#id1"></a><ul>
+<li><a class="reference internal" href="#i-understanding-the-ml-deployment-serving-landscape">I. Understanding the ML Deployment &amp; Serving Landscape</a></li>
+<li><a class="reference internal" href="#ii-key-considerations-before-deployment-aligning-with-business-objectives-requirements">II. Key Considerations Before Deployment: Aligning with Business Objectives &amp; Requirements</a></li>
+<li><a class="reference internal" href="#iii-pre-deployment-preparations-building-a-solid-foundation">III. Pre-Deployment Preparations: Building a Solid Foundation</a></li>
+<li><a class="reference internal" href="#iv-choosing-a-deployment-strategy-the-serving-spectrum">IV. Choosing a Deployment Strategy: The Serving Spectrum</a></li>
+<li><a class="reference internal" href="#v-prediction-serving-patterns-and-architectures">V. Prediction Serving Patterns and Architectures</a></li>
+<li><a class="reference internal" href="#vi-performance-optimization-for-inference">VI. Performance Optimization for Inference</a></li>
+<li><a class="reference internal" href="#vii-ci-cd-for-model-serving-automating-model-deployments">VII. CI/CD for Model Serving: Automating Model Deployments</a></li>
+<li><a class="reference internal" href="#viii-progressive-delivery-rollout-strategies-for-safe-updates">VIII. Progressive Delivery &amp; Rollout Strategies for Safe Updates</a></li>
+<li><a class="reference internal" href="#ix-model-governance-in-deployment-serving">IX. Model Governance in Deployment &amp; Serving</a></li>
+<li><a class="reference internal" href="#x-thinking-frameworks-decision-checklists-for-mlops-leads">X. Thinking Frameworks &amp; Decision Checklists for MLOps Leads</a></li>
+<li><a class="reference internal" href="#xi-conclusion-the-evolving-discipline-of-ml-deployment-serving">XI. Conclusion: The Evolving Discipline of ML Deployment &amp; Serving</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=b3ba4146"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/scripts/furo.js?v=4e2eecee"></script>
+    </body>
+</html>

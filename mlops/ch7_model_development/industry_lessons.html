@@ -1,0 +1,1027 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" />
+
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/><!-- Generated with Sphinx 7.1.2 and Furo 2024.05.06 -->
+        <title>Model Development: Lessons from production systems - Home</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=387cc868" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=36a5483c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/style.css?v=8a7ff5ee" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" /
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">Home</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  
+  <span class="sidebar-brand-text">Home</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../projects/index.html">Projects</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Projects</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/nlp/index.html">Natural Language Processing</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Natural Language Processing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/airbnb_alternate_search/about/index.html">Airbnb Listing description based Semantic Search</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/cv/index.html">Computer Vision</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Computer Vision</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/ecommerce_image_segmentation/about/index.html">Image Segmentation for Ecommerce Products</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/ml/index.html">Machine Learning</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of Machine Learning</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/airbnb_price_modeling/about/index.html">Predictive Price Modeling for Airbnb listings</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../publications/index.html">Patents, Papers, Thesis</a></li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../index.html">MLOps</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of MLOps</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch1_problem_framing.html">ML Problem framing</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of ML Problem framing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch2_blueprint_operational_strategy.html">The MLOps Blueprint &amp; Operational Strategy</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch2a_platform/index.html">ML Platforms</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of ML Platforms</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/ml_platforms.html">ML Platforms: How to</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/uber.html">Uber Michelangelo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/linkedin.html">LinkedIn DARWIN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/netflix.html">Netflix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/shopify.html">Shopify Merlin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/zomato.html">Zomato: Real-time ML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/coveo.html">Coveo: MLOPs at reasonable scale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/monzo.html">Monzo ML Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/didact.html">Didact AI</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch3_project_planning/index.html">Project Planning</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of Project Planning</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/prd.html">Project Requirements Document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/tech_stack.html">Tech Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/config_management.html">Config Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/pipeline_design.html">Pipeline Design</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/environment_strategy.html">Environment Strategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/cicd_branching_model.html">CI/CD Strategy and Branching Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/directory_structure.html">Directory Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/env_branchind_cicd_deployment.html">Environments, Branching, CI/CD, and Deployments Explained</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/project_management.html">Project Management for MLOps</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch4_data_discovery/index.html">Data Sourcing, Discovery</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of Data Sourcing, Discovery</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/data_sourcing_discovery.html">Data Sourcing, Discovery &amp; Understanding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/ch4_project.html">Project-Trending Now: Implementing Web Scraping, Ingestion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/industry_case_studies.html">Data Discovery Platforms: Industry Case Studies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/facebook_nemo.html">Facebook: Nemo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/netflix_metacat.html">Netflix Metacat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/uber_databook.html">Uber Databook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/linkedin_datahub.html">LinkedIn Datahub</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../lld/index.html">Low Level Design</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle navigation of Low Level Design</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../lld/parking_lot.html">Parking Lot</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../visualization/index.html">Data Visualization Projects</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="../../_sources/mlops/ch7_model_development/industry_lessons.md.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="model-development-lessons-from-production-systems">
+<h1>Model Development: Lessons from production systems<a class="headerlink" href="#model-development-lessons-from-production-systems" title="Permalink to this heading">¶</a></h1>
+<section id="id1">
+<h2><a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<p><strong>Document Purpose:</strong> This guide distills practical wisdom from leading tech companies on developing, deploying, and maintaining machine learning models in production. It’s designed for experienced Lead MLOps Engineers to refine their thinking frameworks and decision-making processes.</p>
+<p><strong>Core Philosophy:</strong> Production ML is an iterative, data-driven, and business-aligned engineering discipline. It’s more than just training a model; it’s about building robust, scalable, and maintainable systems that deliver continuous value.</p>
+<hr class="docutils" />
+<p><strong>I. The MLOps Mindset for Model Development</strong></p>
+<ul class="simple">
+<li><p><strong>Business Value First:</strong></p>
+<ul>
+<li><p><strong>Why:</strong> ML models exist to solve business problems or create new opportunities. (DoorDash, Booking.com, Airbnb LTV)</p></li>
+<li><p><strong>How:</strong></p>
+<ul>
+<li><p>Clearly define the problem and success metrics <em>with business stakeholders</em>.</p></li>
+<li><p>Understand the “Total Addressable Market (TAM)” for the model’s impact. (DoorDash)</p></li>
+<li><p>Offline model performance (e.g., AUC, R-squared) is a health check, <em>not</em> a guarantee of business impact. (Booking.com, DoorDash)</p></li>
+<li><p>Translate model improvements to tangible business KPIs (e.g., revenue, efficiency, user experience).</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Iterative &amp; Hypothesis-Driven Approach:</strong></p>
+<ul>
+<li><p><strong>Why:</strong> Large-scale problems are complex; perfect solutions rarely emerge on the first try. (Booking.com, Walmart, GitHub)</p></li>
+<li><p><strong>How:</strong></p>
+<ul>
+<li><p>Start simple (heuristic or basic model) to establish a baseline and understand the problem space. (Twitter, DoorDash)</p></li>
+<li><p>Formulate clear hypotheses for model improvements or feature additions.</p></li>
+<li><p>Prioritize iterations based on potential impact and effort.</p></li>
+<li><p>“Prototype -&gt; Scale -&gt; Revisit &amp; Improve” (Airbnb Categories)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Embrace the Full Lifecycle:</strong></p>
+<ul>
+<li><p><strong>Why:</strong> A model isn’t “done” when deployed. Monitoring, retraining, and adaptation are crucial. (Instagram, DoorDash)</p></li>
+<li><p><strong>How:</strong> Design for observability, easy retraining, and quick rollback.</p></li>
+</ul>
+</li>
+<li><p><strong>Humans are Part of the System:</strong></p>
+<ul>
+<li><p><strong>Why:</strong> Purely automated systems often struggle with nuance, cold starts, and evolving data. (Airbnb Categories, DoorDash Item Tagging, Walmart)</p></li>
+<li><p><strong>How:</strong> Strategically integrate human-in-the-loop (HITL) for labeling, validation, exception handling, and rule creation. Treat analysts, crowd workers, and developers as “first-class citizens” in the system. (Walmart - Chimera)</p></li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+<p><strong>II. Core Pillars of Production ML Model Development</strong></p>
+<p><strong>A. Data: The Unyielding Foundation</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Data Collection &amp; Understanding:</strong></p>
+<ul class="simple">
+<li><p><strong>Challenge:</strong> Data can be sparse, noisy, imbalanced, non-stationary, and come from diverse sources. (Instagram, DoorDash Prep Time, Facebook)</p></li>
+<li><p><strong>Best Practices:</strong></p>
+<ul>
+<li><p><strong>Cataloging:</strong> Maintain a metadata catalog for data assets. (Facebook)</p></li>
+<li><p><strong>Signal Exploration:</strong> Use multiple data signals (e.g., text, image, user behavior, persisted vs. online data). (Facebook, Walmart, Airbnb)</p></li>
+<li><p><strong>Understand Censorship &amp; Bias:</strong> Be aware of issues like left-censored data or selection bias and their impact. (DoorDash Prep Time)</p></li>
+<li><p><strong>Data Coverage:</strong> Monitor feature coverage; have fallback strategies for low coverage. (Instagram)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Data Quality &amp; Preprocessing:</strong></p>
+<ul class="simple">
+<li><p><strong>Challenge:</strong> “Garbage in, garbage out.” OCR errors, inconsistent formats, PII. (DoorDash Menu, Airbnb Messages)</p></li>
+<li><p><strong>Best Practices:</strong></p>
+<ul>
+<li><p><strong>Denoising/Cleaning:</strong> Implement robust preprocessing pipelines (e.g., removing templates, special characters, PII scrubbing). (GitHub, Walmart, Airbnb Messages)</p></li>
+<li><p><strong>Handling Missing Data:</strong></p>
+<ul>
+<li><p>Impute clinically normal values (ICLR LSTM for Healthcare).</p></li>
+<li><p>Introduce indicator variables for missingness. (ICLR LSTM for Healthcare)</p></li>
+<li><p>Be wary of back-filling if it introduces future leaks. (ICLR LSTM for Healthcare)</p></li>
+</ul>
+</li>
+<li><p><strong>Data Augmentation:</strong> Crucial for limited positive training sets, especially for deep learning. (GitHub, DoorDash Item Tagging)</p></li>
+<li><p><strong>Resampling/Windowing:</strong> Carefully consider how resampling (e.g., hourly for time series) affects data variability. (ICLR LSTM for Healthcare)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Labeling &amp; Ground Truth:</strong></p>
+<ul class="simple">
+<li><p><strong>Challenge:</strong> High cost, scalability issues for many classes, label ambiguity, multi-intent, cold start. (DoorDash Item Tagging, Airbnb Messages, Airbnb Categories)</p></li>
+<li><p><strong>Strategies &amp; Solutions:</strong></p>
+<ul>
+<li><p><strong>Unsupervised to Supervised:</strong> Use unsupervised methods (e.g., LDA) to discover initial topics/intents, then refine with human labeling. (Airbnb Messages)</p></li>
+<li><p><strong>Taxonomy Design (for tagging/categorization):</strong></p>
+<ul>
+<li><p>Keep tags mutually exclusive if possible.</p></li>
+<li><p>Partition by distinct attributes.</p></li>
+<li><p>Include “other” classes for future expansion.</p></li>
+<li><p>Make tags objective. (DoorDash Item Tagging)</p></li>
+</ul>
+</li>
+<li><p><strong>Human-in-the-Loop (HITL) for Labeling:</strong></p>
+<ul>
+<li><p><strong>Iterative Labeling:</strong> Pilot label small samples, refine definitions based on inter-rater agreement. (Airbnb Messages)</p></li>
+<li><p><strong>Active Learning:</strong> Use model uncertainty to select samples for annotation. (DoorDash Item Tagging)</p></li>
+<li><p><strong>Self-Training:</strong> Use high-precision models to generate supplemental training samples. (DoorDash Item Tagging)</p></li>
+<li><p><strong>Crowdsourcing:</strong> Effective for evaluation and flagging, but monitor accuracy (97-98% typical, can dip). Be cautious adding crowd labels directly to training data. (Walmart - Chimera)</p></li>
+<li><p><strong>Internal Experts:</strong> Use for complex tasks, refining labels, and creating “golden datasets.” (Airbnb Messages, DoorDash Item Tagging)</p></li>
+</ul>
+</li>
+<li><p><strong>Weak Supervision:</strong> Infer labels from heuristics (e.g., PRs from new contributors, small diffs for “good first issues”). (GitHub)</p></li>
+<li><p><strong>Handling Multi-Intent/Multi-Label:</strong> Assign specific intents to corresponding sentences or allow multiple tags. (Airbnb Messages)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p><strong>B. Feature Engineering: Crafting Predictive Power</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Feature Ideation &amp; Creation:</strong></p>
+<ul class="simple">
+<li><p><strong>Sources:</strong> User behavior, item metadata (text, image, structured), geo-location, time, reviews, etc. (DoorDash Merchant Selection, Airbnb LTV)</p></li>
+<li><p><strong>Techniques:</strong></p>
+<ul>
+<li><p><strong>Embeddings:</strong> For users, items, n-grams. Learns low-dimension representations, helps generalization. (Instagram, DoorDash Item Tagging, Airbnb Categories)</p>
+<ul>
+<li><p>Word2Vec, Deep Learning (multi-tower architectures).</p></li>
+<li><p>Consider holistic product experience embeddings for myopic models.</p></li>
+</ul>
+</li>
+<li><p><strong>N-grams:</strong> Quantized dense features and categorical features, jointly learned. Useful for higher-order interactions. (Instagram)</p></li>
+<li><p><strong>Time-based Features:</strong> Capture ramp-up time for new entities (e.g., merchants on platform). (DoorDash Merchant Selection)</p></li>
+<li><p><strong>Historical Features:</strong> Past N days of data. (Instagram)</p></li>
+<li><p><strong>Rule-Based/Heuristic Features:</strong> Based on domain knowledge. (Twitter Ad Requests - initial)</p></li>
+<li><p><strong>Hand-Engineered Features:</strong> Inspired by severity-of-illness scores in healthcare (mean, std dev, min/max, slope). (ICLR LSTM for Healthcare)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Feature Management &amp; Scalability:</strong></p>
+<ul class="simple">
+<li><p><strong>Feature Stores:</strong> Centralized repository for high-quality, vetted, reusable features (e.g., DoorDash Feature Store, Airbnb Zipline).</p>
+<ul>
+<li><p><strong>Benefits:</strong> Scalability, fast iteration, consistency, avoids redundant work.</p></li>
+<li><p><strong>Functionality:</strong> Daily feature creation, intelligent key joins, backfilling.</p></li>
+</ul>
+</li>
+<li><p><strong>Handling Sparsity:</strong> Choose models that handle sparse features well (e.g., XGBoost). (DoorDash Merchant Selection)</p></li>
+<li><p><strong>Feature Coverage Monitoring:</strong> Track how often features are available. (Instagram)</p></li>
+</ul>
+</li>
+<li><p><strong>Feature Importance &amp; Interpretability:</strong></p>
+<ul class="simple">
+<li><p><strong>Why:</strong> Understand model behavior, debug, gain business insights, comply with regulations.</p></li>
+<li><p><strong>Techniques:</strong> Shapley Values (SHAP) show feature contribution and direction. (DoorDash Merchant Selection, DoorDash Menu)</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>C. Model Selection &amp; Prototyping: Balancing Act</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Problem Formulation:</strong></p>
+<ul class="simple">
+<li><p><strong>Classification vs. Regression:</strong> Choose based on the desired output.</p></li>
+<li><p><strong>Point-wise vs. Pairwise vs. Listwise (Ranking):</strong> (Instagram)</p></li>
+<li><p><strong>Multilabel Classification:</strong> When items can belong to multiple categories. (ICLR LSTM for Healthcare)</p></li>
+<li><p><strong>Consider the “Uncanny Valley”:</strong> Highly accurate predictions can sometimes be unsettling to users if perceived as intrusive. (Booking.com)</p></li>
+</ul>
+</li>
+<li><p><strong>Model Choice:</strong></p>
+<ul class="simple">
+<li><p><strong>Start Simple:</strong> Linear models, tree-based models (Random Forests, XGBoost, LightGBM) are good starting points. (DoorDash, Twitter, GitHub, Google AdWords Churn)</p>
+<ul>
+<li><p>XGBoost often chosen for its performance, ability to handle sparse data, and AFT loss functions for survival analysis. (DoorDash)</p></li>
+</ul>
+</li>
+<li><p><strong>Deep Learning:</strong></p>
+<ul>
+<li><p><strong>CNNs:</strong> Good for text classification when key phrases matter, fast training/inference. (Airbnb Messages, Walmart Product Categorization)</p></li>
+<li><p><strong>RNNs/LSTMs:</strong> For sequential data, varying length sequences, long-range dependencies. (ICLR LSTM for Healthcare, Walmart Product Categorization - CNN-LSTM, NAVER Item Categorization)</p></li>
+<li><p><strong>Feedforward Neural Networks:</strong> Simple ones can be effective for filtering/prioritization. (Twitter Ad Requests)</p></li>
+<li><p><strong>Multi-tower architectures:</strong> For learning embeddings. (Instagram)</p></li>
+</ul>
+</li>
+<li><p><strong>Specialized Models:</strong></p>
+<ul>
+<li><p>Cox Proportional Hazard Models (for censored data, though often less accurate than ML). (DoorDash Prep Time)</p></li>
+<li><p>Mixture of Experts / Sub-models: For heterogeneous populations (e.g., by country, by merchant segment). (Instagram, DoorDash Merchant Selection)</p></li>
+</ul>
+</li>
+<li><p><strong>AutoML:</strong> Can speed up model selection and benchmarking. (Airbnb LTV)</p></li>
+</ul>
+</li>
+<li><p><strong>Prototyping Frameworks:</strong></p>
+<ul class="simple">
+<li><p><strong>Pipelines (Scikit-learn, Spark):</strong> Define blueprints for feature transformation and model training. Ensures consistency between training and scoring. (Airbnb LTV)</p></li>
+<li><p><strong>Jupyter Notebooks to Production Pipelines:</strong> (e.g., Airbnb’s ML Automator for Airflow). Lowers barrier for Data Scientists.</p></li>
+</ul>
+</li>
+<li><p><strong>Trade-offs:</strong></p>
+<ul class="simple">
+<li><p><strong>Interpretability vs. Complexity/Accuracy:</strong> (Airbnb LTV, DoorDash Prep Time)</p>
+<ul>
+<li><p>Sparse linear models: interpretable, less complex.</p></li>
+<li><p>Tree-based (XGBoost): flexible, non-linear, less interpretable.</p></li>
+<li><p>Deep Learning: highly flexible, often a black box.</p></li>
+</ul>
+</li>
+<li><p><strong>Coverage vs. Accuracy (Precision/Recall):</strong> Especially for recommendations or filtering. (GitHub Good First Issues - aim for high precision)</p></li>
+<li><p><strong>Training/Inference Speed vs. Accuracy:</strong> Critical for online systems. (Instagram, Twitter)</p>
+<ul>
+<li><p>Consider model size and latency early.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p><strong>D. Training &amp; Validation: Rigor and Reality</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Training Strategy:</strong></p>
+<ul class="simple">
+<li><p><strong>Data Splitting:</strong></p>
+<ul>
+<li><p>Train/Validation/Test.</p></li>
+<li><p>For time-series data, split chronologically to avoid future leaks. (Mozilla Test Selection)</p></li>
+<li><p>Separate across higher-level entities (e.g., repositories) if leakage is a concern. (GitHub)</p></li>
+</ul>
+</li>
+<li><p><strong>Addressing Imbalance:</strong> Subsample negative set, weight loss function. (GitHub, DoorDash Item Tagging)</p></li>
+<li><p><strong>Loss Functions:</strong></p>
+<ul>
+<li><p>Log loss for multilabel. (ICLR LSTM for Healthcare)</p></li>
+<li><p>Cross-entropy for standard classification.</p></li>
+<li><p>Focal loss for imbalanced data. (Walmart Semantic Labels)</p></li>
+<li><p>Custom loss for censored data (e.g., XGBoost AFT). (DoorDash Prep Time)</p></li>
+<li><p>KL Divergence for matching distributions (e.g., with soft targets). (Walmart Semantic Labels)</p></li>
+</ul>
+</li>
+<li><p><strong>Regularization:</strong> L2 weight decay, dropout (especially for non-recurrent connections in RNNs). (ICLR LSTM for Healthcare)</p></li>
+<li><p><strong>Optimization:</strong> SGD with momentum, Adagrad (be mindful of learning rate decay). (ICLR LSTM for Healthcare, Instagram)</p></li>
+<li><p><strong>Target Replication (for sequence models):</strong> Provide local error signals at each step to aid learning long dependencies. (ICLR LSTM for Healthcare)</p></li>
+<li><p><strong>Auxiliary Output Training / Multi-Task Learning:</strong> Use additional related labels/tasks to improve generalization and reduce overfitting. (ICLR LSTM for Healthcare, DoorDash Item Tagging)</p></li>
+<li><p><strong>Curriculum Learning:</strong> Start with easier examples or “harden” soft targets over time. (Walmart Semantic Labels)</p></li>
+</ul>
+</li>
+<li><p><strong>Evaluation Metrics (Offline):</strong></p>
+<ul class="simple">
+<li><p><strong>Standard Metrics:</strong> Precision, Recall, F1, AUC (micro/macro), R-squared, MSE.</p></li>
+<li><p><strong>Business-Specific Metrics:</strong></p>
+<ul>
+<li><p>Weighted Decile CPE, Decile Rank Score (DoorDash Merchant Selection): Tailored for sales lead allocation and ranking quality.</p></li>
+<li><p>Precision&#64;k (ICLR LSTM for Healthcare - P&#64;10 for diagnoses): Medically plausible use case.</p></li>
+</ul>
+</li>
+<li><p><strong>Segment Performance:</strong> Evaluate not just aggregate but also on key segments (e.g., new vs. existing users, chain vs. local merchants). (DoorDash Merchant Selection)</p></li>
+<li><p><strong>Calibration:</strong> Important if probabilities are used for decision-making or active learning. (DoorDash Item Tagging)</p></li>
+</ul>
+</li>
+<li><p><strong>Validation &amp; Health Checks:</strong></p>
+<ul class="simple">
+<li><p><strong>Offline vs. Online Correlation:</strong> Offline gains don’t always translate to online/business impact. (Booking.com - “Offline model performance is just a health check”)</p></li>
+<li><p><strong>Backtesting:</strong> Replay past traffic with control/test treatments to assess model performance and ecosystem consequences. (Instagram)</p></li>
+<li><p><strong>Golden Datasets:</strong> Fixed evaluation sets for model comparison over time. (Instagram)</p></li>
+<li><p><strong>Response Distribution Analysis (RDA):</strong> For binary classifiers, analyze histogram of model outputs to detect pathologies (high bias, feature defects, concept drift) without true labels. (Booking.com)</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>E. Productionization &amp; Deployment: Crossing the Chasm</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Infrastructure &amp; Tooling:</strong></p>
+<ul class="simple">
+<li><p><strong>ML Platforms (e.g., Airbnb Bighead, DoorDash internal infra on Databricks/MLflow, Facebook’s system):</strong></p>
+<ul>
+<li><p>Model management (registration, versioning, storage).</p></li>
+<li><p>Automated training/retraining (weekly/monthly/daily/hourly).</p></li>
+<li><p>Distributed scoring.</p></li>
+<li><p>Monitoring dashboards.</p></li>
+</ul>
+</li>
+<li><p><strong>Feature Stores:</strong> As mentioned, for consistent feature access.</p></li>
+<li><p><strong>Workflow Orchestration (e.g., Airflow, Argo):</strong> Schedule and manage data pipelines and model training/inference jobs. (Airbnb LTV, GitHub)</p></li>
+</ul>
+</li>
+<li><p><strong>Deployment Strategies:</strong></p>
+<ul class="simple">
+<li><p><strong>Online (Real-time) vs. Offline (Batch) Prediction:</strong></p>
+<ul>
+<li><p><strong>Online:</strong> For low-latency requirements (e.g., ad serving, fraud detection). Needs lightweight models, efficient inference. (Twitter, Facebook, Instagram)</p></li>
+<li><p><strong>Offline/Recurring:</strong> Daily/hourly predictions. Less resource-intensive. (Instagram, DoorDash)</p></li>
+</ul>
+</li>
+<li><p><strong>Shadow Mode/Shadow Schedulers:</strong> Run new models/logic alongside the current production system to evaluate performance before full rollout. (Mozilla Test Selection)</p></li>
+<li><p><strong>A/B Testing (Randomized Controlled Trials - RCTs):</strong> Essential for measuring true business impact. (Booking.com, DoorDash Prep Time)</p>
+<ul>
+<li><p><strong>Switchback Tests:</strong> For network effects. (DoorDash Prep Time)</p></li>
+<li><p><strong>Triggered Analysis:</strong> Analyze only users exposed to a change, especially when eligibility criteria depend on model output. (Booking.com)</p></li>
+<li><p><strong>Controlling for Latency:</strong> Design experiments to disentangle model effect from performance degradation. (Booking.com)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Scalability &amp; Efficiency:</strong></p>
+<ul class="simple">
+<li><p><strong>Model Size &amp; Latency:</strong> Critical constraints. Lightweight models for early pipeline stages (e.g., filtering invaluable requests). (Twitter Ad Requests - &lt;3MB model)</p></li>
+<li><p><strong>Multi-stage Ranking/Filtering:</strong> Simpler model for first pass on many items, then complex model on top N. (Instagram)</p></li>
+<li><p><strong>Caching:</strong> Store frequent predictions. (Booking.com)</p></li>
+<li><p><strong>Bulking:</strong> Group multiple requests for a model into one. (Booking.com)</p></li>
+<li><p><strong>Precomputation:</strong> If feature space is small. (Booking.com)</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>F. Monitoring &amp; Iteration: The Never-Ending Loop</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Performance Monitoring:</strong></p>
+<ul class="simple">
+<li><p><strong>Technical Metrics:</strong> Latency, error rates, resource usage.</p></li>
+<li><p><strong>Model Metrics (Offline):</strong> Track R-squared, ranking metrics, AUC over time on fixed golden sets and changing test sets. (DoorDash Merchant Selection, Instagram)</p></li>
+<li><p><strong>Model Metrics (Online):</strong></p>
+<ul>
+<li><p>Business KPIs (conversion, revenue, engagement).</p></li>
+<li><p>Regression detection rate (Mozilla Test Selection).</p></li>
+<li><p>Correlation between weights/predictions of model snapshots. (Instagram)</p></li>
+</ul>
+</li>
+<li><p><strong>Data Drift &amp; Concept Drift:</strong> Monitor input data distributions and model performance to detect when retraining is needed.</p>
+<ul>
+<li><p>If important features change significantly, investigate training data. (DoorDash Merchant Selection)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Retraining &amp; Model Updates:</strong></p>
+<ul class="simple">
+<li><p><strong>Frequency:</strong> Daily, weekly, monthly, or continuous/online. (Twitter Ad Requests - hourly, Instagram - daily, DoorDash Merchant Selection - weekly/monthly)</p></li>
+<li><p><strong>Strategy:</strong></p>
+<ul>
+<li><p>Load past N days of data and continue training from previous snapshot. (Instagram)</p></li>
+<li><p>Online learning: model fed real-time data. Guarantees freshness but high engineering cost. (Instagram)</p></li>
+</ul>
+</li>
+<li><p><strong>Snapshot Vetting:</strong> Evaluate against fixed golden set and changing test set before publishing. (Instagram)</p></li>
+</ul>
+</li>
+<li><p><strong>Feedback Loops:</strong></p>
+<ul class="simple">
+<li><p><strong>Human Annotations:</strong> Feed corrected labels back into training data. (Airbnb Categories, DoorDash Item Tagging, Walmart - Chimera)</p></li>
+<li><p><strong>User Feedback:</strong> Implicit (e.g., clicks, conversions) and explicit (e.g., ratings, “not useful” flags).</p></li>
+<li><p><strong>Business Operations Feedback:</strong> Sales teams using lead scores provide valuable ground truth. (DoorDash Merchant Selection)</p></li>
+</ul>
+</li>
+</ol>
+<hr class="docutils" />
+<p><strong>III. Addressing Common Real-World Challenges</strong></p>
+<ul class="simple">
+<li><p><strong>Cold Start Problem:</strong></p>
+<ul>
+<li><p><strong>Issue:</strong> Lack of historical data for new users, items, or features. (Instagram, DoorDash Item Tagging, Booking.com)</p></li>
+<li><p><strong>Solutions:</strong></p>
+<ul>
+<li><p><strong>Fallback Models:</strong> Use simpler, high-coverage models if primary model lacks data. (Instagram)</p></li>
+<li><p><strong>Mixture Embeddings on User Clusters:</strong> Full coverage, good substitute for interaction history. (Instagram)</p></li>
+<li><p><strong>Human-in-the-Loop:</strong> For initial labeling and rule creation. (DoorDash Item Tagging, Airbnb Categories)</p></li>
+<li><p><strong>Content-Based Features:</strong> Rely on item/user attributes rather than interactions.</p></li>
+<li><p><strong>Augment Training Data:</strong> Include longer-tenured entities to increase sample size (but be mindful of distribution shifts). (DoorDash Merchant Selection)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Data Sparsity:</strong></p>
+<ul>
+<li><p><strong>Issue:</strong> Many features have few non-zero values.</p></li>
+<li><p><strong>Solutions:</strong></p>
+<ul>
+<li><p>Choose models adept at handling sparsity (XGBoost).</p></li>
+<li><p>Embeddings can densify representations.</p></li>
+<li><p>Feature selection/engineering to reduce dimensionality.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Imbalanced Data:</strong></p>
+<ul>
+<li><p><strong>Issue:</strong> Some classes/outcomes are much rarer than others. (GitHub Good First Issues, DoorDash Item Tagging)</p></li>
+<li><p><strong>Solutions:</strong></p>
+<ul>
+<li><p><strong>Resampling:</strong> Oversample minority class, undersample majority class (carefully).</p></li>
+<li><p><strong>Weighted Loss Functions:</strong> Penalize errors on minority class more heavily. (GitHub)</p></li>
+<li><p><strong>Focal Loss:</strong> (Walmart Semantic Labels)</p></li>
+<li><p>Collect more data for rare classes (often via targeted HITL).</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Scalability (Data &amp; Compute):</strong></p>
+<ul>
+<li><p><strong>Issue:</strong> Millions of items, users, high request volume.</p></li>
+<li><p><strong>Solutions:</strong></p>
+<ul>
+<li><p>Distributed training and inference.</p></li>
+<li><p>Efficient data storage and retrieval (feature stores, data warehouses).</p></li>
+<li><p>Model quantization/pruning for smaller, faster models.</p></li>
+<li><p>Approximate nearest neighbor search (e.g., FAISS for embeddings). (Instagram)</p></li>
+<li><p>Rule-based systems for initial filtering or handling high-volume, simple cases. (Twitter Ad Requests)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Noisy/Unreliable Labels:</strong></p>
+<ul>
+<li><p><strong>Issue:</strong> Human errors, ambiguous definitions, evolving understanding. (Airbnb Messages, DoorDash Item Tagging)</p></li>
+<li><p><strong>Solutions:</strong></p>
+<ul>
+<li><p><strong>Consensus Mechanisms:</strong> Multiple annotators for critical labels.</p></li>
+<li><p><strong>Quality Assurance:</strong> Reviewer agreement checks, golden datasets. (DoorDash Item Tagging)</p></li>
+<li><p><strong>“Not Sure” Option for Annotators:</strong> Provides insight into task difficulty. (DoorDash Item Tagging)</p></li>
+<li><p><strong>Model Robustness:</strong> Some models are more robust to label noise than others.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+<p><strong>IV. Advanced Techniques &amp; Strategies</strong></p>
+<ul class="simple">
+<li><p><strong>Embeddings for Semantic Understanding:</strong></p>
+<ul>
+<li><p><strong>Product Categorization:</strong> Use CLIP embeddings for category names to construct soft targets for label smoothing. (Walmart Semantic Labels)</p></li>
+<li><p><strong>Message Intent:</strong> Pre-train word embeddings on large domain-specific corpus. (Airbnb Messages)</p></li>
+<li><p><strong>Listing Similarity:</strong> Find similar listings via embedding cosine similarity for candidate expansion. (Airbnb Categories)</p></li>
+</ul>
+</li>
+<li><p><strong>Semantic Label Representation / Label Smoothing:</strong></p>
+<ul>
+<li><p><strong>Why:</strong> Traditional one-hot encoding penalizes all misclassifications equally. Semantic smoothing makes models less overconfident and errors less severe (e.g., mistaking “cowboy boots” for “rain boots” is better than for “t-shirts”). (Walmart Semantic Labels)</p></li>
+<li><p><strong>How:</strong></p>
+<ul>
+<li><p>Uniform smoothing: Distribute a small probability α to all other classes.</p></li>
+<li><p>Similarity-based smoothing: Distribute α based on pre-computed semantic similarity (e.g., from embeddings) between classes.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Dealing with Censored Data (e.g., Survival Analysis):</strong></p>
+<ul>
+<li><p><strong>Problem:</strong> The true event time is not always observed (e.g., food prep time if Dasher arrives early). (DoorDash Prep Time)</p></li>
+<li><p><strong>Solution:</strong></p>
+<ul>
+<li><p><strong>Two-stage Adjustment:</strong></p>
+<ol class="arabic simple">
+<li><p>Identify “censorship severity” (e.g., observed arrival - prior estimate).</p></li>
+<li><p>Adjust target value based on severity for censored records.</p></li>
+<li><p>Train a standard regression model on adjusted data.</p></li>
+</ol>
+</li>
+<li><p>This was preferred over complex likelihood methods (Cox models, XGBoost AFT) for transparency and accuracy.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Multi-Stage Architectures:</strong></p>
+<ul>
+<li><p><strong>Ranking:</strong> Simple model for initial candidate generation, complex model for re-ranking top N. (Instagram)</p></li>
+<li><p><strong>Classification/Tagging:</strong> Rule-based pre-filtering, then ML models. (Walmart - Chimera)</p></li>
+</ul>
+</li>
+<li><p><strong>Online Learning / Continuous Training:</strong></p>
+<ul>
+<li><p><strong>Why:</strong> Adapt to non-stationary data, trends, seasonality. (Instagram)</p></li>
+<li><p><strong>Challenges:</strong> Model stability, computational cost, monitoring.</p></li>
+</ul>
+</li>
+<li><p><strong>Bias Mitigation in Ranking:</strong></p>
+<ul>
+<li><p><strong>Issue:</strong> Top-ranked items get more exposure and thus more interaction data, creating a feedback loop. (Instagram)</p></li>
+<li><p><strong>Solutions:</strong></p>
+<ul>
+<li><p>Add position/batch size as features in the last layer.</p></li>
+<li><p>Co-train with a logistic regression using these bias features.</p></li>
+<li><p>Inverse Propensity Weighting: Weight training examples by their position.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+<p><strong>V. The Human Element in ML Systems</strong></p>
+<ul class="simple">
+<li><p><strong>Human-in-the-Loop (HITL) is often Essential at Scale:</strong></p>
+<ul>
+<li><p><strong>For Labeling/Annotation:</strong> Especially for cold start, rare classes, and continuous improvement. (DoorDash Item Tagging, Airbnb Categories, Walmart - Chimera)</p></li>
+<li><p><strong>For Evaluation &amp; QA:</strong> Crowd workers can evaluate model outputs, flag errors. Analysts investigate flagged issues. (Walmart - Chimera)</p></li>
+<li><p><strong>For Rule Creation &amp; Maintenance:</strong> Domain experts (analysts) create and refine rules to handle edge cases, new patterns, or complement ML. (Walmart - Chimera, DoorDash Item Tagging - guardrails)</p></li>
+<li><p><strong>For Triage &amp; Prioritization:</strong> Humans can triage bugs or categorize items when ML is not confident. (Mozilla BugBug, Airbnb Categories)</p></li>
+</ul>
+</li>
+<li><p><strong>Designing Effective HITL Tasks:</strong></p>
+<ul>
+<li><p><strong>Clarity:</strong> Simple binary or multiple-choice questions are better for crowd workers. (DoorDash Item Tagging)</p></li>
+<li><p><strong>Efficiency:</strong> Break down complex tasks (e.g., using a taxonomy).</p></li>
+<li><p><strong>Quality Control:</strong> Consensus, golden sets, “not sure” option.</p></li>
+</ul>
+</li>
+<li><p><strong>Collaboration between Data Scientists, Engineers, Analysts, and Business:</strong></p>
+<ul>
+<li><p><strong>Shared Understanding:</strong> Crucial for defining problems and success.</p></li>
+<li><p><strong>Feedback Loops:</strong> Analysts provide insights to DS/ML, business provides impact metrics.</p></li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+<p><strong>VI. Thinking Frameworks &amp; Decision Tools</strong></p>
+<p><strong>A. Decision Framework: Addressing Model Errors/Low Performance</strong></p>
+<div class="highlight-mermaid notranslate"><div class="highlight"><pre><span></span>graph TD
+    A[Model Performance Unsatisfactory] --&gt; B{Is it a Data Problem?};
+    B -- Yes --&gt; C[Investigate Data Quality/Quantity/Labels/Features];
+    C --&gt; C1[Improve Labeling (HITL, Active Learning)];
+    C --&gt; C2[Feature Engineering (New sources, transformations)];
+    C --&gt; C3[Address Data Skew/Sparsity];
+    B -- No --&gt; D{Is it a Model Problem?};
+    D -- Yes --&gt; E[Revisit Model Choice/Architecture/Hyperparameters];
+    E --&gt; E1[Try Simpler/More Complex Model];
+    E --&gt; E2[Tune Hyperparameters];
+    E --&gt; E3[Adjust Loss Function];
+    D -- No --&gt; F{Is it an Evaluation Mismatch?};
+    F -- Yes --&gt; G[Offline metrics don&#39;t reflect online impact?];
+    G --&gt; G1[Refine Online Experimentation (A/B test)];
+    G --&gt; G2[Develop Business-Alighed Offline Metrics];
+    F -- No --&gt; H[Consider External Factors/Concept Drift];
+    H --&gt; H1[Retrain Model More Frequently];
+    H --&gt; H2[Implement Drift Detection];
+
+    C1 --&gt; A;
+    C2 --&gt; A;
+    C3 --&gt; A;
+    E1 --&gt; A;
+    E2 --&gt; A;
+    E3 --&gt; A;
+    G1 --&gt; A;
+    G2 --&gt; A;
+    H1 --&gt; A;
+    H2 --&gt; A;
+</pre></div>
+</div>
+<p><strong>B. Trade-off Analysis Table (Example)</strong></p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Decision Point</p></th>
+<th class="head text-left"><p>Option 1 (e.g., Simpler Model)</p></th>
+<th class="head text-left"><p>Option 2 (e.g., Complex Model)</p></th>
+<th class="head text-left"><p>Factors to Consider</p></th>
+<th class="head text-left"><p>Recommendation Context</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><strong>Model Choice</strong></p></td>
+<td class="text-left"><p>Linear Regression</p></td>
+<td class="text-left"><p>Deep Neural Network</p></td>
+<td class="text-left"><p>Interpretability, data size, compute, dev time, accuracy</p></td>
+<td class="text-left"><p>Start simple, iterate if baseline not met.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Labeling</strong></p></td>
+<td class="text-left"><p>Crowd Workers</p></td>
+<td class="text-left"><p>Domain Experts</p></td>
+<td class="text-left"><p>Cost, scale, nuance, quality</p></td>
+<td class="text-left"><p>Crowd for broad tasks, experts for complex/critical ones.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Deployment</strong></p></td>
+<td class="text-left"><p>Batch</p></td>
+<td class="text-left"><p>Real-time</p></td>
+<td class="text-left"><p>Latency needs, freshness, infra cost</p></td>
+<td class="text-left"><p>Real-time if immediate predictions critical, else batch.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Data Handling</strong></p></td>
+<td class="text-left"><p>Drop Censored Data</p></td>
+<td class="text-left"><p>Model Censored Data</p></td>
+<td class="text-left"><p>Bias, accuracy, model complexity, transparency</p></td>
+<td class="text-left"><p>Model if possible &amp; transparent, else careful heuristic.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Cold Start</strong></p></td>
+<td class="text-left"><p>Fallback Heuristic</p></td>
+<td class="text-left"><p>Embeddings from Side Info</p></td>
+<td class="text-left"><p>Accuracy, coverage, dev effort</p></td>
+<td class="text-left"><p>Heuristic for MVP, embeddings for better long-term solution.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>System Complexity</strong></p></td>
+<td class="text-left"><p>ML Only</p></td>
+<td class="text-left"><p>ML + Rules + HITL</p></td>
+<td class="text-left"><p>Accuracy, robustness, maintainability, cost</p></td>
+<td class="text-left"><p>Hybrid for critical, large-scale, evolving systems.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>C. Questions for an MLOps Lead when starting a new Model Development Project:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Problem &amp; Value:</strong></p>
+<ul class="simple">
+<li><p>What specific business problem are we solving? What’s the expected ROI?</p></li>
+<li><p>How will success be measured (offline and <em>online</em>)? What are the target KPIs?</p></li>
+<li><p>Who are the stakeholders? Are they aligned on the goals?</p></li>
+</ul>
+</li>
+<li><p><strong>Data:</strong></p>
+<ul class="simple">
+<li><p>What data is available? What is its quality, quantity, and recency?</p></li>
+<li><p>Are there known biases, censorship, or privacy concerns?</p></li>
+<li><p>How will data be sourced, stored, and versioned?</p></li>
+<li><p>What is the labeling strategy? Budget for labeling?</p></li>
+</ul>
+</li>
+<li><p><strong>Modeling:</strong></p>
+<ul class="simple">
+<li><p>What’s the simplest baseline we can establish?</p></li>
+<li><p>What are the latency, throughput, and resource constraints for inference?</p></li>
+<li><p>How critical is interpretability?</p></li>
+<li><p>What are the potential failure modes of the model?</p></li>
+</ul>
+</li>
+<li><p><strong>Production &amp; Operations:</strong></p>
+<ul class="simple">
+<li><p>How will the model be deployed (batch, streaming, service)?</p></li>
+<li><p>What infrastructure is needed for training, serving, and monitoring?</p></li>
+<li><p>What’s the retraining strategy and frequency?</p></li>
+<li><p>How will we monitor for data drift, concept drift, and performance degradation?</p></li>
+<li><p>What’s the rollback plan if issues occur?</p></li>
+<li><p>Who is responsible for ongoing maintenance and operations?</p></li>
+</ul>
+</li>
+<li><p><strong>Human Loop &amp; Iteration:</strong></p>
+<ul class="simple">
+<li><p>Where can human expertise improve the system (labeling, QA, rule-making)?</p></li>
+<li><p>How will feedback from users and the system be incorporated for continuous improvement?</p></li>
+</ul>
+</li>
+</ol>
+<hr class="docutils" />
+<p><strong>VII. Conclusion: The Evolving Landscape</strong></p>
+<p>The development of ML models for production is a dynamic field. Lessons from these industry leaders highlight a shift from purely algorithmic solutions to holistic system design. Key takeaways include:</p>
+<ul class="simple">
+<li><p><strong>Data-centricity:</strong> High-quality, well-understood data and robust feature engineering are paramount.</p></li>
+<li><p><strong>Iterative Pragmatism:</strong> Start simple, validate often, and build complexity incrementally.</p></li>
+<li><p><strong>Hybrid Systems:</strong> Combining ML with rules and human oversight often yields the most robust and accurate solutions at scale.</p></li>
+<li><p><strong>Production-Awareness:</strong> Design for scalability, monitoring, and maintainability from day one.</p></li>
+<li><p><strong>Business Alignment:</strong> Continuously tie ML efforts back to tangible business value.</p></li>
+</ul>
+<p>As an MLOps Lead, your role is to champion these principles, foster a culture of rigorous engineering and continuous learning, and build the platforms and processes that enable your teams to deliver impactful ML solutions efficiently and reliably. The journey is complex, but by leveraging these shared industry experiences, we can navigate it more effectively.</p>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024, Deepak Karkala
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Model Development: Lessons from production systems</a><ul>
+<li><a class="reference internal" href="#id1"></a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=b3ba4146"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/scripts/furo.js?v=4e2eecee"></script>
+    </body>
+</html>

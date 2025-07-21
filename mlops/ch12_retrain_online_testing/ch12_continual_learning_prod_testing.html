@@ -1,0 +1,654 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" />
+
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/><!-- Generated with Sphinx 7.1.2 and Furo 2024.05.06 -->
+        <title>Chapter 12: Continual Learning &amp; Production Testing - Home</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=387cc868" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=36a5483c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/style.css?v=8a7ff5ee" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" /
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">Home</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  
+  <span class="sidebar-brand-text">Home</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../projects/index.html">Projects</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Projects</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/nlp/index.html">Natural Language Processing</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Natural Language Processing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/airbnb_alternate_search/about/index.html">Airbnb Listing description based Semantic Search</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/cv/index.html">Computer Vision</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Computer Vision</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/ecommerce_image_segmentation/about/index.html">Image Segmentation for Ecommerce Products</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/ml/index.html">Machine Learning</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of Machine Learning</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/airbnb_price_modeling/about/index.html">Predictive Price Modeling for Airbnb listings</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../publications/index.html">Patents, Papers, Thesis</a></li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../index.html">MLOps</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of MLOps</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch1_problem_framing.html">ML Problem framing</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of ML Problem framing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch2_blueprint_operational_strategy.html">The MLOps Blueprint &amp; Operational Strategy</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch2a_platform/index.html">ML Platforms</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of ML Platforms</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/ml_platforms.html">ML Platforms: How to</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/uber.html">Uber Michelangelo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/linkedin.html">LinkedIn DARWIN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/netflix.html">Netflix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/shopify.html">Shopify Merlin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/zomato.html">Zomato: Real-time ML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/coveo.html">Coveo: MLOPs at reasonable scale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/monzo.html">Monzo ML Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/didact.html">Didact AI</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch3_project_planning/index.html">Project Planning</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of Project Planning</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/prd.html">Project Requirements Document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/tech_stack.html">Tech Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/config_management.html">Config Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/pipeline_design.html">Pipeline Design</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/environment_strategy.html">Environment Strategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/cicd_branching_model.html">CI/CD Strategy and Branching Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/directory_structure.html">Directory Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/env_branchind_cicd_deployment.html">Environments, Branching, CI/CD, and Deployments Explained</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/project_management.html">Project Management for MLOps</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch4_data_discovery/index.html">Data Sourcing, Discovery</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of Data Sourcing, Discovery</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/data_sourcing_discovery.html">Data Sourcing, Discovery &amp; Understanding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/ch4_project.html">Project-Trending Now: Implementing Web Scraping, Ingestion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/industry_case_studies.html">Data Discovery Platforms: Industry Case Studies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/facebook_nemo.html">Facebook: Nemo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/netflix_metacat.html">Netflix Metacat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/uber_databook.html">Uber Databook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/linkedin_datahub.html">LinkedIn Datahub</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../lld/index.html">Low Level Design</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle navigation of Low Level Design</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../lld/parking_lot.html">Parking Lot</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../visualization/index.html">Data Visualization Projects</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="../../_sources/mlops/ch12_retrain_online_testing/ch12_continual_learning_prod_testing.md.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="chapter-12-continual-learning-production-testing">
+<h1>Chapter 12: Continual Learning &amp; Production Testing<a class="headerlink" href="#chapter-12-continual-learning-production-testing" title="Permalink to this heading">¶</a></h1>
+<p><strong>Chapter 12: Refining the Menu – Continual Learning &amp; Production Testing for Model Evolution</strong></p>
+<p><em>(Progress Label: 📍Stage 12: Evolving Dishes Based on Popularity &amp; New Ingredients)</em></p>
+<section id="introduction-the-dynamic-michelin-kitchen-adapting-to-evolving-tastes">
+<h2>🧑‍🍳 Introduction: The Dynamic Michelin Kitchen – Adapting to Evolving Tastes<a class="headerlink" href="#introduction-the-dynamic-michelin-kitchen-adapting-to-evolving-tastes" title="Permalink to this heading">¶</a></h2>
+<p>Our MLOps kitchen has successfully opened its doors (Chapter 9) and established robust monitoring systems to listen to our “diners” (Chapter 10). But a truly great restaurant doesn’t just maintain standards; it evolves. Diner preferences shift, new ingredients (data) become available, and culinary trends (real-world concepts) change. To retain its Michelin stars, our kitchen must be a dynamic entity, capable of <strong>Continual Learning</strong> and rigorously validating any “menu refinements” through <strong>Production Testing</strong>.</p>
+<p>This chapter delves into the MLOps practices that transform a static model deployment into an adaptive, self-improving system. We’ll explore the imperative of keeping models fresh, the strategies for retraining and updating them (from scheduled refreshes to event-driven adaptations), and the advanced techniques for safely testing these evolved models with live “diners” before a full menu change. As Chip Huyen notes, “continual learning is about setting up infrastructure… to update your models whenever it is needed… and to deploy this update quickly.” [designing-machine-learning-systems.pdf (Page 319)]</p>
+<p>We will differentiate between stateless and stateful training, discuss various triggers for retraining, and detail sophisticated online experimentation methods like A/B testing, interleaving, and bandit algorithms. The goal is to create a closed loop where production insights fuel model improvements, which are then safely validated and redeployed, ensuring our “Trending Now” application not only maintains its relevance but continuously enhances its value to users.</p>
+<hr class="docutils" />
+</section>
+<section id="section-12-1-the-imperative-of-continual-learning-in-mlops-why-the-menu-must-evolve">
+<h2>Section 12.1: The Imperative of Continual Learning in MLOps (Why the Menu Must Evolve)<a class="headerlink" href="#section-12-1-the-imperative-of-continual-learning-in-mlops-why-the-menu-must-evolve" title="Permalink to this heading">¶</a></h2>
+<p>ML models are not static artifacts; their performance is intrinsically tied to the ever-changing data landscape. [guide_continual_learning.md (Sec 1)]</p>
+<ul class="simple">
+<li><p><strong>12.1.1 Why Models Degrade: The Unyielding Forces of Drift</strong></p>
+<ul>
+<li><p><strong>Data Distribution Shifts Revisited:</strong> A quick recap of <em>Data Drift</em> (Schema Skew, Distribution Skew) and <em>Concept Drift</em> (the relationship between inputs and outputs changing). [guide_continual_learning.md (Sec 1.1)]</p></li>
+<li><p><strong>Evolving User Behavior &amp; Preferences:</strong> How user tastes, needs, and interaction patterns change over time, making historical training data less representative.</p></li>
+<li><p><strong>External World Changes:</strong> New products, competitor actions, global events (like COVID-19), and seasonal trends all impact data. [designing-machine-learning-systems.pdf (Ch 8 - Production data differing)]</p></li>
+<li><p><strong>The Consequence:</strong> Without adaptation, models become “stale,” predictions less accurate, and business value diminishes. [guide_continual_learning.md (Sec 1.1)]</p></li>
+</ul>
+</li>
+<li><p><strong>12.1.2 Benefits of Keeping Models Fresh (The Value of a Dynamic Menu)</strong></p>
+<ul>
+<li><p><strong>Maintained/Improved Accuracy:</strong> Adapting to new patterns ensures models remain relevant and performant.</p></li>
+<li><p><strong>Enhanced User Experience:</strong> More accurate and timely predictions lead to greater user satisfaction.</p></li>
+<li><p><strong>Competitive Advantage:</strong> Ability to quickly respond to market changes and user needs.</p></li>
+<li><p><strong>Addressing Cold Start Continuously:</strong> Adapting to new users or existing users with changed behavior. [guide_continual_learning.md (Sec 3.3)]</p></li>
+<li><p><strong>Optimized Business Outcomes:</strong> Fresh models are more likely to drive desired business KPIs.</p></li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+</section>
+<section id="section-12-2-strategies-for-model-retraining-and-updating-revising-the-recipes">
+<h2>Section 12.2: Strategies for Model Retraining and Updating (Revising the Recipes)<a class="headerlink" href="#section-12-2-strategies-for-model-retraining-and-updating-revising-the-recipes" title="Permalink to this heading">¶</a></h2>
+<p>Continual learning encompasses various approaches to model updates, from scheduled full retrains to more dynamic, incremental learning. [guide_continual_learning.md (Sec 2, 5), designing-machine-learning-systems.pdf (Ch 9 - How Often to Update Your Models)]</p>
+<ul class="simple">
+<li><p><strong>12.2.1 Triggers for Retraining: When to Refresh the Dish</strong> [practitioners_guide_to_mlops_whitepaper.pdf (Page 20), Lecture 6- Continual Learning.md]</p>
+<ul>
+<li><p><strong>Scheduled:</strong> Fixed intervals (hourly, daily, weekly, monthly). Simplest to implement, but may not align with actual need.</p></li>
+<li><p><strong>Performance-based:</strong> Triggered when key model performance metrics (from monitoring) drop below a threshold.</p></li>
+<li><p><strong>Drift-based:</strong> Triggered when significant data or concept drift is detected by monitoring systems.</p></li>
+<li><p><strong>Volume-based/New Data Availability:</strong> Triggered when a sufficient amount of new data has been collected.</p></li>
+<li><p><strong>Ad-hoc/Manual:</strong> For urgent fixes or planned model improvements.</p></li>
+<li><p><strong>Determining Optimal Retraining Frequency:</strong></p>
+<ul>
+<li><p>Measure the “Value of Data Freshness”: Experiment by training on different historical windows and evaluating on current data. [designing-machine-learning-systems.pdf (Page 333), guide_continual_learning.md (Sec 6.1)]</p></li>
+<li><p>Balance performance gain vs. computational/operational/environmental cost of retraining. [guide_continual_learning.md (Sec 6.1, Sec 3.4)]</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>12.2.2 Data Curation and Selection for Retraining (Sourcing Fresh Ingredients for the New Batch)</strong> [Lecture 6- Continual Learning.md (Data Curation)]</p>
+<ul>
+<li><p><strong>Sampling Strategies for New Data:</strong> Random, stratified, or active learning techniques to select the most informative new data for retraining.</p></li>
+<li><p><strong>Dataset Formation:</strong></p>
+<ul>
+<li><p>Using only the latest window of data.</p></li>
+<li><p>Using all available historical data.</p></li>
+<li><p>A combination (e.g., recent data + a sample of older data).</p></li>
+</ul>
+</li>
+<li><p><strong>Importance of Data Lineage:</strong> Knowing exactly what data (versions) is used for each retraining run.</p></li>
+</ul>
+</li>
+<li><p><strong>12.2.3 Stateful (Incremental/Fine-tuning) vs. Stateless (Full) Retraining: The Great Debate</strong> [guide_continual_learning.md (Sec 2.2), designing-machine-learning-systems.pdf (Ch 9 - Stateless Retraining Versus Stateful Training)]</p>
+<ul>
+<li><p><strong>Stateless Retraining (Train from Scratch):</strong> Model is retrained on an entire dataset (e.g., all data from last 3 months).</p>
+<ul>
+<li><p><em>Pros:</em> Simpler initial setup, less prone to catastrophic forgetting if architecture changes.</p></li>
+<li><p><em>Cons:</em> Computationally expensive, data-intensive, slower iteration.</p></li>
+</ul>
+</li>
+<li><p><strong>Stateful Training (Fine-tuning/Incremental Learning):</strong> Model continues training from a previous checkpoint using only new data.</p>
+<ul>
+<li><p><em>Pros:</em> Significantly reduced compute cost (Grubhub: 45x), faster convergence, requires less new data for updates, potential for better privacy (data used once). [guide_continual_learning.md (Sec 2.2)]</p></li>
+<li><p><em>Cons:</em> Risk of catastrophic forgetting (mitigation needed), more complex to manage lineage and checkpoints, primarily suited for “data iteration” (new data, same model/features). “Model iteration” (new features/architecture) usually still requires stateless retraining. [guide_continual_learning.md (Sec 2.2)]</p></li>
+</ul>
+</li>
+<li><p><strong>Hybrid Approach:</strong> Occasional full retrains for calibration, with frequent stateful updates. [guide_continual_learning.md (Sec 2.2)]</p></li>
+</ul>
+</li>
+<li><p><strong>12.2.4 Online Learning (Per-Sample Updates) vs. Online Adaptation of Policies</strong> [Lecture 6- Continual Learning.md]</p>
+<ul>
+<li><p><strong>True Online Learning (Per-Sample):</strong> Rarely practical for complex models due to catastrophic forgetting and hardware inefficiencies. [guide_continual_learning.md (Sec 2.1)] Updates are usually in micro-batches.</p></li>
+<li><p><strong>Online Adaptation of Policies:</strong> Instead of retraining the entire model frequently, adapt a “policy layer” that sits on top of the model’s raw predictions (e.g., using multi-armed bandits to tune thresholds or re-rank outputs based on immediate feedback). Good for very dynamic situations.</p></li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+</section>
+<section id="section-12-3-testing-in-production-validating-model-updates-safely-taste-testing-with-real-diners">
+<h2>Section 12.3: Testing in Production: Validating Model Updates Safely (Taste-Testing with Real Diners)<a class="headerlink" href="#section-12-3-testing-in-production-validating-model-updates-safely-taste-testing-with-real-diners" title="Permalink to this heading">¶</a></h2>
+<p>Offline evaluation (Chapter 8) is crucial, but it’s not enough. The true test of a model update is its performance and impact in the live production environment. [guide_prod_testing_expt.md (Sec 1, 2), designing-machine-learning-systems.pdf (Ch 9 - Test in Production)]</p>
+<ul class="simple">
+<li><p><strong>12.3.1 Limitations of Offline Evaluation for Evolving Systems</strong> [guide_prod_testing_expt.md (Sec 1)]</p>
+<ul>
+<li><p>Static test sets don’t reflect current data distributions.</p></li>
+<li><p>Backtests on recent data are better but still retrospective.</p></li>
+<li><p>Can’t capture real user interactions or complex system dynamics.</p></li>
+</ul>
+</li>
+<li><p><strong>12.3.2 A/B Testing for Comparing Model Versions (The Classic Taste-Off)</strong> [guide_prod_testing_expt.md (Sec 2), designing-machine-learning-systems.pdf (Ch 9 - A/B Testing)]</p>
+<ul>
+<li><p><strong>Methodology:</strong> Randomly assign users to Control (current model) and Treatment (new model). Compare key business and model metrics. Ensure statistical significance.</p></li>
+<li><p><strong>Key Considerations:</strong> Hypothesis formulation, metric selection (OEC vs. guardrails), user segmentation, randomization unit, experiment sizing, duration, SUTVA. [guide_prod_testing_expt.md (Sec 3)]</p></li>
+</ul>
+</li>
+<li><p><strong>12.3.3 Advanced Online Experimentation Strategies</strong> [guide_prod_testing_expt.md (Sec 2), designing-machine-learning-systems.pdf (Ch 9)]</p>
+<ul>
+<li><p><strong>Shadow Deployment:</strong> Run new model in parallel, log predictions, no user impact. Good for operational validation and prediction comparison. [guide_prod_testing_expt.md (Sec 2)]</p></li>
+<li><p><strong>Canary Releases:</strong> Gradually roll out to a small user subset. Monitor closely. Mitigates risk. [guide_prod_testing_expt.md (Sec 2)]</p></li>
+<li><p><strong>Interleaving Experiments (for Ranking):</strong> Mix results from two rankers. User clicks indicate preference. More sensitive for ranking quality. [guide_prod_testing_expt.md (Sec 2)]</p></li>
+<li><p><strong>Multi-Armed Bandits (MABs) &amp; Contextual Bandits:</strong> Dynamically allocate traffic to best-performing variant, balancing exploration/exploitation. Optimizes reward during experiment. More data-efficient. [guide_prod_testing_expt.md (Sec 2), guide_continual_learning.md (Sec 4.2)]</p></li>
+<li><p><strong>(Decision Framework Diagram)</strong> Title: Selecting an Online Testing Strategy
+Source: Adapted from Mermaid diagram in <code class="docutils literal notranslate"><span class="pre">guide_prod_testing_expt.md</span> <span class="pre">(Sec</span> <span class="pre">2)</span></code></p></li>
+</ul>
+</li>
+<li><p><strong>12.3.4 Experimentation Platforms: Build vs. Buy</strong> [guide_prod_testing_expt.md (Sec 4)]</p>
+<ul>
+<li><p>Core components: Assignment, parameter management, logging, metrics, dashboard.</p></li>
+<li><p>Driving factors for choice: Integration, scale, team skills, cost.</p></li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+</section>
+<section id="section-12-4-building-robust-feedback-loops-for-continuous-improvement-learning-from-every-plate-served">
+<h2>Section 12.4: Building Robust Feedback Loops for Continuous Improvement (Learning from Every Plate Served)<a class="headerlink" href="#section-12-4-building-robust-feedback-loops-for-continuous-improvement-learning-from-every-plate-served" title="Permalink to this heading">¶</a></h2>
+<p>Continual learning thrives on effective feedback loops that connect production performance back to the development and retraining processes.</p>
+<ul class="simple">
+<li><p><strong>12.4.1 Types of Feedback:</strong></p>
+<ul>
+<li><p><strong>Implicit:</strong> User behavior (clicks, views, purchases, session duration, churn). [designing-machine-learning-systems.pdf (Ch 4 - Natural Labels)]</p></li>
+<li><p><strong>Explicit:</strong> User ratings, thumbs up/down, direct error reporting, surveys. [designing-machine-learning-systems.pdf (Ch 4 - Natural Labels)]</p></li>
+<li><p><strong>System-Generated:</strong> Monitoring alerts (drift, performance drops, errors).</p></li>
+<li><p><strong>Human-in-the-Loop (HITL):</strong> Expert reviews, annotations of problematic predictions.</p></li>
+</ul>
+</li>
+<li><p><strong>12.4.2 Designing for Feedback Collection:</strong></p>
+<ul>
+<li><p>Instrument applications to capture relevant user interactions.</p></li>
+<li><p>Provide clear, unobtrusive mechanisms for users to give explicit feedback.</p></li>
+</ul>
+</li>
+<li><p><strong>12.4.3 Processing and Utilizing Feedback:</strong></p>
+<ul>
+<li><p>Pipelines to ingest, clean, and aggregate feedback.</p></li>
+<li><p>Correlate feedback with specific model versions, predictions, and user segments.</p></li>
+<li><p>Use processed feedback to:</p>
+<ul>
+<li><p>Generate new labeled data for retraining/fine-tuning.</p></li>
+<li><p>Identify underperforming slices or edge cases.</p></li>
+<li><p>Prioritize areas for model improvement or feature engineering.</p></li>
+<li><p>Trigger alerts or automated retraining.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+</section>
+<section id="section-12-5-automating-the-continual-learning-cycle-from-monitoring-to-redeployment-the-self-perfecting-kitchen">
+<h2>Section 12.5: Automating the Continual Learning Cycle: From Monitoring to Redeployment (The Self-Perfecting Kitchen)<a class="headerlink" href="#section-12-5-automating-the-continual-learning-cycle-from-monitoring-to-redeployment-the-self-perfecting-kitchen" title="Permalink to this heading">¶</a></h2>
+<p>The ultimate goal is a largely automated loop where the system detects issues, retrains/updates itself, validates the update, and redeploys, with human oversight at critical junctures. [practitioners_guide_to_mlops_whitepaper.pdf (Fig 15 - End-to-end MLOps workflow)]</p>
+<ul class="simple">
+<li><p><strong>12.5.1 Connecting the Dots: Monitoring -&gt; Trigger -&gt; Retrain -&gt; Evaluate -&gt; Deploy</strong></p>
+<ul>
+<li><p><strong>(Diagram)</strong> Title: The Automated Continual Learning Loop
+Source: Adapt Figure 15 from <code class="docutils literal notranslate"><span class="pre">practitioners_guide_to_mlops_whitepaper.pdf</span></code> or Figure 1 from <code class="docutils literal notranslate"><span class="pre">guide_continual_learning.md</span></code> (The MLOps Lifecycle with CL focus highlighted).</p></li>
+</ul>
+</li>
+<li><p><strong>12.5.2 Orchestration of the Full Loop:</strong></p>
+<ul>
+<li><p>Using workflow orchestrators (Airflow, Kubeflow Pipelines, etc.) to manage dependencies between monitoring outputs, data pipelines, training pipelines, evaluation stages, and deployment processes.</p></li>
+</ul>
+</li>
+<li><p><strong>12.5.3 Role of the Model Registry in Automated Promotion:</strong></p>
+<ul>
+<li><p>Storing candidate models from retraining pipeline.</p></li>
+<li><p>Facilitating comparison (challenger vs. champion).</p></li>
+<li><p>Managing model stages (e.g., “staging-candidate,” “production-validated”) based on automated test results and manual approvals.</p></li>
+</ul>
+</li>
+<li><p><strong>12.5.4 Automated Rollback Strategies:</strong></p>
+<ul>
+<li><p>If a newly deployed model (after online testing) shows significant performance degradation, automate rollback to the previous stable version.</p></li>
+</ul>
+</li>
+<li><p><strong>12.5.5 Human Oversight and Intervention Points:</strong></p>
+<ul>
+<li><p>Reviewing critical alerts from monitoring.</p></li>
+<li><p>Approving model promotions from staging to production (especially after significant changes).</p></li>
+<li><p>Analyzing complex failures or unexpected drift patterns.</p></li>
+<li><p>Guiding the evolution of the retraining strategy itself.</p></li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+</section>
+<section id="project-trending-now-implementing-continual-learning-production-testing">
+<h2>Project: “Trending Now” – Implementing Continual Learning &amp; Production Testing<a class="headerlink" href="#project-trending-now-implementing-continual-learning-production-testing" title="Permalink to this heading">¶</a></h2>
+<p>Applying the chapter’s concepts to evolve our “Trending Now” application.</p>
+<ul class="simple">
+<li><p><strong>12.P.1 Defining Retraining Triggers for the Genre Model (Educational XGBoost/BERT)</strong></p>
+<ul>
+<li><p><strong>Schedule-based:</strong> Set up Airflow to trigger the training pipeline (from Ch7) weekly.</p></li>
+<li><p><strong>New Data-based (Conceptual):</strong> Design how the Data Ingestion pipeline’s completion could trigger the Training Pipeline if a significant amount of new movie/review data was added.</p></li>
+<li><p><strong>Performance-based (Conceptual):</strong> If we had a reliable way to get ground truth for genres (e.g., user corrections), discuss how a drop in F1-score from monitoring (Ch10) could trigger retraining.</p></li>
+</ul>
+</li>
+<li><p><strong>12.P.2 Data Curation and Selection for Retraining</strong></p>
+<ul>
+<li><p>Strategy: For weekly retraining, use all processed data scraped in the last month (sliding window).</p></li>
+<li><p>Implement logic in the training pipeline’s data loading step to select this window from DVC-tracked data.</p></li>
+</ul>
+</li>
+<li><p><strong>12.P.3 Deciding on Stateful vs. Stateless Retraining for XGBoost/BERT</strong></p>
+<ul>
+<li><p><strong>Initial Choice:</strong> Stateless retraining (train from scratch on the monthly window) for simplicity in the educational model.</p></li>
+<li><p><strong>Discussion:</strong> Explain how stateful training (fine-tuning the previously registered BERT model on only the <em>new</em> week’s data) could be implemented conceptually and its benefits/challenges (checkpoint management, catastrophic forgetting risk).</p></li>
+</ul>
+</li>
+<li><p><strong>12.P.4 Conceptual A/B Testing for “Trending Now”</strong></p>
+<ul>
+<li><p><strong>Scenario 1: Comparing a new XGBoost model (e.g., with new features) vs. the current production XGBoost model.</strong></p>
+<ul>
+<li><p>How would traffic be split (e.g., 50/50 user ID based)?</p></li>
+<li><p>What metrics to compare (e.g., user clicks on correctly genre-tagged sections, time spent on page if genres are accurate - these are proxies)?</p></li>
+<li><p>How long to run the test?</p></li>
+</ul>
+</li>
+<li><p><strong>Scenario 2: Comparing two different LLM prompts for review summarization or vibe tag generation.</strong></p>
+<ul>
+<li><p>A/B test based on which prompt’s output is shown to the user.</p></li>
+<li><p>Metrics: User ratings on summary quality (if we had such a feature), click-through rate on items with vibe tags generated by prompt A vs. prompt B.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>12.P.5 Automating the Retraining and Redeployment Cycle (Conceptual Flow)</strong></p>
+<ul>
+<li><p>Outline the Airflow DAG that orchestrates:</p>
+<ol class="arabic simple">
+<li><p>Scheduled data ingestion (from Ch4 project).</p></li>
+<li><p>Scheduled model training (from Ch7 project), which includes offline evaluation &amp; registration to W&amp;B.</p></li>
+<li><p>(Conceptual) A step that checks the W&amp;B registry for a new “validated-for-staging” model.</p></li>
+<li><p>(Conceptual) If new model found, trigger a GitHub Actions workflow to deploy it to Staging App Runner.</p></li>
+<li><p>(Conceptual) After manual approval post-staging tests (from Ch8 project), trigger deployment to Production App Runner.</p></li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+</section>
+<section id="conclusion-the-ever-evolving-michelin-menu-staying-relevant-and-excellent">
+<h2>🧑‍🍳 Conclusion: The Ever-Evolving Michelin Menu – Staying Relevant and Excellent<a class="headerlink" href="#conclusion-the-ever-evolving-michelin-menu-staying-relevant-and-excellent" title="Permalink to this heading">¶</a></h2>
+<p>A truly exceptional restaurant, much like a cutting-edge ML system, cannot afford to stagnate. The “Grand Opening” is a beginning, not an end. This chapter has illuminated the path to transforming our MLOps kitchen into a dynamic, learning organization through <strong>Continual Learning</strong> and rigorous <strong>Production Testing</strong>. We’ve seen that keeping our “menu” (models) fresh is imperative to combat data and concept drift, adapt to evolving user behaviors, and maintain a competitive edge.</p>
+<p>We’ve explored various strategies for model retraining, from simple scheduled updates to sophisticated event-driven triggers, and weighed the crucial decision between stateless full retrains and more efficient stateful fine-tuning. Crucially, we’ve embraced the reality that offline evaluation alone is insufficient. The “diners” – our live users – are the ultimate arbiters of quality. Therefore, we’ve delved into a spectrum of production testing techniques, from the safety net of shadow deployments to the causal insights of A/B testing and the dynamic optimization of bandit algorithms.</p>
+<p>By building robust feedback loops and automating the cycle from monitoring to redeployment, we ensure that our MLOps kitchen doesn’t just serve dishes but continuously refines and evolves its offerings. For our “Trending Now” project, we’ve laid the conceptual groundwork for regular retraining and a strategy for validating updates with real users. This commitment to adaptation and rigorous live validation is what allows an MLOps system to not just survive but thrive in the ever-changing real world, consistently delivering value and maintaining its “Michelin stars.” The final chapter will explore the overarching governance, ethical considerations, and human elements that ensure our entire operation is run responsibly and sustainably.</p>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024, Deepak Karkala
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Chapter 12: Continual Learning &amp; Production Testing</a><ul>
+<li><a class="reference internal" href="#introduction-the-dynamic-michelin-kitchen-adapting-to-evolving-tastes">🧑‍🍳 Introduction: The Dynamic Michelin Kitchen – Adapting to Evolving Tastes</a></li>
+<li><a class="reference internal" href="#section-12-1-the-imperative-of-continual-learning-in-mlops-why-the-menu-must-evolve">Section 12.1: The Imperative of Continual Learning in MLOps (Why the Menu Must Evolve)</a></li>
+<li><a class="reference internal" href="#section-12-2-strategies-for-model-retraining-and-updating-revising-the-recipes">Section 12.2: Strategies for Model Retraining and Updating (Revising the Recipes)</a></li>
+<li><a class="reference internal" href="#section-12-3-testing-in-production-validating-model-updates-safely-taste-testing-with-real-diners">Section 12.3: Testing in Production: Validating Model Updates Safely (Taste-Testing with Real Diners)</a></li>
+<li><a class="reference internal" href="#section-12-4-building-robust-feedback-loops-for-continuous-improvement-learning-from-every-plate-served">Section 12.4: Building Robust Feedback Loops for Continuous Improvement (Learning from Every Plate Served)</a></li>
+<li><a class="reference internal" href="#section-12-5-automating-the-continual-learning-cycle-from-monitoring-to-redeployment-the-self-perfecting-kitchen">Section 12.5: Automating the Continual Learning Cycle: From Monitoring to Redeployment (The Self-Perfecting Kitchen)</a></li>
+<li><a class="reference internal" href="#project-trending-now-implementing-continual-learning-production-testing">Project: “Trending Now” – Implementing Continual Learning &amp; Production Testing</a></li>
+<li><a class="reference internal" href="#conclusion-the-ever-evolving-michelin-menu-staying-relevant-and-excellent">🧑‍🍳 Conclusion: The Ever-Evolving Michelin Menu – Staying Relevant and Excellent</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=b3ba4146"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/scripts/furo.js?v=4e2eecee"></script>
+    </body>
+</html>

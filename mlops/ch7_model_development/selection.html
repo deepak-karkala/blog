@@ -1,0 +1,695 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" />
+
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/><!-- Generated with Sphinx 7.1.2 and Furo 2024.05.06 -->
+        <title>Model Selection - Home</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=387cc868" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=36a5483c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/style.css?v=8a7ff5ee" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" /
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">Home</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  
+  <span class="sidebar-brand-text">Home</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../projects/index.html">Projects</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Projects</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/nlp/index.html">Natural Language Processing</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Natural Language Processing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/airbnb_alternate_search/about/index.html">Airbnb Listing description based Semantic Search</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/cv/index.html">Computer Vision</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Computer Vision</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/ecommerce_image_segmentation/about/index.html">Image Segmentation for Ecommerce Products</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/ml/index.html">Machine Learning</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of Machine Learning</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/airbnb_price_modeling/about/index.html">Predictive Price Modeling for Airbnb listings</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../publications/index.html">Patents, Papers, Thesis</a></li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../index.html">MLOps</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of MLOps</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch1_problem_framing.html">ML Problem framing</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of ML Problem framing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch2_blueprint_operational_strategy.html">The MLOps Blueprint &amp; Operational Strategy</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch2a_platform/index.html">ML Platforms</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of ML Platforms</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/ml_platforms.html">ML Platforms: How to</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/uber.html">Uber Michelangelo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/linkedin.html">LinkedIn DARWIN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/netflix.html">Netflix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/shopify.html">Shopify Merlin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/zomato.html">Zomato: Real-time ML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/coveo.html">Coveo: MLOPs at reasonable scale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/monzo.html">Monzo ML Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/didact.html">Didact AI</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch3_project_planning/index.html">Project Planning</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of Project Planning</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/prd.html">Project Requirements Document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/tech_stack.html">Tech Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/config_management.html">Config Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/pipeline_design.html">Pipeline Design</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/environment_strategy.html">Environment Strategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/cicd_branching_model.html">CI/CD Strategy and Branching Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/directory_structure.html">Directory Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/env_branchind_cicd_deployment.html">Environments, Branching, CI/CD, and Deployments Explained</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/project_management.html">Project Management for MLOps</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch4_data_discovery/index.html">Data Sourcing, Discovery</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of Data Sourcing, Discovery</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/data_sourcing_discovery.html">Data Sourcing, Discovery &amp; Understanding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/ch4_project.html">Project-Trending Now: Implementing Web Scraping, Ingestion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/industry_case_studies.html">Data Discovery Platforms: Industry Case Studies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/facebook_nemo.html">Facebook: Nemo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/netflix_metacat.html">Netflix Metacat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/uber_databook.html">Uber Databook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/linkedin_datahub.html">LinkedIn Datahub</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../lld/index.html">Low Level Design</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle navigation of Low Level Design</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../lld/parking_lot.html">Parking Lot</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../visualization/index.html">Data Visualization Projects</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="../../_sources/mlops/ch7_model_development/selection.md.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="model-selection">
+<h1>Model Selection<a class="headerlink" href="#model-selection" title="Permalink to this heading">¶</a></h1>
+<p><strong>Guiding Philosophy:</strong> Model selection is not a one-off task but an iterative process of identifying the model that best balances predictive performance, operational constraints, and business objectives, using a reliable and appropriate evaluation strategy.</p>
+<hr class="docutils" />
+<section id="i-foundations-setting-the-stage-for-effective-selection">
+<h2>I. Foundations: Setting the Stage for Effective Selection<a class="headerlink" href="#i-foundations-setting-the-stage-for-effective-selection" title="Permalink to this heading">¶</a></h2>
+<p>Before comparing models, the groundwork must be solid.</p>
+<ol class="arabic simple">
+<li><p><strong>The Crucial Role of Evaluation Strategy (General Concept from all articles, esp. Neptune “Ultimate Guide”, Raschka)</strong></p>
+<ul class="simple">
+<li><p><strong>Purpose:</strong> To reliably estimate how a model will perform on <em>unseen, future data</em> that mirrors the production environment.</p></li>
+<li><p><strong>Impact:</strong> Without a sound strategy, model comparison is meaningless, and you risk deploying underperforming or unstable models.</p></li>
+<li><p><strong>MLOps Link:</strong> A robust evaluation strategy is a prerequisite for automated retraining and CI/CD for ML.</p></li>
+</ul>
+</li>
+<li><p><strong>Defining “Best”: Metrics and Baselines</strong></p>
+<ul class="simple">
+<li><p><strong>Choosing Evaluation Metrics (Neptune “Ultimate Guide”, Scikit-learn “Metrics and scoring”)</strong></p>
+<ul>
+<li><p><strong>Align with Business Objectives:</strong> The ML metric (e.g., F1-score, RMSE) should be a strong proxy for the business KPI (e.g., user retention, fraud reduction).</p></li>
+<li><p><strong>Problem Type Specifics:</strong></p>
+<ul>
+<li><p><strong>Classification:</strong></p>
+<ul>
+<li><p><strong>Accuracy:</strong> Simple, but misleading for imbalanced datasets.</p></li>
+<li><p><strong>Precision, Recall, F1-Score:</strong> Crucial for imbalanced classes. Understand the trade-off (e.g., medical diagnosis vs. spam filtering).</p></li>
+<li><p><strong>AUC-ROC:</strong> Evaluates model’s ability to discriminate between classes across thresholds. Good for comparing models irrespective of a specific threshold.</p></li>
+<li><p><strong>Log Loss (Cross-Entropy):</strong> Measures performance of a probabilistic classifier. Strictly consistent for predicting class probabilities.</p></li>
+<li><p><strong>Balanced Accuracy:</strong> Useful for imbalanced datasets, averages recall per class.</p></li>
+</ul>
+</li>
+<li><p><strong>Regression:</strong></p>
+<ul>
+<li><p><strong>MSE/RMSE:</strong> Sensitive to outliers. RMSE is in the same unit as the target.</p></li>
+<li><p><strong>MAE:</strong> More robust to outliers than MSE/RMSE.</p></li>
+<li><p><strong>R-Squared/Adjusted R-Squared:</strong> Proportion of variance explained. Adjusted R² penalizes for adding useless features.</p></li>
+<li><p><strong>RMSLE:</strong> Good for targets with exponential growth, penalizes under-prediction more.</p></li>
+</ul>
+</li>
+<li><p><strong>Multilabel Ranking:</strong> Coverage Error, Label Ranking Average Precision (LRAP), Ranking Loss, NDCG.</p></li>
+</ul>
+</li>
+<li><p><strong>Single vs. Multiple Metrics (Andrew Ng “Yearning”, Google Quality Guidelines):</strong></p>
+<ul>
+<li><p>Strive for a <strong>single-number evaluation metric</strong> for quick iteration.</p></li>
+<li><p>If multiple are critical, use <strong>optimizing and satisficing metrics</strong>.</p></li>
+</ul>
+</li>
+<li><p><strong>Strictly Consistent Scoring Functions (Scikit-learn “Metrics and scoring”):</strong> Crucial for ensuring that the metric rewards models that are genuinely better at predicting the desired statistical property (e.g., mean for MSE, probabilities for log loss).</p></li>
+</ul>
+</li>
+<li><p><strong>Baselines are Non-Negotiable (Google Quality Guidelines, Chip Huyen Ch. 6, Scikit-learn “Dummy Estimators”)</strong></p>
+<ul>
+<li><p>Random Guessing</p></li>
+<li><p>Zero Rule (predicting the most frequent class/mean)</p></li>
+<li><p>Simple Heuristic</p></li>
+<li><p>Existing System (if any)</p></li>
+<li><p>Human-Level Performance (HLP)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Data Splitting: The Core of Validation (Scikit-learn “Cross-validation”, Neptune “Ultimate Guide”, Raschka)</strong></p>
+<ul class="simple">
+<li><p><strong>Hold-Out Method (Train/Validation/Test Split):</strong></p>
+<ul>
+<li><p><strong>Training Set:</strong> Used to train the model.</p></li>
+<li><p><strong>Validation Set (Dev Set):</strong> Used for hyperparameter tuning, model selection, and iterative improvements. <em>Crucially, should come from the same distribution as the test set.</em></p></li>
+<li><p><strong>Test Set:</strong> Used <em>only once</em> for final, unbiased performance estimation of the <em>selected</em> model. Should also mirror production data.</p></li>
+<li><p><strong>Stratification (Raschka, Scikit-learn):</strong> Essential for classification (especially with imbalanced classes) and sometimes for regression (by binning the target) to ensure splits maintain similar class/target distributions.</p></li>
+</ul>
+</li>
+<li><p><strong>Limitations of a Single Hold-Out:</strong> Performance estimate can have high variance depending on the specific split, especially with smaller datasets (Raschka Sec 1.6).</p></li>
+</ul>
+</li>
+</ol>
+<hr class="docutils" />
+</section>
+<section id="ii-cross-validation-robust-performance-estimation-and-model-comparison">
+<h2>II. Cross-Validation: Robust Performance Estimation and Model Comparison<a class="headerlink" href="#ii-cross-validation-robust-performance-estimation-and-model-comparison" title="Permalink to this heading">¶</a></h2>
+<p>CV provides more reliable estimates than a single train/validation split, especially for smaller datasets.</p>
+<ol class="arabic">
+<li><p><strong>K-Fold Cross-Validation (All CV articles)</strong></p>
+<ul class="simple">
+<li><p><strong>Process:</strong> Dataset split into K folds. Train on K-1 folds, validate on the remaining fold. Repeat K times. Average the K performance metrics.</p></li>
+<li><p><strong>Benefits:</strong> Reduces variance of performance estimate, uses data more efficiently.</p></li>
+<li><p><strong>Choosing K (Neptune “7 CV Mistakes”, Raschka Sec 3.6):</strong></p>
+<ul>
+<li><p>Common choices: 5 or 10.</p></li>
+<li><p>Too small K (e.g., 2-3): High pessimistic bias (model trained on less data).</p></li>
+<li><p>Too large K (e.g., N for Leave-One-Out CV): Computationally expensive, can have high variance in the estimate of the generalization error (though low bias for the model itself).</p></li>
+<li><p>Sensitivity analysis for K can be useful. 10-fold often a good trade-off.</p></li>
+</ul>
+</li>
+<li><p><strong>Stratified K-Fold (Scikit-learn, Neptune “Ultimate Guide”, “7 CV Mistakes”):</strong> Essential for classification to maintain class proportions in each fold.</p></li>
+</ul>
+</li>
+<li><p><strong>Specialized CV Strategies (Neptune “7 CV Mistakes”, Scikit-learn “Cross-validation iterators”)</strong></p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Scenario</p></th>
+<th class="head text-left"><p>Recommended CV Strategy</p></th>
+<th class="head text-left"><p>Why &amp; Key Considerations</p></th>
+<th class="head text-left"><p>MLOps Lead Action</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><strong>General i.i.d. Data</strong></p></td>
+<td class="text-left"><p>K-Fold, Stratified K-Fold (for classification)</p></td>
+<td class="text-left"><p>Standard, robust. Stratification for class balance.</p></td>
+<td class="text-left"><p>Default choice unless specific data characteristics warrant others.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Grouped/Clustered Data</strong> (e.g., multiple samples per patient, per user)</p></td>
+<td class="text-left"><p>GroupKFold, StratifiedGroupKFold, LeaveOneGroupOut, LeavePGroupsOut, GroupShuffleSplit</p></td>
+<td class="text-left"><p>Ensures samples from the same group don’t appear in both train and validation splits. Prevents leakage, tests generalization to <em>new groups</em>.</p></td>
+<td class="text-left"><p>Identify grouping factor. Use GroupKFold. If class imbalance within groups is also a concern, use StratifiedGroupKFold.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Time Series Data</strong></p></td>
+<td class="text-left"><p>TimeSeriesSplit (Rolling Origin), BlockedTimeSeriesSplit</p></td>
+<td class="text-left"><p>Maintains temporal order (train on past, validate on future). Blocked CV avoids leakage from lag features.</p></td>
+<td class="text-left"><p><em>Never</em> use random K-Fold. Use TimeSeriesSplit. If using lags, consider Blocked CV.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Small Datasets</strong></p></td>
+<td class="text-left"><p>Leave-One-Out CV (LOOCV), Repeated K-Fold</p></td>
+<td class="text-left"><p>LOOCV has low bias but high variance &amp; cost. Repeated K-Fold (multiple runs of K-Fold with different shuffles) can improve stability.</p></td>
+<td class="text-left"><p>Weigh computational cost vs. need for low bias. Repeated K-Fold often more practical than LOOCV.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Large Datasets</strong></p></td>
+<td class="text-left"><p>Single Train/Validation/Test split or fewer folds (e.g., K=3 or 5)</p></td>
+<td class="text-left"><p>CV is computationally expensive. With enough data, a single split can be stable enough (Raschka Sec 3.8).</p></td>
+<td class="text-left"><p>Evaluate stability of single split. If resource-constrained, fewer folds are acceptable.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li><p><strong>Common CV Mistakes to Avoid (Neptune “7 CV Mistakes”)</strong></p>
+<ul class="simple">
+<li><p><strong>Data Leakage:</strong></p>
+<ul>
+<li><p><strong>Preprocessing/Feature Engineering Before Splitting:</strong> Operations like PCA, scaling, feature selection must be learned <em>only</em> on the training fold and then applied to the validation/test fold within each CV iteration (or use Scikit-learn Pipelines).</p></li>
+<li><p><strong>Oversampling Before Splitting:</strong> For imbalanced data, oversample <em>only</em> the training fold <em>inside</em> the CV loop.</p></li>
+</ul>
+</li>
+<li><p><strong>Using Inappropriate CV for Data Type:</strong> E.g., using standard K-Fold for time-series data.</p></li>
+<li><p><strong>Ignoring Randomness:</strong> For algorithms sensitive to random seeds (especially NNs on small data), run CV with multiple seeds and average results.</p></li>
+<li><p><strong>Not Stratifying (when needed):</strong> For classification or binned regression targets.</p></li>
+</ul>
+</li>
+</ol>
+<hr class="docutils" />
+</section>
+<section id="iii-hyperparameter-tuning-hpt-and-model-selection">
+<h2>III. Hyperparameter Tuning (HPT) and Model Selection<a class="headerlink" href="#iii-hyperparameter-tuning-hpt-and-model-selection" title="Permalink to this heading">¶</a></h2>
+<p>Finding the best version of a chosen model architecture.</p>
+<ol class="arabic">
+<li><p><strong>The Role of HPT (Scikit-learn “Tuning hyper-parameters”, Raschka Sec 3.2)</strong></p>
+<ul class="simple">
+<li><p>Hyperparameters (e.g., learning rate, C in SVM, tree depth) are not learned from data but set before training.</p></li>
+<li><p>Goal: Find the combination of HPs that yields the best performance on the validation set.</p></li>
+</ul>
+</li>
+<li><p><strong>HPT Strategies (Scikit-learn “Tuning hyper-parameters”)</strong></p>
+<ul class="simple">
+<li><p><strong>Grid Search:</strong> Exhaustive search over a defined grid of HP values. Computationally expensive.</p></li>
+<li><p><strong>Random Search:</strong> Samples a fixed number of HP combinations from specified distributions. Often more efficient than grid search.</p></li>
+<li><p><strong>Successive Halving (HalvingGridSearchCV, HalvingRandomSearchCV):</strong> Iteratively allocates more resources (e.g., data samples, training epochs) to promising candidates, eliminating poor ones early. Faster.</p></li>
+<li><p><strong>Bayesian Optimization, Genetic Algorithms, etc.:</strong> More advanced methods that model the objective function and try to find optima more intelligently (e.g., Keras Tuner, Optuna).</p></li>
+</ul>
+</li>
+<li><p><strong>Integrating HPT with Cross-Validation (Raschka Sec 3.3, Scikit-learn)</strong></p>
+<ul class="simple">
+<li><p><strong>Standard Approach:</strong> For each HP combination, run K-Fold CV on the <em>training data</em>. Select HPs that give the best average CV score. Then, retrain the model with these HPs on the <em>entire training data</em> and evaluate on the <em>hold-out test set</em>.</p></li>
+<li><p><strong>Three-Way Holdout (Raschka Sec 3.3):</strong> Train on training set, tune HPs on validation set, final evaluation on test set. Simpler, good for large datasets.</p></li>
+</ul>
+</li>
+<li><p><strong>Nested Cross-Validation (Raschka Sec 4.14)</strong></p>
+<ul class="simple">
+<li><p><strong>Purpose:</strong> To get an unbiased estimate of the generalization performance of a model <em>whose hyperparameters have been tuned using CV</em>.</p></li>
+<li><p><strong>Process:</strong></p>
+<ul>
+<li><p><strong>Outer Loop:</strong> Splits data into K_outer folds. One fold is the (outer) test set, K_outer-1 folds are the (outer) training set.</p></li>
+<li><p><strong>Inner Loop:</strong> On each (outer) training set, perform K_inner-fold CV (or another HPT strategy) to find the best hyperparameters <em>for that specific outer training fold</em>. Train a model with these best HPs on this (outer) training fold.</p></li>
+<li><p>Evaluate this model on the (outer) test set from the outer loop.</p></li>
+<li><p>Average the scores from the K_outer test sets.</p></li>
+</ul>
+</li>
+<li><p><strong>Why it’s crucial for MLOps Leads:</strong> Prevents optimistic bias from HPT. If you tune HPs using CV and report the best CV score as your final performance, you’ve “leaked” information from your validation folds into your HP selection, making the estimate overly optimistic. Nested CV separates the HPT process from the final performance estimation.</p></li>
+<li><p><strong>MLOps Link:</strong> Essential for setting realistic performance expectations before deployment.</p></li>
+</ul>
+<div class="highlight-mermaid notranslate"><div class="highlight"><pre><span></span>graph TD
+    Data --&gt; OuterLoopSplit[Outer CV Split K_outer folds]
+    OuterLoopSplit -- OuterTrainFold --&gt; InnerLoop[Inner CV for HPT]
+    InnerLoop -- BestHPs --&gt; TrainOnOuterTrain[Train Model on OuterTrainFold with BestHPs]
+    TrainOnOuterTrain --&gt; EvaluateOuterTest[Evaluate on OuterTestFold]
+    OuterLoopSplit -- OuterTestFold --&gt; EvaluateOuterTest
+    EvaluateOuterTest --&gt; AggregateScores[Aggregate OuterTestFold Scores]
+    AggregateScores --&gt; FinalPerformanceEstimate
+</pre></div>
+</div>
+</li>
+</ol>
+<hr class="docutils" />
+</section>
+<section id="iv-final-model-evaluation-and-selection-decisions">
+<h2>IV. Final Model Evaluation and Selection Decisions<a class="headerlink" href="#iv-final-model-evaluation-and-selection-decisions" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic">
+<li><p><strong>Comparing Different Models/Algorithms (Neptune “Ultimate Guide”, Raschka Ch. 4)</strong></p>
+<ul class="simple">
+<li><p>Ensure all models are evaluated on the <em>exact same test set(s)</em> and with the <em>same CV splits</em> if using CV.</p></li>
+<li><p><strong>Statistical Significance:</strong> For rigorous comparisons (e.g., research, critical applications), consider statistical tests (McNemar’s test for paired classifiers, 5x2cv paired t-test, etc., as per Raschka). Be aware of multiple hypothesis testing issues if comparing many models.</p></li>
+<li><p><strong>Law of Parsimony (Occam’s Razor) (Raschka Sec 3.10):</strong> If two models have similar performance (e.g., within one standard error of each other), prefer the simpler one (easier to train, deploy, maintain, explain).</p></li>
+</ul>
+</li>
+<li><p><strong>Tuning the Decision Threshold (Scikit-learn “Tuning the decision threshold”)</strong></p>
+<ul class="simple">
+<li><p>For classifiers that output probabilities or scores (e.g., <code class="docutils literal notranslate"><span class="pre">predict_proba</span></code>, <code class="docutils literal notranslate"><span class="pre">decision_function</span></code>).</p></li>
+<li><p>The default threshold (e.g., 0.5 for probabilities) is often suboptimal for the chosen business metric (e.g., maximizing F1, or a custom utility/cost function).</p></li>
+<li><p><strong>How:</strong> Use a validation set (separate from model training and HPT validation if possible, or the validation folds from CV) to find the threshold that maximizes the desired metric (e.g., Precision-Recall curve, F1-score vs. threshold).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TunedThresholdClassifierCV</span></code> in Scikit-learn can automate this.</p></li>
+<li><p><strong>MLOps Link:</strong> This is a crucial <em>post-training tuning step</em> that directly impacts real-world decisions based on model output.</p></li>
+</ul>
+</li>
+<li><p><strong>Learning Curves and Validation Curves (Scikit-learn “Validation curves”, Andrew Ng “Yearning”)</strong></p>
+<ul class="simple">
+<li><p><strong>Learning Curves:</strong> Plot performance (train &amp; validation) vs. training set size.</p>
+<ul>
+<li><p>Diagnoses high bias (curves converge at low performance, more data won’t help much) vs. high variance (gap between curves, more data helps).</p></li>
+</ul>
+</li>
+<li><p><strong>Validation Curves:</strong> Plot performance (train &amp; validation) vs. a single hyperparameter value.</p>
+<ul>
+<li><p>Shows how sensitive the model is to that HP and helps identify underfitting/overfitting regions for that HP.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>The MLOps Lead’s Decision Matrix for Model Selection:</strong></p>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Factor</p></th>
+<th class="head text-left"><p>Key Questions for the MLOps Lead</p></th>
+<th class="head text-left"><p>Implication for Selection</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><strong>Predictive Performance</strong></p></td>
+<td class="text-left"><p>How does it perform on the chosen (business-aligned) metric on a reliable validation setup (e.g., nested CV, hold-out test)?</p></td>
+<td class="text-left"><p>Primary selection criterion.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Robustness/Stability</strong></p></td>
+<td class="text-left"><p>How much does performance vary across CV folds or with different random seeds? (Neptune “7 CV Mistakes” #7)</p></td>
+<td class="text-left"><p>Prefer models with lower variance in performance.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Computational Cost</strong></p></td>
+<td class="text-left"><p>Training time? Inference latency? Resource requirements (CPU/GPU/Memory)?</p></td>
+<td class="text-left"><p>Critical for operational feasibility and cost. Satisficing metric.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Interpretability/Explainability</strong></p></td>
+<td class="text-left"><p>Can we understand why the model makes certain predictions? Is it required for the use case (e.g., finance, healthcare)?</p></td>
+<td class="text-left"><p>May favor simpler models (linear, trees) or require LIME/SHAP for complex ones.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Maintainability</strong></p></td>
+<td class="text-left"><p>How complex is the model and its pipeline? How easy is it to debug, update, and retrain?</p></td>
+<td class="text-left"><p>Simpler, modular pipelines are generally preferred.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Scalability</strong></p></td>
+<td class="text-left"><p>Can the model and training process scale with more data or more users?</p></td>
+<td class="text-left"><p>Important for future growth.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Data Requirements</strong></p></td>
+<td class="text-left"><p>Does the model require vast amounts of data that are hard to obtain?</p></td>
+<td class="text-left"><p>May favor models that perform well on smaller datasets or leverage transfer learning.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Deployment Complexity</strong></p></td>
+<td class="text-left"><p>How easy is it to package, deploy, and serve this model? Are there specific dependencies or hardware needs?</p></td>
+<td class="text-left"><p>Affects time-to-market and operational overhead.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Fairness/Bias</strong></p></td>
+<td class="text-left"><p>Does the model perform equitably across different demographic groups or data slices?</p></td>
+<td class="text-left"><p>Crucial for responsible AI. Evaluate on slices.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Training-Serving Skew</strong></p></td>
+<td class="text-left"><p>Is there a risk that data at inference time will differ significantly from training data in ways the model can’t handle?</p></td>
+<td class="text-left"><p>Select models robust to expected shifts or ensure robust data validation/monitoring.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+</ol>
+<hr class="docutils" />
+<p><strong>MLOps Lead’s Final Checklist for Model Selection:</strong></p>
+<ol class="arabic simple">
+<li><p>[ ] <strong>Clear Business Objective &amp; ML Metrics:</strong> Are optimizing and satisficing metrics defined and aligned?</p></li>
+<li><p>[ ] <strong>Robust Evaluation Strategy:</strong> Is the chosen data splitting/CV method appropriate for the data type and size?</p></li>
+<li><p>[ ] <strong>Data Leakage Prevention:</strong> Are all preprocessing, feature engineering, and oversampling steps handled correctly within CV loops or on training data only?</p></li>
+<li><p>[ ] <strong>Hyperparameter Tuning Done Systematically:</strong> Has a proper HPT strategy been used?</p></li>
+<li><p>[ ] <strong>Unbiased Performance Estimate:</strong> If HPT was done with CV, has nested CV or a separate hold-out test set been used for the <em>final</em> performance estimate?</p></li>
+<li><p>[ ] <strong>Baseline Comparison:</strong> Does the selected model significantly outperform relevant baselines?</p></li>
+<li><p>[ ] <strong>Decision Threshold Tuned:</strong> If applicable, has the optimal decision threshold been identified for the target metric?</p></li>
+<li><p>[ ] <strong>Operational Constraints Met:</strong> Does the model satisfy latency, size, and cost requirements?</p></li>
+<li><p>[ ] <strong>Comprehensive Logging:</strong> Are all experiment parameters, code versions, data versions, metrics, and artifacts tracked?</p></li>
+<li><p>[ ] <strong>Considered Trade-offs:</strong> Have all factors (performance, cost, complexity, etc.) been weighed?</p></li>
+</ol>
+<p>By systematically addressing these aspects, MLOps Leads can guide their teams to select models that are not only high-performing but also practical, reliable, and valuable in production.</p>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024, Deepak Karkala
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Model Selection</a><ul>
+<li><a class="reference internal" href="#i-foundations-setting-the-stage-for-effective-selection">I. Foundations: Setting the Stage for Effective Selection</a></li>
+<li><a class="reference internal" href="#ii-cross-validation-robust-performance-estimation-and-model-comparison">II. Cross-Validation: Robust Performance Estimation and Model Comparison</a></li>
+<li><a class="reference internal" href="#iii-hyperparameter-tuning-hpt-and-model-selection">III. Hyperparameter Tuning (HPT) and Model Selection</a></li>
+<li><a class="reference internal" href="#iv-final-model-evaluation-and-selection-decisions">IV. Final Model Evaluation and Selection Decisions</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=b3ba4146"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/scripts/furo.js?v=4e2eecee"></script>
+    </body>
+</html>

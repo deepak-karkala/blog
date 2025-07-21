@@ -1,0 +1,712 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" />
+
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/><!-- Generated with Sphinx 7.1.2 and Furo 2024.05.06 -->
+        <title>Chapter 7: Model Development - Home</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=387cc868" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=36a5483c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/style.css?v=8a7ff5ee" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" /
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">Home</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  
+  <span class="sidebar-brand-text">Home</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../projects/index.html">Projects</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Projects</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/nlp/index.html">Natural Language Processing</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Natural Language Processing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/airbnb_alternate_search/about/index.html">Airbnb Listing description based Semantic Search</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/cv/index.html">Computer Vision</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Computer Vision</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/ecommerce_image_segmentation/about/index.html">Image Segmentation for Ecommerce Products</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/ml/index.html">Machine Learning</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of Machine Learning</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/airbnb_price_modeling/about/index.html">Predictive Price Modeling for Airbnb listings</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../publications/index.html">Patents, Papers, Thesis</a></li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../index.html">MLOps</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of MLOps</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch1_problem_framing.html">ML Problem framing</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of ML Problem framing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch2_blueprint_operational_strategy.html">The MLOps Blueprint &amp; Operational Strategy</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch2a_platform/index.html">ML Platforms</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of ML Platforms</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/ml_platforms.html">ML Platforms: How to</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/uber.html">Uber Michelangelo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/linkedin.html">LinkedIn DARWIN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/netflix.html">Netflix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/shopify.html">Shopify Merlin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/zomato.html">Zomato: Real-time ML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/coveo.html">Coveo: MLOPs at reasonable scale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/monzo.html">Monzo ML Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/didact.html">Didact AI</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch3_project_planning/index.html">Project Planning</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of Project Planning</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/prd.html">Project Requirements Document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/tech_stack.html">Tech Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/config_management.html">Config Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/pipeline_design.html">Pipeline Design</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/environment_strategy.html">Environment Strategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/cicd_branching_model.html">CI/CD Strategy and Branching Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/directory_structure.html">Directory Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/env_branchind_cicd_deployment.html">Environments, Branching, CI/CD, and Deployments Explained</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/project_management.html">Project Management for MLOps</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch4_data_discovery/index.html">Data Sourcing, Discovery</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of Data Sourcing, Discovery</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/data_sourcing_discovery.html">Data Sourcing, Discovery &amp; Understanding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/ch4_project.html">Project-Trending Now: Implementing Web Scraping, Ingestion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/industry_case_studies.html">Data Discovery Platforms: Industry Case Studies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/facebook_nemo.html">Facebook: Nemo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/netflix_metacat.html">Netflix Metacat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/uber_databook.html">Uber Databook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/linkedin_datahub.html">LinkedIn Datahub</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../lld/index.html">Low Level Design</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle navigation of Low Level Design</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../lld/parking_lot.html">Parking Lot</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../visualization/index.html">Data Visualization Projects</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="../../_sources/mlops/ch7_model_development/ch7_model_development.md.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="chapter-7-model-development">
+<h1>Chapter 7: Model Development<a class="headerlink" href="#chapter-7-model-development" title="Permalink to this heading">¶</a></h1>
+<section id="id1">
+<h2><a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<p><strong>Chapter 7: The Experimental Kitchen – Model Development &amp; Iteration</strong></p>
+<p><em>(Progress Label: 📍Stage 7: The Chef’s Test Counter)</em></p>
+<section id="introduction-the-heart-of-culinary-creation-from-ingredients-to-signature-dishes">
+<h3>🧑‍🍳 Introduction: The Heart of Culinary Creation – From Ingredients to Signature Dishes<a class="headerlink" href="#introduction-the-heart-of-culinary-creation-from-ingredients-to-signature-dishes" title="Permalink to this heading">¶</a></h3>
+<p>With our high-quality data sourced (Chapter 4) and our features meticulously engineered (Chapter 5), we now step into the heart of our MLOps kitchen: <strong>The Experimental Kitchen</strong>, where <strong>Model Development &amp; Iteration</strong> take place. This is where the raw potential of our “ingredients” and “flavor profiles” is transformed into a candidate “signature dish” – a machine learning model.</p>
+<p>This phase is inherently iterative and exploratory. As an MLOps Lead, your role is to foster an environment where data scientists and ML engineers can efficiently prototype, experiment, select appropriate model architectures, rigorously track their work, debug effectively, and systematically tune models to achieve optimal performance against defined business objectives. We’ll draw upon wisdom from Google’s “Rules of ML,” the practicalities of experiment tracking as highlighted by Neptune.ai, advanced techniques in ensemble learning, and strategies for hyperparameter optimization to ensure our “recipes” are not just functional but truly Michelin-worthy.</p>
+<p>This chapter will guide you through setting up a productive experimentation environment, establishing strong baselines, selecting and iterating on models, the critical practices of experiment tracking and versioning, advanced hyperparameter tuning, and the art of debugging ML models during their development.</p>
+</section>
+<hr class="docutils" />
+<section id="section-7-1-setting-up-the-productive-experimentation-environment-the-chef-s-organized-workspace">
+<h3>Section 7.1: Setting Up the Productive Experimentation Environment (The Chef’s Organized Workspace)<a class="headerlink" href="#section-7-1-setting-up-the-productive-experimentation-environment-the-chef-s-organized-workspace" title="Permalink to this heading">¶</a></h3>
+<p>A well-organized and efficient experimentation environment is crucial for rapid iteration and reproducible research.</p>
+<ul class="simple">
+<li><p><strong>7.1.1 Leveraging Notebooks and IDEs Effectively</strong> [Lecture 2 -Development Infrastructure &amp; Tooling.md]</p>
+<ul>
+<li><p><strong>Notebooks (Jupyter, Colab):</strong> Excellent for EDA, quick prototyping, visualization, and documenting experimental steps.</p></li>
+<li><p><strong>IDEs (VS Code, PyCharm):</strong> Better for writing modular, reusable, and testable model training code, version control integration, and debugging.</p></li>
+<li><p><strong>Hybrid Approach:</strong> Develop core logic in IDEs as Python modules/scripts, import and orchestrate experiments in notebooks for interactivity and result presentation.</p></li>
+</ul>
+</li>
+<li><p><strong>7.1.2 Integrating with Version Control and Experiment Tracking from Day One</strong> [expt_tracking.md (Sec I.1, I.2), MLOps Principles.md]</p>
+<ul>
+<li><p><strong>Version Control (Git):</strong> All code (scripts, notebooks using <code class="docutils literal notranslate"><span class="pre">jupytext</span></code> or <code class="docutils literal notranslate"><span class="pre">nbdime</span></code> for better diffs), configurations, and DVC metadata files <em>must</em> be version controlled.</p></li>
+<li><p><strong>Experiment Tracking Tools (W&amp;B - our choice):</strong> Essential for logging parameters, metrics, code versions, data versions, and artifacts. Set up and integrate W&amp;B early in the development process.</p></li>
+</ul>
+</li>
+<li><p><strong>7.1.3 Managing Dependencies and Reproducible Environments</strong> [MLOps Principles.md]</p>
+<ul>
+<li><p><strong>Virtual Environments:</strong> Use <code class="docutils literal notranslate"><span class="pre">conda</span></code> or <code class="docutils literal notranslate"><span class="pre">venv</span></code> to isolate project dependencies.</p></li>
+<li><p><strong>Dependency Pinning:</strong> Use <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> (from <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">freeze</span></code>) or <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">environment.yml</span></code> to lock down exact package versions.</p></li>
+<li><p><strong>Docker Containers:</strong> For ensuring consistent runtime environments across different machines (developer, CI, training cluster). Define a base Docker image for experimentation.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="section-7-2-rapid-prototyping-and-establishing-strong-baselines-the-first-simple-tastings">
+<h3>Section 7.2: Rapid Prototyping and Establishing Strong Baselines (The First, Simple Tastings)<a class="headerlink" href="#section-7-2-rapid-prototyping-and-establishing-strong-baselines-the-first-simple-tastings" title="Permalink to this heading">¶</a></h3>
+<p>Before aiming for complex SOTA models, establish robust baselines. This helps quantify the value of more sophisticated approaches and ensures infrastructure is sound. [rules_of_ml.pdf (Rule #4, #13), development.md (Sec I.3)]</p>
+<ul class="simple">
+<li><p><strong>7.2.1 Non-ML Baselines</strong> [designing-machine-learning-systems.pdf (Ch 7 - Baselines)]</p>
+<ul>
+<li><p><strong>Heuristics:</strong> Simple rules based on domain knowledge (e.g., “if plot contains ‘space’ and ‘ship’, genre is Sci-Fi”).</p></li>
+<li><p><strong>Random Guessing:</strong> Based on class distribution.</p></li>
+<li><p><strong>Zero Rule:</strong> Always predict the majority class (for classification) or mean/median (for regression).</p></li>
+<li><p><strong>Existing System:</strong> If replacing an older system, its performance is a key baseline.</p></li>
+</ul>
+</li>
+<li><p><strong>7.2.2 Simple ML Baselines</strong> [rules_of_ml.pdf (Rule #4)]</p>
+<ul>
+<li><p>Start with simple, interpretable models:</p>
+<ul>
+<li><p><strong>Classification:</strong> Logistic Regression, Naive Bayes, Decision Trees, LightGBM/XGBoost with default parameters.</p></li>
+<li><p><strong>Regression:</strong> Linear Regression, Decision Trees.</p></li>
+</ul>
+</li>
+<li><p>Focus: “Keep the first model simple and get the infrastructure right.” [rules_of_ml.pdf (Rule #4)]</p></li>
+<li><p>Purpose: Validate the end-to-end pipeline (data ingestion, feature engineering, training, evaluation) and establish initial performance benchmarks.</p></li>
+</ul>
+</li>
+<li><p><strong>7.2.3 Human Level Performance (HLP) as a Baseline</strong> [development.md (Sec I.2)]</p>
+<ul>
+<li><p>Estimate how well humans perform the task. This can serve as an “optimal error rate” or Bayes rate to understand avoidable bias.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="section-7-3-iterative-model-selection-and-architecture-design-choosing-the-right-cooking-method">
+<h3>Section 7.3: Iterative Model Selection and Architecture Design (Choosing the Right Cooking Method)<a class="headerlink" href="#section-7-3-iterative-model-selection-and-architecture-design-choosing-the-right-cooking-method" title="Permalink to this heading">¶</a></h3>
+<p>Model selection is an iterative process, balancing performance with operational constraints. [development.md (Sec I.1, II), designing-machine-learning-systems.pdf (Ch 7 - Evaluating ML Models)]</p>
+<ul class="simple">
+<li><p><strong>7.3.1 Comparing Different Model Families and Architectures</strong></p>
+<ul>
+<li><p><strong>Considerations:</strong></p>
+<ul>
+<li><p>Predictive performance (on validation set).</p></li>
+<li><p>Training time and computational cost.</p></li>
+<li><p>Inference latency.</p></li>
+<li><p>Interpretability requirements.</p></li>
+<li><p>Data requirements (e.g., amount of labeled data needed).</p></li>
+<li><p>Ease of implementation and maintenance.</p></li>
+</ul>
+</li>
+<li><p>Compare against your baselines. Is the added complexity justified by performance gains? [rules_of_ml.pdf (Rule #25)]</p></li>
+</ul>
+</li>
+<li><p><strong>7.3.2 Understanding Model Assumptions and Trade-offs</strong> [designing-machine-learning-systems.pdf (Ch 7 - Evaluating ML Models)]</p>
+<ul>
+<li><p>Linear models assume linear relationships. Tree models handle non-linearity but can overfit. Neural networks are powerful but data-hungry and less interpretable.</p></li>
+<li><p>Be aware of common trade-offs: Bias-Variance, Precision-Recall, Interpretability-Accuracy.</p></li>
+</ul>
+</li>
+<li><p><strong>7.3.3 Avoiding the “State-of-the-Art Trap”</strong> [designing-machine-learning-systems.pdf (Ch 7 - Evaluating ML Models)]</p>
+<ul>
+<li><p>SOTA on a benchmark dataset doesn’t guarantee SOTA on <em>your</em> specific problem and data.</p></li>
+<li><p>Focus on models that solve <em>your</em> problem effectively within <em>your</em> constraints.</p></li>
+</ul>
+</li>
+<li><p><strong>7.3.4 Evaluating “Good Performance Now” vs. “Potential for Future Performance”</strong> [designing-machine-learning-systems.pdf (Ch 7 - Evaluating ML Models)]</p>
+<ul>
+<li><p>A simpler model might be better now, but a more complex one might scale better with more data (assess via learning curves). [development.md (Sec II.2)]</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="section-7-4-deep-dive-into-experiment-tracking-and-versioning-the-meticulous-kitchen-journal">
+<h3>Section 7.4: Deep Dive into Experiment Tracking and Versioning (The Meticulous Kitchen Journal)<a class="headerlink" href="#section-7-4-deep-dive-into-experiment-tracking-and-versioning-the-meticulous-kitchen-journal" title="Permalink to this heading">¶</a></h3>
+<p>Systematic tracking is the cornerstone of reproducible and efficient ML development. [expt_tracking.md, designing-machine-learning-systems.pdf (Ch 7 - Experiment Tracking and Versioning), development.md (Sec II.1)]</p>
+<ul class="simple">
+<li><p><strong>7.4.1 Why Experiment Tracking is Non-Negotiable</strong> [expt_tracking.md (Sec I.2)]</p>
+<ul>
+<li><p>Organization, reproducibility, comparison, debugging, collaboration, knowledge sharing.</p></li>
+</ul>
+</li>
+<li><p><strong>7.4.2 What to Log: A Comprehensive Checklist</strong> [expt_tracking.md (Sec I.3), development.md (Sec II.1)]</p>
+<ul>
+<li><p><strong>Core:</strong> Code versions (Git hashes), Data versions (DVC hashes/paths), Hyperparameters, Environment (dependencies), Evaluation Metrics.</p></li>
+<li><p><strong>Recommended:</strong> Model artifacts (checkpoints), Learning curves, Performance visualizations (confusion matrix, ROC/PR), Run logs, Hardware consumption.</p></li>
+<li><p><strong>Advanced:</strong> Feature importance, sample predictions, gradient/weight norms.</p></li>
+</ul>
+</li>
+<li><p><strong>7.4.3 Data Lineage and Provenance in Experiments</strong> [expt_tracking.md (Sec II)]</p>
+<ul>
+<li><p>Tracking data’s journey: origin, transformations, and link to specific experiment runs.</p></li>
+<li><p>Essential for debugging data-related issues and ensuring model reproducibility.</p></li>
+</ul>
+</li>
+<li><p><strong>7.4.4 Best Practices for Using Experiment Tracking Tools (W&amp;B, MLflow, Neptune.ai, SageMaker Experiments, Vertex AI Experiments)</strong> [expt_tracking.md (Sec I.4), Lecture 2 -Development Infrastructure &amp; Tooling.md]</p>
+<ul>
+<li><p><strong>Integration:</strong> Ensure seamless logging from training scripts.</p></li>
+<li><p><strong>Organization:</strong> Use projects, tags, groups to organize runs.</p></li>
+<li><p><strong>Visualization:</strong> Leverage dashboards for comparing runs and analyzing learning curves.</p></li>
+<li><p><strong>Collaboration:</strong> Share results and insights with the team.</p></li>
+<li><p><strong>Automation:</strong> Log metadata automatically within training pipelines.</p></li>
+</ul>
+</li>
+<li><p><strong>7.4.5 Model Registry: Versioning and Managing Trained Models</strong> [expt_tracking.md (Sec III)]</p>
+<ul>
+<li><p>Centralized system for storing, versioning, staging, and governing model artifacts.</p></li>
+<li><p>Key features: versioning, metadata storage (link to experiment, data, metrics), staging (dev, staging, prod), API access for CI/CD.</p></li>
+<li><p>Our choice for the project: W&amp;B Artifacts and Model Management.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="section-7-5-advanced-hyperparameter-optimization-hpo-strategies-perfecting-the-seasoning">
+<h3>Section 7.5: Advanced Hyperparameter Optimization (HPO) Strategies (Perfecting the Seasoning)<a class="headerlink" href="#section-7-5-advanced-hyperparameter-optimization-hpo-strategies-perfecting-the-seasoning" title="Permalink to this heading">¶</a></h3>
+<p>Finding the right hyperparameters can significantly boost model performance. [tuning_hypopt.md, designing-machine-learning-systems.pdf (Ch 7 - AutoML)]</p>
+<ul class="simple">
+<li><p><strong>7.5.1 Foundational Approaches: Manual, Grid, Random Search</strong> [tuning_hypopt.md (Sec 2.1)]</p>
+<ul>
+<li><p>Limitations and when they might still be useful.</p></li>
+</ul>
+</li>
+<li><p><strong>7.5.2 Model-Based (SMBO) Methods: Bayesian Optimization &amp; TPE</strong> [tuning_hypopt.md (Sec 2.2)]</p>
+<ul>
+<li><p>Mechanism: Building surrogate models of the objective function.</p></li>
+<li><p>Acquisition functions (Expected Improvement, UCB).</p></li>
+<li><p>Pros: Sample efficiency for expensive training runs. Cons: Sequential nature, complexity.</p></li>
+</ul>
+</li>
+<li><p><strong>7.5.3 Multi-Fidelity Optimization: Successive Halving, Hyperband, ASHA</strong> [tuning_hypopt.md (Sec 2.3)]</p>
+<ul>
+<li><p>Using cheaper, lower-fidelity evaluations (e.g., fewer epochs, subset of data) to prune unpromising HPs early.</p></li>
+<li><p>ASHA for large-scale parallel HPO.</p></li>
+</ul>
+</li>
+<li><p><strong>7.5.4 Population-Based Methods: Evolutionary Algorithms, PBT</strong> [tuning_hypopt.md (Sec 2.4)]</p>
+<ul>
+<li><p>Evolving a population of configurations.</p></li>
+<li><p>PBT: Jointly optimizes weights and HPs during training.</p></li>
+</ul>
+</li>
+<li><p><strong>7.5.5 MLOps Best Practices for HPO</strong> [tuning_hypopt.md (Sec 3, 5)]</p>
+<ul>
+<li><p>Strategic search space definition.</p></li>
+<li><p>Robust model evaluation (Cross-Validation within HPO loops).</p></li>
+<li><p>Experiment tracking for HPO trials.</p></li>
+<li><p>Efficient resource management (parallel/distributed tuning, early stopping).</p></li>
+<li><p>Integrating HPO into CI/CD/CT pipelines (triggers, automation).</p></li>
+</ul>
+</li>
+<li><p><strong>7.5.7 Tools for Distributed HPO (Ray Tune, Optuna, Keras Tuner, cloud HPO services)</strong> [tuning_hypopt.md (Sec 4.4), development.md (Sec V.4)]</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="section-7-7-exploring-automl-for-efficient-experimentation-the-automated-sous-chef">
+<h3>Section 7.7: Exploring AutoML for Efficient Experimentation (The Automated Sous-Chef)<a class="headerlink" href="#section-7-7-exploring-automl-for-efficient-experimentation-the-automated-sous-chef" title="Permalink to this heading">¶</a></h3>
+<p>AutoML aims to automate parts or all of the ML pipeline, including HPO and model selection. [designing-machine-learning-systems.pdf (Ch 7 - AutoML), tuning_hypopt.md (Sec 4.3)]</p>
+<ul class="simple">
+<li><p><strong>7.7.1 What AutoML Can Do:</strong> HPO, Neural Architecture Search (NAS), feature engineering.</p></li>
+<li><p><strong>7.7.2 Promise vs. Pitfalls:</strong></p>
+<ul>
+<li><p><em>Promise:</em> Democratization, speed, potentially finding novel solutions.</p></li>
+<li><p><em>Pitfalls:</em> “Black box” nature, resource intensity, no guarantee of superiority over expert-driven approaches.</p></li>
+</ul>
+</li>
+<li><p><strong>7.7.3 AutoML Tools:</strong> Auto-sklearn, TPOT, Google Cloud AutoML, SageMaker Autopilot, Azure ML AutoML.</p></li>
+<li><p><strong>When to Use AutoML in an MLOps Context:</strong> Good for baselining, rapid prototyping, or when HPO expertise is limited. Always validate AutoML outputs rigorously.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="section-7-7-debugging-models-a-practical-guide-during-development-finding-what-went-wrong-in-the-recipe">
+<h3>Section 7.7: Debugging Models: A Practical Guide During Development (Finding What Went Wrong in the Recipe)<a class="headerlink" href="#section-7-7-debugging-models-a-practical-guide-during-development-finding-what-went-wrong-in-the-recipe" title="Permalink to this heading">¶</a></h3>
+<p>Debugging ML models can be notoriously difficult due to their complexity and often silent failure modes. [designing-machine-learning-systems.pdf (Ch 7 - Debugging ML Models), development.md (Sec II.2)]</p>
+<ul class="simple">
+<li><p><strong>7.7.1 Common Types of Bugs in ML Model Development</strong></p>
+<ul>
+<li><p><em>Theoretical Constraints Violation:</em> Model assumptions don’t match data.</p></li>
+<li><p><em>Poor Implementation:</em> Errors in model code, training loop, loss function.</p></li>
+<li><p><em>Poor Hyperparameters:</em> Leading to non-convergence or poor performance.</p></li>
+<li><p><em>Data Problems:</em> Label errors, inconsistencies, leakage (covered in Ch5, but re-emphasize impact on training).</p></li>
+<li><p><em>Poor Feature Choice:</em> Features lack predictive power or cause overfitting.</p></li>
+</ul>
+</li>
+<li><p><strong>7.7.2 A Recipe for Debugging Neural Networks (and other models)</strong></p>
+<ul>
+<li><p><strong>Start Simple &amp; Gradually Add Complexity:</strong> Isolate components.</p></li>
+<li><p><strong>Overfit a Single Small Batch:</strong> If the model can’t achieve near-perfect loss on a tiny dataset, there’s likely a bug in the core model/training logic. [ML_Test_Score.pdf (Tests for Model Development), development.md (Sec II.2)]</p></li>
+<li><p><strong>Set Random Seeds:</strong> For reproducibility of errors and successes.</p></li>
+<li><p><strong>Check Input Data Pipeline:</strong> Ensure data fed to the model is as expected (Rule #5 in <code class="docutils literal notranslate"><span class="pre">rules_of_ml.pdf</span></code>).</p></li>
+<li><p><strong>Examine Loss Function &amp; Gradients:</strong> Loss not decreasing? Exploding/vanishing gradients? NaN values?</p></li>
+<li><p><strong>Visualize Activations &amp; Weights:</strong> For NNs, look for dead neurons, saturated activations, unusual weight distributions.</p></li>
+<li><p><strong>Learning Curve Analysis:</strong> Diagnose bias vs. variance. [development.md (Sec II.2)]</p></li>
+<li><p><strong>Error Analysis on Misclassified Examples:</strong> Manually inspect where the model is failing to understand patterns. [rules_of_ml.pdf (Rule #27), development.md (Sec II.2)]</p></li>
+<li><p><strong>Compare to Baselines:</strong> Is your complex model even better than a simple one?</p></li>
+<li><p><strong>Test Infrastructure Independently:</strong> (Rule #5 in <code class="docutils literal notranslate"><span class="pre">rules_of_ml.pdf</span></code>)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="project-trending-now-developing-the-genre-classification-model-educational-path">
+<h3>Project: “Trending Now” – Developing the Genre Classification Model (Educational Path)<a class="headerlink" href="#project-trending-now-developing-the-genre-classification-model-educational-path" title="Permalink to this heading">¶</a></h3>
+<p>This section applies the chapter’s concepts to build and iterate on our XGBoost and BERT genre classification models.</p>
+<ul class="simple">
+<li><p><strong>7.P.1 Setting up the Experimentation Environment for “Trending Now”</strong></p>
+<ul>
+<li><p>Confirm local setup: Python environment with Scikit-learn, XGBoost, PyTorch, Transformers, Pandas, W&amp;B.</p></li>
+<li><p>Structure for notebooks (e.g., <code class="docutils literal notranslate"><span class="pre">notebooks/02-model-development-xgboost.ipynb</span></code>, <code class="docutils literal notranslate"><span class="pre">notebooks/03-model-development-bert.ipynb</span></code>).</p></li>
+<li><p>Git for versioning notebooks and any helper scripts.</p></li>
+<li><p>W&amp;B project initialization: <code class="docutils literal notranslate"><span class="pre">wandb.init(project=&quot;trending-now-genre-classification&quot;)</span></code>.</p></li>
+</ul>
+</li>
+<li><p><strong>7.P.2 Building Baseline Models</strong></p>
+<ul>
+<li><p><strong>Non-ML Baseline:</strong> Simple keyword spotter (e.g., if “space” in plot, predict “Sci-Fi”; if “love” in plot, predict “Romance”). Evaluate its F1/Precision/Recall.</p></li>
+<li><p><strong>Simple ML Baseline:</strong> Logistic Regression on TF-IDF features (from Chapter 5 project work). Log parameters and metrics to W&amp;B.</p></li>
+</ul>
+</li>
+<li><p><strong>7.P.3 Experimenting with XGBoost and Fine-tuning a Pre-trained BERT Model</strong></p>
+<ul>
+<li><p><strong>XGBoost:</strong></p>
+<ul>
+<li><p>Load TF-IDF features.</p></li>
+<li><p>Train <code class="docutils literal notranslate"><span class="pre">XGBClassifier</span></code> (handle multilabel classification, e.g., one-vs-rest or native multilabel if supported by chosen XGBoost version).</p></li>
+<li><p>Log initial experiments with default HPs to W&amp;B.</p></li>
+</ul>
+</li>
+<li><p><strong>BERT:</strong></p>
+<ul>
+<li><p>Load pre-trained BERT model and tokenizer (e.g., <code class="docutils literal notranslate"><span class="pre">bert-base-uncased</span></code>) from Hugging Face.</p></li>
+<li><p>Prepare data for BERT (tokenization, attention masks, label encoding for multilabel).</p></li>
+<li><p>Fine-tune BERT by adding a classification head.</p></li>
+<li><p>Log initial fine-tuning experiments to W&amp;B.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>7.P.4 Tracking Experiments for XGBoost and BERT using Weights &amp; Biases</strong></p>
+<ul>
+<li><p>Demonstrate W&amp;B logging:</p>
+<ul>
+<li><p>Hyperparameters (learning rate, batch size, tree depth, etc.).</p></li>
+<li><p>Code version (Git commit).</p></li>
+<li><p>Data version (DVC path/hash for features used).</p></li>
+<li><p>Metrics (Loss, F1, Precision, Recall per epoch/iteration on train/validation).</p></li>
+<li><p>Model artifacts (saving best model checkpoints to W&amp;B Artifacts).</p></li>
+<li><p>Learning curves, confusion matrices.</p></li>
+</ul>
+</li>
+<li><p>Show example W&amp;B dashboard for comparing XGBoost vs. BERT runs.</p></li>
+</ul>
+</li>
+<li><p><strong>7.P.5 Hyperparameter Tuning for the Selected Models</strong></p>
+<ul>
+<li><p>Define search space for XGBoost (e.g., <code class="docutils literal notranslate"><span class="pre">n_estimators</span></code>, <code class="docutils literal notranslate"><span class="pre">max_depth</span></code>, <code class="docutils literal notranslate"><span class="pre">learning_rate</span></code>).</p></li>
+<li><p>Define search space for BERT fine-tuning (e.g., <code class="docutils literal notranslate"><span class="pre">learning_rate</span></code>, <code class="docutils literal notranslate"><span class="pre">batch_size</span></code>, <code class="docutils literal notranslate"><span class="pre">num_epochs</span></code>).</p></li>
+<li><p>Use W&amp;B Sweeps (or Optuna/Ray Tune integrated with W&amp;B) to run HPO.</p></li>
+<li><p>Analyze HPO results using W&amp;B visualizations (parallel coordinates, importance plots).</p></li>
+<li><p>Select best HP configuration for each model.</p></li>
+</ul>
+</li>
+<li><p><strong>7.P.7 Debugging Common Issues Encountered During Training</strong></p>
+<ul>
+<li><p>Example scenario 1: BERT loss not decreasing. (Check: learning rate too high/low, data preprocessing, gradient issues).</p></li>
+<li><p>Example scenario 2: XGBoost overfitting significantly. (Check: tree depth too high, need more regularization, insufficient data for complexity).</p></li>
+<li><p>Discuss using W&amp;B logs (gradient norms, loss curves) to diagnose.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="conclusion-from-experimental-dishes-to-refined-recipes">
+<h3>🧑‍🍳 Conclusion: From Experimental Dishes to Refined Recipes<a class="headerlink" href="#conclusion-from-experimental-dishes-to-refined-recipes" title="Permalink to this heading">¶</a></h3>
+<p>The experimental kitchen is where culinary magic happens, but it’s also a place of intense rigor, iteration, and learning. In this chapter, we’ve navigated the critical phase of model development, moving from initial prototypes and baselines to selecting sophisticated architectures like XGBoost and BERT.</p>
+<p>We emphasized that this journey is not linear but a cycle of experimentation, guided by carefully chosen metrics and robust baselines. The vital role of meticulous experiment tracking and versioning with tools like Weights &amp; Biases was highlighted as the chef’s detailed journal, ensuring every attempt is reproducible and comparable. We explored advanced strategies for hyperparameter optimization, seeking the perfect “seasoning” for our models, and touched upon the power of AutoML. Finally, we acknowledged that even the best chefs encounter issues, providing a practical guide to debugging common model training problems.</p>
+<p>For our “Trending Now” project, we’ve laid out the steps to develop, track, and tune our genre classification models. These experimentally validated and refined “recipes” are now almost ready for the main kitchen line. The next step is to standardize these recipes, ensuring they can be consistently and reliably produced at scale – the focus of Chapter 7: “Standardizing the Signature Dish – Building Scalable Training Pipelines.”</p>
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024, Deepak Karkala
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Chapter 7: Model Development</a><ul>
+<li><a class="reference internal" href="#id1"></a><ul>
+<li><a class="reference internal" href="#introduction-the-heart-of-culinary-creation-from-ingredients-to-signature-dishes">🧑‍🍳 Introduction: The Heart of Culinary Creation – From Ingredients to Signature Dishes</a></li>
+<li><a class="reference internal" href="#section-7-1-setting-up-the-productive-experimentation-environment-the-chef-s-organized-workspace">Section 7.1: Setting Up the Productive Experimentation Environment (The Chef’s Organized Workspace)</a></li>
+<li><a class="reference internal" href="#section-7-2-rapid-prototyping-and-establishing-strong-baselines-the-first-simple-tastings">Section 7.2: Rapid Prototyping and Establishing Strong Baselines (The First, Simple Tastings)</a></li>
+<li><a class="reference internal" href="#section-7-3-iterative-model-selection-and-architecture-design-choosing-the-right-cooking-method">Section 7.3: Iterative Model Selection and Architecture Design (Choosing the Right Cooking Method)</a></li>
+<li><a class="reference internal" href="#section-7-4-deep-dive-into-experiment-tracking-and-versioning-the-meticulous-kitchen-journal">Section 7.4: Deep Dive into Experiment Tracking and Versioning (The Meticulous Kitchen Journal)</a></li>
+<li><a class="reference internal" href="#section-7-5-advanced-hyperparameter-optimization-hpo-strategies-perfecting-the-seasoning">Section 7.5: Advanced Hyperparameter Optimization (HPO) Strategies (Perfecting the Seasoning)</a></li>
+<li><a class="reference internal" href="#section-7-7-exploring-automl-for-efficient-experimentation-the-automated-sous-chef">Section 7.7: Exploring AutoML for Efficient Experimentation (The Automated Sous-Chef)</a></li>
+<li><a class="reference internal" href="#section-7-7-debugging-models-a-practical-guide-during-development-finding-what-went-wrong-in-the-recipe">Section 7.7: Debugging Models: A Practical Guide During Development (Finding What Went Wrong in the Recipe)</a></li>
+<li><a class="reference internal" href="#project-trending-now-developing-the-genre-classification-model-educational-path">Project: “Trending Now” – Developing the Genre Classification Model (Educational Path)</a></li>
+<li><a class="reference internal" href="#conclusion-from-experimental-dishes-to-refined-recipes">🧑‍🍳 Conclusion: From Experimental Dishes to Refined Recipes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=b3ba4146"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/scripts/furo.js?v=4e2eecee"></script>
+    </body>
+</html>
