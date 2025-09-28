@@ -1,0 +1,727 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" />
+
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/><!-- Generated with Sphinx 7.1.2 and Furo 2024.05.06 -->
+        <title>Workflows, Team, Roles - Home</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=387cc868" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=36a5483c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/style.css?v=8a7ff5ee" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" /
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">Home</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  
+  <span class="sidebar-brand-text">Home</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../projects/index.html">Projects</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Projects</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/nlp/index.html">Natural Language Processing</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Natural Language Processing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/airbnb_alternate_search/about/index.html">Airbnb Listing description based Semantic Search</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/cv/index.html">Computer Vision</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Computer Vision</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/ecommerce_image_segmentation/about/index.html">Image Segmentation for Ecommerce Products</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/ml/index.html">Machine Learning</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of Machine Learning</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/airbnb_price_modeling/about/index.html">Predictive Price Modeling for Airbnb listings</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../publications/index.html">Patents, Papers, Thesis</a></li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../mlops/index.html">MLOps</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of MLOps</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/ch1_problem_framing.html">ML Problem framing</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of ML Problem framing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../mlops/ch2_blueprint_operational_strategy.html">The MLOps Blueprint &amp; Operational Strategy</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/ch2a_platform/index.html">ML Platforms</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of ML Platforms</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch2a_platform/ml_platforms.html">ML Platforms: How to</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch2a_platform/uber.html">Uber Michelangelo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch2a_platform/linkedin.html">LinkedIn DARWIN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch2a_platform/netflix.html">Netflix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch2a_platform/shopify.html">Shopify Merlin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch2a_platform/zomato.html">Zomato: Real-time ML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch2a_platform/coveo.html">Coveo: MLOPs at reasonable scale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch2a_platform/monzo.html">Monzo ML Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch2a_platform/didact.html">Didact AI</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/ch3_project_planning/index.html">Project Planning</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of Project Planning</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch3_project_planning/prd.html">Project Requirements Document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch3_project_planning/tech_stack.html">Tech Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch3_project_planning/config_management.html">Config Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch3_project_planning/pipeline_design.html">Pipeline Design</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch3_project_planning/environment_strategy.html">Environment Strategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch3_project_planning/cicd_branching_model.html">CI/CD Strategy and Branching Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch3_project_planning/directory_structure.html">Directory Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch3_project_planning/env_branchind_cicd_deployment.html">Environments, Branching, CI/CD, and Deployments Explained</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch3_project_planning/project_management.html">Project Management for MLOps</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/ch4_data_discovery/index.html">Data Sourcing, Discovery</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of Data Sourcing, Discovery</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch4_data_discovery/data_sourcing_discovery.html">Data Sourcing, Discovery &amp; Understanding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch4_data_discovery/ch4_project.html">Project-Trending Now: Implementing Web Scraping, Ingestion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch4_data_discovery/industry_case_studies.html">Data Discovery Platforms: Industry Case Studies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch4_data_discovery/facebook_nemo.html">Facebook: Nemo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch4_data_discovery/netflix_metacat.html">Netflix Metacat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch4_data_discovery/uber_databook.html">Uber Databook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch4_data_discovery/linkedin_datahub.html">LinkedIn Datahub</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/ch7_model_development/index.html">Model Development, Tuning, Selection, Ensembles, Calibration</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle navigation of Model Development, Tuning, Selection, Ensembles, Calibration</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch7_model_development/ch7_model_development.html">Chapter 7: Model Development</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch7_model_development/dl_training_playbook.html">How to train DL Models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch7_model_development/development.html">Model Development</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch7_model_development/industry_lessons.html">Model Development: Lessons from production systems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch7_model_development/ensembles.html"><strong>Model Ensembles</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch7_model_development/selection.html">Model Selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch7_model_development/tuning_hypopt.html">Hyperparameter Optimization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch7_model_development/expt_tracking.html">ML Expt tracking, Data Lineage, Model Registry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch7_model_development/calibration.html">Model Calibration</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/ch10_deployment_serving/index.html">Model Deployment &amp; Serving</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" role="switch" type="checkbox"/><label for="toctree-checkbox-11"><div class="visually-hidden">Toggle navigation of Model Deployment &amp; Serving</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch10_deployment_serving/ch10_deployment_serving.html">Chapter 10: Deployment &amp; Serving</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch10_deployment_serving/guide_deployment_serving.html">Guide: Model Deployment &amp; Serving</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch10_deployment_serving/guide_inference_stack.html">Deep Dive: Inference Stack</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/ch11_monitor_observe_drift/index.html">Monitoring, Observability, Drift, Interpretability</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" role="switch" type="checkbox"/><label for="toctree-checkbox-12"><div class="visually-hidden">Toggle navigation of Monitoring, Observability, Drift, Interpretability</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch11_monitor_observe_drift/ch11_monitor_observe_drift.html">Chapter 11: Monitoring, Observability, Drifts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch11_monitor_observe_drift/guide_monitor_observe_drift.html">Guide: ML System Failures, Data Distribution Shifts, Monitoring, and Observability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch11_monitor_observe_drift/guide_interpretability_shap_lime.html">Interpretability, SHAP, LIME</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch11_monitor_observe_drift/guide_stack.html">Prometheus + Grafana and ELK Stacks</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/ch12_retrain_online_testing/index.html">Continual learning, Retraining, A/B Testing</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" role="switch" type="checkbox"/><label for="toctree-checkbox-13"><div class="visually-hidden">Toggle navigation of Continual learning, Retraining, A/B Testing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch12_retrain_online_testing/ch12_continual_learning_prod_testing.html">Chapter 12: Continual Learning &amp; Production Testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch12_retrain_online_testing/guide_continual_learning.html">Continual Learning &amp; Model Retraining</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch12_retrain_online_testing/guide_ab_testing.html">A/B Testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch12_retrain_online_testing/guide_ab_testing_industry_lessons.html">A/B Testing &amp; Experimentation: Industry lessons</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch12_retrain_online_testing/guide_prod_testing_expt.html">Guide: Production Testing &amp; Experimentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch12_retrain_online_testing/dr_prod_testing_expt.html">Deep Research: Production Testing &amp; Experimentation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../lld/index.html">Low Level Design</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" role="switch" type="checkbox"/><label for="toctree-checkbox-14"><div class="visually-hidden">Toggle navigation of Low Level Design</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../lld/parking_lot.html">Parking Lot</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../visualization/index.html">Data Visualization Projects</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="../../_sources/past_experiences/adas_engine/ch3_pipelines_workflows.md.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="workflows-team-roles">
+<h1>Workflows, Team, Roles<a class="headerlink" href="#workflows-team-roles" title="Permalink to this heading">¶</a></h1>
+<section id="id1">
+<h2><a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<hr class="docutils" />
+<section id="workflows">
+<h3>Workflows<a class="headerlink" href="#workflows" title="Permalink to this heading">¶</a></h3>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Pipeline / Workflow</p></th>
+<th class="head"><p>Trigger</p></th>
+<th class="head"><p>Inputs</p></th>
+<th class="head"><p>Key Steps</p></th>
+<th class="head"><p>Outputs</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>1. Telemetry &amp; Bulk Data Ingestion</strong></p></td>
+<td><p>Drive docked or upload complete event</p></td>
+<td><p>SSD offloads, ROS/rosbag, video, lidar, radar, CAN/IMU, small telemetry streams</p></td>
+<td><p>Copy via Snowball/DataSync → S3 landing; verify checksums; register manifest; notify downstream</p></td>
+<td><p>Raw data in S3 bronze, drive manifest, ingestion log</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>2. Data Integrity &amp; PII Redaction</strong></p></td>
+<td><p>Post-ingestion event</p></td>
+<td><p>Raw sensor logs</p></td>
+<td><p>File integrity checks; sensor presence; time span sanity; blur faces/plates; redact PII; sign results</p></td>
+<td><p>Cleaned S3 bronze, redaction report</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>3. Sensor Sync &amp; Format Conversion</strong></p></td>
+<td><p>After integrity pass</p></td>
+<td><p>Rosbags, proprietary binaries</p></td>
+<td><p>Time-align streams; extract frames/keyframes; convert to Parquet/Zarr; create clip shards</p></td>
+<td><p>Synchronized Parquet/Zarr shards in S3 silver</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>4. Metadata Extraction &amp; Cataloging</strong></p></td>
+<td><p>On conversion finish</p></td>
+<td><p>Synchronized shards, manifests</p></td>
+<td><p>Extract timestamps, GPS, weather if available, route IDs; schema to Glue; upsert DynamoDB; index text to OpenSearch</p></td>
+<td><p>Glue tables, DynamoDB entries, OpenSearch index</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>5. Map &amp; Weather Enrichment</strong></p></td>
+<td><p>Daily batch</p></td>
+<td><p>GPS traces, time, road graphs</p></td>
+<td><p>Join with map tiles/HD refs; fetch historical weather; attach road classes/speed limits</p></td>
+<td><p>Enriched metadata columns in silver</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>6. Scene Detection &amp; Event Triggers</strong></p></td>
+<td><p>Hourly batch</p></td>
+<td><p>Enriched clips, CAN signals</p></td>
+<td><p>Lightweight detectors for cut-ins, harsh brake, stationary hazard, disengagements; write event windows</p></td>
+<td><p>Event windows table, tags per clip</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>7. Similarity &amp; Vector Index Build</strong></p></td>
+<td><p>New events found</p></td>
+<td><p>Reference clips, embeddings model</p></td>
+<td><p>Generate clip embeddings; upsert vector DB; enable “find more like this”</p></td>
+<td><p>Vector index entries; retrieval API ready</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>8. Trigger-based Scenario Mining</strong></p></td>
+<td><p>On-demand or schedule</p></td>
+<td><p>Event windows, vector queries</p></td>
+<td><p>Search long-tail scenarios (night-rain, occlusion, construction); de-dup; rank by novelty/uncertainty</p></td>
+<td><p>Candidate sets for labeling/mining</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>9. Auto-Labeling (Bootstrapped)</strong></p></td>
+<td><p>Candidate set ready</p></td>
+<td><p>Pretrained models, heuristics</p></td>
+<td><p>Run offline inference at scale; propagate pseudo-labels; confidence filtering; weak supervision rules</p></td>
+<td><p>Auto-labeled datasets with provenance</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>10. Human-in-the-Loop Labeling &amp; QA</strong></p></td>
+<td><p>Auto-labeled set queued</p></td>
+<td><p>Auto-labels, raw clips</p></td>
+<td><p>Sampling for manual QA; spot-check hard slices; adjudicate disagreements; finalize labels</p></td>
+<td><p>Verified labels; label QA metrics</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>11. Golden &amp; Slice Dataset Builder</strong></p></td>
+<td><p>Weekly or on request</p></td>
+<td><p>Labeled tables, metadata</p></td>
+<td><p>Build “golden” benchmark sets and slice packs (night, rain, occlusion, construction); freeze with DVC; publish to W&amp;B Artifacts</p></td>
+<td><p>Versioned datasets with DVC tags and W&amp;B artifacts</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>12. Offline Mining via Batch Inference</strong></p></td>
+<td><p>Nightly</p></td>
+<td><p>Latest model, large unlabeled pool</p></td>
+<td><p>Run model across pool on Batch/EKS; capture failures, high-uncertainty, drifted slices</p></td>
+<td><p>Failure buckets; candidates for re-label</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>13. Distributed Training (Perception Multitask)</strong></p></td>
+<td><p>New dataset version or ticket</p></td>
+<td><p>Curated datasets, configs</p></td>
+<td><p>Launch distributed training; mixed precision; checkpointing; gradient accumulation; log to W&amp;B</p></td>
+<td><p>Trained checkpoints; W&amp;B runs &amp; artifacts</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>14. Hyperparameter Sweeps</strong></p></td>
+<td><p>Model change or perf gap</p></td>
+<td><p>Training code, sweep config</p></td>
+<td><p>W&amp;B sweeps; early stopping; budgeted search; capture best by primary metric</p></td>
+<td><p>Best config bundle; sweep report</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>15. Model Packaging &amp; Export</strong></p></td>
+<td><p>Train job success</p></td>
+<td><p>Best checkpoint</p></td>
+<td><p>Export TorchScript/ONNX; TensorRT build; INT8 calibration on repset; embed metadata</p></td>
+<td><p>Versioned model bundle in S3 + ECR image</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>16. Model Evaluation &amp; Robustness Suite</strong></p></td>
+<td><p>New bundle ready</p></td>
+<td><p>Golden &amp; slice datasets, model bundle</p></td>
+<td><p>Compute mAP/mIoU/AP by slice; calibration (ECE); robustness (noise, blur, weather); latency on target; write eval report</p></td>
+<td><p>Eval JSON, W&amp;B reports, promotion decision signal</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>17. Drive Replay &amp; Simulation Validation</strong></p></td>
+<td><p>Gate before promotion</p></td>
+<td><p>Model bundle, replay logs/sim scenarios</p></td>
+<td><p>Re-run model on historical incidents; sim-in-loop perturbations; compare to baselines; safety predicates</p></td>
+<td><p>Replay KPIs, safety deltas, sign-off artifacts</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>18. Model Registry &amp; Promotion Gate</strong></p></td>
+<td><p>Eval passed</p></td>
+<td><p>W&amp;B run, artifacts, reports</p></td>
+<td><p>Create/advance model version in W&amp;B Registry; attach evidence (datasets, evals); request approvals</p></td>
+<td><p>Staged model with audit trail</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>19. Canary/Shadow Deployment</strong></p></td>
+<td><p>Promotion approved</p></td>
+<td><p>Container image, serving config</p></td>
+<td><p>Deploy to EKS Triton; <strong>shadow</strong> route same traffic for compare; canary small %; watch SLOs</p></td>
+<td><p>Shadow/canary live; rollout decision inputs</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>20. Online A/B and Feature Flag Switchboard</strong></p></td>
+<td><p>After shadow confidence</p></td>
+<td><p>Routing config, guardrails</p></td>
+<td><p>Route by geography/scene type; progressive exposure; automatic pause on SLO breach</p></td>
+<td><p>Controlled rollout; experiment results</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>21. Edge-Compatible Build &amp; OTA Packaging</strong></p></td>
+<td><p>Edge target release</p></td>
+<td><p>Model bundle, calibrations</p></td>
+<td><p>Further quantization/distillation; embed runtime checks; produce OTA package manifest</p></td>
+<td><p>Edge package ready; manifest signed</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>22. Over-The-Air Delivery</strong></p></td>
+<td><p>Release ticket</p></td>
+<td><p>OTA package</p></td>
+<td><p>Stage to distribution; phased fleets; collect post-deploy telemetry hooks</p></td>
+<td><p>OTA rollout status; feedback telemetry</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>23. Online Inference Service Ops</strong></p></td>
+<td><p>Continuous</p></td>
+<td><p>Live frames/events</p></td>
+<td><p>Triton dynamic batching; health probes; autoscale; backpressure; cache hot features</p></td>
+<td><p>Real-time predictions; health metrics</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>24. Monitoring &amp; Observability</strong></p></td>
+<td><p>Continuous</p></td>
+<td><p>Metrics/logs/traces</p></td>
+<td><p>Infra: CPU/GPU/mem; App: p50/p95/p99, QPS, error rate; ML: confidences, slice metrics; dashboards &amp; alerts</p></td>
+<td><p>Grafana/W&amp;B dashboards; alert incidents</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>25. Data/Output Drift Detection</strong></p></td>
+<td><p>Hourly/daily</p></td>
+<td><p>Live feature/output dists, baseline</p></td>
+<td><p>PSI/KS tests; concept drift on outputs; slice drifts; generate tickets if thresholds crossed</p></td>
+<td><p>Drift reports; retrain triggers</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>26. Continual Learning Trigger</strong></p></td>
+<td><p>Drift or failure quota exceeded</p></td>
+<td><p>Drift report, failure buckets</p></td>
+<td><p>Open labeling tasks; schedule mining; enqueue retraining DAG</p></td>
+<td><p>Approved retraining request</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>27. Automated Retraining</strong></p></td>
+<td><p>Triggered</p></td>
+<td><p>Updated datasets</p></td>
+<td><p>Re-run 13→18 sequence; compare to current prod; promote only on net gain</p></td>
+<td><p>New candidate model version</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>28. Testing in Production (Safety Predicates)</strong></p></td>
+<td><p>Pre/post rollout</p></td>
+<td><p>Live predictions</p></td>
+<td><p>Real-time rules: sanity, rate-limit, confidence thresholds, disagreement with baselines; automatic fallback</p></td>
+<td><p>Predicate logs; auto-disable signals</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>29. Cost Telemetry &amp; Optimization</strong></p></td>
+<td><p>Daily/weekly</p></td>
+<td><p>AWS billing, job metrics</p></td>
+<td><p>Attribute cost to datasets/models; spot utilization; right-size; S3 tiering candidates</p></td>
+<td><p>Cost reports; actions (tiering, instance changes)</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>30. Data Lifecycle &amp; Tiering</strong></p></td>
+<td><p>Weekly</p></td>
+<td><p>Access stats, retention policy</p></td>
+<td><p>Move cold data to Glacier/Intelligent-Tiering; compact small files; delete temp</p></td>
+<td><p>Lower storage cost; lifecycle logs</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>31. Security &amp; Compliance Scans</strong></p></td>
+<td><p>CI and nightly</p></td>
+<td><p>Docker images, IaC, deps</p></td>
+<td><p>Trivy/Grype scans; IaC checks; SBOM; sign containers; policy-as-code gates</p></td>
+<td><p>Security reports; signed artifacts</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>32. Governance: Datasheets &amp; Model Cards</strong></p></td>
+<td><p>On promotion</p></td>
+<td><p>Datasets, evals, risks</p></td>
+<td><p>Auto-generate Datasheets/Model Cards with metrics, slices, risks, mitigations</p></td>
+<td><p>Versioned governance docs</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>33. Incident Review &amp; RCA Pack</strong></p></td>
+<td><p>On alert or incident</p></td>
+<td><p>Logs, traces, frames</p></td>
+<td><p>Bundle timeline, inputs/outputs, saliency, SHAP for tabular, predicates fired; propose fixes</p></td>
+<td><p>RCA doc; backlog items</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>34. Experiment Lifecycle &amp; Artifact GC</strong></p></td>
+<td><p>Weekly</p></td>
+<td><p>W&amp;B projects, S3 buckets</p></td>
+<td><p>Auto-archive stale runs; GC tmp artifacts; keep winners and governance sets</p></td>
+<td><p>Cleaned registry; controlled storage</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>35. GPU Capacity &amp; Queue Scheduler</strong></p></td>
+<td><p>Continuous</p></td>
+<td><p>Job queue, quotas</p></td>
+<td><p>Bin-pack training/inference; fairness across teams; preemption for priority</p></td>
+<td><p>Predictable throughput; SLA adherence</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>36. Map/Trigger Policy Update</strong></p></td>
+<td><p>Monthly or new roadworks</p></td>
+<td><p>Map deltas, ops inputs</p></td>
+<td><p>Update road rules, construction zones; refresh trigger heuristics</p></td>
+<td><p>Updated enrichment; fewer false alarms</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<hr class="docutils" />
+<section id="team-and-roles">
+<h3>Team and Roles<a class="headerlink" href="#team-and-roles" title="Permalink to this heading">¶</a></h3>
+<div class="table-wrapper colwidths-auto docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Category</p></th>
+<th class="head"><p>Tasks Covered</p></th>
+<th class="head"><p>Primary Owner</p></th>
+<th class="head"><p>Supporting Roles</p></th>
+<th class="head"><p>Notes / Hand-offs</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Data Ingestion &amp; Foundations</strong></p></td>
+<td><p><strong>1</strong> Ingestion, <strong>2</strong> Integrity &amp; PII, <strong>3</strong> Sync &amp; Convert, <strong>4</strong> Metadata, <strong>5</strong> Map/Weather Enrichment</p></td>
+<td><p><strong>Data Engineering</strong></p></td>
+<td><p>Platform Eng, Security, PM</p></td>
+<td><p>Hand off enriched, validated data and catalogs to ML for mining and training.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Scene Understanding &amp; Data Mining</strong></p></td>
+<td><p><strong>6</strong> Scene Detection &amp; Triggers, <strong>7</strong> Vector Index, <strong>8</strong> Scenario Mining, <strong>9</strong> Auto-Labeling, <strong>10</strong> Human QA, <strong>11</strong> Golden/Slice Builder, <strong>12</strong> Offline Mining</p></td>
+<td><p><strong>ML/MLOps Engineer</strong></p></td>
+<td><p>Label Ops, Data Eng, PM</p></td>
+<td><p>You led trigger design, embedding search, mining strategy, auto-labeling rules, and curated “golden” &amp; slice datasets; Label Ops handled adjudication in 10 with your sampling/QA guidelines.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Model Training &amp; Experimentation</strong></p></td>
+<td><p><strong>13</strong> Distributed Training, <strong>14</strong> HPO/Sweeps</p></td>
+<td><p><strong>ML/MLOps Engineer</strong></p></td>
+<td><p>Platform Eng, Data Eng</p></td>
+<td><p>You owned training pipelines, W&amp;B runs/artifacts, and budgeted sweeps; Platform Eng provisioned GPUs and job templates.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Packaging, Evaluation &amp; Promotion</strong></p></td>
+<td><p><strong>15</strong> Packaging/Export, <strong>16</strong> Eval &amp; Robustness, <strong>17</strong> Drive Replay/Sim, <strong>18</strong> Registry &amp; Promotion</p></td>
+<td><p>ML Engineer</p></td>
+<td><p>Platform Eng, Simulation Eng, PM/Safety</p></td>
+<td><p>ML leads eval design and reports; Simulation validates safety on replays; PM/Safety approves promotion in registry.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Deployment &amp; Serving</strong></p></td>
+<td><p><strong>19</strong> Canary/Shadow, <strong>20</strong> A/B &amp; Flags, <strong>21</strong> Edge Build &amp; OTA, <strong>22</strong> OTA Delivery, <strong>23</strong> Online Service Ops, <strong>24</strong> Observability</p></td>
+<td><p>Platform Engineering</p></td>
+<td><p>ML Engineer, SRE, PM</p></td>
+<td><p>Platform runs Triton/TorchServe on EKS, rollouts with canary/shadow; ML supplies model contracts and latency SLOs; SRE manages on-call.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Monitoring &amp; Continual Learning</strong></p></td>
+<td><p><strong>25</strong> Drift Detection, <strong>26</strong> Continual Learning Trigger, <strong>27</strong> Automated Retraining, <strong>28</strong> Testing in Prod (Safety Predicates)</p></td>
+<td><p><strong>ML/MLOps Engineer</strong></p></td>
+<td><p>Platform Eng, Data Eng, PM/Safety</p></td>
+<td><p>You defined drift metrics, thresholds, and retrain triggers; wired safety predicates and rollback signals; coordinated retrain DAGs back to training gates.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Cost, Lifecycle, Compliance</strong></p></td>
+<td><p><strong>29</strong> Cost Telemetry, <strong>30</strong> Data Lifecycle/Tiering, <strong>31</strong> Security Scans, <strong>32</strong> Datasheets/Model Cards</p></td>
+<td><p>Platform Engineering</p></td>
+<td><p>FinOps, Security, ML Engineer, PM</p></td>
+<td><p>Cost attribution by job/model; lifecycle S3 tiering; SBOM/signing; ML contributes governance artifacts and model cards.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Reliability, Capacity, Maps</strong></p></td>
+<td><p><strong>33</strong> Incident RCA, <strong>34</strong> Experiment GC, <strong>35</strong> GPU Capacity &amp; Queues, <strong>36</strong> Map/Trigger Policy Update</p></td>
+<td><p>SRE/Platform Engineering</p></td>
+<td><p>ML Engineer, Map/Ops, PM</p></td>
+<td><p>SRE drives RCAs; Platform handles capacity/bin-packing; ML provides failure buckets and updates trigger policies with Map/Ops.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr class="docutils" />
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024, Deepak Karkala
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Workflows, Team, Roles</a><ul>
+<li><a class="reference internal" href="#id1"></a><ul>
+<li><a class="reference internal" href="#workflows">Workflows</a></li>
+<li><a class="reference internal" href="#team-and-roles">Team and Roles</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=b3ba4146"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/scripts/furo.js?v=4e2eecee"></script>
+    </body>
+</html>

@@ -1,0 +1,872 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" />
+
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/><!-- Generated with Sphinx 7.1.2 and Furo 2024.05.06 -->
+        <title>Scene Understanding &amp; Data Mining - Home</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=387cc868" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=36a5483c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/style.css?v=8a7ff5ee" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" /
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">Home</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  
+  <span class="sidebar-brand-text">Home</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../projects/index.html">Projects</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Projects</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/nlp/index.html">Natural Language Processing</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of Natural Language Processing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/airbnb_alternate_search/about/index.html">Airbnb Listing description based Semantic Search</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/cv/index.html">Computer Vision</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Computer Vision</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/ecommerce_image_segmentation/about/index.html">Image Segmentation for Ecommerce Products</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/ml/index.html">Machine Learning</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of Machine Learning</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/airbnb_price_modeling/about/index.html">Predictive Price Modeling for Airbnb listings</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../publications/index.html">Patents, Papers, Thesis</a></li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../mlops/index.html">MLOps</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of MLOps</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/ch1_problem_framing.html">ML Problem framing</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of ML Problem framing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../mlops/ch2_blueprint_operational_strategy.html">The MLOps Blueprint &amp; Operational Strategy</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/ch2a_platform/index.html">ML Platforms</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of ML Platforms</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch2a_platform/ml_platforms.html">ML Platforms: How to</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch2a_platform/uber.html">Uber Michelangelo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch2a_platform/linkedin.html">LinkedIn DARWIN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch2a_platform/netflix.html">Netflix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch2a_platform/shopify.html">Shopify Merlin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch2a_platform/zomato.html">Zomato: Real-time ML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch2a_platform/coveo.html">Coveo: MLOPs at reasonable scale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch2a_platform/monzo.html">Monzo ML Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch2a_platform/didact.html">Didact AI</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/ch3_project_planning/index.html">Project Planning</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of Project Planning</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch3_project_planning/prd.html">Project Requirements Document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch3_project_planning/tech_stack.html">Tech Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch3_project_planning/config_management.html">Config Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch3_project_planning/pipeline_design.html">Pipeline Design</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch3_project_planning/environment_strategy.html">Environment Strategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch3_project_planning/cicd_branching_model.html">CI/CD Strategy and Branching Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch3_project_planning/directory_structure.html">Directory Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch3_project_planning/env_branchind_cicd_deployment.html">Environments, Branching, CI/CD, and Deployments Explained</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch3_project_planning/project_management.html">Project Management for MLOps</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/ch4_data_discovery/index.html">Data Sourcing, Discovery</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of Data Sourcing, Discovery</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch4_data_discovery/data_sourcing_discovery.html">Data Sourcing, Discovery &amp; Understanding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch4_data_discovery/ch4_project.html">Project-Trending Now: Implementing Web Scraping, Ingestion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch4_data_discovery/industry_case_studies.html">Data Discovery Platforms: Industry Case Studies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch4_data_discovery/facebook_nemo.html">Facebook: Nemo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch4_data_discovery/netflix_metacat.html">Netflix Metacat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch4_data_discovery/uber_databook.html">Uber Databook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch4_data_discovery/linkedin_datahub.html">LinkedIn Datahub</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/ch7_model_development/index.html">Model Development, Tuning, Selection, Ensembles, Calibration</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle navigation of Model Development, Tuning, Selection, Ensembles, Calibration</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch7_model_development/ch7_model_development.html">Chapter 7: Model Development</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch7_model_development/dl_training_playbook.html">How to train DL Models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch7_model_development/development.html">Model Development</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch7_model_development/industry_lessons.html">Model Development: Lessons from production systems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch7_model_development/ensembles.html"><strong>Model Ensembles</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch7_model_development/selection.html">Model Selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch7_model_development/tuning_hypopt.html">Hyperparameter Optimization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch7_model_development/expt_tracking.html">ML Expt tracking, Data Lineage, Model Registry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch7_model_development/calibration.html">Model Calibration</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/ch10_deployment_serving/index.html">Model Deployment &amp; Serving</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" role="switch" type="checkbox"/><label for="toctree-checkbox-11"><div class="visually-hidden">Toggle navigation of Model Deployment &amp; Serving</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch10_deployment_serving/ch10_deployment_serving.html">Chapter 10: Deployment &amp; Serving</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch10_deployment_serving/guide_deployment_serving.html">Guide: Model Deployment &amp; Serving</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch10_deployment_serving/guide_inference_stack.html">Deep Dive: Inference Stack</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/ch11_monitor_observe_drift/index.html">Monitoring, Observability, Drift, Interpretability</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" role="switch" type="checkbox"/><label for="toctree-checkbox-12"><div class="visually-hidden">Toggle navigation of Monitoring, Observability, Drift, Interpretability</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch11_monitor_observe_drift/ch11_monitor_observe_drift.html">Chapter 11: Monitoring, Observability, Drifts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch11_monitor_observe_drift/guide_monitor_observe_drift.html">Guide: ML System Failures, Data Distribution Shifts, Monitoring, and Observability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch11_monitor_observe_drift/guide_interpretability_shap_lime.html">Interpretability, SHAP, LIME</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch11_monitor_observe_drift/guide_stack.html">Prometheus + Grafana and ELK Stacks</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../mlops/ch12_retrain_online_testing/index.html">Continual learning, Retraining, A/B Testing</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" role="switch" type="checkbox"/><label for="toctree-checkbox-13"><div class="visually-hidden">Toggle navigation of Continual learning, Retraining, A/B Testing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch12_retrain_online_testing/ch12_continual_learning_prod_testing.html">Chapter 12: Continual Learning &amp; Production Testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch12_retrain_online_testing/guide_continual_learning.html">Continual Learning &amp; Model Retraining</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch12_retrain_online_testing/guide_ab_testing.html">A/B Testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch12_retrain_online_testing/guide_ab_testing_industry_lessons.html">A/B Testing &amp; Experimentation: Industry lessons</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch12_retrain_online_testing/guide_prod_testing_expt.html">Guide: Production Testing &amp; Experimentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mlops/ch12_retrain_online_testing/dr_prod_testing_expt.html">Deep Research: Production Testing &amp; Experimentation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../lld/index.html">Low Level Design</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" role="switch" type="checkbox"/><label for="toctree-checkbox-14"><div class="visually-hidden">Toggle navigation of Low Level Design</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../lld/parking_lot.html">Parking Lot</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../visualization/index.html">Data Visualization Projects</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="../../_sources/past_experiences/adas_engine/ch7_scene_understanding_data_mining.md.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="scene-understanding-data-mining">
+<h1>Scene Understanding &amp; Data Mining<a class="headerlink" href="#scene-understanding-data-mining" title="Permalink to this heading">¶</a></h1>
+<section id="id1">
+<h2><a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<p>Perfect—here’s a clear, implementation-ready expansion of <strong>Workflows 6–12: Scene Understanding &amp; Data Mining</strong>. I’ve kept each workflow consistent in structure so your team can lift this straight into design docs and tickets.</p>
+<hr class="docutils" />
+<section id="scene-detection-triggers">
+<h3>6) Scene Detection &amp; Triggers<a class="headerlink" href="#scene-detection-triggers" title="Permalink to this heading">¶</a></h3>
+<p><strong>Trigger</strong></p>
+<ul class="simple">
+<li><p>New drive finishes Foundations (Bronze → Silver), or a <strong>telemetry trigger</strong> arrives (e.g., ABS, disengagement, harsh brake).</p></li>
+</ul>
+<p><strong>Inputs</strong></p>
+<ul class="simple">
+<li><p>Time-synced Silver assets: camera keyframes/clips, LiDAR sweeps/packets, CAN/IMU time series.</p></li>
+<li><p>Precomputed detections from Foundations (e.g., coarse lanes/objects).</p></li>
+<li><p>Map tiles/metadata (road class/intersection).</p></li>
+<li><p>Shadow vs prod model outputs (if available).</p></li>
+</ul>
+<p><strong>Step-by-step (with guardrails)</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Segment</strong> the drive into candidate scenes</p>
+<ul class="simple">
+<li><p>Adaptive segmentation on change-points: speed/accel deltas, heading/yaw rate, road topology transitions, stop→go, intersection proximity.</p></li>
+<li><p>Merge/split logic: enforce min scene length (e.g., 3–60s), bridge micro-gaps (&lt;500 ms).</p></li>
+</ul>
+</li>
+<li><p><strong>Detect &amp; enrich</strong></p>
+<ul class="simple">
+<li><p>Lightweight TensorRT/TorchScript models for 2D objects, lane edges, traffic-light state; ego-event heuristics from CAN/IMU (cut-in, hard brake, tailgating).</p></li>
+<li><p>Optional OOD/uncertainty probes (entropy, ODIN) and <strong>prod vs shadow disagreement</strong> hooks.</p></li>
+</ul>
+</li>
+<li><p><strong>Score interestingness</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">score</span> <span class="pre">=</span> <span class="pre">α·rarity</span> <span class="pre">+</span> <span class="pre">β·uncertainty</span> <span class="pre">+</span> <span class="pre">γ·disagreement</span> <span class="pre">+</span> <span class="pre">δ·diversity_margin</span></code>.</p></li>
+<li><p>Rarity from rolling histograms per slice (weather/time/geo).</p></li>
+</ul>
+</li>
+<li><p><strong>Validate</strong></p>
+<ul class="simple">
+<li><p><strong>Great Expectations</strong>: schema, timestamp monotonicity, frame-rate bounds, sensor coverage per scene.</p></li>
+<li><p>Sanity plots sampled to S3; spot-check top-N scenes by score.</p></li>
+</ul>
+</li>
+<li><p><strong>Emit triggers</strong></p>
+<ul class="simple">
+<li><p>Push <code class="docutils literal notranslate"><span class="pre">trigger_flags</span></code> (e.g., <code class="docutils literal notranslate"><span class="pre">disengagement=true</span></code>, <code class="docutils literal notranslate"><span class="pre">ood=true</span></code>) to EventBridge/SQS for downstream miners.</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>Outputs</strong></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">scene_segments.parquet</span></code> fields:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">scene_id</span><span class="p">,</span> <span class="n">drive_id</span><span class="p">,</span> <span class="n">vehicle_id</span><span class="p">,</span> <span class="n">start_ts</span><span class="p">,</span> <span class="n">end_ts</span><span class="p">,</span> <span class="n">clip_uri</span><span class="p">[],</span> <span class="n">tags</span><span class="p">[],</span> <span class="n">trigger_flags</span><span class="p">[],</span> <span class="n">score</span><span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scene_events.parquet</span></code> (per-event rows with attributes, e.g., {type, ts, value, confidence}).</p></li>
+</ul>
+<p><strong>Storage &amp; Indexing</strong></p>
+<ul class="simple">
+<li><p><strong>S3 Silver</strong> (Parquet, partitioned by dt/vehicle_id).</p></li>
+<li><p><strong>Glue/Athena</strong> external tables for analytics.</p></li>
+<li><p><strong>DynamoDB</strong>: per-scene manifest (fast lookups).</p></li>
+<li><p><strong>OpenSearch</strong>: scene docs for keyword/facet search.</p></li>
+</ul>
+<p><strong>Core tooling</strong></p>
+<ul class="simple">
+<li><p><strong>Airflow</strong> DAG → <strong>EMR Spark</strong> or <strong>AWS Batch</strong> containers; <strong>Great Expectations</strong>; <strong>OpenSearch</strong>; <strong>DynamoDB</strong>; <strong>Weights &amp; Biases</strong> (runs + artifacts).</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="vector-index-similarity-search">
+<h3>7) Vector Index (Similarity Search)<a class="headerlink" href="#vector-index-similarity-search" title="Permalink to this heading">¶</a></h3>
+<p><strong>Trigger</strong></p>
+<ul class="simple">
+<li><p>Batch completion of #6 (new scenes available).</p></li>
+</ul>
+<p><strong>Inputs</strong></p>
+<ul class="simple">
+<li><p>Scene keyframes (images), clip thumbnails, LiDAR BEV features, scene tags/notes.</p></li>
+</ul>
+<p><strong>Step-by-step (with guardrails)</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Embed</strong></p>
+<ul class="simple">
+<li><p>Images: CLIP ViT-B/32 (or ResNet-50) embeddings per keyframe; optionally average over clip.</p></li>
+<li><p>LiDAR: BEV encoder or pooled PointNet++ features.</p></li>
+<li><p>Text: sentence embeddings (tags/notes).</p></li>
+<li><p>Concatenate or keep <strong>modality-specific</strong> indices (recommended).</p></li>
+</ul>
+</li>
+<li><p><strong>Normalize &amp; reduce</strong></p>
+<ul class="simple">
+<li><p>L2-normalize; optional PCA→256D; whitening for dense IVF/PQ.</p></li>
+</ul>
+</li>
+<li><p><strong>Index build</strong></p>
+<ul class="simple">
+<li><p><strong>FAISS</strong>: IVF-PQ (nlist, m, nbits tuned to latency), or</p></li>
+<li><p><strong>OpenSearch k-NN</strong>: HNSW (M, ef_construction), per-scene document with vector field.</p></li>
+</ul>
+</li>
+<li><p><strong>Validate</strong></p>
+<ul class="simple">
+<li><p>Retrieval smoke tests (query-by-example must return near-duplicates).</p></li>
+<li><p>Offline <strong>mAP&#64;K</strong> and duplicate recall; log to <strong>W&amp;B</strong>.</p></li>
+<li><p><strong>Evidently</strong> drift on embedding stats (mean/var, cov trace); alert on large shift.</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>Outputs</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">embeddings.parquet</span></code> (uri, scene_id, modality, vector[]).</p></li>
+<li><p>FAISS artifacts (<code class="docutils literal notranslate"><span class="pre">embeddings.faiss</span></code>, <code class="docutils literal notranslate"><span class="pre">pca.npy</span></code>) <strong>or</strong> OpenSearch k-NN index.</p></li>
+</ul>
+<p><strong>Storage &amp; Indexing</strong></p>
+<ul class="simple">
+<li><p><strong>S3 Silver</strong> (vectors + FAISS); <strong>Glue</strong> for vectors; <strong>OpenSearch</strong> for real-time k-NN search.</p></li>
+</ul>
+<p><strong>Core tooling</strong></p>
+<ul class="simple">
+<li><p><strong>SageMaker Processing</strong>/<strong>EMR</strong> for batch compute; <strong>FAISS</strong>/<strong>OpenSearch k-NN</strong>; <strong>Evidently</strong>; <strong>W&amp;B</strong>.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="scenario-mining-programmatic-query-ui">
+<h3>8) Scenario Mining (Programmatic / Query UI)<a class="headerlink" href="#scenario-mining-programmatic-query-ui" title="Permalink to this heading">¶</a></h3>
+<p><strong>Trigger</strong></p>
+<ul class="simple">
+<li><p>On-demand engineer queries, scheduled gap-analysis, or post-deployment error mining.</p></li>
+</ul>
+<p><strong>Inputs</strong></p>
+<ul class="simple">
+<li><p>Scene catalog (#6), vector index (#7), telemetry triggers, map/weather joins.</p></li>
+</ul>
+<p><strong>Step-by-step (with guardrails)</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Unified Query</strong> (GraphQL via <strong>AWS AppSync</strong>)</p>
+<ul class="simple">
+<li><p>Combine: structured filters (time range, weather, road type), <strong>OpenSearch</strong> facets/text, and vector similarity (k-NN).</p></li>
+<li><p>Example filter: <code class="docutils literal notranslate"><span class="pre">weather</span> <span class="pre">in</span> <span class="pre">[rain,snow]</span> <span class="pre">∧</span> <span class="pre">time_of_day=dusk</span> <span class="pre">∧</span> <span class="pre">tags.contains('cyclist')</span> <span class="pre">∧</span> <span class="pre">kNN(image_vec,</span> <span class="pre">q)</span> <span class="pre">&lt;</span> <span class="pre">τ</span></code>.</p></li>
+</ul>
+</li>
+<li><p><strong>Long-tail mining</strong></p>
+<ul class="simple">
+<li><p>Rarity scoring vs fleet distribution; enforce <strong>diversity</strong> (min pairwise distance); slice coverage constraints (ensure each critical slice ≥ target).</p></li>
+<li><p>Budgeted selection under storage/labeling limits.</p></li>
+</ul>
+</li>
+<li><p><strong>Validate</strong></p>
+<ul class="simple">
+<li><p>Deduplicate via perceptual hash &amp; embedding distance.</p></li>
+<li><p>Balance report by slice; human <strong>UI spot QA</strong> (sampled thumbnails).</p></li>
+</ul>
+</li>
+<li><p><strong>Materialize</strong></p>
+<ul class="simple">
+<li><p>Emit <strong>dataset spec</strong> and clip lists; version with <strong>DVC</strong> and <strong>W&amp;B Artifacts</strong>.</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>Outputs</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">dataset_spec.yaml</span></code> (filters, slices, version pins), curated clip URI lists for <code class="docutils literal notranslate"><span class="pre">train/val/test</span></code>.</p></li>
+</ul>
+<p><strong>Storage &amp; Indexing</strong></p>
+<ul class="simple">
+<li><p><strong>S3 Gold</strong> <code class="docutils literal notranslate"><span class="pre">curation/...</span></code>; <strong>DVC</strong> tags/locks; saved queries in <strong>DynamoDB</strong>; discoverability in <strong>OpenSearch</strong>.</p></li>
+</ul>
+<p><strong>Core tooling</strong></p>
+<ul class="simple">
+<li><p><strong>AppSync (GraphQL)</strong>, <strong>OpenSearch</strong>, <strong>Athena</strong>, <strong>DVC</strong>, internal React curation UI.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="auto-labeling-offboard">
+<h3>9) Auto-Labeling (Offboard)<a class="headerlink" href="#auto-labeling-offboard" title="Permalink to this heading">¶</a></h3>
+<p><strong>Trigger</strong></p>
+<ul class="simple">
+<li><p>New curated set from #8 (or nightly bulk run).</p></li>
+</ul>
+<p><strong>Inputs</strong></p>
+<ul class="simple">
+<li><p>Curated clips; camera/LiDAR calibration; map layers (speed limits, lanes); optional prior labels.</p></li>
+</ul>
+<p><strong>Step-by-step (with guardrails)</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Run offboard labelers (GPU)</strong></p>
+<ul class="simple">
+<li><p>2D detection/segmentation (e.g., YOLOX / Mask R-CNN), 3D detection (CenterPoint/Pillar), multi-camera fusion (BEVFusion-style), tracking (ByteTrack/DeepSORT), lane topology (LaneATT or lane graph extractor).</p></li>
+<li><p>Temporal smoothing (Kalman/IMM); identity stitching across cameras.</p></li>
+</ul>
+</li>
+<li><p><strong>Confidence gating</strong></p>
+<ul class="simple">
+<li><p>Keep high-confidence pseudo-labels; route uncertain/rare classes to #10.</p></li>
+<li><p>Calibrate thresholds per slice (e.g., night/rain).</p></li>
+</ul>
+</li>
+<li><p><strong>Self-consistency checks</strong></p>
+<ul class="simple">
+<li><p>Cross-view re-projection residuals, track continuity, kinematics plausibility (speed vs displacement), lane adherence.</p></li>
+</ul>
+</li>
+<li><p><strong>Validate</strong></p>
+<ul class="simple">
+<li><p>Label schema conformance; IoU and AP deltas against a <strong>held-out human-labeled subset</strong>; per-class coverage/imbalance report; <strong>ECE</strong> for calibration.</p></li>
+<li><p>Gate deployment of labels on quality thresholds; log to <strong>W&amp;B</strong>.</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>Outputs</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">labels_auto/</span></code> (COCO/Waymo-style JSON), tracks, lane vectors/graphs, scene graphs; <code class="docutils literal notranslate"><span class="pre">quality_report.json</span></code>.</p></li>
+</ul>
+<p><strong>Storage &amp; Indexing</strong></p>
+<ul class="simple">
+<li><p><strong>S3 Gold</strong>; summary tables in <strong>Glue/Athena</strong>; <strong>W&amp;B Artifacts</strong> (dataset + model provenance).</p></li>
+</ul>
+<p><strong>Core tooling</strong></p>
+<ul class="simple">
+<li><p><strong>EKS/Batch</strong> GPU jobs; PyTorch/TensorRT; multi-view fusion; <strong>W&amp;B</strong> for metrics/artifacts.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="human-qa-hitl">
+<h3>10) Human QA (HITL)<a class="headerlink" href="#human-qa-hitl" title="Permalink to this heading">¶</a></h3>
+<p><strong>Trigger</strong></p>
+<ul class="simple">
+<li><p>Low-confidence/uncertain slices from #9; periodic audit sampling.</p></li>
+</ul>
+<p><strong>Inputs</strong></p>
+<ul class="simple">
+<li><p>Auto-labels + media; labeling ontology (versioned); guidelines &amp; golden tasks.</p></li>
+</ul>
+<p><strong>Step-by-step (with guardrails)</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Priority queue</strong></p>
+<ul class="simple">
+<li><p>Order by uncertainty, rarity, business priority; enforce per-slice quotas.</p></li>
+</ul>
+</li>
+<li><p><strong>Annotate/verify</strong></p>
+<ul class="simple">
+<li><p>Labelers in <strong>Labelbox</strong> or <strong>SageMaker Ground Truth</strong>; consensus labeling for critical classes; adjudication by senior reviewers.</p></li>
+</ul>
+</li>
+<li><p><strong>Quality control</strong></p>
+<ul class="simple">
+<li><p>Blind overlap to compute <strong>IAA (κ/α)</strong>; golden tasks; geometric linting (box aspect, mask holes).</p></li>
+</ul>
+</li>
+<li><p><strong>Validate</strong></p>
+<ul class="simple">
+<li><p>Promote only if <code class="docutils literal notranslate"><span class="pre">precision&#64;accept</span> <span class="pre">≥</span> <span class="pre">target</span></code> and <strong>IAA ≥ threshold</strong>; otherwise route feedback to guidelines or auto-labeler thresholds.</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>Outputs</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">labels_human/</span></code> (final truths), <strong>diffs vs auto-labels</strong>, QA reports, updated ontology version.</p></li>
+</ul>
+<p><strong>Storage &amp; Indexing</strong></p>
+<ul class="simple">
+<li><p><strong>S3 Gold</strong> human labels; tool-native label DB for audit; <strong>DVC</strong> dataset tags.</p></li>
+</ul>
+<p><strong>Core tooling</strong></p>
+<ul class="simple">
+<li><p><strong>Labelbox</strong>/<strong>Ground Truth</strong>, reviewer dashboard, webhooks → S3; <strong>W&amp;B</strong> lineage links.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="golden-slice-builder">
+<h3>11) Golden / Slice Builder<a class="headerlink" href="#golden-slice-builder" title="Permalink to this heading">¶</a></h3>
+<p><strong>Trigger</strong></p>
+<ul class="simple">
+<li><p>After #9–#10 converge; prior to training cycles or benchmark refresh.</p></li>
+</ul>
+<p><strong>Inputs</strong></p>
+<ul class="simple">
+<li><p>Labeled pools (auto + human), scenario specs from #8, slice definitions (weather/time/geo/object).</p></li>
+</ul>
+<p><strong>Step-by-step (with guardrails)</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Assemble &amp; balance</strong></p>
+<ul class="simple">
+<li><p>Stratified sampling to meet per-slice minima; handle class imbalance (reweighing or oversample rare).</p></li>
+<li><p>Respect temporal/geographic boundaries to avoid leakage.</p></li>
+</ul>
+</li>
+<li><p><strong>Freeze &amp; version</strong></p>
+<ul class="simple">
+<li><p>Emit <code class="docutils literal notranslate"><span class="pre">*.manifest</span></code> with absolute URIs + checksums; produce <strong>Datasheet for Datasets</strong> and populate the <strong>data section of the Model Card</strong>; register in <strong>W&amp;B Artifacts</strong> + tag in <strong>DVC</strong>.</p></li>
+</ul>
+</li>
+<li><p><strong>Validate</strong></p>
+<ul class="simple">
+<li><p><strong>Leakage checks</strong>: no overlapping <code class="docutils literal notranslate"><span class="pre">scene_id/drive_id</span></code> across splits; near-duplicate screening via embedding distance.</p></li>
+<li><p>Baseline eval on Golden validation set; per-slice metrics recorded; gate if regressions vs last baseline.</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>Outputs</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">golden_train/val/test.manifest</span></code> (with hashes), <code class="docutils literal notranslate"><span class="pre">slices.yaml</span></code>, <code class="docutils literal notranslate"><span class="pre">datasheet.md</span></code>, <code class="docutils literal notranslate"><span class="pre">model_card.md</span></code> (data section).</p></li>
+</ul>
+<p><strong>Storage &amp; Indexing</strong></p>
+<ul class="simple">
+<li><p><strong>S3 Gold</strong>; <strong>DVC</strong> &amp; semantic tags; <strong>Glue/Athena</strong> tables for audits; <strong>W&amp;B</strong> artifact registry.</p></li>
+</ul>
+<p><strong>Core tooling</strong></p>
+<ul class="simple">
+<li><p><strong>DVC</strong>, <strong>Athena</strong>, <strong>Great Expectations</strong> (row-level rules), <strong>W&amp;B Artifacts</strong>.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="offline-mining-continuous-error-drift-discovery">
+<h3>12) Offline Mining (Continuous Error/Drift Discovery)<a class="headerlink" href="#offline-mining-continuous-error-drift-discovery" title="Permalink to this heading">¶</a></h3>
+<p><strong>Trigger</strong></p>
+<ul class="simple">
+<li><p>Nightly/weekly schedule; after evals; whenever new prod telemetry/shadow logs land.</p></li>
+</ul>
+<p><strong>Inputs</strong></p>
+<ul class="simple">
+<li><p>Production predictions &amp; telemetry, shadow logs, monitoring slices, last Golden manifest.</p></li>
+</ul>
+<p><strong>Step-by-step (with guardrails)</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Aggregate errors</strong></p>
+<ul class="simple">
+<li><p>Join predictions with ground truth (where available) or proxy outcomes; compute FP/FN by slice; maintain error leaderboards.</p></li>
+</ul>
+</li>
+<li><p><strong>Drift &amp; OOD</strong></p>
+<ul class="simple">
+<li><p><strong>Evidently</strong>: PSI/KS on feature/score distributions vs reference; OOD scores (Mahalanobis/energy).</p></li>
+</ul>
+</li>
+<li><p><strong>Mine candidates</strong></p>
+<ul class="simple">
+<li><p>Seed with top error exemplars → nearest neighbors via vector index (#7) → cluster (HDBSCAN/DBSCAN) to discover themes.</p></li>
+<li><p>Exclude items present in last training set (check against manifests).</p></li>
+</ul>
+</li>
+<li><p><strong>Validate</strong></p>
+<ul class="simple">
+<li><p><strong>Novelty</strong> (embedding distance vs training), <strong>utility</strong> (expected error coverage gain); deduplicate; spot-check sample.</p></li>
+</ul>
+</li>
+<li><p><strong>Emit next round specs</strong></p>
+<ul class="simple">
+<li><p>Produce <code class="docutils literal notranslate"><span class="pre">next_specs.yaml</span></code> + candidate lists for #8; log run in <strong>W&amp;B</strong>.</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>Outputs</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">error_buckets/</span></code> (clustered examples with tags), <code class="docutils literal notranslate"><span class="pre">mined_candidates.parquet</span></code>, <code class="docutils literal notranslate"><span class="pre">next_specs.yaml</span></code>.</p></li>
+</ul>
+<p><strong>Storage &amp; Indexing</strong></p>
+<ul class="simple">
+<li><p><strong>S3 Silver/Gold</strong>; notes to <strong>OpenSearch</strong>; error dashboards in <strong>Athena/QuickSight</strong>.</p></li>
+</ul>
+<p><strong>Core tooling</strong></p>
+<ul class="simple">
+<li><p><strong>Airflow</strong> schedule; <strong>Evidently</strong>; <strong>OpenSearch/FAISS</strong>; <strong>Athena/QuickSight</strong>; <strong>W&amp;B</strong>.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="output-schemas">
+<h3>Output Schemas<a class="headerlink" href="#output-schemas" title="Permalink to this heading">¶</a></h3>
+<ul>
+<li><p><strong>scene_segments.parquet</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">scene_id</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">drive_id</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">vehicle_id</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">start_ts</span><span class="p">:</span><span class="n">ts</span><span class="p">,</span> <span class="n">end_ts</span><span class="p">:</span><span class="n">ts</span><span class="p">,</span>
+<span class="n">clip_uri</span><span class="p">:</span><span class="n">array</span><span class="o">&lt;</span><span class="nb">str</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">tags</span><span class="p">:</span><span class="n">array</span><span class="o">&lt;</span><span class="nb">str</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">trigger_flags</span><span class="p">:</span><span class="n">array</span><span class="o">&lt;</span><span class="nb">str</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">score</span><span class="p">:</span><span class="nb">float</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>embeddings.parquet</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">uri</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">scene_id</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">modality</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">vector</span><span class="p">:</span><span class="n">array</span><span class="o">&lt;</span><span class="n">float32</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">dt</span><span class="p">:</span><span class="n">date</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>dataset_spec.yaml</strong> (excerpt)</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cyclists_dusk_rain_v3</span>
+<span class="nt">slices</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dusk_rain_cyclists</span>
+<span class="w">    </span><span class="nt">filters</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">weather</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">rain</span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="nt">time_of_day</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">dusk</span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="nt">tags</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;cyclist&quot;</span><span class="p p-Indicator">]</span>
+<span class="w">    </span><span class="nt">knn_seed_uri</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;s3://.../seed.jpg&quot;</span>
+<span class="w">    </span><span class="nt">target_count</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5000</span>
+<span class="nt">excludes</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">manifests</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;s3://.../golden_train.manifest&quot;</span><span class="p p-Indicator">]</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>labels_auto/</strong> (COCO-style excerpt)</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span>{ &quot;images&quot;:[{&quot;id&quot;:123,&quot;file_name&quot;:&quot;...&quot;,&quot;scene_id&quot;:&quot;S1&quot;, &quot;ts&quot;:&quot;...&quot;}],
+  &quot;annotations&quot;:[{&quot;image_id&quot;:123,&quot;category_id&quot;:1,&quot;bbox&quot;:[x,y,w,h],&quot;score&quot;:0.92}],
+  &quot;categories&quot;:[{&quot;id&quot;:1,&quot;name&quot;:&quot;pedestrian&quot;}] }
+</pre></div>
+</div>
+</li>
+<li><p><strong>golden_train.manifest</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">uri</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">checksum</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">scene_id</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="nb">slice</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">label_uri</span><span class="p">:</span><span class="nb">str</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>quality_report.json</strong> (auto-labels)</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="nt">&quot;map@50&quot;</span><span class="p">:</span><span class="mf">0.61</span><span class="p">,</span><span class="nt">&quot;ece&quot;</span><span class="p">:</span><span class="mf">0.07</span><span class="p">,</span><span class="nt">&quot;iou_median&quot;</span><span class="p">:</span><span class="mf">0.73</span><span class="p">,</span>
+<span class="w"> </span><span class="nt">&quot;by_class&quot;</span><span class="p">:{</span><span class="nt">&quot;pedestrian&quot;</span><span class="p">:{</span><span class="nt">&quot;ap50&quot;</span><span class="p">:</span><span class="mf">0.58</span><span class="p">,</span><span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="mi">12400</span><span class="p">},</span><span class="nt">&quot;cyclist&quot;</span><span class="p">:{</span><span class="nt">&quot;ap50&quot;</span><span class="p">:</span><span class="mf">0.55</span><span class="p">,</span><span class="nt">&quot;n&quot;</span><span class="p">:</span><span class="mi">4200</span><span class="p">}}}</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<hr class="docutils" />
+<!--
+### Notes & Rationale (grounded by references)
+
+* **Automated scene detection and event triggers** are a best practice to mine “needles in the haystack” efficiently; pipelines enrich scenes with tags like left-turns, hard-brakes, cut-ins, and index them for search (structured in DynamoDB, semantic in OpenSearch) to power downstream curation. &#x20;
+* AWS’s reference workflows for **scene detection** show containerized extraction + Spark/EMR batches, writing scene metadata to S3, DynamoDB, and enabling Athena analytics—exactly the shape of #6.&#x20;
+* **Similarity search / vector indexing** is central for “example-based” discovery and dataset curation; industry data engines expose built-in similarity and metadata search to curate datasets quickly. &#x20;
+* The closed-loop **auto-labeling → HITL QA** pattern (heavy offboard models generate pseudo-labels, humans verify the uncertain tail) is widely adopted to scale labeling throughput while maintaining quality. &#x20;
+* Overall, this stack operationalizes the **“data engine” flywheel** (triggers → mine → label → curate) that accelerates iterations and focuses human effort on the highest-value slices. &#x20;
+
+---
+-->
+</section>
+<section id="validation-strategy-embedded-in-these-workflows">
+<h3>Validation Strategy Embedded in These Workflows<a class="headerlink" href="#validation-strategy-embedded-in-these-workflows" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Schema &amp; quality gates</strong> (Great Expectations) run at scene generation and dataset assembly to prevent corrupt data from propagating.</p></li>
+<li><p><strong>Statistical drift checks</strong> (Evidently) on embedding distributions and slice composition before building the Golden set.</p></li>
+<li><p><strong>Retrieval sanity</strong> on vector indices (near-duplicate recall, mAP&#64;K) ensures the mining UX returns useful neighbors.</p></li>
+<li><p><strong>Label quality</strong> via IAA, golden tasks, and spot checks on auto-labels maintain training-data integrity.</p></li>
+<li><p><strong>Leakage checks</strong> (scene overlap across splits) in #11 safeguard evaluation integrity.</p></li>
+</ul>
+<hr class="docutils" />
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024, Deepak Karkala
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Scene Understanding &amp; Data Mining</a><ul>
+<li><a class="reference internal" href="#id1"></a><ul>
+<li><a class="reference internal" href="#scene-detection-triggers">6) Scene Detection &amp; Triggers</a></li>
+<li><a class="reference internal" href="#vector-index-similarity-search">7) Vector Index (Similarity Search)</a></li>
+<li><a class="reference internal" href="#scenario-mining-programmatic-query-ui">8) Scenario Mining (Programmatic / Query UI)</a></li>
+<li><a class="reference internal" href="#auto-labeling-offboard">9) Auto-Labeling (Offboard)</a></li>
+<li><a class="reference internal" href="#human-qa-hitl">10) Human QA (HITL)</a></li>
+<li><a class="reference internal" href="#golden-slice-builder">11) Golden / Slice Builder</a></li>
+<li><a class="reference internal" href="#offline-mining-continuous-error-drift-discovery">12) Offline Mining (Continuous Error/Drift Discovery)</a></li>
+<li><a class="reference internal" href="#output-schemas">Output Schemas</a></li>
+<li><a class="reference internal" href="#validation-strategy-embedded-in-these-workflows">Validation Strategy Embedded in These Workflows</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=b3ba4146"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/scripts/furo.js?v=4e2eecee"></script>
+    </body>
+</html>
