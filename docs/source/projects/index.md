@@ -3,6 +3,7 @@
 ```{toctree}
 :hidden:
 
+genai_talk_to_characters/index
 nlp/index
 cv/index
 ml/index
@@ -11,7 +12,7 @@ ml/index
 ##
 
 ### Generative AI
-- [RAG]
+- [Talk to TV/Movie Characters](genai_talk_to_characters/index.md)
 
 #### Large Language Models
 - [LLM Pretraining]
