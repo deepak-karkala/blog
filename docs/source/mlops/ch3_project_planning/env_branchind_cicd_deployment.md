@@ -120,7 +120,7 @@ Notice the above workflow focused on deploying a change to the *code* of a pipel
 
 
 **Integrated MLOps Workflow: Code, Pipeline, and Model Deployments**
-<img src="../../_static/mlops/appendix/environments_branching_cicd.svg"/>
+<img src="../../_static/mlops/ch3_planning/environments_branching_cicd.svg" width="60%"/>
 
 
 **Conclusion:**
