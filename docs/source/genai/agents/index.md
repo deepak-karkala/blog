@@ -1,0 +1,7 @@
+# Agents
+
+```{toctree}
+:hidden:
+
+agents
+```
