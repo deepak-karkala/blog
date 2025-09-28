@@ -1,0 +1,1404 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" />
+
+    <link rel="shortcut icon" href="../_static/favicon.ico"/><!-- Generated with Sphinx 7.1.2 and Furo 2024.05.06 -->
+        <title>MLOps End to End Planning - Home</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=387cc868" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=36a5483c" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/style.css?v=8a7ff5ee" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" /
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">Home</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  
+  <span class="sidebar-brand-text">Home</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../past_experiences/index.html">Past Experiences</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Past Experiences</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../past_experiences/iot_anomaly.html">Anomaly Detection in Time Series IoT Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../past_experiences/iot_forecasting.html">Energy Demand Forecasting in Time Series IoT Data</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../past_experiences/adas_engine/index.html">ADAS: Data Engine</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of ADAS: Data Engine</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch0_business_challenge.html">Business Challenge and Goals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch1_ml_problem_framing.html">ML Problem Framing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch2_operational_strategy.html">Planning, Operational Strategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch3_pipelines_workflows.html">Workflows, Team, Roles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch4_testing_strategy.html">Testing Strategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch6_data_ingestion_workflows.html">Data Ingestion Workflows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch7_scene_understanding_data_mining.html">Scene Understanding &amp; Data Mining</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch8_model_training.html">Model Training &amp; Experimentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch9_packaging_promotion.html">Packaging, Evaluation &amp; Promotion Workflows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch10_deployment_serving.html">Deployment &amp; Serving</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch11_monitoring_continual_learning.html">Monitoring &amp; Continual Learning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch12_cost_lifecycle_compliance.html">Cost, Lifecycle, Compliance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch13_reliability_capacity_maps.html">Reliability, Capacity, Maps</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../past_experiences/ecom_cltv.html">Customer Lifetime Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../past_experiences/ecom_propensity.html">Real-Time Purchase Intent Scoring</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../past_experiences/ecom_summarisation.html">Reviews Summarisation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../past_experiences/ecom_rag.html">RAG-Based Product Discovery</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../projects/index.html">Projects</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Projects</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../projects/nlp/index.html">Natural Language Processing</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of Natural Language Processing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/airbnb_alternate_search/about/index.html">Airbnb Listing description based Semantic Search</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../projects/cv/index.html">Computer Vision</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of Computer Vision</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/ecommerce_image_segmentation/about/index.html">Image Segmentation for Ecommerce Products</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../projects/ml/index.html">Machine Learning</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of Machine Learning</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/airbnb_price_modeling/about/index.html">Predictive Price Modeling for Airbnb listings</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../publications/index.html">Patents, Papers, Thesis</a></li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../agents/index.html">AI Agents: A Lead Engineer’s Handbook</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of AI Agents: A Lead Engineer’s Handbook</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../agents/ch1_intro.html">Agent Fundamentals: What, Why, and When?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../agents/ch2_patterns.html">Agentic Patterns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../agents/ch5_context_engineering.html">Context Engineering for AI Agents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../agents/ch6_case_studies.html">The State of the Industry: Insights from the Field</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../agents/ch7_conclusion.html"><strong>Conclusion: The Lead Engineer’s Mental Model for Building Agents</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../agents/ch_cost.html">Cost Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../agents/ch_data.html">Data Management and Knowledge Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../agents/ch_deploy.html">Deployment and Scaling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../agents/ch_guardrails.html">Guardrails</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../agents/ch_hitl.html">Human-in-the-Loop (HITL)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../agents/ch_latency.html">Latency Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../agents/ch_llm.html">LLM – Prompts, Goals, and Persona</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../agents/ch_memory.html">Managing Agent Memory (Short-Term and Long-Term)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../agents/ch_monitor.html">Monitoring and Observability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../agents/ch_orchestration.html">Orchestration and Task Decomposition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../agents/ch_prod.html">Production Challenges and Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../agents/ch_security.html">Securing AI Agents and Preventing Abuse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../agents/ch_tool.html">Tool Use and Integration Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../agents/ch_trust.html">Building Trustworthy and Ethical AI Agents</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="index.html">MLOps</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of MLOps</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="ch1_problem_framing.html">ML Problem framing</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of ML Problem framing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ch2_blueprint_operational_strategy.html">The MLOps Blueprint &amp; Operational Strategy</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="ch2a_platform/index.html">ML Platforms</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle navigation of ML Platforms</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="ch2a_platform/ml_platforms.html">ML Platforms: How to</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch2a_platform/uber.html">Uber Michelangelo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch2a_platform/linkedin.html">LinkedIn DARWIN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch2a_platform/netflix.html">Netflix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch2a_platform/shopify.html">Shopify Merlin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch2a_platform/zomato.html">Zomato: Real-time ML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch2a_platform/coveo.html">Coveo: MLOPs at reasonable scale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch2a_platform/monzo.html">Monzo ML Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch2a_platform/didact.html">Didact AI</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="ch3_project_planning/index.html">Project Planning</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" role="switch" type="checkbox"/><label for="toctree-checkbox-11"><div class="visually-hidden">Toggle navigation of Project Planning</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="ch3_project_planning/prd.html">Project Requirements Document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch3_project_planning/tech_stack.html">Tech Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch3_project_planning/config_management.html">Config Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch3_project_planning/pipeline_design.html">Pipeline Design</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch3_project_planning/environment_strategy.html">Environment Strategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch3_project_planning/cicd_branching_model.html">CI/CD Strategy and Branching Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch3_project_planning/directory_structure.html">Directory Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch3_project_planning/env_branchind_cicd_deployment.html">Environments, Branching, CI/CD, and Deployments Explained</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch3_project_planning/project_management.html">Project Management for MLOps</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="ch4_data_discovery/index.html">Data Sourcing, Discovery</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" role="switch" type="checkbox"/><label for="toctree-checkbox-12"><div class="visually-hidden">Toggle navigation of Data Sourcing, Discovery</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="ch4_data_discovery/data_sourcing_discovery.html">Data Sourcing, Discovery &amp; Understanding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch4_data_discovery/ch4_project.html">Project-Trending Now: Implementing Web Scraping, Ingestion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch4_data_discovery/industry_case_studies.html">Data Discovery Platforms: Industry Case Studies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch4_data_discovery/facebook_nemo.html">Facebook: Nemo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch4_data_discovery/netflix_metacat.html">Netflix Metacat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch4_data_discovery/uber_databook.html">Uber Databook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch4_data_discovery/linkedin_datahub.html">LinkedIn Datahub</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="ch5_data_pipelines/index.html">Data Engineering, Pipelines</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" role="switch" type="checkbox"/><label for="toctree-checkbox-13"><div class="visually-hidden">Toggle navigation of Data Engineering, Pipelines</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="ch5_data_pipelines/data_pipelines.html">Data Engineering for Reliable ML Pipelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch5_data_pipelines/data_engineering_pipelines.html">Data Engineering &amp; Pipelines: A Lead’s Compendium</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch5_data_pipelines/streaming_pipelines.html">Real-Time &amp; Streaming Data Pipelines: Challenges, Solutions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch5_data_pipelines/netflix_keystone.html">Netflix Keystone</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch5_data_pipelines/doordash_riviera.html">Doordash Riviera</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="ch6_feature_engg/index.html">Feature Engineering, Feature Stores</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" role="switch" type="checkbox"/><label for="toctree-checkbox-14"><div class="visually-hidden">Toggle navigation of Feature Engineering, Feature Stores</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="ch6_feature_engg/feature_engineering_store.html">Feature Engineering and Feature Stores</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch6_feature_engg/feature_engineering.html">Feature Engineering for MLOps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch6_feature_engg/explained_feature_stores.html">Feature Stores for MLOps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch6_feature_engg/point_in_time.html">Point-in-Time Correctness &amp; Time Travel in ML Data Pipelines</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="ch6_feature_engg/feast/index.html">Feast Feature Store</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" role="switch" type="checkbox"/><label for="toctree-checkbox-15"><div class="visually-hidden">Toggle navigation of Feast Feature Store</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="ch6_feature_engg/feast/feast_architecture.html">Feast Architecture: A Technical Deep Dive for MLOps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch6_feature_engg/feast/feast_concepts.html">Feast Concepts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch6_feature_engg/feast/feast_components.html">Feast Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch6_feature_engg/feast/feast_usecases.html">Feast Use Cases</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch6_feature_engg/feast/feast_aws.html">Running Feast with AWS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch6_feature_engg/feast/run_in_prod.html">Running Feast in Production</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch6_feature_engg/feast/validate_historical_with_gx.html">Validating Historical Features with Great Expectations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch6_feature_engg/feast/add_reuse_tests.html">Adding or Reusing Tests in Feast</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="ch7_model_development/index.html">Model Development, Tuning, Selection, Ensembles, Calibration</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" role="switch" type="checkbox"/><label for="toctree-checkbox-16"><div class="visually-hidden">Toggle navigation of Model Development, Tuning, Selection, Ensembles, Calibration</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="ch7_model_development/ch7_model_development.html">Chapter 7: Model Development</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch7_model_development/dl_training_playbook.html">How to train DL Models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch7_model_development/development.html">Model Development</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch7_model_development/industry_lessons.html">Model Development: Lessons from production systems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch7_model_development/ensembles.html"><strong>Model Ensembles</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch7_model_development/selection.html">Model Selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch7_model_development/tuning_hypopt.html">Hyperparameter Optimization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch7_model_development/expt_tracking.html">ML Expt tracking, Data Lineage, Model Registry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch7_model_development/calibration.html">Model Calibration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ch8_ml_pipelines.html">ML Training Pipelines</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="ch9_ml_testing/index.html">Testing in ML Systems</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" role="switch" type="checkbox"/><label for="toctree-checkbox-17"><div class="visually-hidden">Toggle navigation of Testing in ML Systems</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="ch9_ml_testing/ch9_ml_testing.html">Testing in ML Systems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch9_ml_testing/data_testing_validation.html">Data Testing &amp; Validation in Production</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch9_ml_testing/ml_testing.html">Testing ML Systems: Ensuring Reliability from Code to Production</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="ch10_deployment_serving/index.html">Model Deployment &amp; Serving</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" role="switch" type="checkbox"/><label for="toctree-checkbox-18"><div class="visually-hidden">Toggle navigation of Model Deployment &amp; Serving</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="ch10_deployment_serving/ch10_deployment_serving.html">Chapter 10: Deployment &amp; Serving</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch10_deployment_serving/guide_deployment_serving.html">Guide: Model Deployment &amp; Serving</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch10_deployment_serving/guide_inference_stack.html">Deep Dive: Inference Stack</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="ch11_monitor_observe_drift/index.html">Monitoring, Observability, Drift, Interpretability</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" role="switch" type="checkbox"/><label for="toctree-checkbox-19"><div class="visually-hidden">Toggle navigation of Monitoring, Observability, Drift, Interpretability</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="ch11_monitor_observe_drift/ch11_monitor_observe_drift.html">Chapter 11: Monitoring, Observability, Drifts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch11_monitor_observe_drift/guide_monitor_observe_drift.html">Guide: ML System Failures, Data Distribution Shifts, Monitoring, and Observability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch11_monitor_observe_drift/guide_interpretability_shap_lime.html">Interpretability, SHAP, LIME</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch11_monitor_observe_drift/guide_stack.html">Prometheus + Grafana and ELK Stacks</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="ch12_retrain_online_testing/index.html">Continual learning, Retraining, A/B Testing</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" role="switch" type="checkbox"/><label for="toctree-checkbox-20"><div class="visually-hidden">Toggle navigation of Continual learning, Retraining, A/B Testing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="ch12_retrain_online_testing/ch12_continual_learning_prod_testing.html">Chapter 12: Continual Learning &amp; Production Testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch12_retrain_online_testing/guide_continual_learning.html">Continual Learning &amp; Model Retraining</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch12_retrain_online_testing/guide_ab_testing.html">A/B Testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch12_retrain_online_testing/guide_ab_testing_industry_lessons.html">A/B Testing &amp; Experimentation: Industry lessons</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch12_retrain_online_testing/guide_prod_testing_expt.html">Guide: Production Testing &amp; Experimentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch12_retrain_online_testing/dr_prod_testing_expt.html">Deep Research: Production Testing &amp; Experimentation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ch13_governance_ethics_human.html">Governance, Ethics &amp; The Human Element</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../pytorch/index.html">PyTorch</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" role="switch" type="checkbox"/><label for="toctree-checkbox-21"><div class="visually-hidden">Toggle navigation of PyTorch</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/general.html">General</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/state_dict.html">state_dict</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/mixed_precision.html">Mixed Precision</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/distributed_data_parallel.html">Distributed Data Parallel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/ddp_under_the_hood.html">DDP: Under the Hood</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/dp_ddp.html">DP vs DDP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/fsdp.html">FSDP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/tensor_parallelism.html">Tensor parallelism</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/pipeline_parallelism.html">Pipeline Parallelism</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/device_mesh.html">Device Mesh</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../lld/index.html">Low Level Design</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" role="switch" type="checkbox"/><label for="toctree-checkbox-22"><div class="visually-hidden">Toggle navigation of Low Level Design</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lld/parking_lot.html">Parking Lot</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../visualization/index.html">Data Visualization Projects</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="../_sources/mlops/chapters.md.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="mlops-end-to-end-planning">
+<h1>MLOps End to End Planning<a class="headerlink" href="#mlops-end-to-end-planning" title="Permalink to this heading">¶</a></h1>
+<section id="ml-ai-capabilities">
+<h2>ML/AI capabilities<a class="headerlink" href="#ml-ai-capabilities" title="Permalink to this heading">¶</a></h2>
+<img src="../../_static/mlops/problem_framing/capabilities.jpg"/>
+<ul class="simple">
+<li><p><a class="reference external" href="https://learning.oreilly.com/library/view/the-ai-organization/9781492057369/">The AI Organization by David Carmona</a></p></li>
+</ul>
+</section>
+<section id="ml-applications">
+<h2>ML Applications<a class="headerlink" href="#ml-applications" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Recommendation, which identifies the relevant product in a large collection based on the product description or user’s previous interactions.</p></li>
+<li><p>Top-K Items Selection, which organizes a set of items in a particular order that is suitable for user (e.g. search result).</p></li>
+<li><p>Classification, which assigns the input examples to one of the previously defined classes (e.g “spam”/”not spam”).</p></li>
+<li><p>Prediction, which assigns some most probable value to an entity of interest, such as stock value.</p></li>
+<li><p>Content Generation, to produce new content by learning from existing examples, such as finishing a Bach chorale cantata by learning from his former compositions.</p></li>
+<li><p>Question Answering, which answers an explicit question for example: “Does this text describe this image?”</p></li>
+<li><p>Automation, which can be a set of user steps performed automatically, such as stock trading</p></li>
+<li><p>Fraud and Anomaly Detection, to identify an action or transaction being a fraud or suspicious</p></li>
+<li><p>Information Extraction and Annotation, to identify important information in a text, such as people’s names, job descriptions, companies, and locations.</p></li>
+</ul>
+<p><strong>MLOps Study Guide: Inside the Michelin-Grade ML Kitchen</strong></p>
+<p><strong>Final Detailed Chapter &amp; Section Outline</strong></p>
+<hr class="docutils" />
+<p><strong>Chapter 1: Crafting the Vision – The Art of ML Problem Framing</strong>
+<em>(Progress Label: 📍Stage 1: The Restaurant Concept &amp; Vision)</em></p>
+<ul class="simple">
+<li><p><strong>Section 1.1: Understanding the Business Objective (Why Build This ‘Dish’? )</strong></p>
+<ul>
+<li><p>1.1.1 Identifying the Core Business Problem/Goal</p></li>
+<li><p>1.1.2 Aligning with Stakeholders (ML Engineers, PMs, Sales, Ops, Business)</p></li>
+<li><p>1.1.3 Defining Quantifiable Business Success Metrics (KPIs)</p></li>
+<li><p>1.1.4 Connecting ML Potential to Business Value</p></li>
+</ul>
+</li>
+<li><p><strong>Section 1.2: Is Machine Learning the Right Ingredient? (Initial Feasibility)</strong></p>
+<ul>
+<li><p>1.2.1 When to Consider Using ML (Complexity, Data, Prediction, Scale, Repetition, Change)</p></li>
+<li><p>1.2.2 When <em>Not</em> to Use ML (Simple Solutions, Insufficient Data, High Error Cost, Ethics)</p></li>
+<li><p>1.2.3 Assessing Organizational Readiness (Data Maturity, Talent, Infrastructure)</p></li>
+</ul>
+</li>
+<li><p><strong>Section 1.3: Defining the ML Problem (Translating Vision to Recipe)</strong></p>
+<ul>
+<li><p>1.3.1 Defining the Ideal Outcome vs. Model’s Goal</p></li>
+<li><p>1.3.2 Identifying the Model’s Output Type (Classification, Regression, Generation)</p></li>
+<li><p>1.3.3 The Importance of Framing (e.g., Classification vs. Regression)</p></li>
+<li><p>1.3.4 The Label Challenge: Identifying Proxy Labels</p></li>
+</ul>
+</li>
+<li><p><strong>Section 1.4: Deeper Feasibility &amp; Risk Assessment (Can We Execute This Vision?)</strong></p>
+<ul>
+<li><p>1.4.1 Data Availability &amp; Quality Deep Dive (Quantity, Features at Serving, Regulations)</p></li>
+<li><p>1.4.2 Problem Difficulty Assessment (Prior Art, Human Benchmarks, Adversaries)</p></li>
+<li><p>1.4.3 Required Prediction Quality &amp; Cost of Errors</p></li>
+<li><p>1.4.4 Technical Requirements (Latency, Throughput, Resources, Platform, Interpretability, Retraining)</p></li>
+<li><p>1.4.5 Cost &amp; ROI Estimation (Human, Machine, Inference Costs)</p></li>
+<li><p>1.4.6 Ethical Considerations &amp; Fairness Review (Initial Check)</p></li>
+</ul>
+</li>
+<li><p><strong>Section 1.5: Defining Success Metrics (What Does a ‘Michelin Star’ Look Like?)</strong></p>
+<ul>
+<li><p>1.5.1 Business Success Metrics (Targets and Timeframes)</p></li>
+<li><p>1.5.2 Model Evaluation Metrics (Primary vs. Acceptability Goals)</p></li>
+<li><p>1.5.3 The Disconnect: Why Model Metrics ≠ Business Success</p></li>
+<li><p>1.5.4 Planning for Validation (A/B Testing, Gradual Rollout)</p></li>
+<li><p>1.5.5 Handling Multiple Objectives (Decoupling Strategy)</p></li>
+</ul>
+</li>
+<li><p><strong>Section 1.6: Initial Project Planning (The Experimental Mindset)</strong></p>
+<ul>
+<li><p>1.6.1 Why ML Projects are Uncertain &amp; Non-Linear</p></li>
+<li><p>1.6.2 Adopting an Experimental Approach (Time-boxing, Scoping Down, Fail Fast)</p></li>
+<li><p>1.6.3 Starting Simple: The Importance of Baselines</p></li>
+</ul>
+</li>
+<li><p><strong>Project: “Trending Now” – Applying ML Problem Framing</strong></p>
+<ul>
+<li><p>Defining Business Goals for the “Trending Now” App</p></li>
+<li><p>Is ML the Right Approach for Genre Classification?</p></li>
+<li><p>Framing the Genre Classification Task (Inputs, Outputs, Model Type)</p></li>
+<li><p>Initial Feasibility for “Trending Now” (Data, Technical, Ethical)</p></li>
+<li><p>Success Metrics for the “Trending Now” Genre Model and App</p></li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+<p><strong>Chapter 2: Designing the Michelin-Grade Kitchen – The MLOps Blueprint &amp; Operational Strategy</strong>
+<em>(Progress Label: 📍Stage 2: The Kitchen Blueprint &amp; Operational Plan)</em></p>
+<ul class="simple">
+<li><p><strong>Section 2.1: What is MLOps? (Defining Our Culinary Operations)</strong></p>
+<ul>
+<li><p>2.1.1 The Evolution from DevOps to MLOps</p></li>
+<li><p>2.1.2 Unique Challenges of ML Systems vs. Traditional Software</p></li>
+<li><p>2.1.3 Core Goals of MLOps: Speed, Reliability, Scalability, Collaboration</p></li>
+</ul>
+</li>
+<li><p><strong>Section 2.2: The MLOps Lifecycle: An End-to-End Workflow (Mapping the Full Production Line)</strong></p>
+<ul>
+<li><p>2.2.1 Overview of Key MLOps Processes (ML Development, Training Operationalization, Continuous Training, Model Deployment, Prediction Serving, Continuous Monitoring, Data &amp; Model Management - <em>aligned with Google Whitepaper</em>)</p></li>
+<li><p>2.2.2 The Iterative and Interconnected Nature of MLOps</p></li>
+</ul>
+</li>
+<li><p><strong>Section 2.3: Core MLOps Design Principles (Our Kitchen’s Guiding Philosophies)</strong></p>
+<ul>
+<li><p>2.3.1 Automation (CI/CD/CT)</p></li>
+<li><p>2.3.2 Reproducibility (Versioning: Code, Data, Model, Parameters, Environment)</p></li>
+<li><p>2.3.3 Continuous X (Integration, Delivery, Training, Monitoring)</p></li>
+<li><p>2.3.4 Comprehensive Testing</p></li>
+<li><p>2.3.5 Monitoring and Observability</p></li>
+<li><p>2.3.6 Modularity &amp; Reusability (Loosely Coupled Architecture)</p></li>
+<li><p>2.3.7 Scalability</p></li>
+<li><p>2.3.8 Collaboration &amp; Defined Roles</p></li>
+<li><p>2.3.9 Governance, Security, and Compliance by Design</p></li>
+</ul>
+</li>
+<li><p><strong>Section 2.4: The MLOps Stack Canvas: Architecting Your System (The Kitchen Layout Plan)</strong></p>
+<ul>
+<li><p>2.4.1 Introduction to the MLOps Stack Canvas Framework</p></li>
+<li><p>2.4.2 Block 1: Value Proposition (Revisiting the “Why” for this system)</p></li>
+<li><p>2.4.3 Block 2: Data Sources and Data Versioning</p>
+<ul>
+<li><p><em>Capability Deep Dive:</em> Data Ingestion, Data Storage Solutions, Data Versioning Tools &amp; Strategies.</p></li>
+</ul>
+</li>
+<li><p>2.4.4 Block 3: Data Analysis and Experiment Management</p>
+<ul>
+<li><p><em>Capability Deep Dive:</em> Experimentation Environments (Notebooks, IDEs), Experiment Tracking Tools.</p></li>
+</ul>
+</li>
+<li><p>2.4.5 Block 4: Feature Store and Workflows</p>
+<ul>
+<li><p><em>Capability Deep Dive:</em> Feature Engineering Tools, Feature Store Concepts &amp; Platforms.</p></li>
+</ul>
+</li>
+<li><p>2.4.6 Block 5: Foundations (DevOps &amp; Code Management)</p>
+<ul>
+<li><p><em>Capability Deep Dive:</em> Source Control (Git), Code Quality (Linting, Formatting).</p></li>
+</ul>
+</li>
+<li><p>2.4.7 Block 6: Continuous Integration, Training, and Deployment (ML Pipeline Orchestration)</p>
+<ul>
+<li><p><em>Capability Deep Dive:</em> CI/CD Tools (GitHub Actions, Jenkins), ML Pipeline Orchestrators.</p></li>
+</ul>
+</li>
+<li><p>2.4.8 Block 7: Model Registry and Model Versioning</p>
+<ul>
+<li><p><em>Capability Deep Dive:</em> Model Registry Platforms, Model Versioning Strategies.</p></li>
+</ul>
+</li>
+<li><p>2.4.9 Block 8: Model Deployment &amp; Prediction Serving</p>
+<ul>
+<li><p><em>Capability Deep Dive:</em> Serving Infrastructure Options, API Management.</p></li>
+</ul>
+</li>
+<li><p>2.4.10 Block 9: ML Model, Data, and System Monitoring</p>
+<ul>
+<li><p><em>Capability Deep Dive:</em> Monitoring Tools, Alerting Mechanisms.</p></li>
+</ul>
+</li>
+<li><p>2.4.11 Block 10: Metadata Store</p>
+<ul>
+<li><p><em>Capability Deep Dive:</em> ML Metadata Management, Artifact Repositories.</p></li>
+</ul>
+</li>
+<li><p>2.4.12 Overarching Considerations: Build vs. Buy, Platform Choices, Skills</p></li>
+</ul>
+</li>
+<li><p><strong>Section 2.5: MLOps Maturity Levels (Phasing the Kitchen Construction)</strong></p>
+<ul>
+<li><p>2.5.1 Level 0: Manual Processes (The Home Cook Experimenting)</p></li>
+<li><p>2.5.2 Level 1: ML Pipeline Automation (The Professional Prep Cook)</p></li>
+<li><p>2.5.3 Level 2: CI/CD Pipeline Automation (The Fully Automated Kitchen Line)</p></li>
+<li><p>2.5.4 Aligning with AI Readiness (Tactical, Strategic, Transformational)</p></li>
+</ul>
+</li>
+<li><p><strong>Section 2.6: Documenting MLOps Architecture (Architectural Decision Records - ADRs)</strong></p></li>
+<li><p><strong>Section 2.7: Roles and Responsibilities in MLOps (Staffing the Kitchen)</strong></p>
+<ul>
+<li><p>2.7.1 Data Scientists, ML Engineers, MLOps Engineers, Data Engineers, Platform Engineers, Domain Experts, Product Managers, IT/Security</p></li>
+<li><p>2.7.2 Collaboration Models (Embedded vs. Centralized vs. Hybrid)</p></li>
+<li><p>2.7.3 Structuring ML Teams for Success</p></li>
+</ul>
+</li>
+<li><p><strong>Project: “Trending Now” – Blueprinting MLOps Strategy</strong></p>
+<ul>
+<li><p>Applying MLOps Principles to the “Trending Now” App</p></li>
+<li><p>Using the MLOps Stack Canvas to Plan “Trending Now” Infrastructure (Identifying necessary capabilities like Data Versioning, Experiment Tracking, Model Registry for the project)</p></li>
+<li><p>Determining the Initial MLOps Maturity Level for the Project</p></li>
+<li><p>Defining Roles for the “Trending Now” Project Team</p></li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+<p><strong>Content for New Chapter 3: Setting Up the “Trending Now” Kitchen – Project Planning &amp; Design</strong></p>
+<ul class="simple">
+<li><p><strong>Section 3.1: Project Overview &amp; Requirements Recap</strong></p>
+<ul>
+<li><p>Presenting the finalized PRD.</p></li>
+<li><p>Presenting the App/User Flow diagrams.</p></li>
+</ul>
+</li>
+<li><p><strong>Section 3.2: Finalizing the Tech Stack</strong></p>
+<ul>
+<li><p>Presenting the chosen Tech Stack document (Backend, Frontend, Viz, MLOps Tools, Cloud Services, LLM API).</p></li>
+<li><p>Justification for key choices.</p></li>
+</ul>
+</li>
+<li><p><strong>Section 3.3: Pipeline Design for “Trending Now”</strong></p>
+<ul>
+<li><p>High-level definition of the 3 core pipelines: Data Ingestion, Model Training (XGBoost/BERT), Inference (LLM).</p></li>
+<li><p>Inputs, Outputs, Key Steps, and Triggers for each pipeline.</p></li>
+<li><p>Discussion of necessary scripts (conceptual level).</p></li>
+</ul>
+</li>
+<li><p><strong>Section 3.4: Environment Strategy (Dev, Staging, Prod)</strong></p>
+<ul>
+<li><p>Purpose and configuration goals for each environment for the “Trending Now” project.</p></li>
+<li><p>Data access strategy and permissions across environments.</p></li>
+</ul>
+</li>
+<li><p><strong>Section 3.5: CI/CD Strategy and Branching Model</strong></p>
+<ul>
+<li><p>Chosen branching strategy (e.g., Gitflow, GitHub Flow).</p></li>
+<li><p>Outline of CI pipeline steps (Static testing, Unit tests).</p></li>
+<li><p>Outline of CD pipeline steps (Deployment to Staging/Prod, Integration tests).</p></li>
+</ul>
+</li>
+<li><p><strong>Section 3.6: Project Directory Structure</strong></p>
+<ul>
+<li><p>Proposed layout for Frontend, Backend (FastAPI), MLOps (Pipelines, Scripts, Configs), Tests.</p></li>
+</ul>
+</li>
+<li><p><strong>Section 3.7: Detailed Implementation Plan</strong></p>
+<ul>
+<li><p>Presenting the Step-by-Step Plan mapping project tasks to Chapters 4-12.</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Chapter 3: The Market Run – Data Sourcing, Discovery &amp; Understanding</strong>
+<em>(Progress Label: 📍Stage 3: Sourcing the Finest Ingredients)</em></p>
+<ul class="simple">
+<li><p><strong>Section 3.1: Identifying Data Requirements Based on ML Problem</strong></p></li>
+<li><p><strong>Section 3.2: Exploring Data Sources</strong></p>
+<ul>
+<li><p>3.2.1 User Input Data</p></li>
+<li><p>3.2.2 System-Generated Data (Logs, Metrics)</p></li>
+<li><p>3.2.3 Internal Databases</p></li>
+<li><p>3.2.4 Third-Party Data (Earned, Paid, Public)</p></li>
+</ul>
+</li>
+<li><p><strong>Section 3.3: Initial Data Collection &amp; Ingestion Strategies</strong></p>
+<ul>
+<li><p>3.3.1 Batch vs. Streaming Ingestion for Discovery</p></li>
+<li><p>3.3.2 Tools &amp; Technologies for Initial Collection (ETL/ELT, Data Lakes, Warehouses)</p></li>
+</ul>
+</li>
+<li><p><strong>Section 3.4: Exploratory Data Analysis (EDA): The First Taste</strong></p>
+<ul>
+<li><p>3.4.1 Data Profiling (Understanding Schema, Statistics, Distributions)</p></li>
+<li><p>3.4.2 Visualization Techniques for Data Understanding</p></li>
+<li><p>3.4.3 Initial Data Quality Checks (Missing Values, Outliers, Inconsistencies)</p></li>
+</ul>
+</li>
+<li><p><strong>Section 3.5: Documenting Data: Data Cards and Cataloging Principles</strong></p>
+<ul>
+<li><p>3.5.1 Importance of Metadata Management</p></li>
+<li><p>3.5.2 Creating Data Dictionaries &amp; Business Glossaries</p></li>
+<li><p>3.5.3 Utilizing Data Cards &amp; Datasheets for Datasets</p></li>
+</ul>
+</li>
+<li><p><strong>Section 3.6: Early Considerations for Data Governance (Privacy, Security, and Permissions)</strong></p>
+<ul>
+<li><p>3.6.1 Identifying Sensitive Data (PII)</p></li>
+<li><p>3.6.2 Initial thoughts on Anonymization &amp; Obfuscation</p></li>
+<li><p>3.6.3 Defining Access Control &amp; Permissions</p></li>
+</ul>
+</li>
+<li><p><strong>Project: “Trending Now” – Data Sourcing and Understanding</strong></p>
+<ul>
+<li><p>Identifying Data Sources for Movies/TV Shows (APIs like TMDb, review sites – considerations for scraping)</p></li>
+<li><p>Initial Data Collection Strategy for “Trending Now”</p></li>
+<li><p>Exploratory Data Analysis on Sample Movie/Review Data</p></li>
+<li><p>Assessing Data Quality for Plot Summaries and Reviews</p></li>
+<li><p>Documenting Data Sources and Initial Governance Plan</p></li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+<p><strong>Chapter 5: Mise en Place – Data Engineering for Reliable ML Pipelines</strong>
+<em>(Progress Label: 📍Stage 4: The Prep Station Standardization)</em></p>
+<ul class="simple">
+<li><p><strong>Section 5.1: Designing Robust Data Processing Workflows</strong></p></li>
+<li><p><strong>Section 5.2: Data Cleaning and Wrangling in Pipelines</strong></p>
+<ul>
+<li><p>5.2.1 Automated Handling of Missing Values</p></li>
+<li><p>5.2.2 Systematic Outlier Detection &amp; Treatment</p></li>
+<li><p>5.2.3 Scripting Data Formatting &amp; Restructuring</p></li>
+</ul>
+</li>
+<li><p><strong>Section 5.3: Data Transformation &amp; Standardization for Pipelines</strong></p>
+<ul>
+<li><p>5.3.1 Implementing Scaling (Normalization, Standardization)</p></li>
+<li><p>5.3.2 Automated Handling of Skewness</p></li>
+<li><p>5.3.3 Encoding Categorical Features within Pipelines</p></li>
+</ul>
+</li>
+<li><p><strong>Section 5.4: Data Labeling at Scale &amp; Programmatic Labeling</strong></p>
+<ul>
+<li><p>5.5.1 Integrating Human Labeling Workflows</p></li>
+<li><p>5.5.2 Leveraging Weak Supervision &amp; Snorkel-like Systems</p></li>
+<li><p>5.5.3 Building Feedback Loops for Natural Label Generation</p></li>
+<li><p>5.5.4 Data Augmentation as a Pipeline Step</p></li>
+</ul>
+</li>
+<li><p><strong>Section 5.5: Data Splitting and Sampling in Automated Workflows</strong></p>
+<ul>
+<li><p>5.5.1 Ensuring Stratified and Time-Aware Splits</p></li>
+<li><p>5.5.2 Implementing Resampling Techniques (Over/Under Sampling)</p></li>
+</ul>
+</li>
+<li><p><strong>Section 5.6: Data Validation as a Pipeline Stage</strong></p>
+<ul>
+<li><p>5.6.1 Automated Schema Validation</p></li>
+<li><p>5.6.2 Statistical Property &amp; Distribution Drift Checks</p></li>
+<li><p>5.6.3 Tools for Data Validation (e.g., TFDV, Great Expectations)</p></li>
+</ul>
+</li>
+<li><p><strong>Section 5.7: Data Versioning &amp; Lineage in Practice</strong></p>
+<ul>
+<li><p>5.7.1 Tools &amp; Techniques (DVC, Git LFS, Delta Lake, LakeFS)</p></li>
+<li><p>5.7.2 Capturing Full Data Lineage</p></li>
+</ul>
+</li>
+<li><p><strong>Section 5.8: Building and Orchestrating Data Pipelines</strong></p>
+<ul>
+<li><p>5.8.1 Choosing Orchestration Tools (Airflow, Prefect, Dagster, Kubeflow, SageMaker Pipelines)</p></li>
+<li><p>5.8.2 Best Practices for Reusable and Testable Data Pipeline Components</p></li>
+</ul>
+</li>
+<li><p><strong>Project: “Trending Now” – Building the Data Ingestion &amp; Preparation Pipeline</strong></p>
+<ul>
+<li><p>Designing the Data Cleaning and Preprocessing Steps for Movie Plots and Reviews</p></li>
+<li><p>Strategy for Labeling Genres (e.g., using existing metadata, weak supervision if needed)</p></li>
+<li><p>Data Splitting for the Genre Classification Model</p></li>
+<li><p>Implementing Data Validation for the Ingestion Pipeline</p></li>
+<li><p>Setting up Data Versioning for Ingested and Processed Data</p></li>
+<li><p>Orchestrating the Daily/Weekly Data Ingestion Pipeline</p></li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+<p><strong>Chapter 5: Perfecting Flavor Profiles – Feature Engineering and Feature Stores</strong>
+<em>(Progress Label: 📍Stage 5: The Flavor Lab and Central Spice Rack)</em></p>
+<ul class="simple">
+<li><p><strong>Section 5.1: The Role of Feature Engineering in MLOps</strong></p>
+<ul>
+<li><p>5.1.1 Learned vs. Engineered Features</p></li>
+<li><p>5.1.2 Importance of Domain Knowledge in Feature Creation</p></li>
+</ul>
+</li>
+<li><p><strong>Section 5.2: Advanced Feature Creation and Transformation Techniques</strong></p>
+<ul>
+<li><p>5.2.1 Discretization &amp; Binning Strategies</p></li>
+<li><p>5.2.2 Effective Feature Crossing for Non-Linearity</p></li>
+<li><p>5.2.3 Generating and Using Embeddings</p></li>
+<li><p>5.2.4 Handling High Cardinality Features with Hashing</p></li>
+</ul>
+</li>
+<li><p><strong>Section 5.3: Feature Selection and Importance in Production Contexts</strong></p>
+<ul>
+<li><p>5.3.1 Automating Feature Importance Calculation</p></li>
+<li><p>5.3.2 Strategies for Dimensionality Reduction</p></li>
+<li><p>5.3.3 Managing Feature Lifecycle (Creation, Deprecation)</p></li>
+</ul>
+</li>
+<li><p><strong>Section 5.4: Feature Stores: Architecture and Implementation</strong></p>
+<ul>
+<li><p>5.4.1 Core Concepts: Registry, Online Store, Offline Store, Serving APIs</p></li>
+<li><p>5.4.2 Feature Computation: Batch vs. Streaming Feature Pipelines</p></li>
+<li><p>5.4.3 Ensuring Training-Serving Consistency with Feature Stores</p></li>
+<li><p>5.4.4 Integrating Feature Stores into the Broader MLOps Ecosystem</p></li>
+<li><p>5.4.5 Evaluating Feature Store Solutions (Feast, Tecton, Vertex AI Feature Store, SageMaker Feature Store)</p></li>
+</ul>
+</li>
+<li><p><strong>Section 5.5: Feature Governance: Quality, Lineage, and Discovery</strong></p></li>
+<li><p><strong>Project: “Trending Now” – Feature Engineering for Genre Classification</strong></p>
+<ul>
+<li><p>Extracting Features from Plot Summaries (e.g., TF-IDF, Embeddings from BERT)</p></li>
+<li><p>Extracting Features from Reviews (e.g., Sentiment, Keywords)</p></li>
+<li><p>Feature Selection for XGBoost vs. BERT’s implicit feature learning</p></li>
+<li><p>Designing a Simple Feature Store (Conceptual) for “Trending Now” (if applicable, or discussing when it would be)</p></li>
+<li><p>Ensuring Feature Consistency for Training and (future) Inference</p></li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+<p><strong>Chapter 6: The Experimental Kitchen – Model Development &amp; Iteration</strong>
+<em>(Progress Label: 📍Stage 6: The Chef’s Test Counter)</em></p>
+<ul class="simple">
+<li><p><strong>Section 6.1: Setting Up the Productive Experimentation Environment</strong></p>
+<ul>
+<li><p>6.1.1 Leveraging Notebooks and IDEs Effectively</p></li>
+<li><p>6.1.2 Integrating with Version Control and Experiment Tracking</p></li>
+<li><p>6.1.3 Managing Dependencies and Reproducible Environments</p></li>
+</ul>
+</li>
+<li><p><strong>Section 6.2: Rapid Prototyping and Establishing Strong Baselines</strong></p>
+<ul>
+<li><p>6.2.1 Non-ML Baselines</p></li>
+<li><p>6.2.2 Simple ML Baselines (Logistic Regression, Tree-based models)</p></li>
+</ul>
+</li>
+<li><p><strong>Section 6.3: Iterative Model Selection and Architecture Design</strong></p>
+<ul>
+<li><p>6.3.1 Comparing Different Model Families</p></li>
+<li><p>6.3.2 Understanding Model Assumptions and Trade-offs</p></li>
+</ul>
+</li>
+<li><p><strong>Section 6.4: Deep Dive into Experiment Tracking and Versioning Tools</strong></p>
+<ul>
+<li><p>6.4.1 What to Log (Parameters, Code, Data, Metrics, Artifacts)</p></li>
+<li><p>6.4.2 Best Practices for Using MLflow, W&amp;B, SageMaker Experiments etc.</p></li>
+</ul>
+</li>
+<li><p><strong>Section 6.5: Advanced Hyperparameter Optimization Strategies</strong></p>
+<ul>
+<li><p>6.5.1 Beyond Grid/Random Search: Bayesian Optimization, HyperBand</p></li>
+<li><p>6.5.2 Tools for Distributed HPO</p></li>
+</ul>
+</li>
+<li><p><strong>Section 6.6: Exploring AutoML for Efficient Experimentation</strong></p></li>
+<li><p><strong>Section 6.7: Debugging Models: A Practical Guide During Development</strong></p>
+<ul>
+<li><p>6.7.1 Common Bugs and How to Spot Them</p></li>
+<li><p>6.7.2 Techniques for Diagnosing Training Issues</p></li>
+</ul>
+</li>
+<li><p><strong>Project: “Trending Now” – Developing the Genre Classification Model</strong></p>
+<ul>
+<li><p>Setting up the Experimentation Environment for “Trending Now”</p></li>
+<li><p>Building Baseline Models (e.g., simple keyword-based, logistic regression on TF-IDF)</p></li>
+<li><p>Experimenting with XGBoost and Fine-tuning a Pre-trained BERT Model</p></li>
+<li><p>Tracking Experiments for XGBoost and BERT using a chosen tool</p></li>
+<li><p>Hyperparameter Tuning for the selected models</p></li>
+<li><p>Debugging common issues encountered during training</p></li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+<p><strong>Chapter 7: Standardizing the Signature Dish – Building Scalable Training Pipelines</strong>
+<em>(Progress Label: 📍Stage 7: Codifying the Master Recipe)</em></p>
+<ul class="simple">
+<li><p><strong>Section 7.1: From Notebooks to Production-Grade Training Code</strong></p>
+<ul>
+<li><p>7.1.1 Refactoring for Modularity, Testability, and Reusability</p></li>
+<li><p>7.1.2 Configuration Management for Training</p></li>
+</ul>
+</li>
+<li><p><strong>Section 7.2: Designing and Implementing ML Training Pipelines</strong></p>
+<ul>
+<li><p>7.2.1 Common Pipeline Components (Data Ingestion, Preprocessing, Training, Evaluation, Registration)</p></li>
+<li><p>7.2.2 Building Custom Pipeline Components</p></li>
+</ul>
+</li>
+<li><p><strong>Section 7.3: CI/CD for Training Pipelines: Automating Build, Test, and Deployment</strong></p>
+<ul>
+<li><p>7.3.1 Unit and Integration Testing for Pipeline Components</p></li>
+<li><p>7.3.2 Building and Versioning Container Images for Training Steps</p></li>
+<li><p>7.3.3 Deploying Pipeline Definitions to Orchestration Platforms</p></li>
+</ul>
+</li>
+<li><p><strong>Section 7.4: Distributed Training Strategies for Production Scale</strong></p>
+<ul>
+<li><p>7.4.1 Data Parallelism</p></li>
+<li><p>7.4.2 Model Parallelism (Sharded, Pipelined, Tensor)</p></li>
+<li><p>7.4.3 Choosing the Right Strategy and Framework</p></li>
+</ul>
+</li>
+<li><p><strong>Section 7.5: Managing Training Infrastructure and Resources Effectively</strong></p>
+<ul>
+<li><p>7.5.1 Compute Instance Selection (CPU, GPU, Specialized HW)</p></li>
+<li><p>7.5.2 Spot Instances and Cost Optimization</p></li>
+</ul>
+</li>
+<li><p><strong>Section 7.6: Training Orchestration, Scheduling, and Triggering</strong></p></li>
+<li><p><strong>Section 7.7: Comprehensive Model and Training Metadata Logging for Auditability</strong></p></li>
+<li><p><strong>Project: “Trending Now” – Operationalizing Model Training</strong></p>
+<ul>
+<li><p>Refactoring Experimental Code into a Production-Ready Training Script</p></li>
+<li><p>Designing the Automated Training Pipeline (Data Loading, Preprocessing, Training, Evaluation, Registration)</p></li>
+<li><p>Implementing CI/CD for the Training Pipeline (Building containers, testing pipeline steps)</p></li>
+<li><p>(Conceptual) Distributed Training for BERT if dataset were very large</p></li>
+<li><p>Orchestrating the Training Pipeline (e.g., with manual trigger initially)</p></li>
+<li><p>Logging Training Metadata and Artifacts</p></li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+<p><strong>Chapter 8: The Head Chef’s Approval – Rigorous Offline Model Evaluation &amp; Validation</strong>
+<em>(Progress Label: 📍Stage 8: Stringent Quality Checks Before Service)</em></p>
+<ul class="simple">
+<li><p><strong>Section 8.1: Comprehensive Evaluation Metrics for Different Tasks</strong></p></li>
+<li><p><strong>Section 8.2: Slice-Based Evaluation for Fairness and Identifying Hidden Biases</strong></p></li>
+<li><p><strong>Section 8.3: Model Calibration: Ensuring Probabilities are Trustworthy</strong></p></li>
+<li><p><strong>Section 8.4: Robustness Testing: Perturbation and Invariance Checks</strong></p></li>
+<li><p><strong>Section 8.5: Creating and Utilizing Model Cards for Transparent Documentation</strong></p></li>
+<li><p><strong>Section 8.6: The Model Validation Process in Automated Pipelines</strong></p>
+<ul>
+<li><p>8.6.1 Defining Validation Criteria and Thresholds</p></li>
+<li><p>8.6.2 Comparing Against Production Models and Baselines</p></li>
+<li><p>8.6.3 Automated Sign-off vs. Human-in-the-Loop for Promotion</p></li>
+</ul>
+</li>
+<li><p><strong>Section 8.7: Model Registry: Versioning and Managing Validated Models</strong></p></li>
+<li><p><strong>Project: “Trending Now” – Evaluating the Genre Classification Model</strong></p>
+<ul>
+<li><p>Defining Key Evaluation Metrics for Genre Classification (Precision, Recall, F1 per genre, Macro/Micro F1)</p></li>
+<li><p>Slice-Based Evaluation (e.g., by source of data, movie vs. TV show)</p></li>
+<li><p>Assessing Model Calibration (especially if outputting probabilities)</p></li>
+<li><p>Creating a Model Card for the Trained XGBoost/BERT Model</p></li>
+<li><p>The Validation Process for Promoting the “Trending Now” Model to the Registry</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>Chapter 8: The Crucible – Comprehensive Testing in ML Systems</strong>
+<em>(Progress Label: 📍Stage 8: Ensuring Every Component is Battle-Ready)</em></p>
+<p><strong>Section 8.1: The Imperative of Testing in MLOps (Beyond Model Accuracy)</strong>
+*   8.1.1 Why Testing ML Systems is Different &amp; More Complex than Traditional Software
+*   8.1.2 Goals of a Comprehensive ML Testing Strategy: Reliability, Robustness, Fairness, Compliance, Performance.
+*   8.1.3 The Cost of Insufficient Testing: From Silent Failures to Production Outages.
+*   8.1.4 Overview of Testing Categories in the ML Lifecycle (Data, Features, Models, Pipelines, Infrastructure).</p>
+<p><strong>Section 8.2: Testing the Foundation – Data Validation &amp; Feature Validation</strong>
+*   8.2.1 <strong>Data Validation in Ingestion Pipelines</strong> <em>(This addresses your first point)</em>
+*   Purpose: Ensuring raw and processed data meets quality and schema expectations.
+*   Types of Checks:
+*   Schema Validation (data types, column presence, format).
+*   Statistical Property Checks (nulls, cardinality, ranges, distributions).
+*   Freshness and Volume Checks.
+*   Tools &amp; Techniques: Great Expectations, TFDV, Deequ, custom scripts.
+*   Integration: As automated steps within data ingestion/ETL pipelines (e.g., Airflow tasks).
+*   Alerting: Raising alerts on critical validation failures.
+*   8.2.2 <strong>Feature Validation</strong> <em>(This addresses your second point)</em>
+*   Purpose: Ensuring features are correct, consistent, and suitable for model consumption.
+*   Location: Within feature engineering pipelines, before writing to a Feature Store, or on data retrieved from a Feature Store.
+*   Types of Checks:
+*   Similar to data validation but on engineered features.
+*   Checks for training-serving skew in feature distributions.
+*   Validation of feature logic (unit tests for feature transformation code).
+*   Tools: Similar to data validation, plus Feature Store specific validation capabilities.</p>
+<p><strong>Section 8.3: Testing the Core – Offline Model Evaluation &amp; Validation</strong> <em>(This will incorporate the current planned content for Chapter 8)</em>
+*   8.3.1 <strong>Comprehensive Evaluation Metrics for Different Tasks</strong> (Beyond accuracy: Precision, Recall, F1, AUC-ROC, PR-AUC, business-aligned metrics).
+*   8.3.2 <strong>Establishing Strong Baselines for Comparison</strong> (Random, Heuristic, Zero-Rule, Human, Existing System).
+*   8.3.3 <strong>Slice-Based Evaluation:</strong> Identifying hidden biases and performance disparities across data segments. Techniques for defining and evaluating slices.
+*   8.3.4 <strong>Model Calibration:</strong> Ensuring probability outputs are reliable and trustworthy. Calibration curves and techniques.
+*   8.3.5 <strong>Model Robustness Testing:</strong>
+*   Perturbation Tests (sensitivity to noise).
+*   Invariance Tests (fairness, insensitivity to protected attributes).
+*   Directional Expectation Tests.
+*   8.3.6 <strong>Model Interpretability and Explainability Checks</strong> (SHAP, LIME – ensuring explanations make sense).
+*   8.3.7 <strong>Creating and Utilizing Model Cards</strong> for transparent documentation of evaluation results.
+*   8.3.8 <strong>The Automated Model Validation Process in Training Pipelines:</strong>
+*   Defining validation criteria, thresholds, and promotion gates.
+*   Comparing new model candidates against production models/baselines.
+*   Automated sign-off vs. Human-in-the-Loop for model promotion to registry.
+*   8.3.9 <strong>Model Registry for Versioning and Managing Validated Models.</strong></p>
+<p><strong>Section 8.4: Testing the Arteries – ML Pipeline Integration &amp; End-to-End Testing</strong> <em>(This addresses your fourth point)</em>
+*   8.4.1 <strong>Why Pipeline Testing is Critical:</strong> Ensuring components work together, data flows correctly, artifacts are produced as expected.
+*   8.4.2 <strong>Unit Testing for Pipeline Components/Tasks:</strong> Testing individual scripts and operators.
+*   8.4.3 <strong>Integration Testing for Pipelines:</strong>
+*   Data Ingestion Pipelines: Testing data flow from source to validated, processed storage (e.g., S3/Redshift).
+*   Feature Engineering Pipelines: Testing transformation logic and Feature Store interactions.
+*   Model Training Pipelines: Testing end-to-end run from data loading to model registration.
+*   Inference Pipelines (Offline/Batch part): Testing data loading, feature retrieval, prediction generation, and output storage.
+*   8.4.4 <strong>Techniques:</strong> Using sample data, mocked services (e.g., LLM APIs for staging tests), testing on staging environments.
+*   8.4.5 <strong>Tools:</strong> Pytest for custom test scripts, Airflow DAG testing utilities, CI/CD integration.</p>
+<p><strong>Section 8.5: Testing the Frontline – Model Serving Infrastructure &amp; Performance Testing</strong> <em>(This addresses your fifth point)</em>
+*   8.5.1 <strong>Deployment Validation:</strong> Ensuring the model (and its container/package) can be successfully deployed and served by the chosen infrastructure (e.g., FastAPI on App Runner).
+*   8.5.2 <strong>API Contract Testing:</strong> Validating request/response schemas for the serving endpoint.
+*   8.5.3 <strong>Consistency Checks:</strong> Verifying that the deployed model in a staging/test serving environment gives the same prediction for a given input vector as it did during offline training/evaluation (catches serialization or environment bugs).
+*   8.5.4 <strong>Load Testing (e.g., using Locust):</strong>
+*   Measuring QPS (Queries Per Second), latency (p50, p90, p99).
+*   Understanding resource utilization (CPU, RAM, GPU) under load.
+*   Determining scaling behavior and bottlenecks.
+*   8.5.5 <strong>Stress Testing:</strong> Pushing the system beyond expected load to find breaking points.
+*   8.5.6 <strong>End-to-End (E2E) Tests for Serving:</strong> Simulating user requests through the entire serving stack.
+*   8.5.7 <strong>Acceptance Testing (User/Business):</strong> Validating that the deployed system meets user needs and business requirements in a staging/UAT environment.
+*   8.5.8 <strong>Measuring the Delta Between Models (Operational):</strong> Comparing latency, throughput, and resource usage of new vs. old models in a staging serving environment.</p>
+<p><strong>Section 8.6: A Framework for Testing in MLOps: Where, When, and What</strong> <em>(This directly addresses your request for a summary view)</em>
+*   <strong>8.6.1 Testing in the Development Environment:</strong>
+*   Focus: Code correctness, local validation of logic.
+*   Activities: Unit tests, local data validation on samples, IDE debugging.
+*   <strong>8.6.2 Testing in CI (Continuous Integration) Pipelines:</strong>
+*   Focus: Early detection of bugs, code quality, basic component integrity.
+*   Activities (on feature branch push/PR): Linting, static analysis, unit tests (code, data logic, feature logic), IaC validation.
+*   <strong>8.6.3 Testing in CD (Continuous Delivery) to Staging Environment:</strong>
+*   Focus: Integration, end-to-end functionality, operational readiness.
+*   Activities:
+*   <em>For Pipeline Deployments:</em> Full data/training/inference pipeline runs on sample/staging data, integration tests, component interaction checks.
+*   <em>For Model Serving Deployments:</em> Deployment validation, API contract tests, consistency checks, load/performance tests, E2E tests, acceptance tests.
+*   <strong>8.6.4 Testing in CD to Production Environment (Post-Approval):</strong>
+*   Focus: Smoke tests, ensuring safe rollout.
+*   Activities: Basic health checks post-deployment. <em>Full online testing (A/B, Canary) is detailed in Chapter 12.</em>
+*   <strong>(Table)</strong> Title: MLOps Testing Matrix: Environment vs. Pipeline vs. Test Type
+| Stage/Environment     | Key Pipeline(s) Involved     | Data Validation | Feature Validation | Model Offline Eval | Pipeline E2E/Integration | Serving Perf/Load Tests |
+| :——————– | :————————— | :————– | :—————– | :—————– | :———————– | :———————- |
+| Dev (Local/IDE)       | Manual Scripts               | Partial/Manual  | Partial/Manual     | Initial/Manual     | Manual                   | N/A                     |
+| CI (GitHub Action)    | Code Build/Test              | Unit Tests (Logic) | Unit Tests (Logic) | Unit Tests (Model Code) | N/A                      | N/A                     |
+| Staging (CD)          | Data Ingestion, Training, Serving (Candidate) | Full (on Staging Data) | Full (on Staging Data) | Full (Candidate Model) | Yes                      | Yes (Serving Candidate) |
+| Production (Training) | Training Pipeline            | Full (on Prod Data) | Full (on Prod Data) | Full (New Model)   | (Monitored)              | N/A                     |
+| Production (Serving)  | Serving (Live Model)         | (Monitoring)    | (Monitoring)       | (Online Monitoring)  | (Monitoring)             | (Monitoring)            |</p>
+<p><strong>Section 8.7: Tools and Frameworks for ML Testing</strong>
+*   Recap of tools mentioned: Great Expectations, TFDV, Deequ, Pytest, Terratest (conceptual for IaC), Locust.
+*   Specific ML testing libraries or features within larger frameworks (e.g., <code class="docutils literal notranslate"><span class="pre">asserts</span></code> in TFX, evaluation capabilities in MLflow/W&amp;B).</p>
+<p><strong>Section 8.8: The ML Test Score Rubric: A Framework for Production Readiness</strong>
+*   Introduction to the Google paper “The ML Test Score: A Rubric for ML Production Readiness and Technical Debt Reduction.” [ML_Test_Score.pdf]
+*   Overview of its categories (Tests for Features &amp; Data, Model Development, ML Infrastructure, Monitoring).
+*   How to use it as an aspirational guide or self-assessment tool.</p>
+<p><strong>Section 8.9: Online Testing / Testing in Production (Preview)</strong>
+*   Briefly define A/B testing, Canary releases, Shadow deployments.
+*   Explain that these are primarily for validating <em>live effectiveness and business impact</em>.
+*   Clearly state that this topic will be covered in-depth in <strong>Chapter 12: Refining the Menu – Continual Learning &amp; Production Testing for Model Evolution</strong>.</p>
+<p><strong>Project: “Trending Now” – Implementing a Comprehensive Testing Strategy</strong></p>
+<ul class="simple">
+<li><p><strong>8.P.1 Data Validation for Ingestion Pipeline</strong></p>
+<ul>
+<li><p>Implement Great Expectations checks (or Pandas-based checks) for the output of <code class="docutils literal notranslate"><span class="pre">preprocess_data_task</span></code> and <code class="docutils literal notranslate"><span class="pre">get_llm_predictions_task</span></code>.</p></li>
+<li><p>Integrate this validation into the Airflow DAG.</p></li>
+</ul>
+</li>
+<li><p><strong>8.P.2 Feature Validation (Conceptual)</strong></p>
+<ul>
+<li><p>Discuss what feature validation checks would be relevant if we had a more complex feature engineering pipeline or a feature store (e.g., checking distribution of TF-IDF values, or embeddings).</p></li>
+</ul>
+</li>
+<li><p><strong>8.P.3 Rigorous Offline Model Evaluation (for Educational XGBoost/BERT Model)</strong></p>
+<ul>
+<li><p>Implement slice-based evaluation (e.g., accuracy for “Movie” vs. “TV Show” content types, or by source OTT if available).</p></li>
+<li><p>(Conceptual) Discuss how robustness testing (e.g., adding noise to plot summaries) would be done.</p></li>
+<li><p>Generate a Model Card.</p></li>
+</ul>
+</li>
+<li><p><strong>8.P.4 Pipeline Integration Testing (Staging)</strong></p>
+<ul>
+<li><p>Outline <code class="docutils literal notranslate"><span class="pre">pytest</span></code> integration tests for the Data Ingestion Airflow DAG to be run in the ephemeral staging environment.</p></li>
+<li><p>Focus on: triggering the DAG, ensuring it runs to completion with sample data, verifying data lands in staging S3 and (conceptually) staging Redshift.</p></li>
+</ul>
+</li>
+<li><p><strong>8.P.5 Model Performance &amp; Serving Infrastructure Testing (Staging)</strong></p>
+<ul>
+<li><p>Outline <code class="docutils literal notranslate"><span class="pre">pytest</span></code> tests for the staging FastAPI endpoint (both LLM and educational model paths).</p></li>
+<li><p>Set up a simple Locust load test file to hit the staging FastAPI endpoint.</p></li>
+</ul>
+</li>
+<li><p><strong>8.P.6 Integrating Tests into GitHub Actions CI/CD</strong></p>
+<ul>
+<li><p>Add steps to <code class="docutils literal notranslate"><span class="pre">ci.yml</span></code> to run data/feature validation logic unit tests.</p></li>
+<li><p>Add steps to <code class="docutils literal notranslate"><span class="pre">cd_staging.yml</span></code> to execute pipeline integration tests and serving load tests against the ephemeral staging environment.</p></li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+<p><strong>Chapter 9: Grand Opening – Model Deployment Strategies &amp; Serving Infrastructure</strong>
+<em>(Progress Label: 📍Stage 9: Efficient and Elegant Service to Diners)</em></p>
+<ul class="simple">
+<li><p><strong>Section 9.1: Packaging Models for Deployment</strong></p>
+<ul>
+<li><p>9.1.1 Model Serialization Formats (ONNX, PMML, Pickle, SavedModel, TorchScript)</p></li>
+<li><p>9.1.2 Containerization (Docker) for Serving</p></li>
+</ul>
+</li>
+<li><p><strong>Section 9.2: Choosing a Deployment Strategy: The Serving Spectrum</strong></p>
+<ul>
+<li><p>9.2.1 Batch Prediction: Use Cases, Architecture, Tooling</p></li>
+<li><p>9.2.2 Online/Real-time Prediction: Use Cases, Architecture, Tooling</p></li>
+<li><p>9.2.3 Streaming Prediction: Leveraging Real-time Features</p></li>
+<li><p>9.2.4 Edge Deployment: Requirements and Frameworks</p></li>
+</ul>
+</li>
+<li><p><strong>Section 9.3: Prediction Serving Patterns and Architectures</strong></p>
+<ul>
+<li><p>9.3.1 Model-as-Service (REST APIs, gRPC Endpoints)</p></li>
+<li><p>9.3.2 Serverless Functions for Model Inference</p></li>
+<li><p>9.3.3 Kubernetes for Scalable and Resilient Model Hosting</p></li>
+</ul>
+</li>
+<li><p><strong>Section 9.4: Inference Optimization for Performance and Cost</strong></p>
+<ul>
+<li><p>9.4.1 Hardware Acceleration (GPU, TPU, Custom Silicon)</p></li>
+<li><p>9.4.2 Model Compression Techniques (Quantization, Pruning, Distillation)</p></li>
+<li><p>9.4.3 Compiler Optimizations (TensorRT, OpenVINO, TVM)</p></li>
+<li><p>9.4.4 Batching and Caching in Serving</p></li>
+</ul>
+</li>
+<li><p><strong>Section 9.5: CI/CD for Model Serving: Automating Model Deployments</strong></p>
+<ul>
+<li><p>9.5.1 Building and Testing Serving Components</p></li>
+<li><p>9.5.2 Integrating with Model Registry for Model Promotion</p></li>
+</ul>
+</li>
+<li><p><strong>Section 9.6: Progressive Delivery &amp; Rollout Strategies for Safe Updates</strong></p>
+<ul>
+<li><p>9.6.1 Shadow Deployment for Non-disruptive Testing</p></li>
+<li><p>9.6.2 Canary Releases for Gradual Rollout</p></li>
+<li><p>9.6.3 Blue/Green Deployments for Instant Switchover/Rollback</p></li>
+<li><p>9.6.4 Implementing and Managing Rollbacks</p></li>
+</ul>
+</li>
+<li><p><strong>Project: “Trending Now” – Deploying the Genre Classification Model &amp; LLM Inference</strong></p>
+<ul>
+<li><p>Packaging the Trained XGBoost/BERT Model for Serving</p></li>
+<li><p>Designing the Inference Pipeline:</p>
+<ul>
+<li><p>Path 1 (Educational): Serving the XGBoost/BERT model via a REST API.</p></li>
+<li><p>Path 2 (Production-Realistic): Designing an API to an LLM for genre classification (prompt engineering, API key management).</p></li>
+</ul>
+</li>
+<li><p>Choosing Serving Infrastructure (e.g., Serverless for both, or Kubernetes for BERT if self-hosted)</p></li>
+<li><p>Implementing CI/CD for the Inference Service (for the XGBoost/BERT path)</p></li>
+<li><p>Conceptual Progressive Delivery for the “Trending Now” model</p></li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+<p><strong>Chapter 10: Listening to the Diners – Production Monitoring &amp; Observability for ML Systems</strong>
+<em>(Progress Label: 📍Stage 10: Continuous Feedback &amp; Kitchen Awareness)</em></p>
+<ul class="simple">
+<li><p><strong>Section 10.1: Key Metrics for Production Model Monitoring</strong></p>
+<ul>
+<li><p>10.1.1 Operational Metrics (Latency, Throughput, Error Rates, Resource Usage)</p></li>
+<li><p>10.1.2 Model Performance/Accuracy-Related Metrics (Business KPIs, Ground Truth Proxy)</p></li>
+<li><p>10.1.3 Monitoring Prediction Outputs (Distribution Shifts, Confidence Scores)</p></li>
+<li><p>10.1.4 Monitoring Input Features (Data Validation, Distribution Shifts)</p></li>
+</ul>
+</li>
+<li><p><strong>Section 10.2: Detecting Data and Concept Drift in Production</strong></p>
+<ul>
+<li><p>10.2.1 Statistical Methods and Challenges</p></li>
+<li><p>10.2.2 Defining Appropriate Time Scale Windows</p></li>
+<li><p>10.2.3 Handling High-Dimensional Data in Drift Detection</p></li>
+</ul>
+</li>
+<li><p><strong>Section 10.3: Implementing an Effective Monitoring Toolbox</strong></p>
+<ul>
+<li><p>10.3.1 Structured Logging for ML Systems</p></li>
+<li><p>10.3.2 Dashboards and Visualization for Insights</p></li>
+<li><p>10.3.3 Alerting Strategies and Avoiding Alert Fatigue</p></li>
+</ul>
+</li>
+<li><p><strong>Section 10.4: Tools and Platforms for ML Monitoring</strong></p>
+<ul>
+<li><p>10.4.1 Open Source vs. Commercial Solutions</p></li>
+<li><p>10.4.2 Integrating Monitoring with the MLOps Stack</p></li>
+</ul>
+</li>
+<li><p><strong>Section 10.5: Observability: Going Beyond Monitoring for Deeper Insights</strong></p>
+<ul>
+<li><p>10.5.1 Understanding System Internals from External Outputs</p></li>
+<li><p>10.5.2 Enabling Root Cause Analysis for Model Failures</p></li>
+</ul>
+</li>
+<li><p><strong>Project: “Trending Now” – Monitoring the Genre Classification Service</strong></p>
+<ul>
+<li><p>Defining Monitoring Metrics for the XGBoost/BERT Service (Operational: latency, error rate; Model: input data drift for plots/reviews, prediction distribution drift for genres).</p></li>
+<li><p>Monitoring the LLM Service (API error rates, latency, cost, output quality/drift).</p></li>
+<li><p>Setting up Dashboards and Alerts for “Trending Now.”</p></li>
+<li><p>Implementing Logging for Root Cause Analysis.</p></li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+<p><strong>Chapter 11: Refining the Menu – Continual Learning &amp; Production Testing for Model Evolution</strong>
+<em>(Progress Label: 📍Stage 11: Evolving Dishes Based on Popularity &amp; New Ingredients)</em></p>
+<ul class="simple">
+<li><p><strong>Section 11.1: The Imperative of Continual Learning in MLOps</strong></p>
+<ul>
+<li><p>11.1.1 Why Models Degrade (Data/Concept Drift, Evolving User Behavior)</p></li>
+<li><p>11.1.2 Benefits of Keeping Models Fresh</p></li>
+</ul>
+</li>
+<li><p><strong>Section 11.2: Strategies for Model Retraining and Updating</strong></p>
+<ul>
+<li><p>11.2.1 Triggers for Retraining (Scheduled, Performance-based, Drift-based, Volume-based)</p></li>
+<li><p>11.2.2 Data Curation and Selection for Retraining</p></li>
+<li><p>11.2.3 Stateful (Incremental) vs. Stateless (Full) Retraining</p></li>
+<li><p>11.2.4 Online Learning vs. Online Adaptation of Policies</p></li>
+</ul>
+</li>
+<li><p><strong>Section 11.3: Testing in Production: Validating Model Updates Safely</strong></p>
+<ul>
+<li><p>11.3.1 Limitations of Offline Evaluation for Evolving Systems</p></li>
+<li><p>11.3.2 A/B Testing for Comparing Model Versions</p></li>
+<li><p>11.3.3 Advanced Online Experimentation: Interleaving and Bandit Algorithms</p></li>
+</ul>
+</li>
+<li><p><strong>Section 11.4: Building Robust Feedback Loops for Continuous Improvement</strong></p></li>
+<li><p><strong>Section 11.5: Automating the Continual Learning Cycle: From Monitoring to Redeployment</strong></p></li>
+<li><p><strong>Project: “Trending Now” – Implementing Continual Learning</strong></p>
+<ul>
+<li><p>Defining Retraining Triggers for the Genre Model (e.g., new data from ingestion pipeline, performance degradation).</p></li>
+<li><p>Data Curation for Retraining (using newly scraped data).</p></li>
+<li><p>Deciding on Stateful vs. Stateless Retraining for the XGBoost/BERT model.</p></li>
+<li><p>Conceptual A/B Testing a new version of the genre model (or a new LLM prompt) in production.</p></li>
+<li><p>Automating the Retraining and Redeployment Cycle.</p></li>
+</ul>
+</li>
+<li><p><strong>Project: “Trending Now” – Implementing Continual Learning</strong></p>
+<ul>
+<li><p>Defining Retraining Triggers for the Genre Model (e.g., new data from ingestion pipeline, performance degradation).</p></li>
+<li><p>Data Curation for Retraining (using newly scraped data).</p></li>
+<li><p>Deciding on Stateful vs. Stateless Retraining for the XGBoost/BERT model.</p></li>
+<li><p>Conceptual A/B Testing a new version of the genre model (or a new LLM prompt) in production.</p></li>
+<li><p>Automating the Retraining and Redeployment Cycle.</p></li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+<p><strong>Chapter 12: Running a World-Class Establishment – Governance, Ethics &amp; The Human Element in MLOps</strong>
+<em>(Progress Label: 📍Finale: The Restaurant’s Enduring Legacy &amp; Responsibility)</em></p>
+<ul class="simple">
+<li><p><strong>Section 12.1: Comprehensive Model Governance in MLOps</strong></p>
+<ul>
+<li><p>12.1.1 Framework for Model Governance (Reproducibility, Validation, Observation, Control, Security, Auditability)</p></li>
+<li><p>12.1.2 Regulatory Compliance and Documentation (e.g., EU AI Act)</p></li>
+<li><p>12.1.3 Model Service Catalogs and Internal Discoverability</p></li>
+</ul>
+</li>
+<li><p><strong>Section 12.2: Principles and Practices of Responsible AI in MLOps</strong></p>
+<ul>
+<li><p>12.2.1 Fairness: Identifying and Mitigating Bias Across the Lifecycle</p></li>
+<li><p>12.2.2 Explainability and Interpretability: Tools and Techniques (SHAP, LIME, Model Cards)</p></li>
+<li><p>12.2.3 Transparency: Making ML Systems Understandable</p></li>
+<li><p>12.2.4 Privacy-Preserving ML Techniques</p></li>
+<li><p>12.2.5 Security: Protecting Against Adversarial Attacks and Data Poisoning</p></li>
+</ul>
+</li>
+<li><p><strong>Section 12.3: Holistic Testing for ML Systems: The ML Test Score</strong></p>
+<ul>
+<li><p>12.3.1 Testing Features and Data</p></li>
+<li><p>12.3.2 Tests for Reliable Model Development</p></li>
+<li><p>12.3.3 ML Infrastructure Tests</p></li>
+<li><p>12.3.4 Integrating into CI/CD</p></li>
+</ul>
+</li>
+<li><p><strong>Section 12.4: Structuring and Managing High-Performing ML Teams</strong></p>
+<ul>
+<li><p>12.4.1 Essential MLOps Roles and Skills</p></li>
+<li><p>12.4.2 Effective Organizational Structures for MLOps</p></li>
+<li><p>12.4.3 Project Management for Iterative and Uncertain ML Projects</p></li>
+</ul>
+</li>
+<li><p><strong>Section 12.5: Designing User-Centric and Trustworthy ML Products</strong></p>
+<ul>
+<li><p>12.5.1 Bridging User Expectations and Model Reality</p></li>
+<li><p>12.5.2 Designing for Smooth Failure and User Feedback</p></li>
+</ul>
+</li>
+<li><p><strong>Section 12.6: The Future of MLOps: Trends, Challenges, and Opportunities</strong></p></li>
+<li><p><strong>Project: “Trending Now” – Ensuring Governance and Responsibility</strong></p>
+<ul>
+<li><p>Applying Model Governance to “Trending Now” (Audit trails for data, training, and predictions).</p></li>
+<li><p>Responsible AI Considerations for Genre Classification (Potential biases in source data for plots/reviews, fairness in genre representation).</p></li>
+<li><p>Testing the “Trending Now” system against ethical guidelines.</p></li>
+<li><p>Reflecting on Team Structure and User Experience Design for the app.</p></li>
+<li><p>Final thoughts on scaling and evolving the “Trending Now” MLOps project.</p></li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+</section>
+<section id="typical-ml-workflow">
+<h2>Typical ML workflow<a class="headerlink" href="#typical-ml-workflow" title="Permalink to this heading">¶</a></h2>
+<img src="../../_static/mlops/problem_framing/workflow1.jpg"/>
+<ul class="simple">
+<li><p><a class="reference external" href="https://ml-ops.org/content/end-to-end-ml-workflow">ml-ops.org: Typical ML workflow</a></p></li>
+</ul>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://ml-ops.org/content/motivation">ml-ops.org: Why you Might Want to use Machine Learning</a></p></li>
+</ul>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024, Deepak Karkala
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">MLOps End to End Planning</a><ul>
+<li><a class="reference internal" href="#ml-ai-capabilities">ML/AI capabilities</a></li>
+<li><a class="reference internal" href="#ml-applications">ML Applications</a></li>
+<li><a class="reference internal" href="#typical-ml-workflow">Typical ML workflow</a></li>
+<li><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=b3ba4146"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/scripts/furo.js?v=4e2eecee"></script>
+    </body>
+</html>

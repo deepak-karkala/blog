@@ -1,0 +1,875 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Testing in ML Systems" href="ch9_ml_testing/index.html" /><link rel="prev" title="Model Calibration" href="ch7_model_development/calibration.html" />
+
+    <link rel="shortcut icon" href="../_static/favicon.ico"/><!-- Generated with Sphinx 7.1.2 and Furo 2024.05.06 -->
+        <title>ML Training Pipelines - Home</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=387cc868" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=36a5483c" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/style.css?v=8a7ff5ee" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" /
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">Home</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  
+  <span class="sidebar-brand-text">Home</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../past_experiences/index.html">Past Experiences</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Past Experiences</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../past_experiences/iot_anomaly.html">Anomaly Detection in Time Series IoT Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../past_experiences/iot_forecasting.html">Energy Demand Forecasting in Time Series IoT Data</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../past_experiences/adas_engine/index.html">ADAS: Data Engine</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of ADAS: Data Engine</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch0_business_challenge.html">Business Challenge and Goals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch1_ml_problem_framing.html">ML Problem Framing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch2_operational_strategy.html">Planning, Operational Strategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch3_pipelines_workflows.html">Workflows, Team, Roles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch4_testing_strategy.html">Testing Strategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch6_data_ingestion_workflows.html">Data Ingestion Workflows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch7_scene_understanding_data_mining.html">Scene Understanding &amp; Data Mining</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch8_model_training.html">Model Training &amp; Experimentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch9_packaging_promotion.html">Packaging, Evaluation &amp; Promotion Workflows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch10_deployment_serving.html">Deployment &amp; Serving</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch11_monitoring_continual_learning.html">Monitoring &amp; Continual Learning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch12_cost_lifecycle_compliance.html">Cost, Lifecycle, Compliance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch13_reliability_capacity_maps.html">Reliability, Capacity, Maps</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../past_experiences/ecom_cltv.html">Customer Lifetime Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../past_experiences/ecom_propensity.html">Real-Time Purchase Intent Scoring</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../past_experiences/ecom_summarisation.html">Reviews Summarisation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../past_experiences/ecom_rag.html">RAG-Based Product Discovery</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../projects/index.html">Projects</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Projects</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../projects/nlp/index.html">Natural Language Processing</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of Natural Language Processing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/airbnb_alternate_search/about/index.html">Airbnb Listing description based Semantic Search</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../projects/cv/index.html">Computer Vision</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of Computer Vision</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/ecommerce_image_segmentation/about/index.html">Image Segmentation for Ecommerce Products</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../projects/ml/index.html">Machine Learning</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of Machine Learning</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/airbnb_price_modeling/about/index.html">Predictive Price Modeling for Airbnb listings</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../publications/index.html">Patents, Papers, Thesis</a></li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../agents/index.html">AI Agents: A Lead Engineer’s Handbook</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of AI Agents: A Lead Engineer’s Handbook</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../agents/ch1_intro.html">Agent Fundamentals: What, Why, and When?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../agents/ch2_patterns.html">Agentic Patterns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../agents/ch5_context_engineering.html">Context Engineering for AI Agents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../agents/ch6_case_studies.html">The State of the Industry: Insights from the Field</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../agents/ch7_conclusion.html"><strong>Conclusion: The Lead Engineer’s Mental Model for Building Agents</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../agents/ch_cost.html">Cost Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../agents/ch_data.html">Data Management and Knowledge Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../agents/ch_deploy.html">Deployment and Scaling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../agents/ch_guardrails.html">Guardrails</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../agents/ch_hitl.html">Human-in-the-Loop (HITL)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../agents/ch_latency.html">Latency Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../agents/ch_llm.html">LLM – Prompts, Goals, and Persona</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../agents/ch_memory.html">Managing Agent Memory (Short-Term and Long-Term)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../agents/ch_monitor.html">Monitoring and Observability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../agents/ch_orchestration.html">Orchestration and Task Decomposition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../agents/ch_prod.html">Production Challenges and Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../agents/ch_security.html">Securing AI Agents and Preventing Abuse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../agents/ch_tool.html">Tool Use and Integration Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../agents/ch_trust.html">Building Trustworthy and Ethical AI Agents</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">MLOps</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of MLOps</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="ch1_problem_framing.html">ML Problem framing</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of ML Problem framing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ch2_blueprint_operational_strategy.html">The MLOps Blueprint &amp; Operational Strategy</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="ch2a_platform/index.html">ML Platforms</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle navigation of ML Platforms</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="ch2a_platform/ml_platforms.html">ML Platforms: How to</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch2a_platform/uber.html">Uber Michelangelo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch2a_platform/linkedin.html">LinkedIn DARWIN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch2a_platform/netflix.html">Netflix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch2a_platform/shopify.html">Shopify Merlin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch2a_platform/zomato.html">Zomato: Real-time ML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch2a_platform/coveo.html">Coveo: MLOPs at reasonable scale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch2a_platform/monzo.html">Monzo ML Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch2a_platform/didact.html">Didact AI</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="ch3_project_planning/index.html">Project Planning</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" role="switch" type="checkbox"/><label for="toctree-checkbox-11"><div class="visually-hidden">Toggle navigation of Project Planning</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="ch3_project_planning/prd.html">Project Requirements Document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch3_project_planning/tech_stack.html">Tech Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch3_project_planning/config_management.html">Config Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch3_project_planning/pipeline_design.html">Pipeline Design</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch3_project_planning/environment_strategy.html">Environment Strategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch3_project_planning/cicd_branching_model.html">CI/CD Strategy and Branching Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch3_project_planning/directory_structure.html">Directory Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch3_project_planning/env_branchind_cicd_deployment.html">Environments, Branching, CI/CD, and Deployments Explained</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch3_project_planning/project_management.html">Project Management for MLOps</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="ch4_data_discovery/index.html">Data Sourcing, Discovery</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" role="switch" type="checkbox"/><label for="toctree-checkbox-12"><div class="visually-hidden">Toggle navigation of Data Sourcing, Discovery</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="ch4_data_discovery/data_sourcing_discovery.html">Data Sourcing, Discovery &amp; Understanding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch4_data_discovery/ch4_project.html">Project-Trending Now: Implementing Web Scraping, Ingestion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch4_data_discovery/industry_case_studies.html">Data Discovery Platforms: Industry Case Studies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch4_data_discovery/facebook_nemo.html">Facebook: Nemo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch4_data_discovery/netflix_metacat.html">Netflix Metacat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch4_data_discovery/uber_databook.html">Uber Databook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch4_data_discovery/linkedin_datahub.html">LinkedIn Datahub</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="ch5_data_pipelines/index.html">Data Engineering, Pipelines</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" role="switch" type="checkbox"/><label for="toctree-checkbox-13"><div class="visually-hidden">Toggle navigation of Data Engineering, Pipelines</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="ch5_data_pipelines/data_pipelines.html">Data Engineering for Reliable ML Pipelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch5_data_pipelines/data_engineering_pipelines.html">Data Engineering &amp; Pipelines: A Lead’s Compendium</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch5_data_pipelines/streaming_pipelines.html">Real-Time &amp; Streaming Data Pipelines: Challenges, Solutions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch5_data_pipelines/netflix_keystone.html">Netflix Keystone</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch5_data_pipelines/doordash_riviera.html">Doordash Riviera</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="ch6_feature_engg/index.html">Feature Engineering, Feature Stores</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" role="switch" type="checkbox"/><label for="toctree-checkbox-14"><div class="visually-hidden">Toggle navigation of Feature Engineering, Feature Stores</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="ch6_feature_engg/feature_engineering_store.html">Feature Engineering and Feature Stores</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch6_feature_engg/feature_engineering.html">Feature Engineering for MLOps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch6_feature_engg/explained_feature_stores.html">Feature Stores for MLOps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch6_feature_engg/point_in_time.html">Point-in-Time Correctness &amp; Time Travel in ML Data Pipelines</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="ch6_feature_engg/feast/index.html">Feast Feature Store</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" role="switch" type="checkbox"/><label for="toctree-checkbox-15"><div class="visually-hidden">Toggle navigation of Feast Feature Store</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="ch6_feature_engg/feast/feast_architecture.html">Feast Architecture: A Technical Deep Dive for MLOps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch6_feature_engg/feast/feast_concepts.html">Feast Concepts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch6_feature_engg/feast/feast_components.html">Feast Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch6_feature_engg/feast/feast_usecases.html">Feast Use Cases</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch6_feature_engg/feast/feast_aws.html">Running Feast with AWS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch6_feature_engg/feast/run_in_prod.html">Running Feast in Production</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch6_feature_engg/feast/validate_historical_with_gx.html">Validating Historical Features with Great Expectations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ch6_feature_engg/feast/add_reuse_tests.html">Adding or Reusing Tests in Feast</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="ch7_model_development/index.html">Model Development, Tuning, Selection, Ensembles, Calibration</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" role="switch" type="checkbox"/><label for="toctree-checkbox-16"><div class="visually-hidden">Toggle navigation of Model Development, Tuning, Selection, Ensembles, Calibration</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="ch7_model_development/ch7_model_development.html">Chapter 7: Model Development</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch7_model_development/dl_training_playbook.html">How to train DL Models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch7_model_development/development.html">Model Development</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch7_model_development/industry_lessons.html">Model Development: Lessons from production systems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch7_model_development/ensembles.html"><strong>Model Ensembles</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch7_model_development/selection.html">Model Selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch7_model_development/tuning_hypopt.html">Hyperparameter Optimization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch7_model_development/expt_tracking.html">ML Expt tracking, Data Lineage, Model Registry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch7_model_development/calibration.html">Model Calibration</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">ML Training Pipelines</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="ch9_ml_testing/index.html">Testing in ML Systems</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" role="switch" type="checkbox"/><label for="toctree-checkbox-17"><div class="visually-hidden">Toggle navigation of Testing in ML Systems</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="ch9_ml_testing/ch9_ml_testing.html">Testing in ML Systems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch9_ml_testing/data_testing_validation.html">Data Testing &amp; Validation in Production</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch9_ml_testing/ml_testing.html">Testing ML Systems: Ensuring Reliability from Code to Production</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="ch10_deployment_serving/index.html">Model Deployment &amp; Serving</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" role="switch" type="checkbox"/><label for="toctree-checkbox-18"><div class="visually-hidden">Toggle navigation of Model Deployment &amp; Serving</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="ch10_deployment_serving/ch10_deployment_serving.html">Chapter 10: Deployment &amp; Serving</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch10_deployment_serving/guide_deployment_serving.html">Guide: Model Deployment &amp; Serving</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch10_deployment_serving/guide_inference_stack.html">Deep Dive: Inference Stack</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="ch11_monitor_observe_drift/index.html">Monitoring, Observability, Drift, Interpretability</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" role="switch" type="checkbox"/><label for="toctree-checkbox-19"><div class="visually-hidden">Toggle navigation of Monitoring, Observability, Drift, Interpretability</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="ch11_monitor_observe_drift/ch11_monitor_observe_drift.html">Chapter 11: Monitoring, Observability, Drifts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch11_monitor_observe_drift/guide_monitor_observe_drift.html">Guide: ML System Failures, Data Distribution Shifts, Monitoring, and Observability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch11_monitor_observe_drift/guide_interpretability_shap_lime.html">Interpretability, SHAP, LIME</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch11_monitor_observe_drift/guide_stack.html">Prometheus + Grafana and ELK Stacks</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="ch12_retrain_online_testing/index.html">Continual learning, Retraining, A/B Testing</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" role="switch" type="checkbox"/><label for="toctree-checkbox-20"><div class="visually-hidden">Toggle navigation of Continual learning, Retraining, A/B Testing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="ch12_retrain_online_testing/ch12_continual_learning_prod_testing.html">Chapter 12: Continual Learning &amp; Production Testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch12_retrain_online_testing/guide_continual_learning.html">Continual Learning &amp; Model Retraining</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch12_retrain_online_testing/guide_ab_testing.html">A/B Testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch12_retrain_online_testing/guide_ab_testing_industry_lessons.html">A/B Testing &amp; Experimentation: Industry lessons</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch12_retrain_online_testing/guide_prod_testing_expt.html">Guide: Production Testing &amp; Experimentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ch12_retrain_online_testing/dr_prod_testing_expt.html">Deep Research: Production Testing &amp; Experimentation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ch13_governance_ethics_human.html">Governance, Ethics &amp; The Human Element</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../pytorch/index.html">PyTorch</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" role="switch" type="checkbox"/><label for="toctree-checkbox-21"><div class="visually-hidden">Toggle navigation of PyTorch</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/general.html">General</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/state_dict.html">state_dict</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/mixed_precision.html">Mixed Precision</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/distributed_data_parallel.html">Distributed Data Parallel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/ddp_under_the_hood.html">DDP: Under the Hood</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/dp_ddp.html">DP vs DDP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/fsdp.html">FSDP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/tensor_parallelism.html">Tensor parallelism</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/pipeline_parallelism.html">Pipeline Parallelism</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/device_mesh.html">Device Mesh</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../lld/index.html">Low Level Design</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" role="switch" type="checkbox"/><label for="toctree-checkbox-22"><div class="visually-hidden">Toggle navigation of Low Level Design</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lld/parking_lot.html">Parking Lot</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../visualization/index.html">Data Visualization Projects</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="../_sources/mlops/ch8_ml_pipelines.md.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="ml-training-pipelines">
+<h1>ML Training Pipelines<a class="headerlink" href="#ml-training-pipelines" title="Permalink to this heading">¶</a></h1>
+<section id="id1">
+<h2><a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<p><strong>Chapter 8: Standardizing the Signature Dish – Building Scalable Training Pipelines</strong></p>
+<p><em>(Progress Label: 📍Stage 8: Codifying the Master Recipe)</em></p>
+<section id="introduction-from-chef-s-creation-to-industrial-kitchen-standard-operating-procedures">
+<h3>🧑‍🍳 Introduction: From Chef’s Creation to Industrial Kitchen Standard Operating Procedures<a class="headerlink" href="#introduction-from-chef-s-creation-to-industrial-kitchen-standard-operating-procedures" title="Permalink to this heading">¶</a></h3>
+<p>In Chapter 7, our “Experimental Kitchen” buzzed with creativity, leading to well-tuned models—our candidate “signature dishes.” We meticulously tracked experiments and refined our recipes. However, a Michelin-starred restaurant cannot rely solely on the ad-hoc brilliance of a single chef for every serving. To consistently deliver excellence to many diners, the perfected recipe must be standardized, documented, and integrated into a scalable production line with clear Standard Operating Procedures (SOPs).</p>
+<p>Welcome to the crucial MLOps phase of <strong>Building Scalable Training Pipelines</strong>. This chapter focuses on transforming our validated model development processes from Chapter 7 into production-grade, automated workflows. This is akin to taking a chef’s meticulously crafted recipe and creating the industrial kitchen setup capable of reproducing that dish flawlessly, efficiently, and at scale, every single time it’s needed.</p>
+<p>We’ll cover the essential engineering practices: refactoring experimental code into robust, modular scripts; managing configurations for reproducibility; designing the architecture of ML training pipelines with common components; implementing CI/CD for these pipelines to automate their build, test, and deployment; strategies for distributed training to handle large datasets and complex models; managing the underlying infrastructure effectively; and ensuring comprehensive metadata logging for auditability and governance. For our “Trending Now” project, this means taking our best XGBoost/BERT genre classification model and building the automated system to retrain and register it reliably.</p>
+</section>
+<hr class="docutils" />
+<section id="section-8-1-from-notebooks-to-production-grade-training-code-from-chef-s-notes-to-official-recipe-card">
+<h3>Section 8.1: From Notebooks to Production-Grade Training Code (From Chef’s Notes to Official Recipe Card)<a class="headerlink" href="#section-8-1-from-notebooks-to-production-grade-training-code-from-chef-s-notes-to-official-recipe-card" title="Permalink to this heading">¶</a></h3>
+<p>The journey from experimental notebooks to reliable production pipelines begins with robust code.</p>
+<ul class="simple">
+<li><p><strong>8.1.1 Refactoring for Modularity, Testability, and Reusability</strong></p>
+<ul>
+<li><p><strong>Why Refactor?</strong> Notebook code is often linear, stateful, and hard to test. Production pipelines need modular, stateless, and testable components.</p></li>
+<li><p><strong>Modularization:</strong> Break down monolithic notebook code into:</p>
+<ul>
+<li><p><strong>Functions and Classes:</strong> Encapsulate specific logic (e.g., <code class="docutils literal notranslate"><span class="pre">load_data()</span></code>, <code class="docutils literal notranslate"><span class="pre">preprocess_text()</span></code>, <code class="docutils literal notranslate"><span class="pre">train_xgboost_model()</span></code>, <code class="docutils literal notranslate"><span class="pre">evaluate_classification()</span></code>).</p></li>
+<li><p><strong>Separate Python Scripts/Modules:</strong> Organize related functions/classes into logical files (e.g., <code class="docutils literal notranslate"><span class="pre">data_loader.py</span></code>, <code class="docutils literal notranslate"><span class="pre">feature_transformer.py</span></code>, <code class="docutils literal notranslate"><span class="pre">model_trainer.py</span></code>).</p></li>
+</ul>
+</li>
+<li><p><strong>Testability:</strong></p>
+<ul>
+<li><p>Write unit tests (<code class="docutils literal notranslate"><span class="pre">pytest</span></code>) for individual functions and classes.</p></li>
+<li><p>Ensure functions are deterministic where possible (given same input, produce same output).</p></li>
+<li><p>Isolate dependencies for easier mocking.</p></li>
+</ul>
+</li>
+<li><p><strong>Reusability:</strong> Well-defined functions/modules can be reused across different pipelines or for different model versions.</p></li>
+<li><p><strong>Statelessness:</strong> Pipeline components should ideally be stateless, receiving all necessary inputs as arguments and producing defined outputs, rather than relying on global notebook state.</p></li>
+</ul>
+</li>
+<li><p><strong>8.1.2 Configuration Management for Training (Standardizing Ingredient Measures &amp; Cooking Times)</strong></p>
+<ul>
+<li><p><strong>Avoid Hardcoding:</strong> Parameters like data paths, hyperparameters, instance types, feature lists should <em>not</em> be hardcoded in scripts.</p></li>
+<li><p><strong>Configuration Files:</strong> Use YAML, JSON, or Python config files (as discussed in Chapter 3) to store these settings.</p>
+<ul>
+<li><p>Example: <code class="docutils literal notranslate"><span class="pre">training_config.yaml</span></code> with sections for data sources, feature engineering parameters, model type, hyperparameters, evaluation metrics.</p></li>
+</ul>
+</li>
+<li><p><strong>Environment Variables:</strong> Can be used to specify which configuration file to load or to override specific settings (e.g., <code class="docutils literal notranslate"><span class="pre">APP_ENV=staging</span></code> loads <code class="docutils literal notranslate"><span class="pre">config_staging.yaml</span></code>).</p></li>
+<li><p><strong>Loading Configuration:</strong> Scripts should load configurations at runtime.</p></li>
+<li><p><strong>Versioning Configs:</strong> Configuration files must be version-controlled with Git alongside the code. This ensures that a specific training run can be reproduced with its exact configuration.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="section-8-2-designing-and-implementing-ml-training-pipelines-blueprint-for-the-automated-production-line">
+<h3>Section 8.2: Designing and Implementing ML Training Pipelines (Blueprint for the Automated Production Line)<a class="headerlink" href="#section-8-2-designing-and-implementing-ml-training-pipelines-blueprint-for-the-automated-production-line" title="Permalink to this heading">¶</a></h3>
+<p>An ML training pipeline automates the end-to-end process of generating a production-ready model from data.</p>
+<ul>
+<li><p><strong>8.2.1 Common Pipeline Components (The Assembly Line Stations)</strong>
+<img src="../_static/mlops/ch8_ml_pipelines/ml_training_pipeline.png"/></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://services.google.com/fh/files/misc/practitioners_guide_to_mlops_whitepaper.pdf">Source: Google Cloud: Practitioners guide to MLOps: A framework for continuous delivery and automation of machine learning.</a></p></li>
+</ul>
+<ul class="simple">
+<li><p><strong>Data Ingestion/Extraction:</strong> Load the specific version of training data (e.g., from DVC-tracked S3 paths, Feature Store).</p></li>
+<li><p><strong>Data Validation:</strong> Perform quality and schema checks on the input training data (using tools like Great Expectations, TFDV). Halt pipeline if validation fails.</p></li>
+<li><p><strong>Data Preprocessing/Feature Engineering:</strong> Apply transformations, scaling, encoding, feature creation</p></li>
+<li><p><strong>Model Training:</strong> Execute the training script with specified hyperparameters on the processed data.</p></li>
+<li><p><strong>Model Evaluation (Offline):</strong> Evaluate the trained model on a holdout validation/test set using predefined metrics.</p></li>
+<li><p><strong>Model Validation (Business Logic):</strong> Compare model performance against baselines or production champion model. Check if it meets business-defined thresholds.</p></li>
+<li><p><strong>Model Registration:</strong> If validation passes, version and register the model artifact, its metadata, and lineage information into the Model Registry (e.g., W&amp;B).</p></li>
+</ul>
+</li>
+<li><p><strong>8.2.2 Building Custom Pipeline Components (Crafting Specialized Kitchen Tools)</strong></p>
+<ul class="simple">
+<li><p>For most orchestration tools (Airflow, Kubeflow Pipelines, SageMaker Pipelines), each step above is implemented as a distinct component or task.</p></li>
+<li><p><strong>Containerization:</strong> Package the code and dependencies for each component (or groups of related components) into Docker images for portability and reproducibility.</p></li>
+<li><p><strong>Inputs/Outputs:</strong> Define clear contracts for inputs and outputs between components (e.g., paths to data artifacts in S3, metrics files, model files).</p></li>
+<li><p><strong>Parameterization:</strong> Components should accept parameters from the pipeline orchestrator (e.g., data paths, hyperparameters).</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="section-8-3-ci-cd-for-training-pipelines-automating-build-test-and-deployment-automating-the-kitchen-setup-and-sops">
+<h3>Section 8.3: CI/CD for Training Pipelines: Automating Build, Test, and Deployment (Automating the Kitchen Setup and SOPs)<a class="headerlink" href="#section-8-3-ci-cd-for-training-pipelines-automating-build-test-and-deployment-automating-the-kitchen-setup-and-sops" title="Permalink to this heading">¶</a></h3>
+<p>While Chapter 12 (Continual Learning) will discuss <em>running</em> the training pipeline (Continuous Training - CT), this section focuses on the CI/CD process for the training <em>pipeline definition itself</em>. When you change the code of a pipeline step (e.g., update a feature engineering script, change the model architecture), that pipeline definition needs to be built, tested, and deployed.</p>
+<ul class="simple">
+<li><p><strong>8.3.1 Unit and Integration Testing for Pipeline Components</strong></p>
+<ul>
+<li><p><strong>Unit Tests:</strong> Test individual Python functions/classes used within pipeline components (e.g., data transformers, model training logic) with mocked inputs.</p></li>
+<li><p><strong>Component Integration Tests:</strong> Test interactions between a few closely related components (e.g., does the output of preprocessing correctly feed into the training component?).</p></li>
+<li><p><strong>Pipeline DAG Validation:</strong> For tools like Airflow, test that the DAG definition is valid (no cycles, correct dependencies).</p></li>
+</ul>
+</li>
+<li><p><strong>8.3.2 Building and Versioning Container Images for Training Steps</strong></p>
+<ul>
+<li><p>As part of CI, when a component’s code changes, rebuild its Docker image.</p></li>
+<li><p>Tag images with version numbers (e.g., Git commit hash or semantic version).</p></li>
+<li><p>Push versioned images to a container registry (ECR, GCR, Docker Hub).</p></li>
+</ul>
+</li>
+<li><p><strong>8.3.3 Deploying Pipeline Definitions to Orchestration Platforms</strong></p>
+<ul>
+<li><p><strong>CD Process:</strong></p>
+<ol class="arabic simple">
+<li><p>On merge to <code class="docutils literal notranslate"><span class="pre">dev</span></code> branch (after CI passes):</p>
+<ul>
+<li><p>Deploy the updated Airflow DAG file (and any new container image versions referenced in it) to the <strong>Staging Airflow environment</strong>.</p></li>
+<li><p>Run an E2E test of the pipeline in Staging using a small, representative dataset.</p></li>
+</ul>
+</li>
+<li><p>On approval (after Staging validation) / merge to <code class="docutils literal notranslate"><span class="pre">main</span></code>:</p>
+<ul>
+<li><p>Deploy the <em>same</em> DAG file and container versions to the <strong>Production Airflow environment</strong>.</p></li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p><strong>Infrastructure as Code (Terraform):</strong> Changes to the Airflow environment itself (e.g., worker instance types, scaling policies) should also be managed via IaC and go through a similar CI/CD process.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="section-8-4-distributed-training-strategies-for-production-scale-the-high-volume-kitchen-line">
+<h3>Section 8.4: Distributed Training Strategies for Production Scale (The High-Volume Kitchen Line)<a class="headerlink" href="#section-8-4-distributed-training-strategies-for-production-scale-the-high-volume-kitchen-line" title="Permalink to this heading">¶</a></h3>
+<p>For large datasets or complex models (like BERT), distributed training is often necessary to complete training within acceptable timeframes.</p>
+<ul class="simple">
+<li><p><strong>8.4.1 Data Parallelism</strong></p>
+<ul>
+<li><p><em>Concept:</em> Replicate the model on multiple workers (GPUs/nodes). Each worker processes a different shard of the data. Gradients are aggregated and synchronized.</p></li>
+<li><p><em>Synchronization:</em> Synchronous SGD (AllReduce) vs. Asynchronous SGD (Parameter Server).</p></li>
+<li><p><em>Frameworks:</em> PyTorch <code class="docutils literal notranslate"><span class="pre">DistributedDataParallel</span></code> (DDP), TensorFlow <code class="docutils literal notranslate"><span class="pre">MirroredStrategy</span></code>, Horovod.</p></li>
+</ul>
+</li>
+<li><p><strong>8.4.2 Model Parallelism (for very large models)</strong></p>
+<ul>
+<li><p><em>Concept:</em> Split a single large model across multiple workers.</p></li>
+<li><p><em>Types:</em></p>
+<ul>
+<li><p><strong>Intra-layer (Tensor) Parallelism:</strong> Splitting individual operations (e.g., large matrix multiplications) across devices (e.g., NVIDIA Megatron-LM).</p></li>
+<li><p><strong>Inter-layer (Pipeline) Parallelism:</strong> Assigning different layers of the model to different devices. Micro-batches are used to keep devices busy.</p></li>
+</ul>
+</li>
+<li><p><em>Sharded Data Parallelism (e.g., ZeRO, FairScale, PyTorch FSDP):</em> Combines data parallelism with sharding model parameters, gradients, and optimizer states across workers to reduce memory footprint per worker.</p></li>
+</ul>
+</li>
+<li><p><strong>8.4.3 Choosing the Right Strategy and Framework</strong></p>
+<ul>
+<li><p>Data parallelism is the most common starting point.</p></li>
+<li><p>Model/Pipeline/Sharded parallelism for extremely large models that don’t fit on a single GPU.</p></li>
+<li><p>Consider communication overhead, ease of implementation, and framework support.</p></li>
+<li><p>Tools like PyTorch Lightning, DeepSpeed, FairScale, and Hugging Face Accelerate simplify distributed training setup.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="section-8-5-managing-training-infrastructure-and-resources-effectively-optimizing-kitchen-equipment-usage">
+<h3>Section 8.5: Managing Training Infrastructure and Resources Effectively (Optimizing Kitchen Equipment Usage)<a class="headerlink" href="#section-8-5-managing-training-infrastructure-and-resources-effectively-optimizing-kitchen-equipment-usage" title="Permalink to this heading">¶</a></h3>
+<p>Efficiently using compute resources is key to cost-effective and timely model training.</p>
+<ul class="simple">
+<li><p><strong>8.5.1 Compute Instance Selection (CPU, GPU, Specialized HW)</strong></p>
+<ul>
+<li><p><strong>CPUs:</strong> Sufficient for many traditional ML models (XGBoost, Scikit-learn) on moderately sized data.</p></li>
+<li><p><strong>GPUs (NVIDIA, AMD):</strong> Essential for deep learning. Choose based on memory, Tensor Core performance (for mixed-precision), interconnect (NVLink). (e.g., AWS P-series, G-series; GCP A2, N1).</p></li>
+<li><p><strong>Specialized Accelerators (TPUs, AWS Trainium/Inferentia):</strong> Can offer better price/performance for specific workloads.</p></li>
+<li><p><strong>MLOps Pipeline Implication:</strong> Parameterize instance types in pipeline definitions to allow flexibility and environment-specific choices.</p></li>
+</ul>
+</li>
+<li><p><strong>8.5.2 Spot Instances and Cost Optimization</strong></p>
+<ul>
+<li><p><strong>Spot Instances:</strong> Offer significant cost savings (up to 90%) for fault-tolerant training workloads.</p></li>
+<li><p><strong>Checkpointing:</strong> Essential when using spot instances to save progress and resume if an instance is reclaimed. Configure training scripts and orchestration tools to handle checkpointing and resumption.</p></li>
+<li><p><strong>Managed Spot Training:</strong> Cloud services (e.g., SageMaker Managed Spot Training) handle spot instance interruptions and lifecycle management.</p></li>
+</ul>
+</li>
+<li><p><strong>8.5.3 Right-Sizing Resources</strong></p>
+<ul>
+<li><p>Monitor CPU/GPU/memory utilization during training runs (e.g., using CloudWatch, W&amp;B system metrics).</p></li>
+<li><p>Adjust instance types and counts to avoid over-provisioning or bottlenecks.</p></li>
+</ul>
+</li>
+<li><p><strong>8.5.4 Stopping Resources When Not in Use</strong></p>
+<ul>
+<li><p>Ensure training clusters/jobs are automatically terminated after completion or failure to avoid idle costs. Orchestrators typically handle this.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="section-8-6-training-orchestration-scheduling-and-triggering-the-kitchen-s-head-chef-coordinating-tasks">
+<h3>Section 8.6: Training Orchestration, Scheduling, and Triggering (The Kitchen’s Head Chef Coordinating Tasks)<a class="headerlink" href="#section-8-6-training-orchestration-scheduling-and-triggering-the-kitchen-s-head-chef-coordinating-tasks" title="Permalink to this heading">¶</a></h3>
+<p>This section focuses on <em>running</em> the deployed training pipelines.</p>
+<ul class="simple">
+<li><p><strong>Orchestration Tools (Our Choice: Airflow):</strong></p>
+<ul>
+<li><p>Manages DAG execution, dependencies, retries, logging.</p></li>
+<li><p>Integrates with various execution backends (local, Docker, Kubernetes, cloud services).</p></li>
+</ul>
+</li>
+<li><p><strong>Scheduling Training Runs:</strong></p>
+<ul>
+<li><p><strong>Time-based:</strong> Daily, weekly, hourly (using Airflow’s <code class="docutils literal notranslate"><span class="pre">schedule_interval</span></code>).</p></li>
+<li><p>Consider data freshness requirements and model decay rate.</p></li>
+</ul>
+</li>
+<li><p><strong>Event-based Triggering:</strong></p>
+<ul>
+<li><p><strong>New Data Arrival:</strong> Trigger pipeline when significant new data is available in S3 (e.g., using S3 events + Lambda to trigger Airflow DAG).</p></li>
+<li><p><strong>Model Performance Degradation:</strong> Alert from monitoring system (Chapter 12) triggers retraining DAG.</p></li>
+<li><p><strong>Code/Config Change:</strong> CI/CD deployment of a new pipeline version might automatically trigger an initial run.</p></li>
+</ul>
+</li>
+<li><p><strong>Manual Triggers:</strong> Allow ad-hoc runs for experimentation or urgent updates. Airflow UI provides this.</p></li>
+<li><p><strong>Parameterizing Pipeline Runs:</strong> Pass configurations (data range, hyperparameters, output tags) to Airflow DAG runs dynamically.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="section-8-7-comprehensive-model-and-training-metadata-logging-for-auditability-the-kitchen-s-detailed-logbook">
+<h3>Section 8.7: Comprehensive Model and Training Metadata Logging for Auditability (The Kitchen’s Detailed Logbook)<a class="headerlink" href="#section-8-7-comprehensive-model-and-training-metadata-logging-for-auditability-the-kitchen-s-detailed-logbook" title="Permalink to this heading">¶</a></h3>
+<p>Every automated training run must produce rich metadata for tracking, debugging, and governance.</p>
+<ul class="simple">
+<li><p><strong>What to Log (Automated by Pipeline &amp; Tracking Tools):</strong></p>
+<ul>
+<li><p>Pipeline Run ID, Triggering event/schedule.</p></li>
+<li><p>Version of the training pipeline DAG definition (Git commit).</p></li>
+<li><p>Versions of all input data (DVC hashes/paths).</p></li>
+<li><p>Specific configurations used (hyperparameters, feature engineering settings).</p></li>
+<li><p>Environment details (container image versions, library versions).</p></li>
+<li><p>Execution logs for each pipeline step.</p></li>
+<li><p>Paths to all generated artifacts (processed data, model file, evaluation reports).</p></li>
+<li><p>Evaluation metrics (offline).</p></li>
+<li><p>Resource utilization (if available from orchestrator/platform).</p></li>
+</ul>
+</li>
+<li><p><strong>Tools for Logging &amp; Storage:</strong></p>
+<ul>
+<li><p><strong>Airflow Logs:</strong> Captures task execution logs.</p></li>
+<li><p><strong>W&amp;B (Our Choice):</strong> Log metrics, hyperparameters, artifacts, link to Git commit. W&amp;B Artifacts for model/dataset versioning within W&amp;B.</p></li>
+<li><p><strong>MLflow Tracking:</strong> Similar capabilities.</p></li>
+<li><p><strong>Centralized ML Metadata Store (MLMD):</strong> Underlying technology for many platforms (Kubeflow, TFX, Vertex AI) to store detailed lineage and metadata.</p></li>
+</ul>
+</li>
+<li><p><strong>Importance for Auditability &amp; Governance:</strong></p>
+<ul>
+<li><p>Provides a complete trail for how a model was produced.</p></li>
+<li><p>Essential for debugging production issues by tracing back to the exact training run.</p></li>
+<li><p>Required for compliance in many regulated industries.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="project-trending-now-operationalizing-model-training-for-xgboost-bert">
+<h3>Project: “Trending Now” – Operationalizing Model Training (for XGBoost/BERT)<a class="headerlink" href="#project-trending-now-operationalizing-model-training-for-xgboost-bert" title="Permalink to this heading">¶</a></h3>
+<p>Let’s outline how to build the automated training pipeline for our educational genre classification models.</p>
+<ul class="simple">
+<li><p><strong>8.P.1 Refactoring Experimental Code into a Production-Ready Training Script</strong></p>
+<ul>
+<li><p>Take the Jupyter notebook code for XGBoost and BERT training (from Chapter 7 project).</p></li>
+<li><p>Convert it into modular Python scripts (e.g., <code class="docutils literal notranslate"><span class="pre">train_xgboost.py</span></code>, <code class="docutils literal notranslate"><span class="pre">train_bert.py</span></code>).</p></li>
+<li><p>Scripts should accept arguments for data paths, hyperparameters, W&amp;B project/run names, output model path (e.g., using <code class="docutils literal notranslate"><span class="pre">argparse</span></code>).</p></li>
+<li><p>Ensure scripts load data, preprocess (if steps are part of training script rather than a separate data pipeline output), train, evaluate, and log all relevant info to W&amp;B.</p></li>
+<li><p>Save the trained model artifact locally within the script’s execution context.</p></li>
+</ul>
+</li>
+<li><p><strong>8.P.2 Designing the Automated Training Pipeline (Airflow DAG in <code class="docutils literal notranslate"><span class="pre">mlops/pipelines/model_training_dag.py</span></code>)</strong></p>
+<ul>
+<li><p><strong>Parameters:</strong> Input data version (DVC path), model type (XGBoost/BERT), hyperparameter config path, W&amp;B project name.</p></li>
+<li><p><strong>Tasks:</strong></p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">setup_training_env_task</span></code>: (Optional, if specific setup beyond Docker image is needed).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pull_data_task</span></code>: <code class="docutils literal notranslate"><span class="pre">BashOperator</span></code> to run <code class="docutils literal notranslate"><span class="pre">dvc</span> <span class="pre">pull</span></code> for the specified input data version from S3.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">feature_engineering_task</span></code> (if not already part of the upstream data pipeline output that DVC tracks): <code class="docutils literal notranslate"><span class="pre">PythonOperator</span></code> to run feature scripts (e.g., TF-IDF generation). Output: feature-engineered data.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">train_model_task</span></code>: <code class="docutils literal notranslate"><span class="pre">PythonOperator</span></code> (or <code class="docutils literal notranslate"><span class="pre">DockerOperator</span></code> if scripts are containerized) to run the chosen training script (<code class="docutils literal notranslate"><span class="pre">train_xgboost.py</span></code> or <code class="docutils literal notranslate"><span class="pre">train_bert.py</span></code>) with parameters. This script logs to W&amp;B.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">offline_evaluation_task</span></code>: <code class="docutils literal notranslate"><span class="pre">PythonOperator</span></code> to run an evaluation script on the trained model (from previous task output) using a holdout test set (also DVC versioned). Logs metrics to W&amp;B.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">validate_model_task</span></code>: <code class="docutils literal notranslate"><span class="pre">PythonOperator</span></code> to check if evaluation metrics meet predefined thresholds (e.g., Macro F1 &gt; 0.8). If not, pipeline can fail or send alert.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">register_model_task</span></code>: <code class="docutils literal notranslate"><span class="pre">PythonOperator</span></code> to use W&amp;B API to register the validated model artifact (from <code class="docutils literal notranslate"><span class="pre">train_model_task</span></code> output or a W&amp;B artifact reference) in the W&amp;B Model Registry, tagging it with relevant metadata (e.g., “staging”, data version, pipeline run ID).</p></li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p><strong>8.P.3 Implementing CI/CD for the Training Pipeline</strong></p>
+<ul>
+<li><p><strong>CI (<code class="docutils literal notranslate"><span class="pre">.github/workflows/ci.yml</span></code>):</strong></p>
+<ul>
+<li><p>Add jobs to run unit tests for training scripts (<code class="docutils literal notranslate"><span class="pre">mlops/scripts/training/tests/</span></code>).</p></li>
+<li><p>Validate Airflow DAG syntax: <code class="docutils literal notranslate"><span class="pre">airflow</span> <span class="pre">dags</span> <span class="pre">list</span> <span class="pre">--report</span></code>.</p></li>
+</ul>
+</li>
+<li><p><strong>CD (<code class="docutils literal notranslate"><span class="pre">.github/workflows/cd_staging.yml</span></code>, <code class="docutils literal notranslate"><span class="pre">cd_production.yml</span></code>):</strong></p>
+<ul>
+<li><p>Steps to deploy the <code class="docutils literal notranslate"><span class="pre">model_training_dag.py</span></code> and related scripts/configs to the Staging/Production Airflow DAGs folder.</p></li>
+<li><p>Build and push Docker images for training tasks if custom containers are used.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>8.P.4 (Conceptual) Distributed Training for BERT if Dataset Were Very Large</strong></p>
+<ul>
+<li><p>Discuss how the <code class="docutils literal notranslate"><span class="pre">train_bert.py</span></code> script would be modified to use PyTorch DDP or Hugging Face Accelerate.</p></li>
+<li><p>How the Airflow task definition would change to request multiple nodes/GPUs.</p></li>
+<li><p>Acknowledge that for this project, we’ll likely run BERT on a single GPU due to its educational scope.</p></li>
+</ul>
+</li>
+<li><p><strong>8.P.5 Orchestrating the Training Pipeline (Airflow)</strong></p>
+<ul>
+<li><p>Show how to trigger the <code class="docutils literal notranslate"><span class="pre">model_training_dag</span></code> manually from Airflow UI.</p></li>
+<li><p>Set up a simple schedule (e.g., weekly) or discuss event-based triggers conceptually (e.g., triggered by completion of the Data Ingestion Pipeline).</p></li>
+</ul>
+</li>
+<li><p><strong>8.P.6 Logging Training Metadata and Artifacts with W&amp;B</strong></p>
+<ul>
+<li><p>Ensure training scripts are thoroughly instrumented with <code class="docutils literal notranslate"><span class="pre">wandb.log()</span></code> for metrics, <code class="docutils literal notranslate"><span class="pre">wandb.config</span></code> for HPs, and <code class="docutils literal notranslate"><span class="pre">wandb.save()</span></code> or <code class="docutils literal notranslate"><span class="pre">wandb.Artifact</span></code> for models/datasets.</p></li>
+<li><p>The Airflow DAG should pass a unique W&amp;B run name/ID to training scripts for proper grouping.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="conclusion-the-standardized-recipe-ready-for-mass-production">
+<h3>🧑‍🍳 Conclusion: The Standardized Recipe Ready for Mass Production<a class="headerlink" href="#conclusion-the-standardized-recipe-ready-for-mass-production" title="Permalink to this heading">¶</a></h3>
+<p>We’ve successfully transitioned from the chef’s experimental notes to a standardized, production-grade “master recipe” and the automated “kitchen line” to produce it. By refactoring our model development code for modularity and testability, managing configurations meticulously, and designing robust training pipelines with clear components, we’ve laid the groundwork for reliable and scalable model production.</p>
+<p>Integrating CI/CD practices ensures that our training pipeline itself can be updated safely and efficiently. We’ve explored strategies for distributed training to handle future scale and optimized our use of training infrastructure. Crucially, every training run is now orchestrated, scheduled, and meticulously logged, providing the auditability and reproducibility demanded by mature MLOps.</p>
+<p>Our “Trending Now” educational models (XGBoost/BERT) now have an automated training pipeline, ready to be triggered. The resulting validated models are versioned and registered, primed for the next critical stage: evaluation by the “Head Chef” before any dish reaches the diner. In the next chapter, we’ll dive into the rigorous offline model evaluation and validation processes that ensure only the highest quality models proceed towards deployment.</p>
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="ch9_ml_testing/index.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Testing in ML Systems</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="ch7_model_development/calibration.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Model Calibration</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024, Deepak Karkala
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">ML Training Pipelines</a><ul>
+<li><a class="reference internal" href="#id1"></a><ul>
+<li><a class="reference internal" href="#introduction-from-chef-s-creation-to-industrial-kitchen-standard-operating-procedures">🧑‍🍳 Introduction: From Chef’s Creation to Industrial Kitchen Standard Operating Procedures</a></li>
+<li><a class="reference internal" href="#section-8-1-from-notebooks-to-production-grade-training-code-from-chef-s-notes-to-official-recipe-card">Section 8.1: From Notebooks to Production-Grade Training Code (From Chef’s Notes to Official Recipe Card)</a></li>
+<li><a class="reference internal" href="#section-8-2-designing-and-implementing-ml-training-pipelines-blueprint-for-the-automated-production-line">Section 8.2: Designing and Implementing ML Training Pipelines (Blueprint for the Automated Production Line)</a></li>
+<li><a class="reference internal" href="#section-8-3-ci-cd-for-training-pipelines-automating-build-test-and-deployment-automating-the-kitchen-setup-and-sops">Section 8.3: CI/CD for Training Pipelines: Automating Build, Test, and Deployment (Automating the Kitchen Setup and SOPs)</a></li>
+<li><a class="reference internal" href="#section-8-4-distributed-training-strategies-for-production-scale-the-high-volume-kitchen-line">Section 8.4: Distributed Training Strategies for Production Scale (The High-Volume Kitchen Line)</a></li>
+<li><a class="reference internal" href="#section-8-5-managing-training-infrastructure-and-resources-effectively-optimizing-kitchen-equipment-usage">Section 8.5: Managing Training Infrastructure and Resources Effectively (Optimizing Kitchen Equipment Usage)</a></li>
+<li><a class="reference internal" href="#section-8-6-training-orchestration-scheduling-and-triggering-the-kitchen-s-head-chef-coordinating-tasks">Section 8.6: Training Orchestration, Scheduling, and Triggering (The Kitchen’s Head Chef Coordinating Tasks)</a></li>
+<li><a class="reference internal" href="#section-8-7-comprehensive-model-and-training-metadata-logging-for-auditability-the-kitchen-s-detailed-logbook">Section 8.7: Comprehensive Model and Training Metadata Logging for Auditability (The Kitchen’s Detailed Logbook)</a></li>
+<li><a class="reference internal" href="#project-trending-now-operationalizing-model-training-for-xgboost-bert">Project: “Trending Now” – Operationalizing Model Training (for XGBoost/BERT)</a></li>
+<li><a class="reference internal" href="#conclusion-the-standardized-recipe-ready-for-mass-production">🧑‍🍳 Conclusion: The Standardized Recipe Ready for Mass Production</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=b3ba4146"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/scripts/furo.js?v=4e2eecee"></script>
+    </body>
+</html>

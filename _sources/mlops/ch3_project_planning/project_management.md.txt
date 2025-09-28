@@ -109,6 +109,14 @@ This section will illustrate how we *could* manage the development of our "Trend
         *   `In Production / Done`
     *   Example tickets/cards on the board: "Develop scraping script for Rotten Tomatoes," "Implement LLM summarization endpoint," "Create Terraform for App Runner Staging."
 
+
+**Epics, Features, User Stories**
+
+<img src="../../_static/mlops/ch3_planning/epics_features_userstories.png" width="80%"/>
+
+- [Understanding Epics, Features, User Stories](https://scrumdistrict.com/understanding-epics-features-and-user-stories/)
+
+
 **B.6 Challenges in Applying Agile/Scrum to ML Projects**
 
 *   **Uncertainty of Research/Experimentation:** Difficult to estimate story points or commit to sprint goals for ML model development tasks where outcomes are unknown.

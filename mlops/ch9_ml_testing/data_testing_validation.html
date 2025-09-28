@@ -1,0 +1,876 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Testing ML Systems: Ensuring Reliability from Code to Production" href="ml_testing.html" /><link rel="prev" title="Testing in ML Systems" href="ch9_ml_testing.html" />
+
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/><!-- Generated with Sphinx 7.1.2 and Furo 2024.05.06 -->
+        <title>Data Testing &amp; Validation in Production - Home</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=387cc868" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=36a5483c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/style.css?v=8a7ff5ee" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" /
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">Home</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  
+  <span class="sidebar-brand-text">Home</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../past_experiences/index.html">Past Experiences</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Past Experiences</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../past_experiences/iot_anomaly.html">Anomaly Detection in Time Series IoT Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../past_experiences/iot_forecasting.html">Energy Demand Forecasting in Time Series IoT Data</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../past_experiences/adas_engine/index.html">ADAS: Data Engine</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of ADAS: Data Engine</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../past_experiences/adas_engine/ch0_business_challenge.html">Business Challenge and Goals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../past_experiences/adas_engine/ch1_ml_problem_framing.html">ML Problem Framing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../past_experiences/adas_engine/ch2_operational_strategy.html">Planning, Operational Strategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../past_experiences/adas_engine/ch3_pipelines_workflows.html">Workflows, Team, Roles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../past_experiences/adas_engine/ch4_testing_strategy.html">Testing Strategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../past_experiences/adas_engine/ch6_data_ingestion_workflows.html">Data Ingestion Workflows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../past_experiences/adas_engine/ch7_scene_understanding_data_mining.html">Scene Understanding &amp; Data Mining</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../past_experiences/adas_engine/ch8_model_training.html">Model Training &amp; Experimentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../past_experiences/adas_engine/ch9_packaging_promotion.html">Packaging, Evaluation &amp; Promotion Workflows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../past_experiences/adas_engine/ch10_deployment_serving.html">Deployment &amp; Serving</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../past_experiences/adas_engine/ch11_monitoring_continual_learning.html">Monitoring &amp; Continual Learning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../past_experiences/adas_engine/ch12_cost_lifecycle_compliance.html">Cost, Lifecycle, Compliance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../past_experiences/adas_engine/ch13_reliability_capacity_maps.html">Reliability, Capacity, Maps</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../past_experiences/ecom_cltv.html">Customer Lifetime Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../past_experiences/ecom_propensity.html">Real-Time Purchase Intent Scoring</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../past_experiences/ecom_summarisation.html">Reviews Summarisation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../past_experiences/ecom_rag.html">RAG-Based Product Discovery</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../projects/index.html">Projects</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Projects</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/nlp/index.html">Natural Language Processing</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of Natural Language Processing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/airbnb_alternate_search/about/index.html">Airbnb Listing description based Semantic Search</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/cv/index.html">Computer Vision</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of Computer Vision</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/ecommerce_image_segmentation/about/index.html">Image Segmentation for Ecommerce Products</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/ml/index.html">Machine Learning</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of Machine Learning</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/airbnb_price_modeling/about/index.html">Predictive Price Modeling for Airbnb listings</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../publications/index.html">Patents, Papers, Thesis</a></li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../agents/index.html">AI Agents: A Lead Engineer’s Handbook</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of AI Agents: A Lead Engineer’s Handbook</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch1_intro.html">Agent Fundamentals: What, Why, and When?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch2_patterns.html">Agentic Patterns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch5_context_engineering.html">Context Engineering for AI Agents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch6_case_studies.html">The State of the Industry: Insights from the Field</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch7_conclusion.html"><strong>Conclusion: The Lead Engineer’s Mental Model for Building Agents</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch_cost.html">Cost Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch_data.html">Data Management and Knowledge Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch_deploy.html">Deployment and Scaling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch_guardrails.html">Guardrails</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch_hitl.html">Human-in-the-Loop (HITL)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch_latency.html">Latency Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch_llm.html">LLM – Prompts, Goals, and Persona</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch_memory.html">Managing Agent Memory (Short-Term and Long-Term)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch_monitor.html">Monitoring and Observability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch_orchestration.html">Orchestration and Task Decomposition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch_prod.html">Production Challenges and Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch_security.html">Securing AI Agents and Preventing Abuse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch_tool.html">Tool Use and Integration Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch_trust.html">Building Trustworthy and Ethical AI Agents</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../index.html">MLOps</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of MLOps</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch1_problem_framing.html">ML Problem framing</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of ML Problem framing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch2_blueprint_operational_strategy.html">The MLOps Blueprint &amp; Operational Strategy</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch2a_platform/index.html">ML Platforms</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle navigation of ML Platforms</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/ml_platforms.html">ML Platforms: How to</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/uber.html">Uber Michelangelo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/linkedin.html">LinkedIn DARWIN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/netflix.html">Netflix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/shopify.html">Shopify Merlin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/zomato.html">Zomato: Real-time ML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/coveo.html">Coveo: MLOPs at reasonable scale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/monzo.html">Monzo ML Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/didact.html">Didact AI</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch3_project_planning/index.html">Project Planning</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" role="switch" type="checkbox"/><label for="toctree-checkbox-11"><div class="visually-hidden">Toggle navigation of Project Planning</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/prd.html">Project Requirements Document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/tech_stack.html">Tech Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/config_management.html">Config Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/pipeline_design.html">Pipeline Design</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/environment_strategy.html">Environment Strategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/cicd_branching_model.html">CI/CD Strategy and Branching Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/directory_structure.html">Directory Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/env_branchind_cicd_deployment.html">Environments, Branching, CI/CD, and Deployments Explained</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/project_management.html">Project Management for MLOps</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch4_data_discovery/index.html">Data Sourcing, Discovery</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" role="switch" type="checkbox"/><label for="toctree-checkbox-12"><div class="visually-hidden">Toggle navigation of Data Sourcing, Discovery</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/data_sourcing_discovery.html">Data Sourcing, Discovery &amp; Understanding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/ch4_project.html">Project-Trending Now: Implementing Web Scraping, Ingestion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/industry_case_studies.html">Data Discovery Platforms: Industry Case Studies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/facebook_nemo.html">Facebook: Nemo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/netflix_metacat.html">Netflix Metacat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/uber_databook.html">Uber Databook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/linkedin_datahub.html">LinkedIn Datahub</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch5_data_pipelines/index.html">Data Engineering, Pipelines</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" role="switch" type="checkbox"/><label for="toctree-checkbox-13"><div class="visually-hidden">Toggle navigation of Data Engineering, Pipelines</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch5_data_pipelines/data_pipelines.html">Data Engineering for Reliable ML Pipelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch5_data_pipelines/data_engineering_pipelines.html">Data Engineering &amp; Pipelines: A Lead’s Compendium</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch5_data_pipelines/streaming_pipelines.html">Real-Time &amp; Streaming Data Pipelines: Challenges, Solutions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch5_data_pipelines/netflix_keystone.html">Netflix Keystone</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch5_data_pipelines/doordash_riviera.html">Doordash Riviera</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch6_feature_engg/index.html">Feature Engineering, Feature Stores</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" role="switch" type="checkbox"/><label for="toctree-checkbox-14"><div class="visually-hidden">Toggle navigation of Feature Engineering, Feature Stores</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch6_feature_engg/feature_engineering_store.html">Feature Engineering and Feature Stores</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch6_feature_engg/feature_engineering.html">Feature Engineering for MLOps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch6_feature_engg/explained_feature_stores.html">Feature Stores for MLOps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch6_feature_engg/point_in_time.html">Point-in-Time Correctness &amp; Time Travel in ML Data Pipelines</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../ch6_feature_engg/feast/index.html">Feast Feature Store</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" role="switch" type="checkbox"/><label for="toctree-checkbox-15"><div class="visually-hidden">Toggle navigation of Feast Feature Store</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../ch6_feature_engg/feast/feast_architecture.html">Feast Architecture: A Technical Deep Dive for MLOps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ch6_feature_engg/feast/feast_concepts.html">Feast Concepts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ch6_feature_engg/feast/feast_components.html">Feast Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ch6_feature_engg/feast/feast_usecases.html">Feast Use Cases</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ch6_feature_engg/feast/feast_aws.html">Running Feast with AWS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ch6_feature_engg/feast/run_in_prod.html">Running Feast in Production</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ch6_feature_engg/feast/validate_historical_with_gx.html">Validating Historical Features with Great Expectations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ch6_feature_engg/feast/add_reuse_tests.html">Adding or Reusing Tests in Feast</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch7_model_development/index.html">Model Development, Tuning, Selection, Ensembles, Calibration</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" role="switch" type="checkbox"/><label for="toctree-checkbox-16"><div class="visually-hidden">Toggle navigation of Model Development, Tuning, Selection, Ensembles, Calibration</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch7_model_development/ch7_model_development.html">Chapter 7: Model Development</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch7_model_development/dl_training_playbook.html">How to train DL Models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch7_model_development/development.html">Model Development</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch7_model_development/industry_lessons.html">Model Development: Lessons from production systems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch7_model_development/ensembles.html"><strong>Model Ensembles</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch7_model_development/selection.html">Model Selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch7_model_development/tuning_hypopt.html">Hyperparameter Optimization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch7_model_development/expt_tracking.html">ML Expt tracking, Data Lineage, Model Registry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch7_model_development/calibration.html">Model Calibration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch8_ml_pipelines.html">ML Training Pipelines</a></li>
+<li class="toctree-l2 current has-children"><a class="reference internal" href="index.html">Testing in ML Systems</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" role="switch" type="checkbox"/><label for="toctree-checkbox-17"><div class="visually-hidden">Toggle navigation of Testing in ML Systems</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="ch9_ml_testing.html">Testing in ML Systems</a></li>
+<li class="toctree-l3 current current-page"><a class="current reference internal" href="#">Data Testing &amp; Validation in Production</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ml_testing.html">Testing ML Systems: Ensuring Reliability from Code to Production</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch10_deployment_serving/index.html">Model Deployment &amp; Serving</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" role="switch" type="checkbox"/><label for="toctree-checkbox-18"><div class="visually-hidden">Toggle navigation of Model Deployment &amp; Serving</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch10_deployment_serving/ch10_deployment_serving.html">Chapter 10: Deployment &amp; Serving</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch10_deployment_serving/guide_deployment_serving.html">Guide: Model Deployment &amp; Serving</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch10_deployment_serving/guide_inference_stack.html">Deep Dive: Inference Stack</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch11_monitor_observe_drift/index.html">Monitoring, Observability, Drift, Interpretability</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" role="switch" type="checkbox"/><label for="toctree-checkbox-19"><div class="visually-hidden">Toggle navigation of Monitoring, Observability, Drift, Interpretability</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch11_monitor_observe_drift/ch11_monitor_observe_drift.html">Chapter 11: Monitoring, Observability, Drifts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch11_monitor_observe_drift/guide_monitor_observe_drift.html">Guide: ML System Failures, Data Distribution Shifts, Monitoring, and Observability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch11_monitor_observe_drift/guide_interpretability_shap_lime.html">Interpretability, SHAP, LIME</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch11_monitor_observe_drift/guide_stack.html">Prometheus + Grafana and ELK Stacks</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch12_retrain_online_testing/index.html">Continual learning, Retraining, A/B Testing</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" role="switch" type="checkbox"/><label for="toctree-checkbox-20"><div class="visually-hidden">Toggle navigation of Continual learning, Retraining, A/B Testing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch12_retrain_online_testing/ch12_continual_learning_prod_testing.html">Chapter 12: Continual Learning &amp; Production Testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch12_retrain_online_testing/guide_continual_learning.html">Continual Learning &amp; Model Retraining</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch12_retrain_online_testing/guide_ab_testing.html">A/B Testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch12_retrain_online_testing/guide_ab_testing_industry_lessons.html">A/B Testing &amp; Experimentation: Industry lessons</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch12_retrain_online_testing/guide_prod_testing_expt.html">Guide: Production Testing &amp; Experimentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch12_retrain_online_testing/dr_prod_testing_expt.html">Deep Research: Production Testing &amp; Experimentation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch13_governance_ethics_human.html">Governance, Ethics &amp; The Human Element</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../pytorch/index.html">PyTorch</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" role="switch" type="checkbox"/><label for="toctree-checkbox-21"><div class="visually-hidden">Toggle navigation of PyTorch</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../pytorch/general.html">General</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../pytorch/state_dict.html">state_dict</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../pytorch/mixed_precision.html">Mixed Precision</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../pytorch/distributed_data_parallel.html">Distributed Data Parallel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../pytorch/ddp_under_the_hood.html">DDP: Under the Hood</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../pytorch/dp_ddp.html">DP vs DDP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../pytorch/fsdp.html">FSDP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../pytorch/tensor_parallelism.html">Tensor parallelism</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../pytorch/pipeline_parallelism.html">Pipeline Parallelism</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../pytorch/device_mesh.html">Device Mesh</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../lld/index.html">Low Level Design</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" role="switch" type="checkbox"/><label for="toctree-checkbox-22"><div class="visually-hidden">Toggle navigation of Low Level Design</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../lld/parking_lot.html">Parking Lot</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../visualization/index.html">Data Visualization Projects</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="../../_sources/mlops/ch9_ml_testing/data_testing_validation.md.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="data-testing-validation-in-production">
+<h1>Data Testing &amp; Validation in Production<a class="headerlink" href="#data-testing-validation-in-production" title="Permalink to this heading">¶</a></h1>
+<p><strong>Document Purpose:</strong> This guide provides a comprehensive framework for Lead MLOps Engineers to design, implement, and manage robust data testing and validation strategies within production machine learning systems. It draws on industry best practices and lessons learned from companies like Google (TFX), Uber, Airbnb, and Hopsworks.</p>
+<p><strong>Core Philosophy:</strong> Data is a first-class citizen in ML pipelines. Proactive, automated, and continuous data validation is not a “nice-to-have” but a fundamental requirement for building reliable, scalable, and trustworthy AI systems. The goal is to catch errors early, ensure data quality, maintain model performance, and enable rapid, confident iteration.</p>
+<hr class="docutils" />
+<p><strong>I. The Imperative of Data Validation: Why We Test Data</strong></p>
+<ul class="simple">
+<li><p><strong>GIGO (Garbage In, Garbage Out):</strong> Errors in input data nullify benefits of advanced algorithms and infrastructure. (Google TFX)</p></li>
+<li><p><strong>Preventing Model Performance Degradation:</strong></p>
+<ul>
+<li><p>Subtle data errors can lead to gradual or catastrophic model decay. (Google TFX, Uber DQM)</p></li>
+<li><p>Feedback loops (model predictions used for retraining) can amplify small errors. (Google TFX)</p></li>
+</ul>
+</li>
+<li><p><strong>Business Impact:</strong> Poor data quality leads to bad business decisions, financial loss, and erosion of user trust. (Uber DQM, Airbnb Data Ingestion)</p></li>
+<li><p><strong>Engineering Efficiency:</strong> Early error detection saves significant debugging time and reduces “firefighting.” (Google TFX - case studies)</p></li>
+<li><p><strong>Trust &amp; Observability:</strong> Validation builds confidence in data and the systems that consume it. Documented expectations (schemas, tests) improve team collaboration. (Hopsworks GE, Great Expectations Guide)</p></li>
+<li><p><strong>Scalability Challenges:</strong></p>
+<ul>
+<li><p><strong>Volume &amp; Velocity:</strong> Manual assessment is impossible for large, frequently updated datasets. (Uber DQM, Airbnb Data Ingestion)</p></li>
+<li><p><strong>Complexity:</strong> Modern data ecosystems involve numerous sources, formats, and dependencies. (Airbnb Data Ingestion, Amazon DQV)</p></li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+<p><strong>II. Pillars of a Robust Data Validation Strategy</strong></p>
+<p><strong>A. Schema Enforcement &amp; Management: The Blueprint of Your Data</strong></p>
+<ol class="arabic simple">
+<li><p><strong>What it is:</strong> Defining and enforcing the expected structure, types, and basic properties of your data.</p></li>
+<li><p><strong>Why it’s critical:</strong></p>
+<ul class="simple">
+<li><p>Catches fundamental data corruption issues early.</p></li>
+<li><p>Provides a contract for data producers and consumers.</p></li>
+<li><p>Essential for data understanding and documentation.</p></li>
+</ul>
+</li>
+<li><p><strong>Key Aspects &amp; Techniques:</strong></p>
+<ul class="simple">
+<li><p><strong>Schema Inference (TFDV <code class="docutils literal notranslate"><span class="pre">infer_schema</span></code>):</strong> Automatically generate an initial schema from data statistics. Reduces manual effort, especially for datasets with many features. (Google TFX)</p>
+<ul>
+<li><p><strong>Co-evolution of Data and Schema:</strong> The schema is not static. It evolves as data evolves. The system should support easy updates and versioning. (Google TFX)</p></li>
+<li><p>Treat schema as a production asset, version-controlled like code. (Google TFX)</p></li>
+</ul>
+</li>
+<li><p><strong>Data Types:</strong> Enforce <code class="docutils literal notranslate"><span class="pre">INT</span></code>, <code class="docutils literal notranslate"><span class="pre">FLOAT</span></code>, <code class="docutils literal notranslate"><span class="pre">STRING</span></code>/<code class="docutils literal notranslate"><span class="pre">BYTES</span></code>, <code class="docutils literal notranslate"><span class="pre">BOOL</span></code>. (Google TFX, Airbnb - Thrift)</p>
+<ul>
+<li><p>Richer semantic types can be encoded within domains (e.g., a <code class="docutils literal notranslate"><span class="pre">BYTES</span></code> feature representing <code class="docutils literal notranslate"><span class="pre">TRUE</span></code>/<code class="docutils literal notranslate"><span class="pre">FALSE</span></code>). (Google TFX)</p></li>
+</ul>
+</li>
+<li><p><strong>Presence:</strong> Define if a feature is <code class="docutils literal notranslate"><span class="pre">required</span></code> or <code class="docutils literal notranslate"><span class="pre">optional</span></code>, <code class="docutils literal notranslate"><span class="pre">min_fraction</span></code> of examples it must appear in. Catches issues like silently dropped features. (Google TFX)</p></li>
+<li><p><strong>Valency (Value Count):</strong> Specify if a feature is single-valued or a list, and constraints on list length (<code class="docutils literal notranslate"><span class="pre">min_count</span></code>, <code class="docutils literal notranslate"><span class="pre">max_count</span></code>). (Google TFX)</p></li>
+<li><p><strong>Domains (Categorical Features):</strong> Define the list of acceptable values. Crucial for categorical integrity. (Google TFX)</p>
+<ul>
+<li><p>TFDV allows updating schema to include new legitimate values found in evaluation/serving data.</p></li>
+</ul>
+</li>
+<li><p><strong>Schema Environments (TFDV):</strong> Handle expected differences between datasets (e.g., <code class="docutils literal notranslate"><span class="pre">label</span></code> feature present in <code class="docutils literal notranslate"><span class="pre">TRAINING</span></code> but not <code class="docutils literal notranslate"><span class="pre">SERVING</span></code>). (Google TFX)</p></li>
+<li><p><strong>Schema Repository (Airbnb - Thrift):</strong> Centralized schema definition. Promotes communication, documentation, and ships client libraries (jars, gems). (Airbnb Data Ingestion)</p></li>
+<li><p><strong>Schema Evolution (Airbnb - Semantic Versioning):</strong> <code class="docutils literal notranslate"><span class="pre">MODEL.REVISION.ADDITION</span></code> for managing backward/forward compatibility of schema changes.</p></li>
+<li><p><strong>Great Expectations (GE) for Schema:</strong></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">expect_table_columns_to_match_ordered_list</span></code> / <code class="docutils literal notranslate"><span class="pre">expect_table_columns_to_match_set</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">expect_column_to_exist</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">expect_column_values_to_be_of_type</span></code> / <code class="docutils literal notranslate"><span class="pre">expect_column_values_to_be_in_type_list</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">expect_table_column_count_to_be_between</span></code> (Great Expectations Guide, Hopsworks GE)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p><strong>B. Data Value &amp; Integrity Validation: Checking the Content</strong></p>
+<ol class="arabic simple">
+<li><p><strong>What it is:</strong> Ensuring individual data points meet specific criteria for correctness, plausibility, and consistency.</p></li>
+<li><p><strong>Why it’s critical:</strong> Detects outliers, invalid entries, and violations of business rules.</p></li>
+<li><p><strong>Key Aspects &amp; Techniques:</strong></p>
+<ul class="simple">
+<li><p><strong>Missingness / Null Checks (Great Expectations Guide):</strong></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">expect_column_values_to_be_null</span></code> / <code class="docutils literal notranslate"><span class="pre">expect_column_values_to_not_be_null</span></code></p></li>
+<li><p>Monitor proportion of nulls; unexpected changes can indicate upstream issues.</p></li>
+</ul>
+</li>
+<li><p><strong>Range Checks (Numeric &amp; Datetime):</strong></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">expect_column_min_to_be_between</span></code>, <code class="docutils literal notranslate"><span class="pre">expect_column_max_to_be_between</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">expect_column_values_to_be_between</span></code> (Great Expectations Guide, TFDV via domains)</p></li>
+</ul>
+</li>
+<li><p><strong>Set-Based Checks (Categorical):</strong></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">expect_column_values_to_be_in_set</span></code> / <code class="docutils literal notranslate"><span class="pre">expect_column_values_to_not_be_in_set</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">expect_column_most_common_value_to_be_in_set</span></code> (Great Expectations Guide)</p></li>
+</ul>
+</li>
+<li><p><strong>Uniqueness Checks:</strong></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">expect_column_values_to_be_unique</span></code> (Primary keys, identifiers)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">expect_column_unique_value_count_to_be_between</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">expect_column_proportion_of_unique_values_to_be_between</span></code> (Can detect “too unique” data, or suspicious similarities) (Great Expectations Guide)</p></li>
+</ul>
+</li>
+<li><p><strong>Shape/Pattern Tests (String data):</strong></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">expect_column_value_length_to_be_between</span></code> / <code class="docutils literal notranslate"><span class="pre">expect_column_value_length_to_equal</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">expect_column_values_to_match_regex</span></code> / <code class="docutils literal notranslate"><span class="pre">expect_column_values_to_not_match_regex</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">expect_column_values_to_match_like_pattern(_list)</span></code> (Great Expectations Guide)</p></li>
+</ul>
+</li>
+<li><p><strong>Referential Integrity:</strong></p>
+<ul>
+<li><p>Cross-column: e.g., <code class="docutils literal notranslate"><span class="pre">day</span></code> field vs. <code class="docutils literal notranslate"><span class="pre">month</span></code> field. (<code class="docutils literal notranslate"><span class="pre">expect_column_pair_values_to_be_equal</span></code>, <code class="docutils literal notranslate"><span class="pre">expect_multicolumn_sum_to_equal</span></code>)</p></li>
+<li><p>Cross-table: (Less covered in these docs, but implied by <code class="docutils literal notranslate"><span class="pre">expect_table_row_count_to_equal_other_table</span></code>) (Great Expectations Guide)</p></li>
+</ul>
+</li>
+<li><p><strong>Custom Logic / User-Defined Functions (UDFs):</strong> For complex business rules not covered by standard checks. (Amazon DQV - declarative API with custom code)</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>C. Distributional Validation (Drift &amp; Skew): Monitoring Data Dynamics</strong></p>
+<ol class="arabic simple">
+<li><p><strong>What it is:</strong> Detecting significant changes in the statistical properties of data over time or between different datasets (e.g., training vs. serving).</p></li>
+<li><p><strong>Why it’s critical:</strong></p>
+<ul class="simple">
+<li><p>Models trained on one distribution may perform poorly on another.</p></li>
+<li><p>Highlights concept drift, data pipeline bugs, or changes in user behavior.</p></li>
+</ul>
+</li>
+<li><p><strong>Key Aspects &amp; Techniques:</strong></p>
+<ul class="simple">
+<li><p><strong>Compute Descriptive Statistics (TFDV <code class="docutils literal notranslate"><span class="pre">generate_statistics_from_csv</span></code>, Uber DSS):</strong></p>
+<ul>
+<li><p>Numeric: Mean, median, min, max, std dev, quantiles, histograms.</p></li>
+<li><p>Categorical: Unique value counts, frequencies, entropy.</p></li>
+<li><p>Visualize statistics for quick overview and comparison (TFDV <code class="docutils literal notranslate"><span class="pre">visualize_statistics</span></code> with Facets).</p></li>
+</ul>
+</li>
+<li><p><strong>Training-Serving Skew (Google TFX):</strong></p>
+<ul>
+<li><p><strong>Feature Skew:</strong> Feature values differ between training and serving (e.g., due to different code paths, time travel).</p></li>
+<li><p><strong>Distribution Skew:</strong> Overall feature value distributions differ.</p></li>
+<li><p><strong>Scoring/Serving Skew:</strong> Only a subset of scored examples are actually served, leading to biased training data if feedback is used.</p></li>
+<li><p><strong>Detection:</strong> Key-join corresponding batches and compare feature-wise.</p></li>
+</ul>
+</li>
+<li><p><strong>Drift (Sequential Data - TFDV):</strong> Compare consecutive spans (e.g., daily batches).</p></li>
+<li><p><strong>Distance Metrics for Distributions (Google TFX, Uber DQM):</strong></p>
+<ul>
+<li><p><strong>L-infinity distance:</strong> <code class="docutils literal notranslate"><span class="pre">max(|P(value_i)</span> <span class="pre">-</span> <span class="pre">Q(value_i)|)</span></code>. Interpretable (“largest change in probability for a value”). (Google TFX)</p></li>
+<li><p><strong>Statistical Tests (e.g., Chi-squared, KL-divergence):</strong> Often too sensitive for large datasets, leading to alert fatigue. Human operators find it hard to tune thresholds. (Google TFX - Figure 5 example)</p></li>
+<li><p><strong>Uber’s Approach:</strong> Use Principal Component Analysis (PCA) to reduce dimensionality of many metric time series into a few representative bundles. Then, use Holt-Winters forecasting for one-step-ahead prediction on these PC series. Anomalies are flagged if current values fall outside prediction intervals. This helps create a single, more stable “table quality score.”</p></li>
+</ul>
+</li>
+<li><p><strong>Setting Thresholds:</strong> Requires domain knowledge, experimentation. Iterative process. TFDV allows setting thresholds for L-infinity norm for drift/skew comparators.</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>D. Pipeline &amp; Logic Testing: Ensuring Correct Transformations</strong></p>
+<ol class="arabic simple">
+<li><p><strong>What it is:</strong> Testing the code that generates, transforms, and ingests data.</p></li>
+<li><p><strong>Why it’s critical:</strong> Bugs in data pipelines are a common source of data quality issues.</p></li>
+<li><p><strong>Key Aspects &amp; Techniques (Hopsworks with Pytest):</strong></p>
+<ul class="simple">
+<li><p><strong>Unit Tests for Feature Logic:</strong></p>
+<ul>
+<li><p>Factor feature engineering code into testable functions (even if originating from notebooks).</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">pytest</span></code> to define inputs, expected outputs, and assert correctness.</p></li>
+<li><p>Test edge cases, common paths, and invariants.</p></li>
+<li><p>Example: Test IP-to-city mapping, date string to timestamp conversion.</p></li>
+</ul>
+</li>
+<li><p><strong>Unit Tests for Transformation Functions:</strong> Similar to feature logic, ensure transformations (e.g., label encoding, numerical scaling) behave as expected. Critical for preventing training-serving skew if transformations are re-implemented.</p></li>
+<li><p><strong>Unit Tests for Utility Functions:</strong> E.g., feature naming conventions.</p></li>
+<li><p><strong>End-to-End Feature Pipeline Tests (Integration Tests):</strong></p>
+<ul>
+<li><p>Validate the entire pipeline: read sample data -&gt; engineer features -&gt; write to feature store -&gt; read back -&gt; assert correctness (e.g., row counts, data identity).</p></li>
+<li><p>Requires a “dev” environment (e.g., private Hopsworks project/feature store) and representative sample data.</p></li>
+</ul>
+</li>
+<li><p><strong>Testing Jupyter Notebooks (<code class="docutils literal notranslate"><span class="pre">nbmake</span></code> with <code class="docutils literal notranslate"><span class="pre">pytest</span></code>):</strong> Allows for testing feature engineering code developed in notebooks by converting them to Python files for test execution.</p></li>
+<li><p><strong>Model Unit Testing (Google TFX):</strong></p>
+<ul>
+<li><p>Use the schema to generate synthetic data that adheres to constraints.</p></li>
+<li><p>Feed synthetic data to the training code to trigger hidden assumptions or errors (fuzz testing).</p></li>
+<li><p>Catches mismatches between codified data expectations (schema) and training algorithm assumptions (e.g., expecting positive values for a log transform).</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<hr class="docutils" />
+<p><strong>III. Implementing Data Validation: Systems &amp; Processes</strong></p>
+<ul class="simple">
+<li><p><strong>System Architecture &amp; Components:</strong></p>
+<ul>
+<li><p><strong>Data Analyzers/Statistics Generators:</strong> Compute statistics over data batches (e.g., TFDV, Uber DSS, Amazon DQV profiler). Often use distributed processing (Spark, Beam).</p></li>
+<li><p><strong>Data Validators:</strong> Compare data/statistics against a schema or previous data batches (e.g., TFDV <code class="docutils literal notranslate"><span class="pre">validate_statistics</span></code>, GE Validator).</p></li>
+<li><p><strong>Schema Store/Repository:</strong> Centralized storage for schemas (e.g., file in version control, Thrift Schema Repository).</p></li>
+<li><p><strong>Expectation Store (Great Expectations):</strong> Stores suites of expectations.</p></li>
+<li><p><strong>Validation Report Store:</strong> Stores results of validation runs for history and analysis.</p></li>
+<li><p><strong>Alerting System:</strong> Notifies on-call or relevant teams of anomalies. (Uber Argos)</p></li>
+<li><p><strong>Feature Stores (Hopsworks):</strong> Can integrate validation as a gatekeeper on data insertion.</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">validation_ingestion_policy</span></code>: “ALWAYS” (validate &amp; report, but insert) vs. “STRICT” (insert only if validation passes). (Hopsworks GE)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Workflow &amp; Lifecycle:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Initial Setup:</strong></p>
+<ul>
+<li><p>Infer initial schema (TFDV) or profile data to generate initial expectations (GE <code class="docutils literal notranslate"><span class="pre">BasicSuiteBuilderProfiler</span></code>).</p></li>
+<li><p>Human review and refinement of schema/expectations.</p></li>
+</ul>
+</li>
+<li><p><strong>Continuous Validation:</strong></p>
+<ul>
+<li><p>For each new batch of data:</p>
+<ul>
+<li><p>Generate statistics.</p></li>
+<li><p>Validate against schema (single-batch validation).</p></li>
+<li><p>Compare with previous batch (drift) or serving data (skew) (inter-batch validation).</p></li>
+</ul>
+</li>
+<li><p>Log validation results/reports.</p></li>
+<li><p>Alert on anomalies.</p></li>
+</ul>
+</li>
+<li><p><strong>Anomaly Resolution &amp; Iteration:</strong></p>
+<ul>
+<li><p><strong>Human-in-the-Loop:</strong> On-call engineers investigate alerts.</p></li>
+<li><p>If data error: Fix upstream data generation.</p></li>
+<li><p>If legitimate data evolution: Update schema/expectations. (Google TFX - suggested schema edits)</p></li>
+<li><p>This creates a data-schema co-evolution loop.</p></li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p><strong>Audit Trails &amp; Monitoring:</strong></p>
+<ul>
+<li><p><strong>End-to-End Auditing (Airbnb):</strong></p>
+<ul>
+<li><p><strong>Canary Service:</strong> Standalone service sending events at a known rate to compare landed events vs. expected.</p></li>
+<li><p><strong>DB as Proxy for Ground Truth:</strong> Compare DB mutations with corresponding events.</p></li>
+<li><p><strong>Audit Headers:</strong> Attach host, process, sequence, UUID to events to quantify loss and attribute to components.</p></li>
+</ul>
+</li>
+<li><p><strong>Component-Level Audits (Airbnb):</strong> Instrumentation, monitoring, alerting on each pipeline component (process health, input/output counts, week-over-week).</p></li>
+</ul>
+</li>
+<li><p><strong>Anomaly Detection Strategies:</strong></p>
+<ul>
+<li><p><strong>Rule-Based/Thresholding:</strong> (e.g., TFDV drift/skew thresholds, GE expectation kwargs). Simple, interpretable.</p></li>
+<li><p><strong>Statistical Modeling (Uber DQM):</strong></p>
+<ul>
+<li><p>PCA on metric time series to get “principal component time series.”</p></li>
+<li><p>Holt-Winters forecasting on PC series.</p></li>
+<li><p>Flag anomalies if current value is outside prediction interval.</p></li>
+<li><p>Aggregate PC anomaly scores into an overall table quality score.</p></li>
+</ul>
+</li>
+<li><p><strong>Automated Anomaly Detection (Amazon DQV, Airbnb):</strong></p>
+<ul>
+<li><p>On historic data quality time series.</p></li>
+<li><p>Techniques like <code class="docutils literal notranslate"><span class="pre">OnlineNormal</span></code> (running mean/variance).</p></li>
+<li><p>Allow users to plug in custom anomaly detection algorithms.</p></li>
+<li><p>Goal: Automate drill-down to specific dimension combinations causing issues.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+<p><strong>IV. Key Challenges &amp; Lessons Learned</strong></p>
+<ul class="simple">
+<li><p><strong>Alert Fatigue:</strong></p>
+<ul>
+<li><p><strong>Challenge:</strong> Overly sensitive tests (e.g., statistical tests on large data) or too many low-value alerts lead to on-call ignoring them. (Google TFX, Uber DQM)</p></li>
+<li><p><strong>Mitigation:</strong> Focus on high-precision, actionable alerts. Use interpretable metrics (L-infinity). Aggregate low-level issues into higher-level scores (Uber’s table quality score). Make anomaly detection judicious, not overused. (Great Expectations Guide)</p></li>
+</ul>
+</li>
+<li><p><strong>Lack of Ground Truth:</strong></p>
+<ul>
+<li><p><strong>Challenge:</strong> “How many events <em>should</em> have been emitted?” (Airbnb Data Ingestion)</p></li>
+<li><p><strong>Mitigation:</strong> Proxies like canary services, DB comparisons, audit headers.</p></li>
+</ul>
+</li>
+<li><p><strong>Schema Evolution &amp; Maintenance:</strong></p>
+<ul>
+<li><p><strong>Challenge:</strong> Manual schema creation is tedious for many features. Schemas need to evolve with data.</p></li>
+<li><p><strong>Solution:</strong> Schema inference, suggested updates, version control, user-friendly UIs for management. (Google TFX, Hopsworks GE UI)</p></li>
+</ul>
+</li>
+<li><p><strong>Balancing Rigor with Practicality:</strong></p>
+<ul>
+<li><p>Not all features need exhaustive testing. Prioritize based on criticality/revenue impact. (Hopsworks Pytest)</p></li>
+<li><p>Start with basic tests and gradually scale up. Short iterative cycles are key. (Great Expectations Guide)</p></li>
+</ul>
+</li>
+<li><p><strong>Human-in-the-Loop Management:</strong></p>
+<ul>
+<li><p><strong>Challenge:</strong> Ensuring quality and consistency of human input (labeling, schema edits).</p></li>
+<li><p><strong>Solution:</strong> Clear guidelines, consensus mechanisms, “golden datasets” for calibration.</p></li>
+</ul>
+</li>
+<li><p><strong>Distinguishing True Anomalies from Legitimate Data Evolution:</strong></p>
+<ul>
+<li><p>This often requires domain expertise and investigation. The system should facilitate this by providing context with alerts.</p></li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+<p><strong>V. Decision Framework for Data Validation Strategy</strong></p>
+<div class="highlight-mermaid notranslate"><div class="highlight"><pre><span></span>graph TD
+    A[Start: New Data Source / Pipeline] --&gt; B{Is Schema Known?};
+    B -- Yes --&gt; C[Define Schema/Expectations Manually/Load Existing];
+    B -- No --&gt; D[Infer Schema (TFDV) / Profile Data (GE)];
+    D --&gt; C;
+    C --&gt; E[Implement Single-Batch Validation];
+    E --&gt; F{Is Data Sequential/Time-Series?};
+    F -- Yes --&gt; G[Implement Drift Detection (Inter-Batch)];
+    F -- No --&gt; H[Proceed];
+    G --&gt; H;
+    H --&gt; I{Is there a Separate Serving Dataset/Path?};
+    I -- Yes --&gt; J[Implement Skew Detection (Train vs. Serve)];
+    I -- No --&gt; K[Proceed];
+    J --&gt; K;
+    K --&gt; L{Are there Complex Transformations/Feature Logic?};
+    L -- Yes --&gt; M[Implement Unit/Integration Tests (Pytest)];
+    L -- No --&gt; N[Proceed];
+    M --&gt; N;
+    N --&gt; O[Deploy Validation in Pipeline (e.g., Feature Store Ingestion Gate)];
+    O --&gt; P[Set up Monitoring &amp; Alerting];
+    P --&gt; Q{Anomalies Detected?};
+    Q -- Yes --&gt; R[Investigate: Data Bug or Real Change?];
+    R -- Data Bug --&gt; S[Fix Upstream Source/Pipeline];
+    R -- Real Change --&gt; T[Update Schema/Expectations];
+    S --&gt; P;
+    T --&gt; P;
+    Q -- No --&gt; P;
+</pre></div>
+</div>
+<p><strong>VI. Best Practices for Lead MLOps Engineers:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Champion a Data-Centric Culture:</strong> Elevate data quality to a core engineering principle.</p></li>
+<li><p><strong>Standardize Tooling &amp; Processes:</strong> Adopt common libraries (TFDV, GE) and platforms (Feature Stores, ML Platforms) to ensure consistency and reduce duplicated effort.</p></li>
+<li><p><strong>Automate Extensively:</strong> Validation checks, report generation, and alerting should be automated within CI/CD and data pipelines.</p></li>
+<li><p><strong>Prioritize Actionable Alerts:</strong> Design alerts that provide context and are high-precision to avoid overwhelming operations teams.</p></li>
+<li><p><strong>Iterate and Evolve:</strong> Data validation is not a one-time setup. Continuously refine schemas, expectations, and tests as data and business needs change.</p></li>
+<li><p><strong>Foster Collaboration:</strong> Data validation involves data engineers, scientists, ML engineers, and business stakeholders. Ensure clear communication and shared ownership.</p></li>
+<li><p><strong>Integrate with the MLOps Lifecycle:</strong></p>
+<ul class="simple">
+<li><p><strong>Development:</strong> Pytest for feature logic, notebook tests.</p></li>
+<li><p><strong>CI/CD:</strong> Run data validation tests as part of build and deployment pipelines.</p></li>
+<li><p><strong>Production:</strong> Continuous monitoring, drift/skew detection, anomaly alerts.</p></li>
+</ul>
+</li>
+<li><p><strong>Measure the Impact:</strong> Track metrics like number of data incidents caught, time-to-resolution, and impact on model performance/business KPIs.</p></li>
+</ol>
+<p>By implementing these principles and strategies, Lead MLOps Engineers can build a strong foundation of data trust, enabling their organizations to harness the full potential of AI with greater confidence and reliability.</p>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="ml_testing.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Testing ML Systems: Ensuring Reliability from Code to Production</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="ch9_ml_testing.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Testing in ML Systems</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024, Deepak Karkala
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=b3ba4146"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/scripts/furo.js?v=4e2eecee"></script>
+    </body>
+</html>

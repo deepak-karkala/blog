@@ -1,0 +1,974 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Data Testing &amp; Validation in Production" href="data_testing_validation.html" /><link rel="prev" title="Testing in ML Systems" href="index.html" />
+
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/><!-- Generated with Sphinx 7.1.2 and Furo 2024.05.06 -->
+        <title>Testing in ML Systems - Home</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=387cc868" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=36a5483c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/style.css?v=8a7ff5ee" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" /
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">Home</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  
+  <span class="sidebar-brand-text">Home</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../past_experiences/index.html">Past Experiences</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Past Experiences</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../past_experiences/iot_anomaly.html">Anomaly Detection in Time Series IoT Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../past_experiences/iot_forecasting.html">Energy Demand Forecasting in Time Series IoT Data</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../past_experiences/adas_engine/index.html">ADAS: Data Engine</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of ADAS: Data Engine</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../past_experiences/adas_engine/ch0_business_challenge.html">Business Challenge and Goals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../past_experiences/adas_engine/ch1_ml_problem_framing.html">ML Problem Framing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../past_experiences/adas_engine/ch2_operational_strategy.html">Planning, Operational Strategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../past_experiences/adas_engine/ch3_pipelines_workflows.html">Workflows, Team, Roles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../past_experiences/adas_engine/ch4_testing_strategy.html">Testing Strategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../past_experiences/adas_engine/ch6_data_ingestion_workflows.html">Data Ingestion Workflows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../past_experiences/adas_engine/ch7_scene_understanding_data_mining.html">Scene Understanding &amp; Data Mining</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../past_experiences/adas_engine/ch8_model_training.html">Model Training &amp; Experimentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../past_experiences/adas_engine/ch9_packaging_promotion.html">Packaging, Evaluation &amp; Promotion Workflows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../past_experiences/adas_engine/ch10_deployment_serving.html">Deployment &amp; Serving</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../past_experiences/adas_engine/ch11_monitoring_continual_learning.html">Monitoring &amp; Continual Learning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../past_experiences/adas_engine/ch12_cost_lifecycle_compliance.html">Cost, Lifecycle, Compliance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../past_experiences/adas_engine/ch13_reliability_capacity_maps.html">Reliability, Capacity, Maps</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../past_experiences/ecom_cltv.html">Customer Lifetime Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../past_experiences/ecom_propensity.html">Real-Time Purchase Intent Scoring</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../past_experiences/ecom_summarisation.html">Reviews Summarisation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../past_experiences/ecom_rag.html">RAG-Based Product Discovery</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../projects/index.html">Projects</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Projects</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/nlp/index.html">Natural Language Processing</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of Natural Language Processing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/airbnb_alternate_search/about/index.html">Airbnb Listing description based Semantic Search</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/cv/index.html">Computer Vision</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of Computer Vision</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/ecommerce_image_segmentation/about/index.html">Image Segmentation for Ecommerce Products</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/ml/index.html">Machine Learning</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of Machine Learning</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/airbnb_price_modeling/about/index.html">Predictive Price Modeling for Airbnb listings</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../publications/index.html">Patents, Papers, Thesis</a></li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../agents/index.html">AI Agents: A Lead Engineer’s Handbook</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of AI Agents: A Lead Engineer’s Handbook</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch1_intro.html">Agent Fundamentals: What, Why, and When?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch2_patterns.html">Agentic Patterns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch5_context_engineering.html">Context Engineering for AI Agents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch6_case_studies.html">The State of the Industry: Insights from the Field</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch7_conclusion.html"><strong>Conclusion: The Lead Engineer’s Mental Model for Building Agents</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch_cost.html">Cost Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch_data.html">Data Management and Knowledge Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch_deploy.html">Deployment and Scaling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch_guardrails.html">Guardrails</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch_hitl.html">Human-in-the-Loop (HITL)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch_latency.html">Latency Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch_llm.html">LLM – Prompts, Goals, and Persona</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch_memory.html">Managing Agent Memory (Short-Term and Long-Term)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch_monitor.html">Monitoring and Observability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch_orchestration.html">Orchestration and Task Decomposition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch_prod.html">Production Challenges and Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch_security.html">Securing AI Agents and Preventing Abuse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch_tool.html">Tool Use and Integration Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch_trust.html">Building Trustworthy and Ethical AI Agents</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../index.html">MLOps</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of MLOps</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch1_problem_framing.html">ML Problem framing</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of ML Problem framing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch2_blueprint_operational_strategy.html">The MLOps Blueprint &amp; Operational Strategy</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch2a_platform/index.html">ML Platforms</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle navigation of ML Platforms</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/ml_platforms.html">ML Platforms: How to</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/uber.html">Uber Michelangelo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/linkedin.html">LinkedIn DARWIN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/netflix.html">Netflix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/shopify.html">Shopify Merlin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/zomato.html">Zomato: Real-time ML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/coveo.html">Coveo: MLOPs at reasonable scale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/monzo.html">Monzo ML Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/didact.html">Didact AI</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch3_project_planning/index.html">Project Planning</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" role="switch" type="checkbox"/><label for="toctree-checkbox-11"><div class="visually-hidden">Toggle navigation of Project Planning</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/prd.html">Project Requirements Document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/tech_stack.html">Tech Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/config_management.html">Config Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/pipeline_design.html">Pipeline Design</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/environment_strategy.html">Environment Strategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/cicd_branching_model.html">CI/CD Strategy and Branching Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/directory_structure.html">Directory Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/env_branchind_cicd_deployment.html">Environments, Branching, CI/CD, and Deployments Explained</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/project_management.html">Project Management for MLOps</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch4_data_discovery/index.html">Data Sourcing, Discovery</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" role="switch" type="checkbox"/><label for="toctree-checkbox-12"><div class="visually-hidden">Toggle navigation of Data Sourcing, Discovery</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/data_sourcing_discovery.html">Data Sourcing, Discovery &amp; Understanding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/ch4_project.html">Project-Trending Now: Implementing Web Scraping, Ingestion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/industry_case_studies.html">Data Discovery Platforms: Industry Case Studies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/facebook_nemo.html">Facebook: Nemo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/netflix_metacat.html">Netflix Metacat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/uber_databook.html">Uber Databook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/linkedin_datahub.html">LinkedIn Datahub</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch5_data_pipelines/index.html">Data Engineering, Pipelines</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" role="switch" type="checkbox"/><label for="toctree-checkbox-13"><div class="visually-hidden">Toggle navigation of Data Engineering, Pipelines</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch5_data_pipelines/data_pipelines.html">Data Engineering for Reliable ML Pipelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch5_data_pipelines/data_engineering_pipelines.html">Data Engineering &amp; Pipelines: A Lead’s Compendium</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch5_data_pipelines/streaming_pipelines.html">Real-Time &amp; Streaming Data Pipelines: Challenges, Solutions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch5_data_pipelines/netflix_keystone.html">Netflix Keystone</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch5_data_pipelines/doordash_riviera.html">Doordash Riviera</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch6_feature_engg/index.html">Feature Engineering, Feature Stores</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" role="switch" type="checkbox"/><label for="toctree-checkbox-14"><div class="visually-hidden">Toggle navigation of Feature Engineering, Feature Stores</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch6_feature_engg/feature_engineering_store.html">Feature Engineering and Feature Stores</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch6_feature_engg/feature_engineering.html">Feature Engineering for MLOps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch6_feature_engg/explained_feature_stores.html">Feature Stores for MLOps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch6_feature_engg/point_in_time.html">Point-in-Time Correctness &amp; Time Travel in ML Data Pipelines</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../ch6_feature_engg/feast/index.html">Feast Feature Store</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" role="switch" type="checkbox"/><label for="toctree-checkbox-15"><div class="visually-hidden">Toggle navigation of Feast Feature Store</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="../ch6_feature_engg/feast/feast_architecture.html">Feast Architecture: A Technical Deep Dive for MLOps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ch6_feature_engg/feast/feast_concepts.html">Feast Concepts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ch6_feature_engg/feast/feast_components.html">Feast Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ch6_feature_engg/feast/feast_usecases.html">Feast Use Cases</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ch6_feature_engg/feast/feast_aws.html">Running Feast with AWS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ch6_feature_engg/feast/run_in_prod.html">Running Feast in Production</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ch6_feature_engg/feast/validate_historical_with_gx.html">Validating Historical Features with Great Expectations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../ch6_feature_engg/feast/add_reuse_tests.html">Adding or Reusing Tests in Feast</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch7_model_development/index.html">Model Development, Tuning, Selection, Ensembles, Calibration</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" role="switch" type="checkbox"/><label for="toctree-checkbox-16"><div class="visually-hidden">Toggle navigation of Model Development, Tuning, Selection, Ensembles, Calibration</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch7_model_development/ch7_model_development.html">Chapter 7: Model Development</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch7_model_development/dl_training_playbook.html">How to train DL Models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch7_model_development/development.html">Model Development</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch7_model_development/industry_lessons.html">Model Development: Lessons from production systems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch7_model_development/ensembles.html"><strong>Model Ensembles</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch7_model_development/selection.html">Model Selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch7_model_development/tuning_hypopt.html">Hyperparameter Optimization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch7_model_development/expt_tracking.html">ML Expt tracking, Data Lineage, Model Registry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch7_model_development/calibration.html">Model Calibration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch8_ml_pipelines.html">ML Training Pipelines</a></li>
+<li class="toctree-l2 current has-children"><a class="reference internal" href="index.html">Testing in ML Systems</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" role="switch" type="checkbox"/><label for="toctree-checkbox-17"><div class="visually-hidden">Toggle navigation of Testing in ML Systems</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l3 current current-page"><a class="current reference internal" href="#">Testing in ML Systems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data_testing_validation.html">Data Testing &amp; Validation in Production</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ml_testing.html">Testing ML Systems: Ensuring Reliability from Code to Production</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch10_deployment_serving/index.html">Model Deployment &amp; Serving</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" role="switch" type="checkbox"/><label for="toctree-checkbox-18"><div class="visually-hidden">Toggle navigation of Model Deployment &amp; Serving</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch10_deployment_serving/ch10_deployment_serving.html">Chapter 10: Deployment &amp; Serving</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch10_deployment_serving/guide_deployment_serving.html">Guide: Model Deployment &amp; Serving</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch10_deployment_serving/guide_inference_stack.html">Deep Dive: Inference Stack</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch11_monitor_observe_drift/index.html">Monitoring, Observability, Drift, Interpretability</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" role="switch" type="checkbox"/><label for="toctree-checkbox-19"><div class="visually-hidden">Toggle navigation of Monitoring, Observability, Drift, Interpretability</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch11_monitor_observe_drift/ch11_monitor_observe_drift.html">Chapter 11: Monitoring, Observability, Drifts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch11_monitor_observe_drift/guide_monitor_observe_drift.html">Guide: ML System Failures, Data Distribution Shifts, Monitoring, and Observability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch11_monitor_observe_drift/guide_interpretability_shap_lime.html">Interpretability, SHAP, LIME</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch11_monitor_observe_drift/guide_stack.html">Prometheus + Grafana and ELK Stacks</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch12_retrain_online_testing/index.html">Continual learning, Retraining, A/B Testing</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" role="switch" type="checkbox"/><label for="toctree-checkbox-20"><div class="visually-hidden">Toggle navigation of Continual learning, Retraining, A/B Testing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch12_retrain_online_testing/ch12_continual_learning_prod_testing.html">Chapter 12: Continual Learning &amp; Production Testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch12_retrain_online_testing/guide_continual_learning.html">Continual Learning &amp; Model Retraining</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch12_retrain_online_testing/guide_ab_testing.html">A/B Testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch12_retrain_online_testing/guide_ab_testing_industry_lessons.html">A/B Testing &amp; Experimentation: Industry lessons</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch12_retrain_online_testing/guide_prod_testing_expt.html">Guide: Production Testing &amp; Experimentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch12_retrain_online_testing/dr_prod_testing_expt.html">Deep Research: Production Testing &amp; Experimentation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch13_governance_ethics_human.html">Governance, Ethics &amp; The Human Element</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../pytorch/index.html">PyTorch</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" role="switch" type="checkbox"/><label for="toctree-checkbox-21"><div class="visually-hidden">Toggle navigation of PyTorch</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../pytorch/general.html">General</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../pytorch/state_dict.html">state_dict</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../pytorch/mixed_precision.html">Mixed Precision</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../pytorch/distributed_data_parallel.html">Distributed Data Parallel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../pytorch/ddp_under_the_hood.html">DDP: Under the Hood</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../pytorch/dp_ddp.html">DP vs DDP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../pytorch/fsdp.html">FSDP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../pytorch/tensor_parallelism.html">Tensor parallelism</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../pytorch/pipeline_parallelism.html">Pipeline Parallelism</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../pytorch/device_mesh.html">Device Mesh</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../lld/index.html">Low Level Design</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" role="switch" type="checkbox"/><label for="toctree-checkbox-22"><div class="visually-hidden">Toggle navigation of Low Level Design</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../lld/parking_lot.html">Parking Lot</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../visualization/index.html">Data Visualization Projects</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="../../_sources/mlops/ch9_ml_testing/ch9_ml_testing.md.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="testing-in-ml-systems">
+<h1>Testing in ML Systems<a class="headerlink" href="#testing-in-ml-systems" title="Permalink to this heading">¶</a></h1>
+<p><strong>Chapter 9: The Crucible – Comprehensive Testing in ML Systems</strong></p>
+<p><em>(Progress Label: 📍Stage 9: Ensuring Every Component is Battle-Ready)</em></p>
+<section id="introduction-the-michelin-inspector-s-scrutiny-validating-every-element">
+<h2>🧑‍🍳 Introduction: The Michelin Inspector’s Scrutiny – Validating Every Element<a class="headerlink" href="#introduction-the-michelin-inspector-s-scrutiny-validating-every-element" title="Permalink to this heading">¶</a></h2>
+<p>In Chapters 7 and 8, we moved from experimental model development to standardizing our training pipelines, effectively codifying our “master recipes.” But before any dish from our MLOps kitchen can be confidently served to diners, it, along with every ingredient, every preparation step, every piece of equipment, and the entire kitchen workflow, must undergo rigorous scrutiny. This is the role of <strong>Comprehensive Testing in ML Systems</strong> – our MLOps crucible.</p>
+<p>Testing in the ML world extends far beyond traditional software QA. It’s not just about finding bugs in code; it’s about ensuring the quality and integrity of data, the robustness and fairness of models, the reliability of complex pipelines, and the performance of the serving infrastructure. As highlighted by Google’s “ML Test Score” and industry best practices, ML systems can fail in myriad ways, often silently, if not subjected to a holistic testing strategy. The infamous “garbage in, garbage out” principle reigns supreme, and even subtle data errors or shifts can lead to significant model performance degradation and erosion of user trust.</p>
+<p>This chapter provides a comprehensive framework for MLOps Leads to design and implement a robust testing strategy. We will explore the different categories of tests crucial at each stage of the MLOps lifecycle: validating the foundational data and features, rigorously evaluating models offline, testing the integration and end-to-end functionality of ML pipelines, and ensuring the performance and reliability of the serving infrastructure. We will also introduce a practical framework for organizing these tests across different environments (Dev, CI, Staging, Prod) and present the “ML Test Score” as a rubric for assessing production readiness. For our “Trending Now” project, this chapter will detail how we establish and automate the necessary quality checks to ensure every component of our application is battle-ready.</p>
+<hr class="docutils" />
+</section>
+<section id="section-9-1-the-imperative-of-testing-in-mlops-beyond-model-accuracy">
+<h2>Section 9.1: The Imperative of Testing in MLOps (Beyond Model Accuracy)<a class="headerlink" href="#section-9-1-the-imperative-of-testing-in-mlops-beyond-model-accuracy" title="Permalink to this heading">¶</a></h2>
+<p>Understanding <em>why</em> extensive testing is non-negotiable in MLOps sets the stage for implementing it effectively.</p>
+<ul class="simple">
+<li><p><strong>9.1.1 Why Testing ML Systems is Different &amp; More Complex than Traditional Software</strong></p>
+<ul>
+<li><p><strong>Data-Driven Behavior:</strong> Model logic is <em>learned</em>, not explicitly coded, making behavior harder to predict and test with traditional unit tests.</p></li>
+<li><p><strong>Stochasticity &amp; Non-Determinism:</strong> Some ML algorithms have inherent randomness.</p></li>
+<li><p><strong>Silent Failures:</strong> Models can produce incorrect (but syntactically valid) predictions without throwing errors.</p></li>
+<li><p><strong>Entanglement (CACE principle - Change Anything, Change Everything):</strong> Small changes in data, features, or hyperparameters can have widespread, non-obvious impacts.</p></li>
+<li><p><strong>Training-Serving Skew:</strong> Discrepancies between development and production environments are common.</p></li>
+</ul>
+</li>
+<li><p><strong>9.1.2 Goals of a Comprehensive ML Testing Strategy</strong></p>
+<ul>
+<li><p><strong>Reliability:</strong> Ensure the system consistently performs its intended function.</p></li>
+<li><p><strong>Robustness:</strong> Ensure the system handles noisy, unexpected, or adversarial inputs gracefully.</p></li>
+<li><p><strong>Fairness &amp; Ethics:</strong> Ensure the system does not exhibit undue bias or cause harm.</p></li>
+<li><p><strong>Compliance:</strong> Meet regulatory and organizational standards.</p></li>
+<li><p><strong>Performance (Operational):</strong> Ensure the system meets latency, throughput, and resource usage requirements.</p></li>
+<li><p><strong>Maintainability:</strong> Well-tested systems are easier to update and debug.</p></li>
+</ul>
+</li>
+<li><p><strong>9.1.3 The Cost of Insufficient Testing: From Silent Failures to Production Outages</strong></p>
+<ul>
+<li><p>Degraded user experience and loss of trust.</p></li>
+<li><p>Incorrect business decisions based on faulty predictions.</p></li>
+<li><p>Financial losses (e.g., failed fraud detection, poor recommendations).</p></li>
+<li><p>Reputational damage.</p></li>
+<li><p>Increased “firefighting” and engineering costs for late-stage bug fixes.</p></li>
+</ul>
+</li>
+<li><p><strong>9.1.4 Overview of Testing Categories in the ML Lifecycle (The MLOps Test Pyramid Adaptation)</strong></p>
+<ul>
+<li><p>Data and Feature Validation Tests (Base of the ML-specific pyramid).</p></li>
+<li><p>Code Unit Tests (Traditional base).</p></li>
+<li><p>Pipeline Component Integration Tests.</p></li>
+<li><p>Model Behavioral &amp; Robustness Tests.</p></li>
+<li><p>End-to-End Pipeline &amp; Acceptance Tests (Apex).</p></li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+</section>
+<section id="section-9-2-testing-the-foundation-data-validation-feature-validation-ensuring-pure-ingredients">
+<h2>Section 9.2: Testing the Foundation – Data Validation &amp; Feature Validation (Ensuring Pure Ingredients)<a class="headerlink" href="#section-9-2-testing-the-foundation-data-validation-feature-validation-ensuring-pure-ingredients" title="Permalink to this heading">¶</a></h2>
+<p>The quality of data and features is paramount. Validation at these stages prevents the “garbage in, garbage out” problem.</p>
+<ul class="simple">
+<li><p><strong>9.2.1 Data Validation in Ingestion Pipelines</strong></p>
+<ul>
+<li><p><strong>Purpose:</strong> Ensuring raw and processed data meets quality and schema expectations <em>before</em> it’s used for feature engineering or training. This happens within data pipelines (e.g., Airflow DAGs).</p></li>
+<li><p><strong>Types of Checks:</strong></p>
+<ul>
+<li><p><strong>Schema Validation:</strong> Data types, column presence/order, required vs. optional features, valency (single/list).</p>
+<ul>
+<li><p><em>Tools:</em> TFDV <code class="docutils literal notranslate"><span class="pre">infer_schema</span></code> and <code class="docutils literal notranslate"><span class="pre">validate_statistics</span></code>, Great Expectations <code class="docutils literal notranslate"><span class="pre">expect_table_columns_to_match_ordered_list</span></code>, <code class="docutils literal notranslate"><span class="pre">expect_column_values_to_be_of_type</span></code>.</p></li>
+<li><p><em>Schema Environments (TFDV):</em> Handle expected differences between train/serve data.</p></li>
+</ul>
+</li>
+<li><p><strong>Data Value &amp; Integrity Checks:</strong> Missingness, range checks (numeric/datetime), set membership (categorical), uniqueness, string patterns (regex), referential integrity.</p>
+<ul>
+<li><p><em>Tools:</em> Great Expectations provides a rich vocabulary of expectations for these.</p></li>
+</ul>
+</li>
+<li><p><strong>Distributional Validation (Drift &amp; Skew - Initial Checks):</strong></p>
+<ul>
+<li><p>Compute descriptive statistics (mean, median, quantiles, histograms for numeric; unique counts, frequencies for categorical).</p></li>
+<li><p>Compare statistics of incoming data batches against a baseline (e.g., statistics from a “golden” dataset or previous validated batch).</p></li>
+<li><p>Detect significant shifts using metrics like L-infinity distance for categoricals or statistical tests (KS-test, Chi-squared - use with caution on large data) for numerical distributions.</p></li>
+</ul>
+</li>
+<li><p><strong>Freshness and Volume Checks:</strong> Ensure data is up-to-date and row/file counts are within expected ranges.</p></li>
+</ul>
+</li>
+<li><p><strong>Tools &amp; Techniques:</strong></p>
+<ul>
+<li><p><strong>Great Expectations (GE):</strong> Define “Expectation Suites” in JSON, validate DataFrames/SQL, generate Data Docs.</p></li>
+<li><p><strong>TensorFlow Data Validation (TFDV):</strong> Infers schema, generates statistics, detects anomalies, visualizes comparisons.</p></li>
+<li><p><strong>Amazon Deequ / AWS Glue Data Quality:</strong> For data quality on Spark/Glue.</p></li>
+<li><p><strong>Custom Python Scripts (Pandas, Pytest):</strong> For bespoke validation logic.</p></li>
+</ul>
+</li>
+<li><p><strong>Integration in Pipelines:</strong> Data validation should be an automated step in Airflow DAGs. Fail the pipeline or alert on critical issues.</p></li>
+<li><p><strong>Alerting:</strong> On schema violations, critical value errors, or significant distribution shifts.</p></li>
+</ul>
+</li>
+<li><p><strong>9.2.2 Feature Validation</strong></p>
+<ul>
+<li><p><strong>Purpose:</strong> Ensuring engineered features are correct, consistent, and suitable for model consumption.</p></li>
+<li><p><strong>Location:</strong> After feature engineering steps, before writing to a Feature Store, or on features retrieved from a Feature Store for training/inference.</p></li>
+<li><p><strong>Types of Checks:</strong></p>
+<ul>
+<li><p>Similar to data validation but applied to <em>engineered features</em>.</p></li>
+<li><p><strong>Feature Logic Validation (Unit Tests):</strong> Test the Python/SQL code that generates features for correctness (covered in Section 9.4.2).</p></li>
+<li><p><strong>Checks for Training-Serving Skew in Feature Distributions:</strong> Explicitly compare statistics of features generated for training vs. features generated (or looked up) at serving time.</p></li>
+<li><p><strong>Feature Importance Validation (Conceptual):</strong> If a feature deemed important offline is consistently missing or has poor quality online, it’s a flag.</p></li>
+</ul>
+</li>
+<li><p><strong>Tools:</strong> Similar to data validation, plus validation capabilities of Feature Store platforms (e.g., Hopsworks integration with Great Expectations).</p></li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+</section>
+<section id="section-9-3-testing-the-core-offline-model-evaluation-validation-the-recipe-s-taste-test">
+<h2>Section 9.3: Testing the Core – Offline Model Evaluation &amp; Validation (The Recipe’s Taste Test)<a class="headerlink" href="#section-9-3-testing-the-core-offline-model-evaluation-validation-the-recipe-s-taste-test" title="Permalink to this heading">¶</a></h2>
+<p>This is where we rigorously assess the trained model artifact before considering it for any further deployment stages.</p>
+<ul class="simple">
+<li><p><strong>9.3.1 Comprehensive Evaluation Metrics for Different Tasks</strong></p>
+<ul>
+<li><p>Beyond accuracy: Precision, Recall, F1-Score, AUC-ROC, PR-AUC, Log Loss for classification.</p></li>
+<li><p>MSE/RMSE, MAE, R-Squared, RMSLE for regression.</p></li>
+<li><p>Task-specific metrics (e.g., NDCG for ranking, BLEU/ROUGE for text generation).</p></li>
+<li><p>Aligning with business KPIs: Choose ML metrics that are strong proxies for business success.</p></li>
+</ul>
+</li>
+<li><p><strong>9.3.2 Establishing Strong Baselines for Comparison</strong></p>
+<ul>
+<li><p>Random, Heuristic, Zero-Rule, Human Level Performance (HLP), existing system/previous model version. A model is only “good” relative to a meaningful baseline.</p></li>
+</ul>
+</li>
+<li><p><strong>9.3.3 Slice-Based Evaluation: Uncovering Hidden Biases &amp; Performance Gaps</strong></p>
+<ul>
+<li><p><strong>Why:</strong> Overall metrics can hide poor performance on critical data slices (demographics, user segments, specific input types).</p></li>
+<li><p><strong>Techniques:</strong> Define slices based on domain knowledge or identified error patterns. Evaluate key metrics per slice. Look for fairness disparities.</p></li>
+</ul>
+</li>
+<li><p><strong>9.3.4 Model Calibration: Ensuring Probabilities are Trustworthy</strong></p>
+<ul>
+<li><p><strong>Why:</strong> If model outputs probabilities, they should reflect true likelihoods. Critical for decision-making based on thresholds.</p></li>
+<li><p><strong>Techniques:</strong> Reliability diagrams (calibration curves), Expected Calibration Error (ECE). Platt Scaling, Isotonic Regression for recalibration.</p></li>
+</ul>
+</li>
+<li><p><strong>9.3.5 Model Robustness Testing: How Fragile is Our Recipe?</strong></p>
+<ul>
+<li><p><strong>Perturbation Tests:</strong> Add small noise/corruptions to input data (validation set) and observe performance degradation. Tests sensitivity.</p></li>
+<li><p><strong>Invariance Tests (using CheckList concepts):</strong> Changes to certain input features (e.g., replacing a name in a sentiment task) should <em>not</em> alter the prediction.</p></li>
+<li><p><strong>Directional Expectation Tests (using CheckList concepts):</strong> Certain input changes should predictably alter the output in a specific direction.</p></li>
+</ul>
+</li>
+<li><p><strong>9.3.6 Model Interpretability and Explainability Checks (Sanity Checking the “Why”)</strong></p>
+<ul>
+<li><p>Use tools like SHAP or LIME to understand feature importance for the model’s predictions.</p></li>
+<li><p>Do the important features and their contributions make sense from a domain perspective? Unexpected high importance for irrelevant features can indicate data leakage or issues.</p></li>
+</ul>
+</li>
+<li><p><strong>9.3.7 Creating and Utilizing Model Cards for Transparent Documentation</strong></p>
+<ul>
+<li><p>Document model details, intended use, limitations, training data, evaluation metrics (including on slices), fairness assessments, and ethical considerations.</p></li>
+</ul>
+</li>
+<li><p><strong>9.3.9 The Automated Model Validation Process in Training Pipelines</strong></p>
+<ul>
+<li><p><strong>Defining Validation Criteria &amp; Thresholds:</strong> As part of the training pipeline, codify acceptance criteria (e.g., “New model F1 must be &gt;= Prod model F1 AND latency &lt; X ms”).</p></li>
+<li><p><strong>Comparing Against Production Models/Baselines:</strong> Pipeline should automatically fetch metrics of the current champion model for comparison.</p></li>
+<li><p><strong>Automated Sign-off vs. Human-in-the-Loop for Promotion:</strong> Based on criteria, pipeline can auto-approve for registry or flag for manual review/approval by MLOps Lead/Product Owner.</p></li>
+</ul>
+</li>
+<li><p><strong>9.3.9 Model Registry for Versioning and Managing Validated Models</strong></p>
+<ul>
+<li><p>Validated models, their metrics, lineage, and model cards are stored and versioned in a Model Registry (e.g., W&amp;B, MLflow, SageMaker Model Registry).</p></li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+</section>
+<section id="section-9-4-testing-the-arteries-ml-pipeline-integration-end-to-end-testing-ensuring-smooth-kitchen-operations">
+<h2>Section 9.4: Testing the Arteries – ML Pipeline Integration &amp; End-to-End Testing (Ensuring Smooth Kitchen Operations)<a class="headerlink" href="#section-9-4-testing-the-arteries-ml-pipeline-integration-end-to-end-testing-ensuring-smooth-kitchen-operations" title="Permalink to this heading">¶</a></h2>
+<p>Verifying that the various MLOps pipelines (Data, Feature, Training, Inference) and their components work together correctly.</p>
+<ul class="simple">
+<li><p><strong>9.4.1 Why Pipeline Testing is Critical</strong></p>
+<ul>
+<li><p>Catches issues arising from inter-component dependencies or environment configurations.</p></li>
+</ul>
+</li>
+<li><p><strong>9.4.2 Unit Testing for Pipeline Components/Tasks</strong>ubeflow components’ core logic with mocked inputs/dependencies.</p></li>
+<li><p><strong>9.4.3 Integration Testing for Pipelines</strong></p>
+<ul>
+<li><p><strong>Data Ingestion Pipelines:</strong> Test full flow from raw source (mocked or sample) to processed/validated data storage (e.g., staging S3/Redshift).</p></li>
+<li><p><strong>Feature Engineering Pipelines:</strong> Test transformation logic and Feature Store interactions (writes and reads).</p></li>
+<li><p><strong>Model Training Pipelines:</strong> Test an end-to-end run on a small, representative dataset – from data loading through model training, evaluation, and registration.</p></li>
+<li><p><strong>Inference Pipelines (Offline/Batch path):</strong> Test data loading, feature retrieval, prediction generation, and output storage using sample batch data.</p></li>
+</ul>
+</li>
+<li><p><strong>9.4.4 Techniques for Pipeline Testing</strong></p>
+<ul>
+<li><p><strong>Using Sample Data:</strong> Small, curated datasets that cover common and edge cases.</p></li>
+<li><p><strong>Mocked Services:</strong> Mock external dependencies like LLM APIs, databases, or other microservices for staging/CI tests to ensure speed, reliability, and cost control.</p></li>
+<li><p><strong>Testing on Staging Environments:</strong> Execute pipelines in an environment that mirrors production.</p></li>
+</ul>
+</li>
+<li><p><strong>9.4.5 Tools for Pipeline Testing</strong></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">pytest</span></code> for writing custom test scripts that trigger and monitor pipeline runs (e.g., via Airflow API or CLI).</p></li>
+<li><p>Airflow DAG testing utilities (<code class="docutils literal notranslate"><span class="pre">airflow</span> <span class="pre">dags</span> <span class="pre">test</span> <span class="pre">&lt;dag_id&gt;</span> <span class="pre">&lt;exec_date&gt;</span></code>).</p></li>
+<li><p>Integration with CI/CD systems (GitHub Actions) to automate these tests.</p></li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+</section>
+<section id="section-9-5-testing-the-frontline-model-serving-infrastructure-performance-testing-checking-the-service-speed-and-quality">
+<h2>Section 9.5: Testing the Frontline – Model Serving Infrastructure &amp; Performance Testing (Checking the Service Speed and Quality)<a class="headerlink" href="#section-9-5-testing-the-frontline-model-serving-infrastructure-performance-testing-checking-the-service-speed-and-quality" title="Permalink to this heading">¶</a></h2>
+<p>Ensuring the deployed model serving endpoint is robust, performant, and reliable.</p>
+<ul class="simple">
+<li><p><strong>9.5.1 Deployment Validation (Smoke Tests)</strong></p>
+<ul>
+<li><p>Can the model artifact be successfully loaded by the serving infrastructure (e.g., FastAPI on App Runner)?</p></li>
+<li><p>Is the endpoint responsive to basic health checks?</p></li>
+</ul>
+</li>
+<li><p><strong>9.5.2 API Contract Testing</strong></p>
+<ul>
+<li><p>Validate request/response schemas for the serving API. Ensure it adheres to the defined contract. Tools like Pydantic for FastAPI.</p></li>
+</ul>
+</li>
+<li><p><strong>9.5.3 Consistency Checks (Training vs. Serving Prediction)</strong></p>
+<ul>
+<li><p>Verify that the deployed model in a staging serving environment gives the <em>exact same prediction</em> for a given input vector as it did during offline training/evaluation. Catches serialization errors, environment discrepancies, or subtle bugs in pre/post-processing logic in serving.</p></li>
+</ul>
+</li>
+<li><p><strong>9.5.4 Load Testing (e.g., using Locust)</strong></p>
+<ul>
+<li><p>Measuring Queries Per Second (QPS), latency (p50, p90, p99) under various load levels.</p></li>
+<li><p>Understanding resource utilization (CPU, RAM, GPU) under load.</p></li>
+<li><p>Determining scaling behavior (if auto-scaling is configured) and identifying bottlenecks.</p></li>
+</ul>
+</li>
+<li><p><strong>9.5.5 Stress Testing</strong></p>
+<ul>
+<li><p>Pushing the system beyond expected peak load to find its breaking points and ensure graceful degradation.</p></li>
+</ul>
+</li>
+<li><p><strong>9.5.6 End-to-End (E2E) Tests for Serving</strong></p>
+<ul>
+<li><p>Simulating user requests through the entire serving stack, including any upstream services the model might depend on (e.g., feature lookups from an online feature store).</p></li>
+</ul>
+</li>
+<li><p><strong>9.5.7 Acceptance Testing (User/Business - UAT)</strong></p>
+<ul>
+<li><p>Validating that the deployed system (in a staging/UAT environment) meets the functional and non-functional requirements defined by users and business stakeholders.</p></li>
+</ul>
+</li>
+<li><p><strong>9.5.9 Measuring the Delta Between Models (Operational)</strong></p>
+<ul>
+<li><p>When A/B testing or canarying a new model version, compare its operational metrics (latency, throughput, error rate, resource usage) against the current production model under similar load in a staging or controlled production environment.</p></li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+</section>
+<section id="section-9-6-a-framework-for-testing-in-mlops-where-when-and-what-the-master-test-plan">
+<h2>Section 9.6: A Framework for Testing in MLOps: Where, When, and What (The Master Test Plan)<a class="headerlink" href="#section-9-6-a-framework-for-testing-in-mlops-where-when-and-what-the-master-test-plan" title="Permalink to this heading">¶</a></h2>
+<p>This section synthesizes the testing activities into a cohesive framework, outlining what gets tested, in which environment, and at what stage of the CI/CD process.</p>
+<ul class="simple">
+<li><p><strong>9.6.1 Testing in the Development Environment (Chef’s Local Tasting)</strong></p>
+<ul>
+<li><p><strong>Focus:</strong> Code correctness, local validation of algorithms and data transformations.</p></li>
+<li><p><strong>Activities:</strong> Unit tests for all new/modified code (Python scripts, pipeline task logic), local data validation on samples, IDE debugging.</p></li>
+</ul>
+</li>
+<li><p><strong>9.6.2 Testing in CI (Continuous Integration) Pipelines (Sous Chef’s Ingredient Check)</strong></p>
+<ul>
+<li><p><strong>Focus:</strong> Early detection of bugs, code quality, static analysis, basic component integrity before merging code.</p></li>
+<li><p><strong>Activities (on feature branch push / PR to <code class="docutils literal notranslate"><span class="pre">dev</span></code>):</strong></p>
+<ul>
+<li><p>Linters (e.g., <code class="docutils literal notranslate"><span class="pre">flake9</span></code>, <code class="docutils literal notranslate"><span class="pre">black</span></code>).</p></li>
+<li><p>Static Type Checking (e.g., <code class="docutils literal notranslate"><span class="pre">mypy</span></code>).</p></li>
+<li><p>IaC Validation &amp; Linting (e.g., <code class="docutils literal notranslate"><span class="pre">terraform</span> <span class="pre">validate</span></code>, <code class="docutils literal notranslate"><span class="pre">tflint</span></code>, <code class="docutils literal notranslate"><span class="pre">checkov</span></code>).</p></li>
+<li><p>Security Scans (e.g., <code class="docutils literal notranslate"><span class="pre">bandit</span></code> for Python, container image scans).</p></li>
+<li><p>Unit Tests (for code, data processing logic, feature transformations, model architecture components).</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>9.6.3 Testing in CD (Continuous Delivery) to Staging Environment (Full Kitchen Dress Rehearsal)</strong></p>
+<ul>
+<li><p><strong>Focus:</strong> Integration of all components, end-to-end functionality, operational readiness, performance under load.</p></li>
+<li><p><strong>Activities (on merge to <code class="docutils literal notranslate"><span class="pre">dev</span></code> branch, deploying to Staging):</strong></p>
+<ul>
+<li><p><strong>For Pipeline Deployments (Data/Feature/Training Pipelines):</strong></p>
+<ul>
+<li><p>Deployment of Airflow DAGs / Kubeflow Pipeline definitions to Staging orchestrator.</p></li>
+<li><p>Deployment of associated container images to Staging registry.</p></li>
+<li><p>Full pipeline runs on sample/staging data.</p></li>
+<li><p>Integration tests verifying component interactions and artifact generation.</p></li>
+<li><p>Data/Feature validation tests on pipeline outputs.</p></li>
+<li><p>Offline Model Evaluation tests for candidate models produced by training pipelines in Staging.</p></li>
+</ul>
+</li>
+<li><p><strong>For Model Serving Deployments (API/Endpoint):</strong></p>
+<ul>
+<li><p>Deployment of the model serving application (e.g., FastAPI container) to Staging serving platform (e.g., App Runner).</p></li>
+<li><p>API contract tests.</p></li>
+<li><p>Consistency checks (offline vs. staging serving predictions).</p></li>
+<li><p>Load/Performance tests.</p></li>
+<li><p>End-to-End integration tests with other staging services.</p></li>
+<li><p>Security penetration tests (conceptual).</p></li>
+<li><p>User Acceptance Testing (UAT) by stakeholders.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>9.6.4 Testing in CD to Production Environment (Post-Approval - Limited Scope)</strong></p>
+<ul>
+<li><p><strong>Focus:</strong> Smoke tests, ensuring safe rollout of <em>already validated</em> artifacts.</p></li>
+<li><p><strong>Activities (on promotion from Staging to Production):</strong></p>
+<ul>
+<li><p>Deployment of <em>identical artifacts</em> that passed Staging.</p></li>
+<li><p>Basic health checks of deployed services/pipelines.</p></li>
+<li><p>Post-rollout monitoring. <em>(Full online testing/experimentation (A/B, Canary) is considered part of the deployment strategy and covered in Chapter 12).</em></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+</section>
+<section id="section-9-7-tools-and-frameworks-for-ml-testing-the-inspector-s-toolkit">
+<h2>Section 9.7: Tools and Frameworks for ML Testing (The Inspector’s Toolkit)<a class="headerlink" href="#section-9-7-tools-and-frameworks-for-ml-testing-the-inspector-s-toolkit" title="Permalink to this heading">¶</a></h2>
+<p>A recap and expansion on the tools that enable a comprehensive MLOps testing strategy.</p>
+<ul class="simple">
+<li><p><strong>Data Validation:</strong> Great Expectations, TensorFlow Data Validation (TFDV), Amazon Deequ, AWS Glue Data Quality, Pandera, custom <code class="docutils literal notranslate"><span class="pre">pytest</span></code> checks.</p></li>
+<li><p><strong>Code Unit Testing:</strong> <code class="docutils literal notranslate"><span class="pre">pytest</span></code>, <code class="docutils literal notranslate"><span class="pre">unittest</span></code>.</p></li>
+<li><p><strong>Pipeline &amp; Integration Testing:</strong> <code class="docutils literal notranslate"><span class="pre">pytest</span></code>, Airflow testing utilities, Kubeflow Pipeline testing tools, mocking libraries (<code class="docutils literal notranslate"><span class="pre">unittest.mock</span></code>, <code class="docutils literal notranslate"><span class="pre">moto</span></code> for AWS).</p></li>
+<li><p><strong>Model Behavioral Testing:</strong> CheckList.</p></li>
+<li><p><strong>Load Testing:</strong> Locust, k6, JMeter.</p></li>
+<li><p><strong>IaC Testing:</strong> <code class="docutils literal notranslate"><span class="pre">tflint</span></code>, <code class="docutils literal notranslate"><span class="pre">checkov</span></code>, Terratest.</p></li>
+<li><p><strong>CI/CD Orchestration:</strong> GitHub Actions, Jenkins, GitLab CI, CircleCI.</p></li>
+<li><p><strong>ML Platform Specific Testing Capabilities:</strong> Features within SageMaker, Vertex AI, Azure ML for model validation, endpoint testing.</p></li>
+</ul>
+<hr class="docutils" />
+</section>
+<section id="section-9-8-online-testing-testing-in-production-a-glimpse-into-live-service-checks-preview">
+<h2>Section 9.8: Online Testing / Testing in Production (A Glimpse into Live Service Checks - Preview)<a class="headerlink" href="#section-9-8-online-testing-testing-in-production-a-glimpse-into-live-service-checks-preview" title="Permalink to this heading">¶</a></h2>
+<p>While this chapter focuses primarily on offline and staging environment testing, it’s important to acknowledge the role of testing in the live production environment.</p>
+<ul class="simple">
+<li><p><strong>Briefly Define:</strong> A/B Testing, Canary Releases, Shadow Deployments, Interleaving.</p></li>
+<li><p><strong>Purpose:</strong> Primarily for validating <em>live effectiveness, business impact, and user experience</em> of new models/features with real traffic, rather than just functional correctness or offline performance.</p></li>
+<li><p><strong>Connection to Monitoring:</strong> Online tests are heavily reliant on robust monitoring to collect metrics and compare variants.</p></li>
+<li><p><strong>Detailed Coverage:</strong> These techniques will be explored in-depth in <strong>Chapter 12: Refining the Menu – Continual Learning &amp; Production Testing for Model Evolution</strong>.</p></li>
+</ul>
+<hr class="docutils" />
+</section>
+<section id="project-trending-now-implementing-a-comprehensive-testing-strategy">
+<h2>Project: “Trending Now” – Implementing a Comprehensive Testing Strategy<a class="headerlink" href="#project-trending-now-implementing-a-comprehensive-testing-strategy" title="Permalink to this heading">¶</a></h2>
+<p>Applying the chapter’s concepts to build out the testing framework for our “Trending Now” application.</p>
+<ul class="simple">
+<li><p><strong>9.P.1 Data Validation for Ingestion Pipeline (using Great Expectations)</strong></p>
+<ul>
+<li><p>Define an Expectation Suite for the output of <code class="docutils literal notranslate"><span class="pre">preprocess_data_task</span></code> (cleaned data before LLM enrichment).</p></li>
+<li><p>Define an Expectation Suite for the output of <code class="docutils literal notranslate"><span class="pre">get_llm_predictions_task</span></code> (enriched data for Redshift).</p></li>
+<li><p>Integrate GE validation steps into the <code class="docutils literal notranslate"><span class="pre">data_ingestion_dag.py</span></code> Airflow DAG, with failure handling.</p></li>
+</ul>
+</li>
+<li><p><strong>9.P.2 Unit Tests for Pipeline Components</strong></p>
+<ul>
+<li><p>Write <code class="docutils literal notranslate"><span class="pre">pytest</span></code> unit tests for:</p>
+<ul>
+<li><p>Scraping utility functions (mocking web responses).</p></li>
+<li><p>Preprocessing functions (test data cleaning, transformation).</p></li>
+<li><p>LLM utility functions (mocking LLM API calls, testing prompt formatting and response parsing).</p></li>
+<li><p>Redshift loading script (mocking DB connection).</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>9.P.3 Rigorous Offline Model Evaluation (for Educational XGBoost/BERT Model)</strong></p>
+<ul>
+<li><p>(This was previously in Ch6 project, now fits better here as part of testing focus)</p></li>
+<li><p>Implement slice-based evaluation for the XGBoost/BERT models (e.g., by <code class="docutils literal notranslate"><span class="pre">contentType</span></code> - “Movie” vs. “TV Show”).</p></li>
+<li><p>Conceptual discussion of how robustness tests (e.g., adding minor typos to plot summaries) could be designed.</p></li>
+<li><p>Generate and version a Model Card (using Python or Markdown) for the selected educational model.</p></li>
+</ul>
+</li>
+<li><p><strong>9.P.4 Pipeline Integration Testing (Staging for Data Ingestion Pipeline)</strong></p>
+<ul>
+<li><p>Outline <code class="docutils literal notranslate"><span class="pre">pytest</span></code> integration tests for the <code class="docutils literal notranslate"><span class="pre">data_ingestion_dag.py</span></code>.</p></li>
+<li><p>Focus on:</p>
+<ul>
+<li><p>Triggering the DAG in an ephemeral staging Airflow environment (via CI/CD).</p></li>
+<li><p>Using a small, fixed set of URLs for scraping (or mocked scraper outputs).</p></li>
+<li><p>Mocking LLM API calls to return consistent dummy data for staging tests.</p></li>
+<li><p>Verifying that the pipeline runs end-to-end successfully.</p></li>
+<li><p>Asserting that data lands in staging S3 (raw, processed) and conceptual staging Redshift with expected schema and row counts.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>9.P.5 Model Performance &amp; Serving Infrastructure Testing (Staging for FastAPI Service)</strong></p>
+<ul>
+<li><p>Outline <code class="docutils literal notranslate"><span class="pre">pytest</span></code> tests for the staging FastAPI endpoint (testing both LLM and educational model paths if both were deployed to staging).</p></li>
+<li><p>Set up and run a simple Locust load test (<code class="docutils literal notranslate"><span class="pre">locustfile.py</span></code>) against the staging FastAPI deployment.</p></li>
+<li><p>Monitor basic metrics (latency, QPS, error rate) from the load test.</p></li>
+</ul>
+</li>
+<li><p><strong>9.P.6 Integrating Tests into GitHub Actions CI/CD Workflows</strong></p>
+<ul>
+<li><p>Update <code class="docutils literal notranslate"><span class="pre">ci.yml</span></code>: Add steps to run all new unit tests.</p></li>
+<li><p>Update <code class="docutils literal notranslate"><span class="pre">cd_staging.yml</span></code>:</p>
+<ul>
+<li><p>Add steps to execute the Airflow Data Ingestion DAG integration tests.</p></li>
+<li><p>Add steps to deploy the staging FastAPI service and run API integration tests and Locust load tests against it.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+</section>
+<section id="conclusion-the-hallmarks-of-a-michelin-grade-ml-operation-rigor-and-reliability">
+<h2>🧑‍🍳 Conclusion: The Hallmarks of a Michelin-Grade ML Operation – Rigor and Reliability<a class="headerlink" href="#conclusion-the-hallmarks-of-a-michelin-grade-ml-operation-rigor-and-reliability" title="Permalink to this heading">¶</a></h2>
+<p>In the demanding world of a Michelin-starred kitchen, rigorous quality control at every stage is what separates the exceptional from the merely good. Similarly, in MLOps, comprehensive testing is the crucible that forges reliable, robust, and trustworthy machine learning systems. It’s the process that ensures every “dish” leaving our kitchen is not only delicious (accurate) but also consistently prepared and safe to consume (reliable and fair).</p>
+<p>This chapter has illuminated the diverse landscape of testing in ML systems – moving far beyond just model accuracy. We’ve explored the imperative of validating our foundational “ingredients” (data and features), rigorously evaluating our “recipes” (models) offline against a multitude of criteria, testing the intricate “assembly lines” (ML pipelines), and ensuring our “serving frontline” (model deployment infrastructure) can handle the heat of production. We’ve also established a framework for understanding where and when these different types of tests fit into our development and CI/CD workflows, guided by tools ranging from Great Expectations for data to Pytest for code and Locust for load.</p>
+<p>For the “Trending Now” project, we’ve laid out a strategy to implement data validation, unit tests, pipeline integration tests, and serving performance tests. This holistic approach to quality assurance, embedded throughout the MLOps lifecycle and inspired by frameworks like the ML Test Score, is what transforms a promising ML experiment into a dependable production system. With our testing crucible in place, we are now ready to confidently present our “dishes” to the public. The next chapter will focus on “Grand Opening – Model Deployment Strategies &amp; Serving Infrastructure,” taking our validated models and pipelines into the production environment.</p>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="data_testing_validation.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Data Testing &amp; Validation in Production</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="index.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Testing in ML Systems</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024, Deepak Karkala
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Testing in ML Systems</a><ul>
+<li><a class="reference internal" href="#introduction-the-michelin-inspector-s-scrutiny-validating-every-element">🧑‍🍳 Introduction: The Michelin Inspector’s Scrutiny – Validating Every Element</a></li>
+<li><a class="reference internal" href="#section-9-1-the-imperative-of-testing-in-mlops-beyond-model-accuracy">Section 9.1: The Imperative of Testing in MLOps (Beyond Model Accuracy)</a></li>
+<li><a class="reference internal" href="#section-9-2-testing-the-foundation-data-validation-feature-validation-ensuring-pure-ingredients">Section 9.2: Testing the Foundation – Data Validation &amp; Feature Validation (Ensuring Pure Ingredients)</a></li>
+<li><a class="reference internal" href="#section-9-3-testing-the-core-offline-model-evaluation-validation-the-recipe-s-taste-test">Section 9.3: Testing the Core – Offline Model Evaluation &amp; Validation (The Recipe’s Taste Test)</a></li>
+<li><a class="reference internal" href="#section-9-4-testing-the-arteries-ml-pipeline-integration-end-to-end-testing-ensuring-smooth-kitchen-operations">Section 9.4: Testing the Arteries – ML Pipeline Integration &amp; End-to-End Testing (Ensuring Smooth Kitchen Operations)</a></li>
+<li><a class="reference internal" href="#section-9-5-testing-the-frontline-model-serving-infrastructure-performance-testing-checking-the-service-speed-and-quality">Section 9.5: Testing the Frontline – Model Serving Infrastructure &amp; Performance Testing (Checking the Service Speed and Quality)</a></li>
+<li><a class="reference internal" href="#section-9-6-a-framework-for-testing-in-mlops-where-when-and-what-the-master-test-plan">Section 9.6: A Framework for Testing in MLOps: Where, When, and What (The Master Test Plan)</a></li>
+<li><a class="reference internal" href="#section-9-7-tools-and-frameworks-for-ml-testing-the-inspector-s-toolkit">Section 9.7: Tools and Frameworks for ML Testing (The Inspector’s Toolkit)</a></li>
+<li><a class="reference internal" href="#section-9-8-online-testing-testing-in-production-a-glimpse-into-live-service-checks-preview">Section 9.8: Online Testing / Testing in Production (A Glimpse into Live Service Checks - Preview)</a></li>
+<li><a class="reference internal" href="#project-trending-now-implementing-a-comprehensive-testing-strategy">Project: “Trending Now” – Implementing a Comprehensive Testing Strategy</a></li>
+<li><a class="reference internal" href="#conclusion-the-hallmarks-of-a-michelin-grade-ml-operation-rigor-and-reliability">🧑‍🍳 Conclusion: The Hallmarks of a Michelin-Grade ML Operation – Rigor and Reliability</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=b3ba4146"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/scripts/furo.js?v=4e2eecee"></script>
+    </body>
+</html>

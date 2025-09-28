@@ -1,0 +1,864 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Feature Engineering for MLOps" href="feature_engineering.html" /><link rel="prev" title="Feature Engineering, Feature Stores" href="index.html" />
+
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/><!-- Generated with Sphinx 7.1.2 and Furo 2024.05.06 -->
+        <title>Feature Engineering and Feature Stores - Home</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=387cc868" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=36a5483c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/style.css?v=8a7ff5ee" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" /
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">Home</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  
+  <span class="sidebar-brand-text">Home</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../past_experiences/index.html">Past Experiences</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Past Experiences</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../past_experiences/iot_anomaly.html">Anomaly Detection in Time Series IoT Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../past_experiences/iot_forecasting.html">Energy Demand Forecasting in Time Series IoT Data</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../past_experiences/adas_engine/index.html">ADAS: Data Engine</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of ADAS: Data Engine</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../past_experiences/adas_engine/ch0_business_challenge.html">Business Challenge and Goals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../past_experiences/adas_engine/ch1_ml_problem_framing.html">ML Problem Framing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../past_experiences/adas_engine/ch2_operational_strategy.html">Planning, Operational Strategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../past_experiences/adas_engine/ch3_pipelines_workflows.html">Workflows, Team, Roles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../past_experiences/adas_engine/ch4_testing_strategy.html">Testing Strategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../past_experiences/adas_engine/ch6_data_ingestion_workflows.html">Data Ingestion Workflows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../past_experiences/adas_engine/ch7_scene_understanding_data_mining.html">Scene Understanding &amp; Data Mining</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../past_experiences/adas_engine/ch8_model_training.html">Model Training &amp; Experimentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../past_experiences/adas_engine/ch9_packaging_promotion.html">Packaging, Evaluation &amp; Promotion Workflows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../past_experiences/adas_engine/ch10_deployment_serving.html">Deployment &amp; Serving</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../past_experiences/adas_engine/ch11_monitoring_continual_learning.html">Monitoring &amp; Continual Learning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../past_experiences/adas_engine/ch12_cost_lifecycle_compliance.html">Cost, Lifecycle, Compliance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../past_experiences/adas_engine/ch13_reliability_capacity_maps.html">Reliability, Capacity, Maps</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../past_experiences/ecom_cltv.html">Customer Lifetime Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../past_experiences/ecom_propensity.html">Real-Time Purchase Intent Scoring</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../past_experiences/ecom_summarisation.html">Reviews Summarisation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../past_experiences/ecom_rag.html">RAG-Based Product Discovery</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../projects/index.html">Projects</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Projects</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/nlp/index.html">Natural Language Processing</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of Natural Language Processing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/airbnb_alternate_search/about/index.html">Airbnb Listing description based Semantic Search</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/cv/index.html">Computer Vision</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of Computer Vision</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/ecommerce_image_segmentation/about/index.html">Image Segmentation for Ecommerce Products</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/ml/index.html">Machine Learning</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of Machine Learning</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/airbnb_price_modeling/about/index.html">Predictive Price Modeling for Airbnb listings</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../publications/index.html">Patents, Papers, Thesis</a></li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../agents/index.html">AI Agents: A Lead Engineer’s Handbook</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of AI Agents: A Lead Engineer’s Handbook</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch1_intro.html">Agent Fundamentals: What, Why, and When?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch2_patterns.html">Agentic Patterns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch5_context_engineering.html">Context Engineering for AI Agents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch6_case_studies.html">The State of the Industry: Insights from the Field</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch7_conclusion.html"><strong>Conclusion: The Lead Engineer’s Mental Model for Building Agents</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch_cost.html">Cost Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch_data.html">Data Management and Knowledge Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch_deploy.html">Deployment and Scaling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch_guardrails.html">Guardrails</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch_hitl.html">Human-in-the-Loop (HITL)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch_latency.html">Latency Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch_llm.html">LLM – Prompts, Goals, and Persona</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch_memory.html">Managing Agent Memory (Short-Term and Long-Term)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch_monitor.html">Monitoring and Observability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch_orchestration.html">Orchestration and Task Decomposition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch_prod.html">Production Challenges and Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch_security.html">Securing AI Agents and Preventing Abuse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch_tool.html">Tool Use and Integration Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch_trust.html">Building Trustworthy and Ethical AI Agents</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../index.html">MLOps</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of MLOps</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch1_problem_framing.html">ML Problem framing</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of ML Problem framing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch2_blueprint_operational_strategy.html">The MLOps Blueprint &amp; Operational Strategy</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch2a_platform/index.html">ML Platforms</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle navigation of ML Platforms</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/ml_platforms.html">ML Platforms: How to</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/uber.html">Uber Michelangelo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/linkedin.html">LinkedIn DARWIN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/netflix.html">Netflix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/shopify.html">Shopify Merlin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/zomato.html">Zomato: Real-time ML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/coveo.html">Coveo: MLOPs at reasonable scale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/monzo.html">Monzo ML Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/didact.html">Didact AI</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch3_project_planning/index.html">Project Planning</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" role="switch" type="checkbox"/><label for="toctree-checkbox-11"><div class="visually-hidden">Toggle navigation of Project Planning</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/prd.html">Project Requirements Document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/tech_stack.html">Tech Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/config_management.html">Config Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/pipeline_design.html">Pipeline Design</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/environment_strategy.html">Environment Strategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/cicd_branching_model.html">CI/CD Strategy and Branching Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/directory_structure.html">Directory Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/env_branchind_cicd_deployment.html">Environments, Branching, CI/CD, and Deployments Explained</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/project_management.html">Project Management for MLOps</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch4_data_discovery/index.html">Data Sourcing, Discovery</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" role="switch" type="checkbox"/><label for="toctree-checkbox-12"><div class="visually-hidden">Toggle navigation of Data Sourcing, Discovery</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/data_sourcing_discovery.html">Data Sourcing, Discovery &amp; Understanding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/ch4_project.html">Project-Trending Now: Implementing Web Scraping, Ingestion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/industry_case_studies.html">Data Discovery Platforms: Industry Case Studies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/facebook_nemo.html">Facebook: Nemo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/netflix_metacat.html">Netflix Metacat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/uber_databook.html">Uber Databook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/linkedin_datahub.html">LinkedIn Datahub</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch5_data_pipelines/index.html">Data Engineering, Pipelines</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" role="switch" type="checkbox"/><label for="toctree-checkbox-13"><div class="visually-hidden">Toggle navigation of Data Engineering, Pipelines</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch5_data_pipelines/data_pipelines.html">Data Engineering for Reliable ML Pipelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch5_data_pipelines/data_engineering_pipelines.html">Data Engineering &amp; Pipelines: A Lead’s Compendium</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch5_data_pipelines/streaming_pipelines.html">Real-Time &amp; Streaming Data Pipelines: Challenges, Solutions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch5_data_pipelines/netflix_keystone.html">Netflix Keystone</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch5_data_pipelines/doordash_riviera.html">Doordash Riviera</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current has-children"><a class="reference internal" href="index.html">Feature Engineering, Feature Stores</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" role="switch" type="checkbox"/><label for="toctree-checkbox-14"><div class="visually-hidden">Toggle navigation of Feature Engineering, Feature Stores</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l3 current current-page"><a class="current reference internal" href="#">Feature Engineering and Feature Stores</a></li>
+<li class="toctree-l3"><a class="reference internal" href="feature_engineering.html">Feature Engineering for MLOps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="explained_feature_stores.html">Feature Stores for MLOps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="point_in_time.html">Point-in-Time Correctness &amp; Time Travel in ML Data Pipelines</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="feast/index.html">Feast Feature Store</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" role="switch" type="checkbox"/><label for="toctree-checkbox-15"><div class="visually-hidden">Toggle navigation of Feast Feature Store</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="feast/feast_architecture.html">Feast Architecture: A Technical Deep Dive for MLOps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="feast/feast_concepts.html">Feast Concepts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="feast/feast_components.html">Feast Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="feast/feast_usecases.html">Feast Use Cases</a></li>
+<li class="toctree-l4"><a class="reference internal" href="feast/feast_aws.html">Running Feast with AWS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="feast/run_in_prod.html">Running Feast in Production</a></li>
+<li class="toctree-l4"><a class="reference internal" href="feast/validate_historical_with_gx.html">Validating Historical Features with Great Expectations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="feast/add_reuse_tests.html">Adding or Reusing Tests in Feast</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch7_model_development/index.html">Model Development, Tuning, Selection, Ensembles, Calibration</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" role="switch" type="checkbox"/><label for="toctree-checkbox-16"><div class="visually-hidden">Toggle navigation of Model Development, Tuning, Selection, Ensembles, Calibration</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch7_model_development/ch7_model_development.html">Chapter 7: Model Development</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch7_model_development/dl_training_playbook.html">How to train DL Models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch7_model_development/development.html">Model Development</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch7_model_development/industry_lessons.html">Model Development: Lessons from production systems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch7_model_development/ensembles.html"><strong>Model Ensembles</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch7_model_development/selection.html">Model Selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch7_model_development/tuning_hypopt.html">Hyperparameter Optimization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch7_model_development/expt_tracking.html">ML Expt tracking, Data Lineage, Model Registry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch7_model_development/calibration.html">Model Calibration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch8_ml_pipelines.html">ML Training Pipelines</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch9_ml_testing/index.html">Testing in ML Systems</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" role="switch" type="checkbox"/><label for="toctree-checkbox-17"><div class="visually-hidden">Toggle navigation of Testing in ML Systems</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch9_ml_testing/ch9_ml_testing.html">Testing in ML Systems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9_ml_testing/data_testing_validation.html">Data Testing &amp; Validation in Production</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9_ml_testing/ml_testing.html">Testing ML Systems: Ensuring Reliability from Code to Production</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch10_deployment_serving/index.html">Model Deployment &amp; Serving</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" role="switch" type="checkbox"/><label for="toctree-checkbox-18"><div class="visually-hidden">Toggle navigation of Model Deployment &amp; Serving</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch10_deployment_serving/ch10_deployment_serving.html">Chapter 10: Deployment &amp; Serving</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch10_deployment_serving/guide_deployment_serving.html">Guide: Model Deployment &amp; Serving</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch10_deployment_serving/guide_inference_stack.html">Deep Dive: Inference Stack</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch11_monitor_observe_drift/index.html">Monitoring, Observability, Drift, Interpretability</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" role="switch" type="checkbox"/><label for="toctree-checkbox-19"><div class="visually-hidden">Toggle navigation of Monitoring, Observability, Drift, Interpretability</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch11_monitor_observe_drift/ch11_monitor_observe_drift.html">Chapter 11: Monitoring, Observability, Drifts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch11_monitor_observe_drift/guide_monitor_observe_drift.html">Guide: ML System Failures, Data Distribution Shifts, Monitoring, and Observability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch11_monitor_observe_drift/guide_interpretability_shap_lime.html">Interpretability, SHAP, LIME</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch11_monitor_observe_drift/guide_stack.html">Prometheus + Grafana and ELK Stacks</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch12_retrain_online_testing/index.html">Continual learning, Retraining, A/B Testing</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" role="switch" type="checkbox"/><label for="toctree-checkbox-20"><div class="visually-hidden">Toggle navigation of Continual learning, Retraining, A/B Testing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch12_retrain_online_testing/ch12_continual_learning_prod_testing.html">Chapter 12: Continual Learning &amp; Production Testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch12_retrain_online_testing/guide_continual_learning.html">Continual Learning &amp; Model Retraining</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch12_retrain_online_testing/guide_ab_testing.html">A/B Testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch12_retrain_online_testing/guide_ab_testing_industry_lessons.html">A/B Testing &amp; Experimentation: Industry lessons</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch12_retrain_online_testing/guide_prod_testing_expt.html">Guide: Production Testing &amp; Experimentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch12_retrain_online_testing/dr_prod_testing_expt.html">Deep Research: Production Testing &amp; Experimentation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch13_governance_ethics_human.html">Governance, Ethics &amp; The Human Element</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../pytorch/index.html">PyTorch</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" role="switch" type="checkbox"/><label for="toctree-checkbox-21"><div class="visually-hidden">Toggle navigation of PyTorch</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../pytorch/general.html">General</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../pytorch/state_dict.html">state_dict</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../pytorch/mixed_precision.html">Mixed Precision</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../pytorch/distributed_data_parallel.html">Distributed Data Parallel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../pytorch/ddp_under_the_hood.html">DDP: Under the Hood</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../pytorch/dp_ddp.html">DP vs DDP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../pytorch/fsdp.html">FSDP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../pytorch/tensor_parallelism.html">Tensor parallelism</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../pytorch/pipeline_parallelism.html">Pipeline Parallelism</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../pytorch/device_mesh.html">Device Mesh</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../lld/index.html">Low Level Design</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" role="switch" type="checkbox"/><label for="toctree-checkbox-22"><div class="visually-hidden">Toggle navigation of Low Level Design</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../lld/parking_lot.html">Parking Lot</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../visualization/index.html">Data Visualization Projects</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="../../_sources/mlops/ch6_feature_engg/feature_engineering_store.md.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="feature-engineering-and-feature-stores">
+<h1>Feature Engineering and Feature Stores<a class="headerlink" href="#feature-engineering-and-feature-stores" title="Permalink to this heading">¶</a></h1>
+<section id="id1">
+<h2><a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<p><strong>Chapter 6: Perfecting Flavor Profiles – Feature Engineering and Feature Stores</strong></p>
+<p><em>(Progress Label: 📍Stage 6: The Flavor Lab and Central Spice Rack)</em></p>
+<section id="introduction-the-alchemist-s-touch-in-the-ml-kitchen">
+<h3>🧑‍🍳 Introduction: The Alchemist’s Touch in the ML Kitchen<a class="headerlink" href="#introduction-the-alchemist-s-touch-in-the-ml-kitchen" title="Permalink to this heading">¶</a></h3>
+<p>In our MLOps kitchen, having sourced and meticulously prepped our raw data (Chapters 3 &amp; 4) is only half the journey. Now comes the alchemical process: <strong>Feature Engineering</strong>. This is where we, as MLOps chefs, apply domain knowledge, creativity, and technical skill to transform these prepared ingredients into potent “flavor profiles” – the features – that will truly make our ML models sing. As Google’s “Rules of ML” emphasizes, “most of the gains come from great features, not great machine learning algorithms.”</p>
+<p>This chapter is dedicated to the art and science of crafting these impactful features. We’ll explore techniques ranging from traditional handcrafted features to leveraging the power of learned representations like embeddings. Crucially, we’ll delve into the rise of <strong>Feature Stores</strong>, the MLOps equivalent of a highly organized, centralized, and quality-controlled spice rack and pantry, designed to ensure consistency, reusability, and efficient serving of these vital flavor components. We’ll draw heavily on industry best practices and the architectures pioneered by companies like Uber, LinkedIn, and Netflix to understand how to build and utilize these critical systems.</p>
+<p>Mastering feature engineering and understanding the strategic role of feature stores is not just about improving model accuracy; it’s about accelerating iteration, reducing training-serving skew, enhancing collaboration, and ensuring the governance and reliability of our entire ML production line.</p>
+</section>
+<hr class="docutils" />
+<section id="section-6-1-the-strategic-imperative-of-feature-engineering-in-mlops">
+<h3>Section 6.1: The Strategic Imperative of Feature Engineering in MLOps<a class="headerlink" href="#section-6-1-the-strategic-imperative-of-feature-engineering-in-mlops" title="Permalink to this heading">¶</a></h3>
+<p>Before diving into techniques, it’s vital to understand <em>why</em> feature engineering remains a cornerstone of successful ML applications, even in the age of deep learning.</p>
+<ul class="simple">
+<li><p><strong>6.1.1 Defining Feature Engineering: Beyond Raw Data</strong></p>
+<ul>
+<li><p>The core concept: Using domain knowledge to extract, transform, and select relevant information from raw data into a format that ML models can effectively consume.</p></li>
+<li><p>Bridging the gap: Making data digestible and meaningful for algorithms.</p></li>
+</ul>
+</li>
+<li><p><strong>6.1.2 Learned vs. Engineered Features: A Symbiotic Relationship</strong></p>
+<ul>
+<li><p><strong>Engineered (Handcrafted):</strong> Manually designed (n-grams, aggregations, domain-specific ratios). Still vital for tabular data, interpretability, and bootstrapping simpler models.</p></li>
+<li><p><strong>Learned (Automated Extraction):</strong> Deep learning models learning representations (embeddings, activations).</p></li>
+<li><p><strong>The MLOps Reality:</strong> Often a hybrid. Even deep learning models benefit from thoughtful input preprocessing and high-level engineered features. Google’s Rule #17: “Start with directly observed and reported features as opposed to learned features.”</p></li>
+</ul>
+</li>
+<li><p><strong>6.1.3 Why Feature Engineering Drives MLOps Success</strong></p>
+<ul>
+<li><p><strong>Performance Lift:</strong> Often the most significant lever for model improvement.</p></li>
+<li><p><strong>Simpler Models:</strong> Good features can enable less complex, more interpretable models.</p></li>
+<li><p><strong>Reduced Training-Serving Skew:</strong> Consistent feature logic is key.</p></li>
+<li><p><strong>Faster Iteration:</strong> Standardized feature creation accelerates development.</p></li>
+<li><p><strong>Governance &amp; Reusability:</strong> Paving the way for Feature Stores.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="section-6-2-the-feature-engineering-lifecycle-process-within-mlops">
+<h3>Section 6.2: The Feature Engineering Lifecycle &amp; Process within MLOps<a class="headerlink" href="#section-6-2-the-feature-engineering-lifecycle-process-within-mlops" title="Permalink to this heading">¶</a></h3>
+<p>Feature engineering is an iterative process deeply embedded within the MLOps lifecycle.</p>
+<ul class="simple">
+<li><p><strong>6.2.1 Feature Ideation &amp; Discovery</strong></p>
+<ul>
+<li><p>Collaboration with domain experts, EDA insights (from Chapter 4).</p></li>
+<li><p>Hypothesizing new signals, reviewing existing features.</p></li>
+</ul>
+</li>
+<li><p><strong>6.2.2 Raw Data Sourcing &amp; Preparation</strong></p></li>
+<li><p><strong>6.2.3 Feature Transformation &amp; Generation Logic</strong></p>
+<ul>
+<li><p>Implementing transformations (SQL, Python/Pandas, Spark, Flink).</p></li>
+<li><p>Ensuring logic is consistent for batch (training) and real-time (inference).</p></li>
+</ul>
+</li>
+<li><p><strong>6.2.4 Feature Validation &amp; Quality Assurance</strong></p>
+<ul>
+<li><p>Checks for missing values, outliers, distributions, data leakage.</p></li>
+<li><p>Verifying feature importance and generalization.</p></li>
+</ul>
+</li>
+<li><p><strong>6.2.6 Feature Storage, Management &amp; Serving (Leading to Feature Stores)</strong></p></li>
+<li><p><strong>6.2.6 Feature Monitoring &amp; Iteration in Production</strong></p>
+<ul>
+<li><p>Tracking drift, quality, and planning for updates.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="section-6-3-a-lexicon-of-feature-engineering-operations-techniques">
+<h3>Section 6.3: A Lexicon of Feature Engineering Operations &amp; Techniques<a class="headerlink" href="#section-6-3-a-lexicon-of-feature-engineering-operations-techniques" title="Permalink to this heading">¶</a></h3>
+<p>This section details common, battle-tested feature engineering techniques applicable within an MLOps context.</p>
+<ul class="simple">
+<li><p><strong>6.3.1 Handling Missing Values in Feature Pipelines</strong></p>
+<ul>
+<li><p>Review of MNAR, MAR, MCAR.</p></li>
+<li><p>Automated imputation strategies (mean/median/mode from <em>training split</em>, constant, model-based) and their operationalization.</p></li>
+</ul>
+</li>
+<li><p><strong>6.3.2 Scaling &amp; Normalization for Production</strong></p>
+<ul>
+<li><p>Min-Max Scaling, Z-Score Standardization.</p></li>
+<li><p>Fitting scalers <em>only</em> on training data and persisting them as pipeline artifacts for consistent application during inference.</p></li>
+<li><p>Handling skewed data with transformations (Log, Box-Cox) within pipelines.</p></li>
+</ul>
+</li>
+<li><p><strong>6.3.3 Discretization/Binning Strategies</strong></p>
+<ul>
+<li><p>Equal width, equal frequency, custom boundaries.</p></li>
+<li><p>Operationalizing binning: Storing bin definitions, handling new data falling outside learned bins.</p></li>
+</ul>
+</li>
+<li><p><strong>6.3.4 Encoding Categorical Features: From OHE to Embeddings</strong></p>
+<ul>
+<li><p>One-Hot Encoding (managing unseen categories).</p></li>
+<li><p>Label Encoding.</p></li>
+<li><p><strong>The Hashing Trick:</strong> For high cardinality and online learning scenarios. Managing hash space and collisions.</p></li>
+<li><p><strong>Learned Embeddings:</strong> Training and using embeddings for categorical features as dense representations.</p></li>
+<li><p>Bayesian Encoders (Target, WoE): Power and pitfalls (data leakage, careful cross-validation needed for robust pipelines).</p></li>
+</ul>
+</li>
+<li><p><strong>6.3.5 Feature Crossing for Interaction Effects</strong></p>
+<ul>
+<li><p>Creating interaction terms to help linear models capture non-linearities.</p></li>
+<li><p>Managing cardinality explosion (e.g., via hashing or combining with embeddings).</p></li>
+<li><p>Tools: TensorFlow <code class="docutils literal notranslate"><span class="pre">crossed_column</span></code>, BigQuery ML <code class="docutils literal notranslate"><span class="pre">ML.FEATURE_CROSS</span></code>.</p></li>
+</ul>
+</li>
+<li><p><strong>6.3.6 Generating and Using Embeddings (Learned Representations)</strong></p>
+<ul>
+<li><p>For text (Word2Vec, FastText, Transformers like BERT), images (CNN outputs), categorical data.</p></li>
+<li><p>Using pre-trained embeddings vs. training custom ones.</p></li>
+<li><p>Positional and Fourier Features for sequence data.</p></li>
+</ul>
+</li>
+<li><p><strong>6.3.7 Feature Selection &amp; Importance in an MLOps Context</strong></p>
+<ul>
+<li><p>Filter, Wrapper, and Embedded methods (L1, Tree-based importance).</p></li>
+<li><p>Using SHAP for model-agnostic importance and interpretability.</p></li>
+<li><p>Automating feature selection as part of the pipeline, and regularly re-evaluating feature sets.</p></li>
+<li><p>Google Rules of ML #22: “Clean up features you are no longer using.”</p></li>
+</ul>
+</li>
+<li><p><strong>6.3.8 Handling Time-Series &amp; Sequential Features</strong></p>
+<ul>
+<li><p>Lagged features.</p></li>
+<li><p>Rolling window aggregations (sum, mean, min, max, count, stddev). This is key for real-time feature engineering.</p></li>
+<li><p>Trend and seasonality decomposition (conceptual).</p></li>
+</ul>
+</li>
+<li><p><strong>6.3.9 Domain-Specific</strong></p>
+<ul>
+<li><p>LinkedIn Feed: <code class="docutils literal notranslate"><span class="pre">historicalActionsInFeed</span></code> (categorical X time), URNs, hashing.</p></li>
+<li><p>Didact AI (Finance): Price/volume patterns, options data, text sentiment, peer/historical context.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="section-6-4-feature-stores-the-centralized-spice-rack-pantry-for-mlops">
+<h3>Section 6.4: Feature Stores: The Centralized Spice Rack &amp; Pantry for MLOps<a class="headerlink" href="#section-6-4-feature-stores-the-centralized-spice-rack-pantry-for-mlops" title="Permalink to this heading">¶</a></h3>
+<p>Feature stores have emerged as a critical component to manage the complexity of feature engineering at scale, ensure consistency, and enable real-time ML.</p>
+<ul class="simple">
+<li><p><strong>6.4.1 Core Value Proposition &amp; Problems Solved by Feature Stores</strong></p>
+<ul>
+<li><p>Serve features for real-time inference (low latency, high QPS).</p></li>
+<li><p>Standardize feature pipelines and definitions.</p></li>
+<li><p><strong>Crucially: Reduce Training-Serving Skew.</strong></p></li>
+<li><p>Enable feature sharing, reusability, and discovery.</p></li>
+<li><p>Accelerate ML iteration and time-to-market.</p></li>
+<li><p>Enhance governance, lineage, and compliance.</p></li>
+</ul>
+</li>
+<li><p><strong>6.4.2 Anatomy of a Feature Store: Core Components &amp; Capabilities</strong></p>
+<ul>
+<li><p><strong>(Table)</strong> Title: Core Components of a Feature Store
+Source: Adapted from Table in <code class="docutils literal notranslate"><span class="pre">explained_feature_stores.md</span> <span class="pre">(Ch</span> <span class="pre">2)</span></code>
+<em>(Components: Feature Registry/Metadata, Transformation Engine, Offline Store, Online Store, Serving API, SDK, Orchestration, Monitoring/DQ, Governance).</em></p></li>
+<li><p><strong>Feature Registry:</strong> Central catalog for definitions (name, type, owner, description, version), schema, lineage, transformation logic pointers.</p></li>
+<li><p><strong>Transformation Engine:</strong> Computes features (Spark, Flink, SQL, Python). <em>Distinction: Literal FS (Feast) offloads this to user pipelines; Physical FS (Tecton) integrates it.</em></p></li>
+<li><p><strong>Offline Store:</strong> Historical features for training/batch inference (Data Lakes + Parquet/Delta/Iceberg/Hudi).</p></li>
+<li><p><strong>Online Store:</strong> Latest features for low-latency serving (Redis, DynamoDB, Cassandra).</p></li>
+<li><p><strong>Feature Serving Layer (API):</strong> <code class="docutils literal notranslate"><span class="pre">get_offline_features</span></code> (point-in-time correct), <code class="docutils literal notranslate"><span class="pre">get_online_features</span></code>.</p></li>
+</ul>
+</li>
+<li><p><strong>6.4.3 Architectural Paradigms: Literal, Physical, &amp; Virtual Feature Stores</strong></p>
+<ul>
+<li><p><strong>Literal (e.g., Feast):</strong> Primarily storage/serving for pre-computed features. Transformations external.</p></li>
+<li><p><strong>Physical (e.g., Tecton, Uber Michelangelo):</strong> Computes and stores features. End-to-end.</p></li>
+<li><p><strong>Virtual (e.g., FeatureForm concept):</strong> Centralizes definitions, delegates computation/storage to existing infra.</p></li>
+<li><p><strong>(Decision Framework Table)</strong> Comparing Literal vs. Physical vs. Virtual based on Transformation Mgmt, Storage Mgmt, Adoption Cost, Flexibility, Skew Handling, Ops Overhead. (Adapted from <code class="docutils literal notranslate"><span class="pre">explained_feature_stores.md</span> <span class="pre">Ch</span> <span class="pre">3</span></code>)</p></li>
+</ul>
+</li>
+<li><p><strong>6.4.4 The Data Transformation Taxonomy &amp; Feature Stores (Hopsworks)</strong></p>
+<ul>
+<li><p><strong>Model-Independent Transformations:</strong> Logic in Feature Pipelines -&gt; Output to FS.</p></li>
+<li><p><strong>Model-Dependent Transformations:</strong> Logic in Training/Inference Pipelines, consumes from FS.</p></li>
+<li><p><strong>On-Demand Transformations:</strong> Online (inference pipeline) + Backfill (feature pipeline to FS).</p></li>
+</ul>
+</li>
+<li><p><strong>6.4.6 Architecting for Real-Time &amp; Streaming Features with Feature Stores</strong></p>
+<ul>
+<li><p>Using stream processors (Flink, Spark Streaming) to populate the online store.</p></li>
+<li><p>Tiled Time Window Aggregations for efficient long-window, fresh features (Tecton).</p></li>
+<li><p>Optimizing online store performance (e.g., DoorDash’s Redis optimizations: Hashes, binary serialization, compression).</p></li>
+</ul>
+</li>
+<li><p><strong>6.4.6 Point-in-Time Correctness for Training Data Generation (Crucial for Avoiding Leakage)</strong></p>
+<ul>
+<li><p>“AS OF” joins using event timestamps and feature effective timestamps.</p></li>
+<li><p>Ensured by APIs like Feast’s <code class="docutils literal notranslate"><span class="pre">get_historical_features</span></code>.</p></li>
+</ul>
+</li>
+<li><p><strong>6.4.7 Operationalizing Your Feature Store: CI/CD, Monitoring, Governance</strong></p>
+<ul>
+<li><p>Feature definitions as code (Git).</p></li>
+<li><p>CI/CD for transformation logic and feature pipeline deployments.</p></li>
+<li><p>Monitoring feature freshness, quality, drift, and serving performance.</p></li>
+</ul>
+</li>
+<li><p><strong>6.4.8 Evaluating and Choosing Feature Store Solutions (Build vs. Buy vs. OSS)</strong></p>
+<ul>
+<li><p>Key criteria: Batch/streaming needs, real-time requirements, team skills, existing infra, cost, governance features.</p></li>
+<li><p>Our choice: Feast (to demonstrate core concepts with an OSS tool).</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="section-6-6-feature-governance-quality-lineage-and-discovery-in-mlops">
+<h3>Section 6.6: Feature Governance: Quality, Lineage, and Discovery in MLOps<a class="headerlink" href="#section-6-6-feature-governance-quality-lineage-and-discovery-in-mlops" title="Permalink to this heading">¶</a></h3>
+<p>Ensuring features are trustworthy, understandable, and discoverable is key to scaling ML efforts.</p>
+<ul class="simple">
+<li><p><strong>6.6.1 Ensuring Feature Quality in Pipelines</strong></p>
+<ul>
+<li><p>Data validation checks applied to feature values.</p></li>
+<li><p>Monitoring statistical properties of features over time.</p></li>
+</ul>
+</li>
+<li><p><strong>6.6.2 Feature Lineage: From Raw Data to Model Consumption</strong></p>
+<ul>
+<li><p>Tracking how features are derived, which raw data sources they come from, which transformations are applied.</p></li>
+<li><p>Tools: Feature Store metadata, ML Metadata Stores, lineage visualization.</p></li>
+</ul>
+</li>
+<li><p><strong>6.6.3 Feature Discovery and Documentation</strong></p>
+<ul>
+<li><p>Using the Feature Registry for search and understanding.</p></li>
+<li><p>Importance of clear descriptions, ownership, and documentation for each feature.</p></li>
+<li><p>Google Rules of ML #11: “Give feature sets owners and documentation.”</p></li>
+</ul>
+</li>
+<li><p><strong>6.6.4 Managing the Feature Lifecycle: Creation, Iteration, Deprecation</strong></p>
+<ul>
+<li><p>Processes for proposing, reviewing, and deploying new features.</p></li>
+<li><p>Strategies for versioning feature definitions.</p></li>
+<li><p>Handling feature deprecation and impact on downstream models.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="project-trending-now-feature-engineering-for-genre-classification">
+<h3>Project: “Trending Now” – Feature Engineering for Genre Classification<a class="headerlink" href="#project-trending-now-feature-engineering-for-genre-classification" title="Permalink to this heading">¶</a></h3>
+<p>Applying the chapter’s concepts to our project.</p>
+<ul class="simple">
+<li><p><strong>6.P.1 Extracting Features from Plot Summaries &amp; Reviews</strong></p>
+<ul>
+<li><p><strong>TF-IDF for XGBoost:</strong></p>
+<ul>
+<li><p>Script to generate TF-IDF vectors from cleaned plot summaries and/or review texts.</p></li>
+<li><p>Fit <code class="docutils literal notranslate"><span class="pre">TfidfVectorizer</span></code> on the training split, transform all splits.</p></li>
+<li><p>Persist the fitted vectorizer.</p></li>
+</ul>
+</li>
+<li><p><strong>BERT Embeddings for BERT Model:</strong></p>
+<ul>
+<li><p>Use Hugging Face <code class="docutils literal notranslate"><span class="pre">AutoTokenizer</span></code> and <code class="docutils literal notranslate"><span class="pre">AutoModel</span></code> to get sentence/document embeddings for plots/reviews.</p></li>
+<li><p>Discuss pooling strategies (CLS token, mean pooling).</p></li>
+</ul>
+</li>
+<li><p><strong>Conceptual LLM “Features” for Production Path:</strong></p>
+<ul>
+<li><p>The LLM-generated genres, summaries, scores, and tags <em>are themselves the features</em> for the final presentation layer. The “feature engineering” for this path is primarily <em>prompt engineering</em>.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>6.P.2 Feature Selection &amp; Importance Analysis (for XGBoost/BERT)</strong></p>
+<ul>
+<li><p>For TF-IDF + XGBoost: Use XGBoost’s built-in feature importance.</p></li>
+<li><p>For BERT: Less about selecting input “features” (as input is text), more about understanding attention or layer importance if delving deep (out of scope for guide).</p></li>
+<li><p>Discuss how SHAP could be used (conceptually) to understand which words/tokens in plots/reviews contribute most to genre predictions.</p></li>
+</ul>
+</li>
+<li><p><strong>6.P.3 Designing a Simple Feature Store (Conceptual) for “Trending Now” with Feast</strong></p>
+<ul>
+<li><p>Define Feast <code class="docutils literal notranslate"><span class="pre">FeatureView</span></code>s for:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">movie_plot_features</span></code> (e.g., TF-IDF vectors or BERT embeddings of plots, computed by a batch transformation).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">review_text_features</span></code> (e.g., TF-IDF or BERT embeddings of aggregated reviews).</p></li>
+<li><p>(If applicable) <code class="docutils literal notranslate"><span class="pre">movie_metadata_features</span></code> (e.g., release year, director - already ingested).</p></li>
+</ul>
+</li>
+<li><p>Define entity (e.g., <code class="docutils literal notranslate"><span class="pre">movie_id</span></code>).</p></li>
+<li><p>Offline store: S3 Parquet files (where our DVC-versioned processed data resides).</p></li>
+<li><p>Online store: Redis (conceptual setup for now).</p></li>
+<li><p>Show example Feast Python code for definitions.</p></li>
+</ul>
+</li>
+<li><p><strong>6.P.4 Ensuring Training-Serving Consistency for Features</strong></p>
+<ul>
+<li><p>For XGBoost/BERT path: Emphasize saving and reusing the <em>exact same</em> TF-IDF vectorizer or BERT tokenizer/model for both training data generation and any future batch/online inference setup for these models.</p></li>
+<li><p>For LLM path: Consistency relies on using the same LLM model/version and prompts.</p></li>
+<li><p>Discuss how Feast helps enforce this by defining transformations once.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="conclusion-from-raw-ingredients-to-exquisite-flavor-bases">
+<h3>🧑‍🍳 Conclusion: From Raw Ingredients to Exquisite Flavor Bases<a class="headerlink" href="#conclusion-from-raw-ingredients-to-exquisite-flavor-bases" title="Permalink to this heading">¶</a></h3>
+<p>Feature engineering is the meticulous craft that elevates raw data into the rich, nuanced “flavor bases” our machine learning models need to create exceptional predictions. It’s where domain knowledge meets data science, transforming basic ingredients into signals that capture the essence of the problem we’re trying to solve.</p>
+<p>In this chapter, we’ve explored a comprehensive lexicon of feature engineering techniques, from handling missing values and scaling data to advanced methods like embeddings and feature crossing. We’ve also dived deep into the strategic importance and architecture of <strong>Feature Stores</strong>, recognizing them as the MLOps kitchen’s central, organized repository for these vital components. By ensuring features are well-defined, consistently computed, easily discoverable, and efficiently served for both training and real-time inference, Feature Stores address critical challenges like training-serving skew and accelerate the entire ML development lifecycle.</p>
+<p>For our “Trending Now” project, we’ve outlined how to extract meaningful features from movie plots and reviews and conceptually designed how a tool like Feast could manage these. With our features engineered and our understanding of Feature Stores solidified, we are now prepared to select our cooking methods and train our models. The next chapter, “The Experimental Kitchen – Model Development &amp; Iteration,” will take these carefully crafted features and start the process of building and refining our predictive models.</p>
+</section>
+<section id="references">
+<h3>References<a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.databricks.com/blog/best-practices-realtime-feature-computation-databricks">Best Practices for Realtime Feature Computation on Databricks</a></p></li>
+</ul>
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="feature_engineering.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Feature Engineering for MLOps</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="index.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Feature Engineering, Feature Stores</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024, Deepak Karkala
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Feature Engineering and Feature Stores</a><ul>
+<li><a class="reference internal" href="#id1"></a><ul>
+<li><a class="reference internal" href="#introduction-the-alchemist-s-touch-in-the-ml-kitchen">🧑‍🍳 Introduction: The Alchemist’s Touch in the ML Kitchen</a></li>
+<li><a class="reference internal" href="#section-6-1-the-strategic-imperative-of-feature-engineering-in-mlops">Section 6.1: The Strategic Imperative of Feature Engineering in MLOps</a></li>
+<li><a class="reference internal" href="#section-6-2-the-feature-engineering-lifecycle-process-within-mlops">Section 6.2: The Feature Engineering Lifecycle &amp; Process within MLOps</a></li>
+<li><a class="reference internal" href="#section-6-3-a-lexicon-of-feature-engineering-operations-techniques">Section 6.3: A Lexicon of Feature Engineering Operations &amp; Techniques</a></li>
+<li><a class="reference internal" href="#section-6-4-feature-stores-the-centralized-spice-rack-pantry-for-mlops">Section 6.4: Feature Stores: The Centralized Spice Rack &amp; Pantry for MLOps</a></li>
+<li><a class="reference internal" href="#section-6-6-feature-governance-quality-lineage-and-discovery-in-mlops">Section 6.6: Feature Governance: Quality, Lineage, and Discovery in MLOps</a></li>
+<li><a class="reference internal" href="#project-trending-now-feature-engineering-for-genre-classification">Project: “Trending Now” – Feature Engineering for Genre Classification</a></li>
+<li><a class="reference internal" href="#conclusion-from-raw-ingredients-to-exquisite-flavor-bases">🧑‍🍳 Conclusion: From Raw Ingredients to Exquisite Flavor Bases</a></li>
+<li><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=b3ba4146"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/scripts/furo.js?v=4e2eecee"></script>
+    </body>
+</html>

@@ -88,7 +88,7 @@ MLOps encompasses the entire lifecycle of an ML model, from initial development 
 
 ### Section 2.3: Core MLOps Design Principles (Our Kitchen's Guiding Philosophies)
 
-These principles form the bedrock of a successful MLOps implementation. [MLOps Principles.md, mlops-foundation-roadmap-for-enterprises-with-amazon-sagemaker.md (Page 14), Guidelines for developing high-quality, predictive ML solutions.md]
+These principles form the bedrock of a successful MLOps implementation.
 
 *   **2.3.1 Automation:** Automate everything possible – data pipelines, model training, testing, deployment, infrastructure provisioning (IaC). Reduces manual effort, errors, and increases speed.
 *   **2.3.2 Reproducibility:** Ensure experiments, pipeline runs, and model predictions can be reliably reproduced. This requires meticulous versioning.
@@ -182,7 +182,7 @@ Organizations adopt MLOps practices progressively. Understanding these levels he
     *   *Characteristics:* Adds robust, automated CI/CD for rapid/reliable pipeline updates; Automated build, test, deploy of pipeline components.
     *   *Key Additions:* Source Control, Test/Build Services, Deployment Services, Model Registry, Feature Store, Metadata Store, Pipeline Orchestrator (all fully integrated).
 *   **2.5.4 Aligning with AI Readiness (Tactical, Strategic, Transformational)**
-    *   Mapping MLOps maturity to broader organizational AI adoption stages. [MLOps Stack Canvas.md]
+    *   Mapping MLOps maturity to broader organizational AI adoption stages.
 
 **Aligning with AI Readiness (Tactical, Strategic, Transformational)**
 <img src="../_static/mlops/ch2_blueprint/ai_readiness.png" width="70%"/>

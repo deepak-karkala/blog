@@ -1,0 +1,899 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Feast Feature Store" href="feast/index.html" /><link rel="prev" title="Feature Stores for MLOps" href="explained_feature_stores.html" />
+
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/><!-- Generated with Sphinx 7.1.2 and Furo 2024.05.06 -->
+        <title>Point-in-Time Correctness &amp; Time Travel in ML Data Pipelines - Home</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=387cc868" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=36a5483c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/style.css?v=8a7ff5ee" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" /
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../index.html"><div class="brand">Home</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../index.html">
+  
+  
+  <span class="sidebar-brand-text">Home</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../past_experiences/index.html">Past Experiences</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Past Experiences</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../past_experiences/iot_anomaly.html">Anomaly Detection in Time Series IoT Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../past_experiences/iot_forecasting.html">Energy Demand Forecasting in Time Series IoT Data</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../past_experiences/adas_engine/index.html">ADAS: Data Engine</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of ADAS: Data Engine</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../past_experiences/adas_engine/ch0_business_challenge.html">Business Challenge and Goals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../past_experiences/adas_engine/ch1_ml_problem_framing.html">ML Problem Framing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../past_experiences/adas_engine/ch2_operational_strategy.html">Planning, Operational Strategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../past_experiences/adas_engine/ch3_pipelines_workflows.html">Workflows, Team, Roles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../past_experiences/adas_engine/ch4_testing_strategy.html">Testing Strategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../past_experiences/adas_engine/ch6_data_ingestion_workflows.html">Data Ingestion Workflows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../past_experiences/adas_engine/ch7_scene_understanding_data_mining.html">Scene Understanding &amp; Data Mining</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../past_experiences/adas_engine/ch8_model_training.html">Model Training &amp; Experimentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../past_experiences/adas_engine/ch9_packaging_promotion.html">Packaging, Evaluation &amp; Promotion Workflows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../past_experiences/adas_engine/ch10_deployment_serving.html">Deployment &amp; Serving</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../past_experiences/adas_engine/ch11_monitoring_continual_learning.html">Monitoring &amp; Continual Learning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../past_experiences/adas_engine/ch12_cost_lifecycle_compliance.html">Cost, Lifecycle, Compliance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../past_experiences/adas_engine/ch13_reliability_capacity_maps.html">Reliability, Capacity, Maps</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../past_experiences/ecom_cltv.html">Customer Lifetime Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../past_experiences/ecom_propensity.html">Real-Time Purchase Intent Scoring</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../past_experiences/ecom_summarisation.html">Reviews Summarisation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../past_experiences/ecom_rag.html">RAG-Based Product Discovery</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../projects/index.html">Projects</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Projects</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/nlp/index.html">Natural Language Processing</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of Natural Language Processing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/airbnb_alternate_search/about/index.html">Airbnb Listing description based Semantic Search</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/cv/index.html">Computer Vision</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of Computer Vision</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/ecommerce_image_segmentation/about/index.html">Image Segmentation for Ecommerce Products</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../projects/ml/index.html">Machine Learning</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of Machine Learning</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/airbnb_price_modeling/about/index.html">Predictive Price Modeling for Airbnb listings</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../publications/index.html">Patents, Papers, Thesis</a></li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../agents/index.html">AI Agents: A Lead Engineer’s Handbook</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of AI Agents: A Lead Engineer’s Handbook</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch1_intro.html">Agent Fundamentals: What, Why, and When?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch2_patterns.html">Agentic Patterns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch5_context_engineering.html">Context Engineering for AI Agents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch6_case_studies.html">The State of the Industry: Insights from the Field</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch7_conclusion.html"><strong>Conclusion: The Lead Engineer’s Mental Model for Building Agents</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch_cost.html">Cost Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch_data.html">Data Management and Knowledge Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch_deploy.html">Deployment and Scaling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch_guardrails.html">Guardrails</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch_hitl.html">Human-in-the-Loop (HITL)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch_latency.html">Latency Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch_llm.html">LLM – Prompts, Goals, and Persona</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch_memory.html">Managing Agent Memory (Short-Term and Long-Term)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch_monitor.html">Monitoring and Observability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch_orchestration.html">Orchestration and Task Decomposition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch_prod.html">Production Challenges and Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch_security.html">Securing AI Agents and Preventing Abuse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch_tool.html">Tool Use and Integration Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../agents/ch_trust.html">Building Trustworthy and Ethical AI Agents</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../index.html">MLOps</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of MLOps</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch1_problem_framing.html">ML Problem framing</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of ML Problem framing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch2_blueprint_operational_strategy.html">The MLOps Blueprint &amp; Operational Strategy</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch2a_platform/index.html">ML Platforms</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle navigation of ML Platforms</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/ml_platforms.html">ML Platforms: How to</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/uber.html">Uber Michelangelo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/linkedin.html">LinkedIn DARWIN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/netflix.html">Netflix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/shopify.html">Shopify Merlin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/zomato.html">Zomato: Real-time ML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/coveo.html">Coveo: MLOPs at reasonable scale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/monzo.html">Monzo ML Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch2a_platform/didact.html">Didact AI</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch3_project_planning/index.html">Project Planning</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" role="switch" type="checkbox"/><label for="toctree-checkbox-11"><div class="visually-hidden">Toggle navigation of Project Planning</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/prd.html">Project Requirements Document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/tech_stack.html">Tech Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/config_management.html">Config Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/pipeline_design.html">Pipeline Design</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/environment_strategy.html">Environment Strategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/cicd_branching_model.html">CI/CD Strategy and Branching Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/directory_structure.html">Directory Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/env_branchind_cicd_deployment.html">Environments, Branching, CI/CD, and Deployments Explained</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch3_project_planning/project_management.html">Project Management for MLOps</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch4_data_discovery/index.html">Data Sourcing, Discovery</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" role="switch" type="checkbox"/><label for="toctree-checkbox-12"><div class="visually-hidden">Toggle navigation of Data Sourcing, Discovery</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/data_sourcing_discovery.html">Data Sourcing, Discovery &amp; Understanding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/ch4_project.html">Project-Trending Now: Implementing Web Scraping, Ingestion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/industry_case_studies.html">Data Discovery Platforms: Industry Case Studies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/facebook_nemo.html">Facebook: Nemo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/netflix_metacat.html">Netflix Metacat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/uber_databook.html">Uber Databook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch4_data_discovery/linkedin_datahub.html">LinkedIn Datahub</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch5_data_pipelines/index.html">Data Engineering, Pipelines</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" role="switch" type="checkbox"/><label for="toctree-checkbox-13"><div class="visually-hidden">Toggle navigation of Data Engineering, Pipelines</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch5_data_pipelines/data_pipelines.html">Data Engineering for Reliable ML Pipelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch5_data_pipelines/data_engineering_pipelines.html">Data Engineering &amp; Pipelines: A Lead’s Compendium</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch5_data_pipelines/streaming_pipelines.html">Real-Time &amp; Streaming Data Pipelines: Challenges, Solutions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch5_data_pipelines/netflix_keystone.html">Netflix Keystone</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch5_data_pipelines/doordash_riviera.html">Doordash Riviera</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current has-children"><a class="reference internal" href="index.html">Feature Engineering, Feature Stores</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" role="switch" type="checkbox"/><label for="toctree-checkbox-14"><div class="visually-hidden">Toggle navigation of Feature Engineering, Feature Stores</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="feature_engineering_store.html">Feature Engineering and Feature Stores</a></li>
+<li class="toctree-l3"><a class="reference internal" href="feature_engineering.html">Feature Engineering for MLOps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="explained_feature_stores.html">Feature Stores for MLOps</a></li>
+<li class="toctree-l3 current current-page"><a class="current reference internal" href="#">Point-in-Time Correctness &amp; Time Travel in ML Data Pipelines</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="feast/index.html">Feast Feature Store</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" role="switch" type="checkbox"/><label for="toctree-checkbox-15"><div class="visually-hidden">Toggle navigation of Feast Feature Store</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l4"><a class="reference internal" href="feast/feast_architecture.html">Feast Architecture: A Technical Deep Dive for MLOps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="feast/feast_concepts.html">Feast Concepts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="feast/feast_components.html">Feast Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="feast/feast_usecases.html">Feast Use Cases</a></li>
+<li class="toctree-l4"><a class="reference internal" href="feast/feast_aws.html">Running Feast with AWS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="feast/run_in_prod.html">Running Feast in Production</a></li>
+<li class="toctree-l4"><a class="reference internal" href="feast/validate_historical_with_gx.html">Validating Historical Features with Great Expectations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="feast/add_reuse_tests.html">Adding or Reusing Tests in Feast</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch7_model_development/index.html">Model Development, Tuning, Selection, Ensembles, Calibration</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" role="switch" type="checkbox"/><label for="toctree-checkbox-16"><div class="visually-hidden">Toggle navigation of Model Development, Tuning, Selection, Ensembles, Calibration</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch7_model_development/ch7_model_development.html">Chapter 7: Model Development</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch7_model_development/dl_training_playbook.html">How to train DL Models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch7_model_development/development.html">Model Development</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch7_model_development/industry_lessons.html">Model Development: Lessons from production systems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch7_model_development/ensembles.html"><strong>Model Ensembles</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch7_model_development/selection.html">Model Selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch7_model_development/tuning_hypopt.html">Hyperparameter Optimization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch7_model_development/expt_tracking.html">ML Expt tracking, Data Lineage, Model Registry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch7_model_development/calibration.html">Model Calibration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch8_ml_pipelines.html">ML Training Pipelines</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch9_ml_testing/index.html">Testing in ML Systems</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" role="switch" type="checkbox"/><label for="toctree-checkbox-17"><div class="visually-hidden">Toggle navigation of Testing in ML Systems</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch9_ml_testing/ch9_ml_testing.html">Testing in ML Systems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9_ml_testing/data_testing_validation.html">Data Testing &amp; Validation in Production</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch9_ml_testing/ml_testing.html">Testing ML Systems: Ensuring Reliability from Code to Production</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch10_deployment_serving/index.html">Model Deployment &amp; Serving</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" role="switch" type="checkbox"/><label for="toctree-checkbox-18"><div class="visually-hidden">Toggle navigation of Model Deployment &amp; Serving</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch10_deployment_serving/ch10_deployment_serving.html">Chapter 10: Deployment &amp; Serving</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch10_deployment_serving/guide_deployment_serving.html">Guide: Model Deployment &amp; Serving</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch10_deployment_serving/guide_inference_stack.html">Deep Dive: Inference Stack</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch11_monitor_observe_drift/index.html">Monitoring, Observability, Drift, Interpretability</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" role="switch" type="checkbox"/><label for="toctree-checkbox-19"><div class="visually-hidden">Toggle navigation of Monitoring, Observability, Drift, Interpretability</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch11_monitor_observe_drift/ch11_monitor_observe_drift.html">Chapter 11: Monitoring, Observability, Drifts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch11_monitor_observe_drift/guide_monitor_observe_drift.html">Guide: ML System Failures, Data Distribution Shifts, Monitoring, and Observability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch11_monitor_observe_drift/guide_interpretability_shap_lime.html">Interpretability, SHAP, LIME</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch11_monitor_observe_drift/guide_stack.html">Prometheus + Grafana and ELK Stacks</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../ch12_retrain_online_testing/index.html">Continual learning, Retraining, A/B Testing</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" role="switch" type="checkbox"/><label for="toctree-checkbox-20"><div class="visually-hidden">Toggle navigation of Continual learning, Retraining, A/B Testing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../ch12_retrain_online_testing/ch12_continual_learning_prod_testing.html">Chapter 12: Continual Learning &amp; Production Testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch12_retrain_online_testing/guide_continual_learning.html">Continual Learning &amp; Model Retraining</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch12_retrain_online_testing/guide_ab_testing.html">A/B Testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch12_retrain_online_testing/guide_ab_testing_industry_lessons.html">A/B Testing &amp; Experimentation: Industry lessons</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch12_retrain_online_testing/guide_prod_testing_expt.html">Guide: Production Testing &amp; Experimentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../ch12_retrain_online_testing/dr_prod_testing_expt.html">Deep Research: Production Testing &amp; Experimentation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../ch13_governance_ethics_human.html">Governance, Ethics &amp; The Human Element</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../pytorch/index.html">PyTorch</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" role="switch" type="checkbox"/><label for="toctree-checkbox-21"><div class="visually-hidden">Toggle navigation of PyTorch</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../pytorch/general.html">General</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../pytorch/state_dict.html">state_dict</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../pytorch/mixed_precision.html">Mixed Precision</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../pytorch/distributed_data_parallel.html">Distributed Data Parallel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../pytorch/ddp_under_the_hood.html">DDP: Under the Hood</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../pytorch/dp_ddp.html">DP vs DDP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../pytorch/fsdp.html">FSDP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../pytorch/tensor_parallelism.html">Tensor parallelism</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../pytorch/pipeline_parallelism.html">Pipeline Parallelism</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../pytorch/device_mesh.html">Device Mesh</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../lld/index.html">Low Level Design</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" role="switch" type="checkbox"/><label for="toctree-checkbox-22"><div class="visually-hidden">Toggle navigation of Low Level Design</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../lld/parking_lot.html">Parking Lot</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../visualization/index.html">Data Visualization Projects</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="../../_sources/mlops/ch6_feature_engg/point_in_time.md.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="point-in-time-correctness-time-travel-in-ml-data-pipelines">
+<h1>Point-in-Time Correctness &amp; Time Travel in ML Data Pipelines<a class="headerlink" href="#point-in-time-correctness-time-travel-in-ml-data-pipelines" title="Permalink to this heading">¶</a></h1>
+<p><strong>Preamble: Doc Brown’s Warning for Machine Learning</strong></p>
+<p>Just as Marty McFly learned the hard way, using information from the “future” to influence the “past” can lead to disastrous paradoxes. In Machine Learning, this paradox manifests as <strong>data leakage</strong>, where models are trained on information that wouldn’t have been available at the actual moment of a past event. This leads to models that perform spectacularly in offline validation but falter dramatically in production—a direct path to eroding trust and business value. This compendium dives deep into the “time-travel problem” in ML, explains the mechanics and importance of <strong>Point-in-Time (PIT) Joins</strong>, and synthesizes industry best practices and solutions for ensuring temporal data integrity in your MLOps pipelines.</p>
+<hr class="docutils" />
+<p><strong>Chapter 1: The Core Problem - Data Leakage and the Perils of Hindsight</strong></p>
+<ol class="arabic simple">
+<li><p><strong>The Data Leakage Conundrum</strong></p>
+<ul class="simple">
+<li><p><strong>Definition:</strong> Training an ML model using feature values that would not have been available at the <em>actual time of the labeled event/observation</em>.</p></li>
+<li><p><strong>Why it Happens:</strong></p>
+<ul>
+<li><p><strong>Real-time Inference Simplicity:</strong> In production, models use the <em>latest known</em> feature values. It seems natural to replicate this for training by querying current feature values.</p></li>
+<li><p><strong>The Hindsight Trap:</strong> When constructing training data from historical events, joining with <em>current</em> feature values (or feature values computed <em>after</em> the event) inadvertently provides the model with future information.</p></li>
+</ul>
+</li>
+<li><p><strong>Consequences:</strong></p>
+<ul>
+<li><p>Inflated offline model performance metrics (appearing too good to be true).</p></li>
+<li><p>Poor and erratic model performance in production (the “sports almanac” is taken away).</p></li>
+<li><p>Difficult-to-diagnose issues, wasted resources, and loss of trust in ML systems.</p></li>
+</ul>
+</li>
+<li><p><strong>Common Scenario:</strong> A model predicting ad clicks. Training data might join ad display events with user features that were updated <em>after</em> the ad was actually displayed and clicked (or not).</p></li>
+</ul>
+</li>
+<li><p><strong>Training-Serving Skew as a Symptom:</strong></p>
+<ul class="simple">
+<li><p>While training-serving skew can have multiple causes (e.g., different preprocessing logic), incorrect temporal handling of features is a major contributor. The model effectively learns on a different “world” than the one it operates in during real-time inference.</p></li>
+</ul>
+</li>
+</ol>
+<hr class="docutils" />
+<p><strong>Chapter 2: Point-in-Time (PIT) Joins - The Mechanism for Temporal Accuracy</strong></p>
+<ol class="arabic simple">
+<li><p><strong>What is a Point-in-Time Join?</strong></p>
+<ul class="simple">
+<li><p><strong>Core Idea:</strong> When constructing a training dataset, for each labeled event (e.g., a user click, a transaction), join feature values that were <em>known and available at the exact timestamp of that specific event</em>, not before and certainly not after.</p></li>
+<li><p><strong>Mechanism:</strong> It involves joining an “entity dataframe” (or “label dataframe” / “spine dataframe”) containing primary keys and event timestamps with one or more “feature views” (or “feature tables”) that store historical feature values, also timestamped.</p></li>
+<li><p><strong>The “AS OF” Logic:</strong> For each row in the entity dataframe, the join selects feature values from the feature view(s) such that:</p>
+<ul>
+<li><p>The feature’s timestamp is less than or equal to the event timestamp in the entity dataframe.</p></li>
+<li><p>Among all such qualifying feature values, the <em>most recent one</em> is chosen.</p></li>
+</ul>
+</li>
+<li><p><strong>Visualizing:</strong></p>
+<ul>
+<li><p>Feast’s diagram clearly shows scanning backward from the entity timestamp.</p></li>
+<li><p>Databricks’ diagram illustrates selecting the outlined orange circle (latest value before or at the event time).</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<img src="../../_static/mlops/ch6_feature_engg/point_in_time/1.png"/>
+<img src="../../_static/mlops/ch6_feature_engg/point_in_time/2.png"/>
+<p><a class="reference external" href="https://docs.databricks.com/aws/en/machine-learning/feature-store/time-series">Point-in-time support using time series feature tables</a></p>
+<img src="../../_static/mlops/ch6_feature_engg/point_in_time/3.png"/>
+<img src="../../_static/mlops/ch6_feature_engg/point_in_time/4.png"/>
+<p><a class="reference external" href="https://docs.feast.dev/getting-started/concepts/point-in-time-joins">Point-in-time joins</a></p>
+<ol class="arabic simple" start="2">
+<li><p><strong>Why PIT Joins are Essential:</strong></p>
+<ul class="simple">
+<li><p>They directly prevent the primary cause of future data leakage in training sets.</p></li>
+<li><p>They are fundamental for building accurate historical training data for models that rely on dynamic features.</p></li>
+<li><p>They enable the true evaluation of a feature’s predictive power as it would have existed at decision time.</p></li>
+</ul>
+</li>
+</ol>
+<hr class="docutils" />
+<p><strong>Chapter 3: Key Requirements for Achieving Point-in-Time Correctness</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Historical Feature Value Storage (Offline Store):</strong></p>
+<ul class="simple">
+<li><p>A system (Data Lake, Data Warehouse) that stores all historical versions of feature values, not just the latest state.</p></li>
+<li><p>Each feature update must be timestamped accurately (ideally with event time).</p></li>
+<li><p><strong>Technologies:</strong></p>
+<ul>
+<li><p><strong>Data Lake Table Formats:</strong> Apache Hudi, Delta Lake, Apache Iceberg are designed for this, supporting ACID transactions, versioning, and efficient time-travel queries. (Hopsworks uses Hudi, Tecton mentions Delta Lake, Databricks uses Delta tables).</p></li>
+<li><p>Traditional Data Warehouses can also be used if data is appended with timestamps and queries are structured carefully.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Timestamped Event/Label Data:</strong></p>
+<ul class="simple">
+<li><p>The data for which you are generating training examples (your “labels” or target events) must have accurate timestamps representing when the event or observation occurred. This is the “point-in-time” reference.</p></li>
+</ul>
+</li>
+<li><p><strong>Timestamped Features:</strong></p>
+<ul class="simple">
+<li><p>All features being joined must have associated timestamps indicating when their value was computed or became valid.</p></li>
+</ul>
+</li>
+<li><p><strong>Join Logic with Temporal Awareness:</strong></p>
+<ul class="simple">
+<li><p>The query engine or feature retrieval system must be capable of performing “AS OF” joins or equivalent logic.</p></li>
+<li><p><strong>Netflix DeLorean:</strong> Builds APIs to serve snapshot data for a given time coordinate in the past.</p></li>
+<li><p><strong>Feast:</strong> <code class="docutils literal notranslate"><span class="pre">get_historical_features</span></code> API performs this logic.</p></li>
+<li><p><strong>Databricks Feature Store:</strong> Uses <code class="docutils literal notranslate"><span class="pre">timestamp_lookup_key</span></code> in <code class="docutils literal notranslate"><span class="pre">FeatureLookup</span></code>.</p></li>
+<li><p><strong>Hopsworks:</strong> Leverages Hudi’s time-travel capabilities with <code class="docutils literal notranslate"><span class="pre">as_of()</span></code> calls on queries.</p></li>
+<li><p><strong>Tecton:</strong> <code class="docutils literal notranslate"><span class="pre">get_offline_features</span></code> (similar to Feast) performs PIT joins.</p></li>
+</ul>
+</li>
+<li><p><strong>Handling of Feature Update Cadence &amp; Granularity:</strong></p>
+<ul class="simple">
+<li><p>Features might be updated at different frequencies (batch daily, streaming seconds). The PIT join must correctly find the latest relevant value for each feature independently based on the event timestamp.</p></li>
+</ul>
+</li>
+</ol>
+<hr class="docutils" />
+<p><strong>Chapter 4: Common Approaches &amp; Architectural Patterns for Historical Feature Data</strong></p>
+<ol class="arabic simple">
+<li><p><strong>The “Log and Wait” Approach (Tecton “Back to the Future”)</strong></p>
+<ul class="simple">
+<li><p><strong>Process:</strong> Start logging feature values as they are fetched/computed for <em>real-time inference</em>. These logs, now timestamped with the prediction event, become the source for future training datasets.</p></li>
+<li><p><strong>Pros:</strong></p>
+<ul>
+<li><p>Uses the exact feature data from the time of the prediction event, potentially minimizing one form of training-serving skew (if the logging is perfectly aligned with what the model sees).</p></li>
+</ul>
+</li>
+<li><p><strong>Cons:</strong></p>
+<ul>
+<li><p><strong>Slow Iteration:</strong> Takes weeks/months to collect enough data for a new feature before it can be used in training. Old historical events become obsolete for new features.</p></li>
+<li><p><strong>Limited Reusability:</strong> Logged data is specific to the prediction times and population distributions of the first use case. May require re-logging for other use cases.</p></li>
+</ul>
+</li>
+<li><p><strong>When Viable:</strong> High-volume predictions, low seasonality, quick data accumulation. (Netflix’s “Axion Fact Store” has elements of this for facts logged by compute applications, but also focuses on regeneration).</p></li>
+</ul>
+</li>
+<li><p><strong>Backfilling Data with Point-in-Time Joins (Tecton “Back to the Future”, General Concept)</strong></p>
+<ul class="simple">
+<li><p><strong>Process:</strong> Reconstruct what feature values <em>would have been</em> in the past using historical raw event data (logs, transactional data). Then use PIT joins to assemble training datasets.</p></li>
+<li><p><strong>Pros:</strong> Enables rapid experimentation with new features on existing historical label data. Avoids the “wait” of the logging approach.</p></li>
+<li><p><strong>Cons:</strong></p>
+<ul>
+<li><p><strong>Computational Cost:</strong> Backfilling can be expensive, especially for complex features or long historical windows. (Tecton “Aggregations Part 1”)</p></li>
+<li><p><strong>Accuracy of Reconstruction:</strong> Critical to accurately represent historical data. Errors in backfilling logic lead to poor training data.</p></li>
+<li><p><strong>Complexity:</strong> Implementing correct and efficient backfilling and PIT join logic can be complex.</p></li>
+</ul>
+</li>
+<li><p><strong>This is where Feature Stores shine:</strong> They aim to automate and optimize this backfilling and PIT join process.</p></li>
+</ul>
+</li>
+<li><p><strong>Snapshot-Based Time Travel / Service Snapshotting (Netflix “DeLorean”, Tecton “Back to the Future”)</strong></p>
+<ul class="simple">
+<li><p><strong>Netflix DeLorean Approach:</strong></p>
+<ul>
+<li><p><strong>Context Selection:</strong> Periodically (daily) select samples of contexts (member profiles, devices, etc.) to snapshot.</p></li>
+<li><p><strong>Data Snapshots:</strong> Fetch data from various online microservices (Viewing History, My List, etc.) for these selected contexts at a specific point in time. Uses Prana as a data proxy to call live services.</p></li>
+<li><p><strong>Storage:</strong> Snapshotted data (POJOs transformed to Parquet) stored in S3, location indexed in Cassandra.</p></li>
+<li><p><strong>APIs for Time Travel:</strong> Given a destination time in the past, API fetches snapshot data from S3. Feature encoders operate on these POJOs.</p></li>
+<li><p><strong>Goal:</strong> Reconstruct inputs a model <em>would have seen online</em> at a past time.</p></li>
+</ul>
+</li>
+<li><p><strong>Tecton’s Mention of Snapshot-based Time Travel:</strong> A simpler form where a <em>single cutoff time</em> is chosen for all feature values. Useful for models with slow-moving signals or large prediction windows. Delta Lake and Hudi make fetching data from a single point in time easy. This is less granular than per-event PIT joins.</p></li>
+</ul>
+</li>
+</ol>
+<hr class="docutils" />
+<p><strong>Chapter 5: Platform-Specific Implementations of Point-in-Time Correctness</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Feast (<code class="docutils literal notranslate"><span class="pre">get_historical_features</span></code>)</strong></p>
+<ul class="simple">
+<li><p><strong>Input:</strong> An “entity dataframe” (Pandas DataFrame) containing entity keys and <code class="docutils literal notranslate"><span class="pre">event_timestamp</span></code> columns.</p></li>
+<li><p><strong>Process:</strong> For each row in the entity dataframe, Feast queries the specified <code class="docutils literal notranslate"><span class="pre">FeatureView</span></code>(s). It scans backward in time from the row’s <code class="docutils literal notranslate"><span class="pre">event_timestamp</span></code> up to a maximum of the <code class="docutils literal notranslate"><span class="pre">ttl</span></code> (Time To Live) defined for the <code class="docutils literal notranslate"><span class="pre">FeatureView</span></code>.</p></li>
+<li><p><strong>Output:</strong> A training dataframe with original entity rows joined with the historically accurate feature values.</p></li>
+<li><p><strong>Limitations Noted by Feast:</strong> Rows in entity dataframe older than earliest feature data, or outside TTL, won’t be joined.</p></li>
+</ul>
+</li>
+<li><p><strong>Databricks Feature Store (Time Series Feature Tables)</strong></p>
+<ul class="simple">
+<li><p><strong>Concept:</strong> Uses <code class="docutils literal notranslate"><span class="pre">TIMESERIES</span></code> primary key on Delta tables (includes a timestamp key column).</p></li>
+<li><p><strong>Mechanism:</strong></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">timestamp_lookup_key</span></code> argument in <code class="docutils literal notranslate"><span class="pre">FeatureLookup</span></code> specifies the timestamp column in the input DataFrame (spine).</p></li>
+<li><p>Performs an “AS OF join” logic: retrieves the latest feature values <em>prior to or at</em> the <code class="docutils literal notranslate"><span class="pre">timestamp_lookup_key</span></code> for matching primary keys.</p></li>
+<li><p>Supports <code class="docutils literal notranslate"><span class="pre">lookback_window</span></code> (e.g., <code class="docutils literal notranslate"><span class="pre">timedelta(days=7)</span></code>) in <code class="docutils literal notranslate"><span class="pre">FeatureLookup</span></code> to exclude feature values older than the specified window relative to the lookup timestamp.</p></li>
+</ul>
+</li>
+<li><p><strong>Photon-enabled Spark Native Join:</strong> Can be used for faster lookups.</p></li>
+<li><p><strong>Online Store Publishing:</strong> Can publish a snapshot (latest values) or a time window (with TTL for expiration) to online stores like DynamoDB.</p></li>
+</ul>
+</li>
+<li><p><strong>Hopsworks Feature Store (Leveraging Apache Hudi)</strong></p>
+<ul class="simple">
+<li><p><strong>Underlying Tech:</strong> Stores “cached Feature Groups” as Apache Hudi tables (Parquet + metadata). Hudi supports versioned data, ACID updates, incremental ingestion, and time-travel.</p></li>
+<li><p><strong>Time-Travel Queries:</strong></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">read()</span></code>: Returns latest snapshot.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">read_changes(commit_timestamp_A,</span> <span class="pre">commit_timestamp_B)</span></code>: Retrieves incremental changes between two Hudi commits.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">as_of(timestamp_string)</span></code>: Called on a query object to retrieve data as of a specific point in time.</p></li>
+</ul>
+</li>
+<li><p><strong>Joining Feature Groups at PIT:</strong> Can call <code class="docutils literal notranslate"><span class="pre">as_of()</span></code> on individual feature group queries before joining them, allowing joins of different features from different historical points if needed.</p></li>
+<li><p><strong>Pipeline Triggering:</strong> Can poll Hudi commit details (<code class="docutils literal notranslate"><span class="pre">commit_details()</span></code>) to detect new data and trigger downstream training pipelines.</p></li>
+</ul>
+</li>
+</ol>
+<img src="../../_static/mlops/ch6_feature_engg/point_in_time/5.png"/>
+<img src="../../_static/mlops/ch6_feature_engg/point_in_time/6.png"/>
+<p><a class="reference external" href="https://www.hopsworks.ai/post/mlops-wars-versioned-feature-data-with-a-lakehouse">Hopsworks: MLOps Wars: Versioned Feature Data with a Lakehouse</a></p>
+<ol class="arabic simple" start="4">
+<li><p><strong>Tecton (<code class="docutils literal notranslate"><span class="pre">get_offline_features</span></code>)</strong></p>
+<ul class="simple">
+<li><p><strong>Declarative Approach:</strong> User defines raw data source, feature transformation, and calculation frequency.</p></li>
+<li><p><strong>Tecton’s Role:</strong> Handles backfilling historical feature values and ongoing calculation/serving. Performs point-in-time joins automatically when <code class="docutils literal notranslate"><span class="pre">get_offline_features</span></code> is called with a spine dataframe containing event timestamps.</p></li>
+<li><p><strong>Aim:</strong> Data scientists only need to specify <em>what</em> features for <em>which</em> training events, and Tecton handles the “how” of PIT joins.</p></li>
+</ul>
+</li>
+<li><p><strong>Netflix Axion (Evolution of ML Fact Store)</strong></p>
+<ul class="simple">
+<li><p><strong>Motivation:</strong> Original “DeLorean” was for feature <em>generation</em>. Axion is more of a <em>fact store</em> logging facts (member/video data with timestamps) from compute applications.</p></li>
+<li><p><strong>ETL Evolution:</strong></p>
+<ul>
+<li><p>Initial: Normalize facts into multiple tables (querying became inefficient due to large joins).</p></li>
+<li><p>Current: Denormalize into a single Iceberg table (nested Parquet). Querying still slow for sparse lookups.</p></li>
+</ul>
+</li>
+<li><p><strong>Low-Latency Query Solution:</strong> Introduced EVCache (key-value store) for a subset of recent/hot facts and indices (e.g., by member ID). Queries first hit EVCache, then fall back to Iceberg. This is for <em>online feature generation/lookup by compute applications</em>, and these generated features/facts are logged.</p></li>
+<li><p><strong>Offline Feature Generator:</strong> <em>Regenerates</em> features using these logged facts for temporal accuracy, ensuring no training-serving skew. This is where the PIT concept is crucial for Axion.</p></li>
+</ul>
+</li>
+</ol>
+<hr class="docutils" />
+<p><strong>Chapter 6: Key Technical Considerations &amp; Challenges in Implementing Time Travel / PIT</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Historical Data Availability &amp; Retention:</strong></p>
+<ul class="simple">
+<li><p>Streaming sources (Kafka, Kinesis) often have limited retention. A long-term offline store (Data Lake) is essential for backfilling features over extended periods.</p></li>
+<li><p>Netflix DeLorean snapshots online services because not all data is available offline or easily queryable historically from source systems.</p></li>
+</ul>
+</li>
+<li><p><strong>Computational Cost of Backfilling &amp; PIT Joins:</strong></p>
+<ul class="simple">
+<li><p>Recomputing features for entire historical datasets can be very expensive.</p></li>
+<li><p>Joins involving large historical tables and many spine events are resource-intensive.</p></li>
+<li><p><strong>Optimizations:</strong></p>
+<ul>
+<li><p>Partitioning offline feature tables by time and entity ID.</p></li>
+<li><p>Efficient file formats (Parquet, ORC) and table formats (Delta, Hudi, Iceberg) with data skipping/indexing.</p></li>
+<li><p>Distributed compute engines (Spark, Flink).</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Schema Evolution:</strong></p>
+<ul class="simple">
+<li><p>How does the system handle features that didn’t exist at a certain point in the past, or whose schema (data type, definition) changed?</p></li>
+<li><p>Feature values should ideally be <code class="docutils literal notranslate"><span class="pre">null</span></code> or a defined default if the feature didn’t exist.</p></li>
+<li><p>Schema registries and versioned feature definitions are crucial. Hopsworks Hudi supports schema evolution.</p></li>
+</ul>
+</li>
+<li><p><strong>Data Granularity &amp; Aggregation Windows:</strong></p>
+<ul class="simple">
+<li><p>Ensuring that aggregations (e.g., “sum of transactions in last 7 days”) are computed correctly based on the exact window relative to each event timestamp. This is complex with overlapping windows.</p></li>
+<li><p>Tecton’s tiled aggregation is a solution for this.</p></li>
+</ul>
+</li>
+<li><p><strong>Late Arriving Data:</strong></p>
+<ul class="simple">
+<li><p>How are events that arrive late (with an event_timestamp in the past but ingested now) handled in feature computations and PIT joins? This can affect feature accuracy if not managed carefully. Watermarks in stream processing are relevant here.</p></li>
+</ul>
+</li>
+<li><p><strong>Consistency Between Backfilled Data and Real-Time Computed Data:</strong></p>
+<ul class="simple">
+<li><p>The logic used for backfilling historical features must be identical to the logic used for computing features from live streams or real-time requests to avoid skew. This is a core tenet of Feature Store design (e.g., Tecton’s unified pipelines, Databricks <code class="docutils literal notranslate"><span class="pre">pyfunc</span></code> wrapper).</p></li>
+</ul>
+</li>
+<li><p><strong>Offline Store Performance for PIT Lookups:</strong></p>
+<ul class="simple">
+<li><p>The offline store needs to be optimized for potentially many small, time-bounded lookups for different entities, which can be different from typical analytical scan patterns. (Databricks recommends Liquid Clustering/Z-Ordering).</p></li>
+</ul>
+</li>
+<li><p><strong>Defining “Event Time”:</strong></p>
+<ul class="simple">
+<li><p>Clarity on which timestamp represents the true “event time” for labels and features is critical. Clock skews and system delays can introduce noise.</p></li>
+</ul>
+</li>
+</ol>
+<hr class="docutils" />
+<p><strong>Chapter 7: Best Practices for MLOps Leads - Navigating Temporal Data Challenges</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Prioritize Point-in-Time Correctness from Day One:</strong> Do not treat it as an afterthought. Data leakage from incorrect temporal joins is a silent killer of ML models.</p></li>
+<li><p><strong>Timestamp Everything:</strong> Ensure all raw data, intermediate transformations, and final features have reliable event timestamps.</p></li>
+<li><p><strong>Invest in an Offline Store Optimized for Temporal Data:</strong> Use modern data lake table formats (Delta, Hudi, Iceberg) that support versioning, time-travel queries, and efficient updates.</p></li>
+<li><p><strong>Leverage a Feature Store:</strong> A mature Feature Store (whether built or bought) should abstract away the complexity of PIT joins and backfilling.</p>
+<ul class="simple">
+<li><p>Look for: <code class="docutils literal notranslate"><span class="pre">get_historical_features</span></code> or equivalent API, support for <code class="docutils literal notranslate"><span class="pre">timestamp_lookup_key</span></code> or <code class="docutils literal notranslate"><span class="pre">as_of</span></code> semantics, and automated backfilling capabilities.</p></li>
+</ul>
+</li>
+<li><p><strong>Ensure Consistency in Feature Logic:</strong> Use the <em>exact same</em> transformation code for generating historical training data (backfills) and for serving/computing features in real-time.</p>
+<ul class="simple">
+<li><p>This is a core value proposition of tools like Tecton and the <code class="docutils literal notranslate"><span class="pre">pyfunc</span></code> wrapper pattern in Databricks/MLflow.</p></li>
+<li><p>Hopsworks’ transformation functions tied to Feature Views aim for this.</p></li>
+</ul>
+</li>
+<li><p><strong>Understand Data Source Retention and Latency:</strong> Know how long raw event data is kept and the typical delays in its availability for feature computation.</p></li>
+<li><p><strong>Validate Backfilled Data:</strong> After backfilling features, compare distributions and spot-check values against known historical states or alternative computation methods if possible.</p></li>
+<li><p><strong>Iterate on Feature Freshness Requirements:</strong> Start with what’s feasible (e.g., daily batch). If models show significant lift with fresher data, then invest in more complex real-time or streaming feature pipelines. (Databricks feature computation architectures).</p></li>
+<li><p><strong>Educate Your Team:</strong> Ensure data scientists and MLEs understand the implications of time in feature engineering and how the platform provides PIT correctness.</p></li>
+<li><p><strong>Monitor for Data Leakage:</strong> Even with PIT joins, errors in upstream data or complex scenarios can lead to leakage. Implement checks to compare feature distributions between training and serving.</p></li>
+</ol>
+<hr class="docutils" />
+<p><strong>Conclusion: Time is of the Essence</strong></p>
+<p>The “time-travel problem” is not a futuristic hypothetical; it’s a present-day reality for any team serious about productionizing reliable ML models, especially those dealing with dynamic, time-sensitive data. Point-in-Time correct feature engineering is the DeLorean that ML practitioners need to avoid polluting their training data with future knowledge. By understanding the core challenges, the architectural patterns like PIT joins and snapshotting, and leveraging the capabilities of modern Feature Stores and data lakehouse technologies, MLOps Leads can build robust systems that ensure models learn from the true past to accurately predict the future. Ignoring temporal integrity is an invitation for Biff Tannen to ruin your ML-powered future.</p>
+<hr class="docutils" />
+<!--
+**MLOps Lead's Time-Travel & PIT Join Mind Map (Mermaid)**
+
+```mermaid
+mindmap
+  root((Time Travel & PIT Joins in ML))
+    ::icon(fa fa-clock)
+    **I. The Core Problem**
+      Data Leakage (Using Future Info)
+        Consequences
+          Inflated Offline Metrics
+          Poor Production Performance
+          Wasted Resources
+      Training-Serving Skew (Symptom)
+
+    **II. Point-in-Time (PIT) Join Defined**
+      Goal: Temporal Accuracy
+      Mechanism
+        Entity/Label DataFrame (with Event Timestamps)
+        Historical Feature Views/Tables (with Feature Timestamps)
+        "AS OF" Logic: Most recent feature <= event_ts
+
+    **III. Requirements for PIT Correctness**
+      Historical Feature Storage (Offline Store)
+        Versioning (Hudi, Delta, Iceberg)
+      Timestamped Labels/Events
+      Timestamped Features
+      Temporal Join Logic in Query Engine/FS
+
+    **IV. Approaches to Getting Historical Features**
+      **Log and Wait**
+        Pros: Exact data from prediction time
+        Cons: Slow iteration, limited reuse
+      **Backfilling with PIT Joins**
+        Pros: Faster iteration for new features
+        Cons: Computationally expensive, reconstruction accuracy vital
+      **Snapshotting Services (e.g., Netflix DeLorean)**
+        Method for collecting data for backfilling
+        Select contexts -> Snapshot online services -> Store -> Serve via Time API
+
+    **V. Platform Implementations for PIT**
+      **Feast:** `get_historical_features`, scans backward up to TTL
+      **Databricks FS:** Time Series Tables, `timestamp_lookup_key`, AS OF join, `lookback_window`
+      **Hopsworks FS:** Hudi backend, `as_of()` queries, incremental pulls
+      **Tecton:** `get_offline_features`, automates backfills & PIT joins
+      **Netflix Axion/DeLorean:** Fact logging + offline regeneration for PIT
+
+    **VI. Technical Challenges**
+      Data Volume & Query Performance
+      Schema Evolution over Time
+      Late Arriving Data
+      Computational Cost of Backfills
+      Consistency (Backfill vs. Real-time logic)
+      Offline Store Optimization for Temporal Queries
+
+    **VII. Best Practices for MLOps Leads**
+      Prioritize PIT Correctness
+      Timestamp Everything
+      Invest in Optimized Offline Store (Lakehouse formats)
+      Leverage Feature Store capabilities
+      Ensure Consistent Transformation Logic
+      Understand Data Source Latency/Retention
+      Validate Backfilled Data
+      Iterate on Freshness Needs
+      Educate Team
+
+    %% Conceptual Colors for readability
+    style I. The Core Problem fill:#ffcccc
+    style II. Point-in-Time (PIT) Join Defined fill:#ccffcc
+    style III. Requirements for PIT Correctness fill:#cceeff
+    style IV. Approaches to Getting Historical Features fill:#ffffcc
+    style V. Platform Implementations for PIT fill:#ffccff
+    style VI. Technical Challenges fill:#ffebcc
+    style VII. Best Practices for MLOps Leads fill:#e6ccff
+```
+-->
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="feast/index.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Feast Feature Store</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="explained_feature_stores.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Feature Stores for MLOps</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024, Deepak Karkala
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=b3ba4146"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/scripts/furo.js?v=4e2eecee"></script>
+    </body>
+</html>

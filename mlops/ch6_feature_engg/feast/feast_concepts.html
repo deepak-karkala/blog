@@ -1,0 +1,836 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../../../genindex.html" /><link rel="search" title="Search" href="../../../search.html" /><link rel="next" title="Feast Components" href="feast_components.html" /><link rel="prev" title="Feast Architecture: A Technical Deep Dive for MLOps" href="feast_architecture.html" />
+
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/><!-- Generated with Sphinx 7.1.2 and Furo 2024.05.06 -->
+        <title>Feast Concepts - Home</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo.css?v=387cc868" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/furo-extensions.css?v=36a5483c" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/css/style.css?v=8a7ff5ee" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" /
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../../../index.html"><div class="brand">Home</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../../../index.html">
+  
+  
+  <span class="sidebar-brand-text">Home</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../../../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../past_experiences/index.html">Past Experiences</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Past Experiences</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../past_experiences/iot_anomaly.html">Anomaly Detection in Time Series IoT Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../past_experiences/iot_forecasting.html">Energy Demand Forecasting in Time Series IoT Data</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../past_experiences/adas_engine/index.html">ADAS: Data Engine</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of ADAS: Data Engine</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../past_experiences/adas_engine/ch0_business_challenge.html">Business Challenge and Goals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../past_experiences/adas_engine/ch1_ml_problem_framing.html">ML Problem Framing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../past_experiences/adas_engine/ch2_operational_strategy.html">Planning, Operational Strategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../past_experiences/adas_engine/ch3_pipelines_workflows.html">Workflows, Team, Roles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../past_experiences/adas_engine/ch4_testing_strategy.html">Testing Strategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../past_experiences/adas_engine/ch6_data_ingestion_workflows.html">Data Ingestion Workflows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../past_experiences/adas_engine/ch7_scene_understanding_data_mining.html">Scene Understanding &amp; Data Mining</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../past_experiences/adas_engine/ch8_model_training.html">Model Training &amp; Experimentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../past_experiences/adas_engine/ch9_packaging_promotion.html">Packaging, Evaluation &amp; Promotion Workflows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../past_experiences/adas_engine/ch10_deployment_serving.html">Deployment &amp; Serving</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../past_experiences/adas_engine/ch11_monitoring_continual_learning.html">Monitoring &amp; Continual Learning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../past_experiences/adas_engine/ch12_cost_lifecycle_compliance.html">Cost, Lifecycle, Compliance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../past_experiences/adas_engine/ch13_reliability_capacity_maps.html">Reliability, Capacity, Maps</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../past_experiences/ecom_cltv.html">Customer Lifetime Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../past_experiences/ecom_propensity.html">Real-Time Purchase Intent Scoring</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../past_experiences/ecom_summarisation.html">Reviews Summarisation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../past_experiences/ecom_rag.html">RAG-Based Product Discovery</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../projects/index.html">Projects</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Projects</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../projects/nlp/index.html">Natural Language Processing</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of Natural Language Processing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/airbnb_alternate_search/about/index.html">Airbnb Listing description based Semantic Search</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../projects/cv/index.html">Computer Vision</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of Computer Vision</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/ecommerce_image_segmentation/about/index.html">Image Segmentation for Ecommerce Products</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../projects/ml/index.html">Machine Learning</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of Machine Learning</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/airbnb_price_modeling/about/index.html">Predictive Price Modeling for Airbnb listings</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../publications/index.html">Patents, Papers, Thesis</a></li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../agents/index.html">AI Agents: A Lead Engineer’s Handbook</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of AI Agents: A Lead Engineer’s Handbook</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../agents/ch1_intro.html">Agent Fundamentals: What, Why, and When?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../agents/ch2_patterns.html">Agentic Patterns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../agents/ch5_context_engineering.html">Context Engineering for AI Agents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../agents/ch6_case_studies.html">The State of the Industry: Insights from the Field</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../agents/ch7_conclusion.html"><strong>Conclusion: The Lead Engineer’s Mental Model for Building Agents</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../agents/ch_cost.html">Cost Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../agents/ch_data.html">Data Management and Knowledge Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../agents/ch_deploy.html">Deployment and Scaling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../agents/ch_guardrails.html">Guardrails</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../agents/ch_hitl.html">Human-in-the-Loop (HITL)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../agents/ch_latency.html">Latency Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../agents/ch_llm.html">LLM – Prompts, Goals, and Persona</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../agents/ch_memory.html">Managing Agent Memory (Short-Term and Long-Term)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../agents/ch_monitor.html">Monitoring and Observability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../agents/ch_orchestration.html">Orchestration and Task Decomposition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../agents/ch_prod.html">Production Challenges and Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../agents/ch_security.html">Securing AI Agents and Preventing Abuse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../agents/ch_tool.html">Tool Use and Integration Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../agents/ch_trust.html">Building Trustworthy and Ethical AI Agents</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../../index.html">MLOps</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of MLOps</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../ch1_problem_framing.html">ML Problem framing</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of ML Problem framing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../ch2_blueprint_operational_strategy.html">The MLOps Blueprint &amp; Operational Strategy</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../ch2a_platform/index.html">ML Platforms</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle navigation of ML Platforms</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../ch2a_platform/ml_platforms.html">ML Platforms: How to</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ch2a_platform/uber.html">Uber Michelangelo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ch2a_platform/linkedin.html">LinkedIn DARWIN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ch2a_platform/netflix.html">Netflix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ch2a_platform/shopify.html">Shopify Merlin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ch2a_platform/zomato.html">Zomato: Real-time ML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ch2a_platform/coveo.html">Coveo: MLOPs at reasonable scale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ch2a_platform/monzo.html">Monzo ML Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ch2a_platform/didact.html">Didact AI</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../ch3_project_planning/index.html">Project Planning</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" role="switch" type="checkbox"/><label for="toctree-checkbox-11"><div class="visually-hidden">Toggle navigation of Project Planning</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../ch3_project_planning/prd.html">Project Requirements Document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ch3_project_planning/tech_stack.html">Tech Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ch3_project_planning/config_management.html">Config Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ch3_project_planning/pipeline_design.html">Pipeline Design</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ch3_project_planning/environment_strategy.html">Environment Strategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ch3_project_planning/cicd_branching_model.html">CI/CD Strategy and Branching Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ch3_project_planning/directory_structure.html">Directory Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ch3_project_planning/env_branchind_cicd_deployment.html">Environments, Branching, CI/CD, and Deployments Explained</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ch3_project_planning/project_management.html">Project Management for MLOps</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../ch4_data_discovery/index.html">Data Sourcing, Discovery</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" role="switch" type="checkbox"/><label for="toctree-checkbox-12"><div class="visually-hidden">Toggle navigation of Data Sourcing, Discovery</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../ch4_data_discovery/data_sourcing_discovery.html">Data Sourcing, Discovery &amp; Understanding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ch4_data_discovery/ch4_project.html">Project-Trending Now: Implementing Web Scraping, Ingestion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ch4_data_discovery/industry_case_studies.html">Data Discovery Platforms: Industry Case Studies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ch4_data_discovery/facebook_nemo.html">Facebook: Nemo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ch4_data_discovery/netflix_metacat.html">Netflix Metacat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ch4_data_discovery/uber_databook.html">Uber Databook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ch4_data_discovery/linkedin_datahub.html">LinkedIn Datahub</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../ch5_data_pipelines/index.html">Data Engineering, Pipelines</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" role="switch" type="checkbox"/><label for="toctree-checkbox-13"><div class="visually-hidden">Toggle navigation of Data Engineering, Pipelines</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../ch5_data_pipelines/data_pipelines.html">Data Engineering for Reliable ML Pipelines</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ch5_data_pipelines/data_engineering_pipelines.html">Data Engineering &amp; Pipelines: A Lead’s Compendium</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ch5_data_pipelines/streaming_pipelines.html">Real-Time &amp; Streaming Data Pipelines: Challenges, Solutions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ch5_data_pipelines/netflix_keystone.html">Netflix Keystone</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ch5_data_pipelines/doordash_riviera.html">Doordash Riviera</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current has-children"><a class="reference internal" href="../index.html">Feature Engineering, Feature Stores</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" role="switch" type="checkbox"/><label for="toctree-checkbox-14"><div class="visually-hidden">Toggle navigation of Feature Engineering, Feature Stores</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../feature_engineering_store.html">Feature Engineering and Feature Stores</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../feature_engineering.html">Feature Engineering for MLOps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../explained_feature_stores.html">Feature Stores for MLOps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../point_in_time.html">Point-in-Time Correctness &amp; Time Travel in ML Data Pipelines</a></li>
+<li class="toctree-l3 current has-children"><a class="reference internal" href="index.html">Feast Feature Store</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" role="switch" type="checkbox"/><label for="toctree-checkbox-15"><div class="visually-hidden">Toggle navigation of Feast Feature Store</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="feast_architecture.html">Feast Architecture: A Technical Deep Dive for MLOps</a></li>
+<li class="toctree-l4 current current-page"><a class="current reference internal" href="#">Feast Concepts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="feast_components.html">Feast Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="feast_usecases.html">Feast Use Cases</a></li>
+<li class="toctree-l4"><a class="reference internal" href="feast_aws.html">Running Feast with AWS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="run_in_prod.html">Running Feast in Production</a></li>
+<li class="toctree-l4"><a class="reference internal" href="validate_historical_with_gx.html">Validating Historical Features with Great Expectations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="add_reuse_tests.html">Adding or Reusing Tests in Feast</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../ch7_model_development/index.html">Model Development, Tuning, Selection, Ensembles, Calibration</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" role="switch" type="checkbox"/><label for="toctree-checkbox-16"><div class="visually-hidden">Toggle navigation of Model Development, Tuning, Selection, Ensembles, Calibration</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../ch7_model_development/ch7_model_development.html">Chapter 7: Model Development</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ch7_model_development/dl_training_playbook.html">How to train DL Models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ch7_model_development/development.html">Model Development</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ch7_model_development/industry_lessons.html">Model Development: Lessons from production systems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ch7_model_development/ensembles.html"><strong>Model Ensembles</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ch7_model_development/selection.html">Model Selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ch7_model_development/tuning_hypopt.html">Hyperparameter Optimization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ch7_model_development/expt_tracking.html">ML Expt tracking, Data Lineage, Model Registry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ch7_model_development/calibration.html">Model Calibration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../ch8_ml_pipelines.html">ML Training Pipelines</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../ch9_ml_testing/index.html">Testing in ML Systems</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" role="switch" type="checkbox"/><label for="toctree-checkbox-17"><div class="visually-hidden">Toggle navigation of Testing in ML Systems</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../ch9_ml_testing/ch9_ml_testing.html">Testing in ML Systems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ch9_ml_testing/data_testing_validation.html">Data Testing &amp; Validation in Production</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ch9_ml_testing/ml_testing.html">Testing ML Systems: Ensuring Reliability from Code to Production</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../ch10_deployment_serving/index.html">Model Deployment &amp; Serving</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" role="switch" type="checkbox"/><label for="toctree-checkbox-18"><div class="visually-hidden">Toggle navigation of Model Deployment &amp; Serving</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../ch10_deployment_serving/ch10_deployment_serving.html">Chapter 10: Deployment &amp; Serving</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ch10_deployment_serving/guide_deployment_serving.html">Guide: Model Deployment &amp; Serving</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ch10_deployment_serving/guide_inference_stack.html">Deep Dive: Inference Stack</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../ch11_monitor_observe_drift/index.html">Monitoring, Observability, Drift, Interpretability</a><input class="toctree-checkbox" id="toctree-checkbox-19" name="toctree-checkbox-19" role="switch" type="checkbox"/><label for="toctree-checkbox-19"><div class="visually-hidden">Toggle navigation of Monitoring, Observability, Drift, Interpretability</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../ch11_monitor_observe_drift/ch11_monitor_observe_drift.html">Chapter 11: Monitoring, Observability, Drifts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ch11_monitor_observe_drift/guide_monitor_observe_drift.html">Guide: ML System Failures, Data Distribution Shifts, Monitoring, and Observability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ch11_monitor_observe_drift/guide_interpretability_shap_lime.html">Interpretability, SHAP, LIME</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ch11_monitor_observe_drift/guide_stack.html">Prometheus + Grafana and ELK Stacks</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../ch12_retrain_online_testing/index.html">Continual learning, Retraining, A/B Testing</a><input class="toctree-checkbox" id="toctree-checkbox-20" name="toctree-checkbox-20" role="switch" type="checkbox"/><label for="toctree-checkbox-20"><div class="visually-hidden">Toggle navigation of Continual learning, Retraining, A/B Testing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../ch12_retrain_online_testing/ch12_continual_learning_prod_testing.html">Chapter 12: Continual Learning &amp; Production Testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ch12_retrain_online_testing/guide_continual_learning.html">Continual Learning &amp; Model Retraining</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ch12_retrain_online_testing/guide_ab_testing.html">A/B Testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ch12_retrain_online_testing/guide_ab_testing_industry_lessons.html">A/B Testing &amp; Experimentation: Industry lessons</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ch12_retrain_online_testing/guide_prod_testing_expt.html">Guide: Production Testing &amp; Experimentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../ch12_retrain_online_testing/dr_prod_testing_expt.html">Deep Research: Production Testing &amp; Experimentation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../ch13_governance_ethics_human.html">Governance, Ethics &amp; The Human Element</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../pytorch/index.html">PyTorch</a><input class="toctree-checkbox" id="toctree-checkbox-21" name="toctree-checkbox-21" role="switch" type="checkbox"/><label for="toctree-checkbox-21"><div class="visually-hidden">Toggle navigation of PyTorch</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../pytorch/general.html">General</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../pytorch/state_dict.html">state_dict</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../pytorch/mixed_precision.html">Mixed Precision</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../pytorch/distributed_data_parallel.html">Distributed Data Parallel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../pytorch/ddp_under_the_hood.html">DDP: Under the Hood</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../pytorch/dp_ddp.html">DP vs DDP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../pytorch/fsdp.html">FSDP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../pytorch/tensor_parallelism.html">Tensor parallelism</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../pytorch/pipeline_parallelism.html">Pipeline Parallelism</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../pytorch/device_mesh.html">Device Mesh</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../lld/index.html">Low Level Design</a><input class="toctree-checkbox" id="toctree-checkbox-22" name="toctree-checkbox-22" role="switch" type="checkbox"/><label for="toctree-checkbox-22"><div class="visually-hidden">Toggle navigation of Low Level Design</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../lld/parking_lot.html">Parking Lot</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../visualization/index.html">Data Visualization Projects</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="../../../_sources/mlops/ch6_feature_engg/feast/feast_concepts.md.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="feast-concepts">
+<h1>Feast Concepts<a class="headerlink" href="#feast-concepts" title="Permalink to this heading">¶</a></h1>
+<section id="id1">
+<h2><a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<p>Understanding these fundamental concepts is key to effectively using Feast for managing the lifecycle of your machine learning features.</p>
+<section id="project-your-isolated-feature-universe">
+<h3>1. Project: Your Isolated Feature Universe<a class="headerlink" href="#project-your-isolated-feature-universe" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Definition:</strong> The top-level namespace in Feast. A project provides complete isolation for a feature store at the infrastructure level. This is achieved by namespacing resources, such as prefixing table names in the online/offline store with the project name.</p></li>
+<li><p><strong>Scope:</strong> Each project is a distinct universe of entities, features, and data sources. You cannot retrieve features from multiple projects in a single request.</p></li>
+<li><p><strong>Best Practice:</strong> It’s recommended to have a single Feast project per environment (e.g., <code class="docutils literal notranslate"><span class="pre">dev</span></code>, <code class="docutils literal notranslate"><span class="pre">staging</span></code>, <code class="docutils literal notranslate"><span class="pre">prod</span></code>).</p></li>
+<li><p><strong>Benefits:</strong></p>
+<ul>
+<li><p><strong>Logical Grouping:</strong> Organizes related features, views, and services.</p></li>
+<li><p><strong>Isolation:</strong> Prevents interference between different environments or large-scale initiatives.</p></li>
+<li><p><strong>Collaboration:</strong> Defines clear boundaries for teams.</p></li>
+<li><p><strong>Access Control:</strong> Can be a basis for permissioning (though Feast’s <code class="docutils literal notranslate"><span class="pre">Permission</span></code> objects offer more granularity).</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="data-source-data-ingestion-connecting-to-your-raw-data">
+<h3>2. Data Source &amp; Data Ingestion: Connecting to Your Raw Data<a class="headerlink" href="#data-source-data-ingestion-connecting-to-your-raw-data" title="Permalink to this heading">¶</a></h3>
+<p>Feast doesn’t manage the raw underlying data itself; instead, it defines how to connect to and interpret this data.</p>
+<ul class="simple">
+<li><p><strong>Data Source:</strong></p>
+<ul>
+<li><p><strong>Definition:</strong> Represents the raw data systems where your feature data originates (e.g., a table in BigQuery, files in S3, a Kafka topic).</p></li>
+<li><p><strong>Data Model:</strong> Feast uses a time-series data model, expecting feature data to have timestamps indicating when the feature value was observed or generated.</p></li>
+<li><p><strong>Types:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Batch Data Sources:</strong> Typically data warehouses (BigQuery, Snowflake, Redshift) or data lakes (S3, GCS). Feast ingests from these for online serving and queries them for historical retrieval.</p></li>
+<li><p><strong>Stream Data Sources:</strong></p>
+<ul>
+<li><p><strong>Push Sources:</strong> Allow users to directly push feature values into Feast (both offline and online stores). This is a common pattern for real-time updates.</p></li>
+<li><p><strong>[Alpha] Stream Sources:</strong> Allow registration of metadata for Kafka or Kinesis topics. Users are responsible for the ingestion pipeline, though Feast provides some helpers.</p></li>
+</ul>
+</li>
+<li><p><strong>(Experimental) Request Data Sources:</strong> Data that is only available at the moment of a prediction request (e.g., user input from an HTTP request). Primarily used as input for On-Demand Feature Views.</p></li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p><strong>Data Ingestion:</strong></p>
+<ul>
+<li><p><strong>Offline Use (Training/Batch Scoring from Batch Sources):</strong> Feast often doesn’t <em>ingest</em> data in the traditional sense. It queries your existing batch data sources directly, leveraging the compute engine of the offline store (e.g., BigQuery’s query engine).</p></li>
+<li><p><strong>Online Use (Real-time Serving):</strong></p>
+<ul>
+<li><p><strong>Materialization (from Batch Sources):</strong> The process of loading feature values from batch sources into the online store. The <code class="docutils literal notranslate"><span class="pre">materialize_incremental</span></code> command fetches the <em>latest</em> values for entities and ingests them. This is typically scheduled (e.g., via Airflow).</p>
+<ul>
+<li><p>For On-Demand Feature Views with <code class="docutils literal notranslate"><span class="pre">write_to_online_store=True</span></code>, the <code class="docutils literal notranslate"><span class="pre">transform_on_write</span></code> parameter controls if transformations are applied during this materialization (set to <code class="docutils literal notranslate"><span class="pre">False</span></code> to materialize pre-transformed features).</p></li>
+</ul>
+</li>
+<li><p><strong>Pushing (from Stream Sources):</strong> Streaming data can be pushed into the online store (and optionally the offline store) via Push Sources or custom stream processing jobs (e.g., using the contrib Spark processor for Kafka/Kinesis).</p></li>
+</ul>
+</li>
+<li><p><strong>Schema Inference:</strong> If a schema isn’t explicitly defined for a batch data source, Feast attempts to infer it during <code class="docutils literal notranslate"><span class="pre">feast</span> <span class="pre">apply</span></code> by inspecting the source table or running a <code class="docutils literal notranslate"><span class="pre">LIMIT</span></code> query.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="entity-the-subject-of-your-features">
+<h3>3. Entity: The “Subject” of Your Features<a class="headerlink" href="#entity-the-subject-of-your-features" title="Permalink to this heading">¶</a></h3>
+<ul>
+<li><p><strong>Definition:</strong> An entity represents a core business object or concept to which features are related (e.g., <code class="docutils literal notranslate"><span class="pre">customer</span></code>, <code class="docutils literal notranslate"><span class="pre">driver</span></code>, <code class="docutils literal notranslate"><span class="pre">product</span></code>). It’s defined with a unique <code class="docutils literal notranslate"><span class="pre">name</span></code> and one or more <code class="docutils literal notranslate"><span class="pre">join_keys</span></code> (the primary keys used to link feature values).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">driver</span> <span class="o">=</span> <span class="n">Entity</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;driver&#39;</span><span class="p">,</span> <span class="n">join_keys</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;driver_id&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Usage:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Defining &amp; Storing Features:</strong></p>
+<ul class="simple">
+<li><p>Feature Views (see below) are associated with zero or more entities. This collection of entities for a feature view is its <strong>entity key</strong>.</p></li>
+<li><p>Examples:</p>
+<ul>
+<li><p>Zero entities: <code class="docutils literal notranslate"><span class="pre">num_daily_global_transactions</span></code> (a global feature).</p></li>
+<li><p>One entity: <code class="docutils literal notranslate"><span class="pre">user_age</span></code> (associated with a <code class="docutils literal notranslate"><span class="pre">user</span></code> entity).</p></li>
+<li><p>Multiple entities (composite key): <code class="docutils literal notranslate"><span class="pre">num_user_purchases_in_merchant_category</span></code> (associated with <code class="docutils literal notranslate"><span class="pre">user</span></code> and <code class="docutils literal notranslate"><span class="pre">merchant_category</span></code> entities).</p></li>
+</ul>
+</li>
+<li><p>Reusing entity definitions across feature views is crucial for discoverability and consistency.</p></li>
+</ul>
+</li>
+<li><p><strong>Retrieving Features:</strong></p>
+<ul class="simple">
+<li><p><strong>Training Time:</strong> Users provide a list of <em>entity keys + timestamps</em> to fetch point-in-time correct features.</p></li>
+<li><p><strong>Serving Time:</strong> Users provide <em>entity key(s)</em> to fetch the latest feature values.</p></li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p><strong>Retrieving All Entities:</strong></p>
+<ul class="simple">
+<li><p>Feast supports generating features for a SQL-backed list of entities for <em>batch scoring</em>.</p></li>
+<li><p>For <em>real-time retrieval</em>, fetching all entities is not an out-of-the-box feature to prevent slow and expensive scan operations on data sources.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="feature-view-organizing-and-defining-groups-of-features">
+<h3>4. Feature View: Organizing and Defining Groups of Features<a class="headerlink" href="#feature-view-organizing-and-defining-groups-of-features" title="Permalink to this heading">¶</a></h3>
+<p>A Feature View is a central concept for declaring and managing features.</p>
+<ul class="simple">
+<li><p><strong>Definition:</strong> A logical collection of features, typically sourced from a single data source and often associated with one or more entities. It defines how Feast should interpret and access these features.</p>
+<ul>
+<li><p><strong>Online:</strong> A stateful collection read via <code class="docutils literal notranslate"><span class="pre">get_online_features</span></code>.</p></li>
+<li><p><strong>Offline:</strong> A stateless collection created via <code class="docutils literal notranslate"><span class="pre">get_historical_features</span></code>.</p></li>
+</ul>
+</li>
+<li><p><strong>Key Components:</strong></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code>: Unique identifier within the project.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">entities</span></code>: A list of <code class="docutils literal notranslate"><span class="pre">Entity</span></code> objects this view is associated with (can be empty for global features).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">schema</span></code>: A list of <code class="docutils literal notranslate"><span class="pre">Field</span></code> objects defining the features in this view (name and data type). Optional, but highly recommended; if omitted, Feast infers it.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">source</span></code>: The <code class="docutils literal notranslate"><span class="pre">DataSource</span></code> (batch, stream, or request) from which these features originate.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ttl</span></code> (Time-To-Live): Optional; limits how far back Feast looks for feature values during historical retrieval and can influence online store retention.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tags</span></code>: Optional metadata (e.g., <code class="docutils literal notranslate"><span class="pre">{'owner':</span> <span class="pre">'fraud_team'}</span></code>).</p></li>
+</ul>
+</li>
+<li><p><strong>Important Note:</strong> Feature views require timestamped data. A workaround for non-timestamped data is to insert dummy timestamps.</p></li>
+<li><p><strong>Usage:</strong></p>
+<ul>
+<li><p>Generating training datasets.</p></li>
+<li><p>Defining the schema for loading features into the online store.</p></li>
+<li><p>Providing schema for retrieving features from the online store.</p></li>
+</ul>
+</li>
+<li><p><strong>Feature Inferencing:</strong> If <code class="docutils literal notranslate"><span class="pre">schema</span></code> is not provided, Feast infers features from the data source columns (excluding entity join keys and timestamp columns).</p></li>
+<li><p><strong>Entity Aliasing:</strong> Allows joining an <code class="docutils literal notranslate"><span class="pre">entity_dataframe</span></code> (used in <code class="docutils literal notranslate"><span class="pre">get_historical_features</span></code>) to a Feature View when the column names in the <code class="docutils literal notranslate"><span class="pre">entity_dataframe</span></code> don’t match the Feature View’s entity <code class="docutils literal notranslate"><span class="pre">join_keys</span></code>. This is done dynamically using <code class="docutils literal notranslate"><span class="pre">.with_name(&quot;new_fv_name&quot;).with_join_key_map({&quot;feature_view_join_key&quot;:</span> <span class="pre">&quot;entity_df_column_name&quot;})</span></code>.</p>
+<ul>
+<li><p>Useful when you don’t control source column names or have multiple specialized entities that are subtypes of a general entity (e.g., “origin_location” and “destination_location” both aliasing a “location” entity).</p></li>
+</ul>
+</li>
+<li><p><strong>Field (Feature):</strong></p>
+<ul>
+<li><p><strong>Definition:</strong> An individual, measurable property or characteristic, typically observed on an entity. Defined with a <code class="docutils literal notranslate"><span class="pre">name</span></code> and <code class="docutils literal notranslate"><span class="pre">dtype</span></code> (e.g., <code class="docutils literal notranslate"><span class="pre">Float32</span></code>, <code class="docutils literal notranslate"><span class="pre">Int64</span></code>).</p></li>
+<li><p>Fields are defined within a Feature View’s <code class="docutils literal notranslate"><span class="pre">schema</span></code>.</p></li>
+<li><p>Feature names must be unique within a Feature View.</p></li>
+<li><p>Can have <code class="docutils literal notranslate"><span class="pre">tags</span></code> for additional metadata.</p></li>
+</ul>
+</li>
+<li><p><strong>Types of Feature Views:</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Standard Feature View:</strong> The most common type, typically backed by a batch data source.</p></li>
+<li><p><strong>[Alpha] On-Demand Feature View (<code class="docutils literal notranslate"><span class="pre">on_demand_feature_view</span></code>):</strong></p>
+<ul>
+<li><p>Allows defining new features by applying Python transformations to:</p>
+<ul>
+<li><p>Existing features from other Feature Views.</p></li>
+<li><p>Request-time data (via <code class="docutils literal notranslate"><span class="pre">RequestSource</span></code>).</p></li>
+</ul>
+</li>
+<li><p>Transformations are executed as Python code (often Pandas DataFrames) during both historical and online retrieval.</p></li>
+<li><p><strong>Scalability:</strong> Fine for online serving (small data). For historical retrieval on large datasets, local Python execution might not scale well.</p></li>
+<li><p><strong>Use Case:</strong> Rapid iteration by data scientists, light-weight transformations, combining diverse data sources at request time.</p></li>
+</ul>
+</li>
+<li><p><strong>[Alpha] Stream Feature View (<code class="docutils literal notranslate"><span class="pre">stream_feature_view</span></code>):</strong></p>
+<ul>
+<li><p>Extends a normal Feature View by having both a stream source (e.g., Kafka, Kinesis) and a batch source (for backfills/historical data).</p></li>
+<li><p>Designed for features that need to be updated with very low latency from streaming events.</p></li>
+<li><p>Can include transformations (e.g., Spark transformations if <code class="docutils literal notranslate"><span class="pre">mode=&quot;spark&quot;</span></code>).</p></li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+</section>
+<section id="feature-retrieval-accessing-your-features">
+<h3>5. Feature Retrieval: Accessing Your Features<a class="headerlink" href="#feature-retrieval-accessing-your-features" title="Permalink to this heading">¶</a></h3>
+<p>Feast provides APIs to get feature values for different ML lifecycle stages.</p>
+<ul>
+<li><p><strong>Core APIs:</strong></p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">feature_store.get_historical_features(...)</span></code>: For training data generation and offline batch scoring. Performs point-in-time correct joins.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">feature_store.get_online_features(...)</span></code>: For real-time model predictions from the online store.</p></li>
+<li><p>Feature Server Endpoints (e.g., <code class="docutils literal notranslate"><span class="pre">POST</span> <span class="pre">/get-online-features</span></code>): For language-agnostic online feature retrieval.</p></li>
+</ol>
+</li>
+<li><p><strong>Key Inputs for Retrieval:</strong></p>
+<ul>
+<li><p><strong>Feature Specification:</strong></p>
+<ul>
+<li><p><strong>Feature Service (Recommended for production):</strong> A logical group of features (potentially from multiple Feature Views) required by a specific model or model version. You define it once and reference it by name.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">driver_stats_fs</span> <span class="o">=</span> <span class="n">FeatureService</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;driver_activity_v1&quot;</span><span class="p">,</span>
+    <span class="n">features</span><span class="o">=</span><span class="p">[</span><span class="n">driver_stats_fv</span><span class="p">,</span> <span class="n">driver_ratings_fv</span><span class="p">[[</span><span class="s2">&quot;lifetime_rating&quot;</span><span class="p">]]]</span>
+<span class="p">)</span>
+<span class="n">features</span> <span class="o">=</span> <span class="n">store</span><span class="o">.</span><span class="n">get_online_features</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="n">driver_stats_fs</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Feature References (Good for experimentation):</strong> A list of strings in the format <code class="docutils literal notranslate"><span class="pre">&lt;feature_view_name&gt;:&lt;feature_name&gt;</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">features</span> <span class="o">=</span> <span class="n">store</span><span class="o">.</span><span class="n">get_online_features</span><span class="p">(</span><span class="n">features</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;driver_hourly_stats:conv_rate&quot;</span><span class="p">],</span> <span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p><strong>Entity Specification:</strong></p>
+<ul class="simple">
+<li><p>For <code class="docutils literal notranslate"><span class="pre">get_historical_features</span></code>: An “entity dataframe” (Pandas DataFrame or SQL query) containing entity join key values and <strong>event timestamps</strong> for point-in-time correctness.</p></li>
+<li><p>For <code class="docutils literal notranslate"><span class="pre">get_online_features</span></code>: A list of <code class="docutils literal notranslate"><span class="pre">entity_rows</span></code> (dictionaries of entity join key values). <strong>No timestamps needed</strong> as it fetches the latest values.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Event Timestamp:</strong> The timestamp recorded in your data source indicating when a feature event occurred. Crucial for point-in-time joins.</p></li>
+<li><p><strong>Dataset (in Retrieval Context):</strong> The output of <code class="docutils literal notranslate"><span class="pre">get_historical_features</span></code>. It’s a table (e.g., Pandas DataFrame) containing the requested features joined onto the input entity dataframe.</p></li>
+</ul>
+</section>
+<section id="point-in-time-joins-ensuring-temporal-correctness">
+<h3>6. Point-in-Time Joins: Ensuring Temporal Correctness<a class="headerlink" href="#point-in-time-joins-ensuring-temporal-correctness" title="Permalink to this heading">¶</a></h3>
+<p>This is a critical capability of Feast for generating historically accurate training data, preventing data leakage.</p>
+<ul class="simple">
+<li><p><strong>How it Works:</strong> When you call <code class="docutils literal notranslate"><span class="pre">get_historical_features</span></code>, Feast uses the <code class="docutils literal notranslate"><span class="pre">event_timestamp</span></code> column in your entity dataframe. For each row in this dataframe, it looks up feature values from the specified Feature Views that were valid <em>at or before</em> that row’s <code class="docutils literal notranslate"><span class="pre">event_timestamp</span></code>, but not after.</p></li>
+<li><p><strong>TTL (Time-To-Live) Role:</strong> The <code class="docutils literal notranslate"><span class="pre">ttl</span></code> defined on a Feature View limits how far back in time Feast will search for a feature value from the given <code class="docutils literal notranslate"><span class="pre">event_timestamp</span></code>. If a feature value is older than the <code class="docutils literal notranslate"><span class="pre">ttl</span></code> relative to the <code class="docutils literal notranslate"><span class="pre">event_timestamp</span></code>, it won’t be joined.</p></li>
+<li><p><strong>Example:</strong> If your entity dataframe has an event at <code class="docutils literal notranslate"><span class="pre">2023-01-15</span> <span class="pre">10:00:00</span></code> and a Feature View has a <code class="docutils literal notranslate"><span class="pre">ttl</span></code> of <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">hours</span></code>, Feast will look for feature values for that entity between <code class="docutils literal notranslate"><span class="pre">2023-01-15</span> <span class="pre">08:00:00</span></code> and <code class="docutils literal notranslate"><span class="pre">2023-01-15</span> <span class="pre">10:00:00</span></code>.</p></li>
+</ul>
+</section>
+<section id="alpha-saved-dataset-persisting-feature-sets">
+<h3>7. [Alpha] Saved Dataset: Persisting Feature Sets<a class="headerlink" href="#alpha-saved-dataset-persisting-feature-sets" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Purpose:</strong> Allows you to save the output of <code class="docutils literal notranslate"><span class="pre">get_historical_features</span></code> (a feature dataset) for later use, such as model training, analysis, or data quality monitoring.</p></li>
+<li><p><strong>Storage:</strong></p>
+<ul>
+<li><p>Metadata about the Saved Dataset is stored in the Feast registry.</p></li>
+<li><p>The actual raw data (features, entities, timestamps) is stored in your configured offline store (e.g., a new table in BigQuery).</p></li>
+</ul>
+</li>
+<li><p><strong>Creation:</strong></p>
+<ol class="arabic simple">
+<li><p>Call <code class="docutils literal notranslate"><span class="pre">store.get_historical_features(...)</span></code> to get a retrieval job.</p></li>
+<li><p>Pass this job to <code class="docutils literal notranslate"><span class="pre">store.create_saved_dataset(from_=historical_job,</span> <span class="pre">name=&quot;my_dataset&quot;,</span> <span class="pre">storage=...)</span></code>. This triggers the job execution and persists the data.</p></li>
+</ol>
+</li>
+<li><p><strong>Planned Creation Methods:</strong> Logging request/response data during online serving or features during writes to the online store.</p></li>
+<li><p><strong>Retrieval:</strong> <code class="docutils literal notranslate"><span class="pre">dataset</span> <span class="pre">=</span> <span class="pre">store.get_saved_dataset('my_dataset_name')</span></code>, then <code class="docutils literal notranslate"><span class="pre">dataset.to_df()</span></code>.</p></li>
+</ul>
+</section>
+<section id="permission-securing-your-feature-store">
+<h3>8. Permission: Securing Your Feature Store<a class="headerlink" href="#permission-securing-your-feature-store" title="Permalink to this heading">¶</a></h3>
+<p>Feast provides a model for configuring granular access policies to its resources.</p>
+<ul class="simple">
+<li><p><strong>Scope:</strong> Permissions are defined and stored in the Feast registry.</p></li>
+<li><p><strong>Enforcement:</strong> Performed by Feast servers (online feature server, offline feature server, registry server) when requests are made through them. <em>No enforcement when using a local provider directly with the SDK.</em></p></li>
+<li><p><strong>Core Components:</strong></p>
+<ul>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">Resource</span></code>:</strong> The Feast object being secured (e.g., <code class="docutils literal notranslate"><span class="pre">FeatureView</span></code>, <code class="docutils literal notranslate"><span class="pre">DataSource</span></code>, <code class="docutils literal notranslate"><span class="pre">Project</span></code>). Assumed to have a <code class="docutils literal notranslate"><span class="pre">name</span></code> and optional <code class="docutils literal notranslate"><span class="pre">tags</span></code>.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">Action</span></code>:</strong> The operation being performed (e.g., <code class="docutils literal notranslate"><span class="pre">CREATE</span></code>, <code class="docutils literal notranslate"><span class="pre">DESCRIBE</span></code>, <code class="docutils literal notranslate"><span class="pre">UPDATE</span></code>, <code class="docutils literal notranslate"><span class="pre">DELETE</span></code>, <code class="docutils literal notranslate"><span class="pre">READ_ONLINE</span></code>, <code class="docutils literal notranslate"><span class="pre">WRITE_OFFLINE</span></code>). Aliases like <code class="docutils literal notranslate"><span class="pre">READ</span></code>, <code class="docutils literal notranslate"><span class="pre">WRITE</span></code>, <code class="docutils literal notranslate"><span class="pre">CRUD</span></code> simplify definitions.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">Policy</span></code>:</strong> The rule for authorization (e.g., <code class="docutils literal notranslate"><span class="pre">RoleBasedPolicy</span></code> which checks user roles).</p></li>
+</ul>
+</li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">Permission</span></code> Object:</strong> Defines a single permission rule with attributes:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code>: Name of the permission.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">types</span></code>: List of resource types this permission applies to (e.g., <code class="docutils literal notranslate"><span class="pre">[FeatureView,</span> <span class="pre">FeatureService]</span></code>). Aliases like <code class="docutils literal notranslate"><span class="pre">ALL_RESOURCE_TYPES</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">name_patterns</span></code>: List of regex patterns to match resource names.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">required_tags</span></code>: Dictionary of tags that must match the resource’s tags.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">actions</span></code>: List of actions authorized by this permission.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">policy</span></code>: The policy object to apply.</p></li>
+</ul>
+</li>
+<li><p><strong>Important:</strong> Resources not matching any configured <code class="docutils literal notranslate"><span class="pre">Permission</span></code> are <em>not secured</em> and are accessible by any user.</p></li>
+<li><p><strong>Configuration:</strong> Defined in the <code class="docutils literal notranslate"><span class="pre">auth</span></code> section of <code class="docutils literal notranslate"><span class="pre">feature_store.yaml</span></code>. Feast supports OIDC and Kubernetes RBAC. If <code class="docutils literal notranslate"><span class="pre">auth</span></code> is unspecified, it defaults to <code class="docutils literal notranslate"><span class="pre">no_auth</span></code> (no enforcement).</p></li>
+</ul>
+</section>
+<section id="tags-adding-metadata-to-feast-objects">
+<h3>9. Tags: Adding Metadata to Feast Objects<a class="headerlink" href="#tags-adding-metadata-to-feast-objects" title="Permalink to this heading">¶</a></h3>
+<p>While a specific <code class="docutils literal notranslate"><span class="pre">tags.md</span></code> document wasn’t provided, tags are key-value pairs used throughout Feast to add arbitrary metadata to various objects.</p>
+<ul class="simple">
+<li><p><strong>Usage:</strong></p>
+<ul>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">Field</span></code>:</strong> Each feature (field) can have tags.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">FeatureView</span></code>:</strong> Can have tags for organizational purposes.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">Permission</span></code>:</strong> Tags on resources can be used as a condition (<code class="docutils literal notranslate"><span class="pre">required_tags</span></code>) for applying a permission policy.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">SavedDataset</span></code>:</strong> Can have tags.</p></li>
+</ul>
+</li>
+<li><p><strong>Purpose:</strong></p>
+<ul>
+<li><p><strong>Organization:</strong> Grouping or categorizing resources (e.g., by team, sensitivity level, status).</p></li>
+<li><p><strong>Discovery:</strong> Helping users find relevant features or resources.</p></li>
+<li><p><strong>Policy Enforcement:</strong> As seen in <code class="docutils literal notranslate"><span class="pre">Permission</span></code>, tags can drive access control decisions.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="feast_components.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Feast Components</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="feast_architecture.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Feast Architecture: A Technical Deep Dive for MLOps</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024, Deepak Karkala
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Feast Concepts</a><ul>
+<li><a class="reference internal" href="#id1"></a><ul>
+<li><a class="reference internal" href="#project-your-isolated-feature-universe">1. Project: Your Isolated Feature Universe</a></li>
+<li><a class="reference internal" href="#data-source-data-ingestion-connecting-to-your-raw-data">2. Data Source &amp; Data Ingestion: Connecting to Your Raw Data</a></li>
+<li><a class="reference internal" href="#entity-the-subject-of-your-features">3. Entity: The “Subject” of Your Features</a></li>
+<li><a class="reference internal" href="#feature-view-organizing-and-defining-groups-of-features">4. Feature View: Organizing and Defining Groups of Features</a></li>
+<li><a class="reference internal" href="#feature-retrieval-accessing-your-features">5. Feature Retrieval: Accessing Your Features</a></li>
+<li><a class="reference internal" href="#point-in-time-joins-ensuring-temporal-correctness">6. Point-in-Time Joins: Ensuring Temporal Correctness</a></li>
+<li><a class="reference internal" href="#alpha-saved-dataset-persisting-feature-sets">7. [Alpha] Saved Dataset: Persisting Feature Sets</a></li>
+<li><a class="reference internal" href="#permission-securing-your-feature-store">8. Permission: Securing Your Feature Store</a></li>
+<li><a class="reference internal" href="#tags-adding-metadata-to-feast-objects">9. Tags: Adding Metadata to Feast Objects</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=b3ba4146"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../../_static/scripts/furo.js?v=4e2eecee"></script>
+    </body>
+</html>
