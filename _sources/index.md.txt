@@ -5,13 +5,11 @@
 :end-before: <!-- end elevator-pitch -->
 ```
 
-<!--
 ```{toctree}
 :hidden:
 
 past_experiences/index
 ```
--->
 
 <!--
 ```{toctree}
@@ -42,13 +40,17 @@ llm/index
 ```
 -->
 
-<!--
 ```{toctree}
 :hidden:
 
 genai/index
 ```
--->
+
+```{toctree}
+:hidden:
+
+agents/index
+```
 
 ```{toctree}
 :hidden:
@@ -66,13 +68,11 @@ nlp/index
 -->
 
 
-<!--
 ```{toctree}
 :hidden:
 
-ml_papers/index
+ml-paper-explorer/index
 ```
--->
 
 
 <!--
@@ -83,13 +83,11 @@ python/index
 ```
 -->
 
-<!--
 ```{toctree}
 :hidden:
 
 pytorch/index
 ```
--->
 
 <!--
 ```{toctree}
