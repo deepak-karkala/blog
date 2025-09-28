@@ -13,6 +13,13 @@ fsdp
 tensor_parallelism
 pipeline_parallelism
 device_mesh
+pytorch_internals
+gpu_architecture
+gpu_training
+deepspeed_zero
+distributed_training
+dl_training
+3d_parallelism
 ```
 
 - [PyTorch General](general.md)
