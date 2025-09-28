@@ -1,0 +1,884 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="The State of the Industry: Insights from the Field" href="ch6_case_studies.html" /><link rel="prev" title="&lt;no title&gt;" href="ch4_evals.html" />
+
+    <link rel="shortcut icon" href="../_static/favicon.ico"/><!-- Generated with Sphinx 7.1.2 and Furo 2024.05.06 -->
+        <title>Context Engineering for AI Agents - Home</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=387cc868" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=36a5483c" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/style.css?v=8a7ff5ee" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" /
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">Home</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  
+  <span class="sidebar-brand-text">Home</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../past_experiences/index.html">Past Experiences</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Past Experiences</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../past_experiences/iot_anomaly.html">Anomaly Detection in Time Series IoT Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../past_experiences/iot_forecasting.html">Energy Demand Forecasting in Time Series IoT Data</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../past_experiences/adas_engine/index.html">ADAS: Data Engine</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of ADAS: Data Engine</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch0_business_challenge.html">Business Challenge and Goals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch1_ml_problem_framing.html">ML Problem Framing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch2_operational_strategy.html">Planning, Operational Strategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch3_pipelines_workflows.html">Workflows, Team, Roles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch4_testing_strategy.html">Testing Strategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch6_data_ingestion_workflows.html">Data Ingestion Workflows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch7_scene_understanding_data_mining.html">Scene Understanding &amp; Data Mining</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch8_model_training.html">Model Training &amp; Experimentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch9_packaging_promotion.html">Packaging, Evaluation &amp; Promotion Workflows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch10_deployment_serving.html">Deployment &amp; Serving</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch11_monitoring_continual_learning.html">Monitoring &amp; Continual Learning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch12_cost_lifecycle_compliance.html">Cost, Lifecycle, Compliance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch13_reliability_capacity_maps.html">Reliability, Capacity, Maps</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../projects/index.html">Projects</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Projects</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../projects/nlp/index.html">Natural Language Processing</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of Natural Language Processing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/airbnb_alternate_search/about/index.html">Airbnb Listing description based Semantic Search</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../projects/cv/index.html">Computer Vision</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of Computer Vision</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/ecommerce_image_segmentation/about/index.html">Image Segmentation for Ecommerce Products</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../projects/ml/index.html">Machine Learning</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of Machine Learning</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/airbnb_price_modeling/about/index.html">Predictive Price Modeling for Airbnb listings</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../publications/index.html">Patents, Papers, Thesis</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">AI Agents: A Lead Engineer’s Handbook</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of AI Agents: A Lead Engineer’s Handbook</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="ch1_intro.html">Agent Fundamentals: What, Why, and When?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch2_patterns.html">Agentic Patterns</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Context Engineering for AI Agents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch6_case_studies.html">The State of the Industry: Insights from the Field</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch7_conclusion.html"><strong>Conclusion: The Lead Engineer’s Mental Model for Building Agents</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_cost.html">Cost Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_data.html">Data Management and Knowledge Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_deploy.html">Deployment and Scaling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_guardrails.html">Guardrails</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_hitl.html">Human-in-the-Loop (HITL)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_latency.html">Latency Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_llm.html">LLM – Prompts, Goals, and Persona</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_memory.html">Managing Agent Memory (Short-Term and Long-Term)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_monitor.html">Monitoring and Observability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_orchestration.html">Orchestration and Task Decomposition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_prod.html">Production Challenges and Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_security.html">Securing AI Agents and Preventing Abuse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_tool.html">Tool Use and Integration Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_trust.html">Building Trustworthy and Ethical AI Agents</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../mlops/index.html">MLOps</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of MLOps</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../mlops/ch1_problem_framing.html">ML Problem framing</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of ML Problem framing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../mlops/ch2_blueprint_operational_strategy.html">The MLOps Blueprint &amp; Operational Strategy</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../mlops/ch2a_platform/index.html">ML Platforms</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle navigation of ML Platforms</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch2a_platform/ml_platforms.html">ML Platforms: How to</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch2a_platform/uber.html">Uber Michelangelo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch2a_platform/linkedin.html">LinkedIn DARWIN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch2a_platform/netflix.html">Netflix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch2a_platform/shopify.html">Shopify Merlin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch2a_platform/zomato.html">Zomato: Real-time ML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch2a_platform/coveo.html">Coveo: MLOPs at reasonable scale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch2a_platform/monzo.html">Monzo ML Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch2a_platform/didact.html">Didact AI</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../mlops/ch3_project_planning/index.html">Project Planning</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" role="switch" type="checkbox"/><label for="toctree-checkbox-11"><div class="visually-hidden">Toggle navigation of Project Planning</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch3_project_planning/prd.html">Project Requirements Document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch3_project_planning/tech_stack.html">Tech Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch3_project_planning/config_management.html">Config Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch3_project_planning/pipeline_design.html">Pipeline Design</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch3_project_planning/environment_strategy.html">Environment Strategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch3_project_planning/cicd_branching_model.html">CI/CD Strategy and Branching Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch3_project_planning/directory_structure.html">Directory Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch3_project_planning/env_branchind_cicd_deployment.html">Environments, Branching, CI/CD, and Deployments Explained</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch3_project_planning/project_management.html">Project Management for MLOps</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../mlops/ch4_data_discovery/index.html">Data Sourcing, Discovery</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" role="switch" type="checkbox"/><label for="toctree-checkbox-12"><div class="visually-hidden">Toggle navigation of Data Sourcing, Discovery</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch4_data_discovery/data_sourcing_discovery.html">Data Sourcing, Discovery &amp; Understanding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch4_data_discovery/ch4_project.html">Project-Trending Now: Implementing Web Scraping, Ingestion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch4_data_discovery/industry_case_studies.html">Data Discovery Platforms: Industry Case Studies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch4_data_discovery/facebook_nemo.html">Facebook: Nemo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch4_data_discovery/netflix_metacat.html">Netflix Metacat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch4_data_discovery/uber_databook.html">Uber Databook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch4_data_discovery/linkedin_datahub.html">LinkedIn Datahub</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../mlops/ch7_model_development/index.html">Model Development, Tuning, Selection, Ensembles, Calibration</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" role="switch" type="checkbox"/><label for="toctree-checkbox-13"><div class="visually-hidden">Toggle navigation of Model Development, Tuning, Selection, Ensembles, Calibration</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch7_model_development/ch7_model_development.html">Chapter 7: Model Development</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch7_model_development/dl_training_playbook.html">How to train DL Models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch7_model_development/development.html">Model Development</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch7_model_development/industry_lessons.html">Model Development: Lessons from production systems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch7_model_development/ensembles.html"><strong>Model Ensembles</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch7_model_development/selection.html">Model Selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch7_model_development/tuning_hypopt.html">Hyperparameter Optimization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch7_model_development/expt_tracking.html">ML Expt tracking, Data Lineage, Model Registry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch7_model_development/calibration.html">Model Calibration</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../mlops/ch10_deployment_serving/index.html">Model Deployment &amp; Serving</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" role="switch" type="checkbox"/><label for="toctree-checkbox-14"><div class="visually-hidden">Toggle navigation of Model Deployment &amp; Serving</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch10_deployment_serving/ch10_deployment_serving.html">Chapter 10: Deployment &amp; Serving</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch10_deployment_serving/guide_deployment_serving.html">Guide: Model Deployment &amp; Serving</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch10_deployment_serving/guide_inference_stack.html">Deep Dive: Inference Stack</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../mlops/ch11_monitor_observe_drift/index.html">Monitoring, Observability, Drift, Interpretability</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" role="switch" type="checkbox"/><label for="toctree-checkbox-15"><div class="visually-hidden">Toggle navigation of Monitoring, Observability, Drift, Interpretability</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch11_monitor_observe_drift/ch11_monitor_observe_drift.html">Chapter 11: Monitoring, Observability, Drifts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch11_monitor_observe_drift/guide_monitor_observe_drift.html">Guide: ML System Failures, Data Distribution Shifts, Monitoring, and Observability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch11_monitor_observe_drift/guide_interpretability_shap_lime.html">Interpretability, SHAP, LIME</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch11_monitor_observe_drift/guide_stack.html">Prometheus + Grafana and ELK Stacks</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../mlops/ch12_retrain_online_testing/index.html">Continual learning, Retraining, A/B Testing</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" role="switch" type="checkbox"/><label for="toctree-checkbox-16"><div class="visually-hidden">Toggle navigation of Continual learning, Retraining, A/B Testing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch12_retrain_online_testing/ch12_continual_learning_prod_testing.html">Chapter 12: Continual Learning &amp; Production Testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch12_retrain_online_testing/guide_continual_learning.html">Continual Learning &amp; Model Retraining</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch12_retrain_online_testing/guide_ab_testing.html">A/B Testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch12_retrain_online_testing/guide_ab_testing_industry_lessons.html">A/B Testing &amp; Experimentation: Industry lessons</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch12_retrain_online_testing/guide_prod_testing_expt.html">Guide: Production Testing &amp; Experimentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch12_retrain_online_testing/dr_prod_testing_expt.html">Deep Research: Production Testing &amp; Experimentation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../pytorch/index.html">PyTorch</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" role="switch" type="checkbox"/><label for="toctree-checkbox-17"><div class="visually-hidden">Toggle navigation of PyTorch</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/general.html">General</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/state_dict.html">state_dict</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/mixed_precision.html">Mixed Precision</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/distributed_data_parallel.html">Distributed Data Parallel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/ddp_under_the_hood.html">DDP: Under the Hood</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/dp_ddp.html">DP vs DDP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/fsdp.html">FSDP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/tensor_parallelism.html">Tensor parallelism</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/pipeline_parallelism.html">Pipeline Parallelism</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/device_mesh.html">Device Mesh</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../lld/index.html">Low Level Design</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" role="switch" type="checkbox"/><label for="toctree-checkbox-18"><div class="visually-hidden">Toggle navigation of Low Level Design</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lld/parking_lot.html">Parking Lot</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../visualization/index.html">Data Visualization Projects</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="../_sources/agents/ch5_context_engineering.md.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="context-engineering-for-ai-agents">
+<h1>Context Engineering for AI Agents<a class="headerlink" href="#context-engineering-for-ai-agents" title="Permalink to this heading">¶</a></h1>
+<section id="introduction-the-paradigm-shift-to-context-engineering">
+<h2>1. Introduction: The Paradigm Shift to Context Engineering<a class="headerlink" href="#introduction-the-paradigm-shift-to-context-engineering" title="Permalink to this heading">¶</a></h2>
+<p>In the rapidly evolving landscape of AI, the focus for building effective applications has shifted. While “prompt engineering” concentrated on crafting optimal textual instructions, “context engineering” represents a more profound and systemic approach. As Andrej Karpathy aptly puts it, LLMs function as a new operating system, with their context window serving as the RAM—the model’s working memory. Context engineering is the “delicate art and science of filling the context window with just the right information for the next step”.</p>
+<p>This shift is critical because, as agents become more sophisticated and engage in long-running, multi-step tasks, the quality and relevance of the information presented to the LLM directly determine its success or failure. Most agent failures are not model failures, but rather <strong>context failures</strong>.</p>
+<section id="prompt-engineering-vs-context-engineering">
+<h3>1.1 Prompt Engineering vs. Context Engineering<a class="headerlink" href="#prompt-engineering-vs-context-engineering" title="Permalink to this heading">¶</a></h3>
+<p>The distinction is more than semantic:</p>
+<ul class="simple">
+<li><p><strong>Prompt Engineering:</strong></p>
+<ul>
+<li><p>Focuses on clever wording and specific phrasing within a single text string.</p></li>
+<li><p>Limited to how a task is phrased.</p></li>
+<li><p>Analogous to giving someone a sticky note with brief instructions.</p></li>
+</ul>
+</li>
+<li><p><strong>Context Engineering:</strong></p>
+<ul>
+<li><p>A complete, dynamic system for providing comprehensive, curated context.</p></li>
+<li><p>Includes documentation, examples, rules, patterns, validation, and real-time data.</p></li>
+<li><p>Analogous to providing a full screenplay with all character backstories, scene settings, and props.</p></li>
+<li><p>It’s a discipline of designing and building dynamic systems that provide the right information and tools, in the right format, at the right time, to give an LLM everything it needs to accomplish a task.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="why-context-engineering-matters-for-ai-agents">
+<h3>1.2 Why Context Engineering Matters for AI Agents<a class="headerlink" href="#why-context-engineering-matters-for-ai-agents" title="Permalink to this heading">¶</a></h3>
+<p>For CTOs and Tech Leads, understanding the significance of context engineering is paramount:</p>
+<ul class="simple">
+<li><p><strong>Reduces AI Failures:</strong> By mitigating “context failures,” it directly enhances the reliability and predictability of agent behavior.</p></li>
+<li><p><strong>Ensures Consistency:</strong> Agents adhere to project patterns, conventions, and desired operational standards.</p></li>
+<li><p><strong>Enables Complex Features:</strong> Proper context allows agents to handle intricate, multi-step implementations that would otherwise be intractable.</p></li>
+<li><p><strong>Boosts Performance &amp; Reduces Cost:</strong> Efficient context management prevents exceeding context window limits, reduces token usage (and thus cost), and minimizes latency.</p></li>
+<li><p><strong>Facilitates Self-Correction:</strong> Incorporating validation loops and feedback mechanisms allows agents to identify and rectify their own mistakes.</p></li>
+<li><p><strong>Transforms “Cheap Demos” into “Magical Products”:</strong> The difference between a rudimentary AI assistant and a truly effective one often lies in the quality and richness of the context provided. A “magical agent” is powered by a robust context engineering system that gathers all necessary information before an LLM call, enabling nuanced and highly relevant responses.</p></li>
+</ul>
+</section>
+</section>
+<section id="the-components-of-context">
+<h2>2. The Components of Context<a class="headerlink" href="#the-components-of-context" title="Permalink to this heading">¶</a></h2>
+<p>To engineer context effectively, one must first understand its constituent elements. Context is not a monolithic entity but a composite of various data types that the LLM processes.</p>
+<p>Key components of context include:</p>
+<ul class="simple">
+<li><p><strong>Instructions / System Prompt:</strong> Defines the agent’s persona, its goals, constraints, and operational rules. It sets the scene and includes examples or meta-instructions.</p></li>
+<li><p><strong>User Input / Prompt:</strong> The immediate task, question, or request from the user.</p></li>
+<li><p><strong>Short-Term Memory / Chat History:</strong> The ongoing conversation thread, including previous user queries and the agent’s responses. This provides conversational continuity.</p></li>
+<li><p><strong>Long-Term Memory:</strong> Persistent knowledge base accumulated across multiple sessions or over time. This can include user preferences, summaries of past projects, facts the agent was told to remember (semantic, episodic, procedural memories).</p></li>
+<li><p><strong>Retrieved Information (RAG):</strong> External, up-to-date knowledge fetched from databases, documents, APIs, or other knowledge bases. This augments the LLM’s internal knowledge.</p></li>
+<li><p><strong>Available Tools &amp; Their Definitions:</strong> Descriptions of the functions or external capabilities the agent can invoke (e.g., <code class="docutils literal notranslate"><span class="pre">check_inventory</span></code>, <code class="docutils literal notranslate"><span class="pre">send_email</span></code>, <code class="docutils literal notranslate"><span class="pre">browser_search</span></code>).</p></li>
+<li><p><strong>Responses from Tools:</strong> The feedback or results obtained from executing tool calls, which become new context for the agent’s next decision.</p></li>
+<li><p><strong>Structured Outputs:</strong> Definitions on the desired format of the model’s response (e.g., a JSON schema), or condensed, structured information provided <em>to</em> the LLM as context for specific tasks.</p></li>
+<li><p><strong>Global State / Workflow Context:</strong> A “scratchpad” or shared state object that stores and retrieves global information across agent steps, enabling the agent to maintain and pass relevant data without explicit LLM serialization.</p></li>
+</ul>
+</section>
+<section id="core-pillars-of-context-engineering">
+<h2>3. Core Pillars of Context Engineering<a class="headerlink" href="#core-pillars-of-context-engineering" title="Permalink to this heading">¶</a></h2>
+<p>Effective context engineering can be systematically broken down into four core pillars: <strong>Write, Select, Compress, and Isolate</strong>. These strategies address the challenges of managing finite context windows, reducing costs, and improving agent performance.</p>
+<section id="write-context-saving-information-outside-the-context-window">
+<h3>3.1 Write Context: Saving Information Outside the Context Window<a class="headerlink" href="#write-context-saving-information-outside-the-context-window" title="Permalink to this heading">¶</a></h3>
+<p>Writing context involves persisting information for future use by the agent, ensuring it’s available when needed without constantly consuming precious context window space.</p>
+<ul class="simple">
+<li><p><strong>Scratchpads:</strong></p>
+<ul>
+<li><p><strong>Concept:</strong> Like human note-taking, scratchpads allow agents to save intermediate thoughts, plans, or critical observations during a task.</p></li>
+<li><p><strong>Implementation:</strong> Can be implemented as tool calls that write to a file system (e.g., <code class="docutils literal notranslate"><span class="pre">write_to_file</span></code> tool), or as fields within a runtime state object that persists across steps in a session.</p></li>
+<li><p><strong>Example:</strong> Anthropic’s LeadResearcher saves its plan to “Memory” to retain context, especially if the context window limit is approached, preventing truncation. Manus.im’s agents often create and update a <code class="docutils literal notranslate"><span class="pre">todo.md</span></code> file, using the file system as an externalized scratchpad.</p></li>
+</ul>
+</li>
+<li><p><strong>Memories:</strong></p>
+<ul>
+<li><p><strong>Concept:</strong> Extends scratchpads to persist information across <em>many</em> sessions, enabling long-term learning and personalized interactions.</p></li>
+<li><p><strong>Types:</strong></p>
+<ul>
+<li><p><strong>Episodic Memories:</strong> Few-shot examples of desired behavior.</p></li>
+<li><p><strong>Procedural Memories:</strong> Instructions or rules to steer behavior.</p></li>
+<li><p><strong>Semantic Memories:</strong> Facts or general knowledge relevant to tasks.</p></li>
+</ul>
+</li>
+<li><p><strong>Examples:</strong></p>
+<ul>
+<li><p><strong>Reflexion:</strong> Introduces self-generated reflections (memories) following each agent turn.</p></li>
+<li><p><strong>Generative Agents:</strong> Synthesize memories periodically from past agent feedback.</p></li>
+<li><p><strong>Products:</strong> ChatGPT, Cursor, and Windsurf auto-generate long-term memories based on user-agent interactions.</p></li>
+</ul>
+</li>
+<li><p><strong>LLM Role:</strong> An LLM can be used to summarize, update, or create new memories from interaction history.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="select-context-pulling-relevant-information-into-the-context-window">
+<h3>3.2 Select Context: Pulling Relevant Information into the Context Window<a class="headerlink" href="#select-context-pulling-relevant-information-into-the-context-window" title="Permalink to this heading">¶</a></h3>
+<p>Selecting context is the art of retrieving and injecting <em>only</em> the most pertinent information into the LLM’s context window for the current step.</p>
+<ul class="simple">
+<li><p><strong>Scratchpad Selection:</strong></p>
+<ul>
+<li><p><strong>Mechanism:</strong> If implemented as a tool, the agent explicitly calls to read it. If part of runtime state, the developer controls which state fields are exposed to the LLM at each step, offering fine-grained control.</p></li>
+</ul>
+</li>
+<li><p><strong>Memory Selection:</strong></p>
+<ul>
+<li><p><strong>Challenge:</strong> Ensuring that <em>relevant</em> memories are selected, especially from large collections.</p></li>
+<li><p><strong>Approaches:</strong></p>
+<ul>
+<li><p><strong>Static Files:</strong> Many code agents use specific files (e.g., <code class="docutils literal notranslate"><span class="pre">CLAUDE.md</span></code>, Cursor/Windsurf rules files) that are <em>always</em> pulled into context for instructions or examples.</p></li>
+<li><p><strong>Embeddings &amp; Knowledge Graphs:</strong> For larger collections of semantic memories (e.g., ChatGPT’s user-specific memories), vector embeddings and knowledge graphs are commonly used for indexing and retrieval.</p></li>
+<li><p><strong>Challenges:</strong> Memory selection can go wrong (e.g., ChatGPT injecting location into an image request), leading to user dissatisfaction or unexpected behavior.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Tool Selection:</strong></p>
+<ul>
+<li><p><strong>Challenge:</strong> Providing too many tools can overload the agent, leading to confusion due to overlapping descriptions or inefficient paths.</p></li>
+<li><p><strong>Approach:</strong> Apply Retrieval Augmented Generation (RAG) to tool descriptions to fetch only the most relevant tools for a given task based on semantic similarity. Recent research shows this can significantly improve tool selection accuracy.</p></li>
+<li><p><strong>Manus.im’s “Mask, Don’t Remove”:</strong> Instead of dynamically adding/removing tools (which invalidates KV-cache and confuses the model), Manus uses a context-aware state machine to <em>mask</em> token logits during decoding. This prevents selection of certain actions (or enforces others) without modifying tool definitions, preserving cache and avoiding schema violations. Consistent tool name prefixes (e.g., <code class="docutils literal notranslate"><span class="pre">browser_</span></code>, <code class="docutils literal notranslate"><span class="pre">shell_</span></code>) facilitate this.</p></li>
+</ul>
+</li>
+<li><p><strong>Knowledge (RAG):</strong></p>
+<ul>
+<li><p><strong>Concept:</strong> A central context engineering challenge, particularly in code agents.</p></li>
+<li><p><strong>Advanced RAG:</strong> Beyond simple embedding search, techniques like AST parsing for code chunking, grep/file search, knowledge graph retrieval, and re-ranking steps are crucial for effective knowledge retrieval in complex codebases.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="compressing-context-retaining-only-essential-tokens">
+<h3>3.3 Compressing Context: Retaining Only Essential Tokens<a class="headerlink" href="#compressing-context-retaining-only-essential-tokens" title="Permalink to this heading">¶</a></h3>
+<p>Compressing context involves reducing the volume of information within the context window while preserving its essential meaning, directly impacting cost, latency, and performance.</p>
+<ul class="simple">
+<li><p><strong>Context Summarization:</strong></p>
+<ul>
+<li><p><strong>Concept:</strong> Uses an LLM to distill the most relevant pieces of context from long agent trajectories or token-heavy tool outputs.</p></li>
+<li><p><strong>Strategies:</strong> Recursive or hierarchical summarization can be applied across hundreds of agent turns.</p></li>
+<li><p><strong>Examples:</strong> Claude Code uses “auto-compact” to summarize full user-agent interactions when approaching context window limits. Summarization can also be applied to post-process specific tool calls (e.g., search results) or at agent-agent boundaries in multi-agent systems (Cognition uses fine-tuned models for this).</p></li>
+<li><p><strong>Challenge:</strong> Ensuring that specific critical events or decisions are captured, as overly aggressive compression can lead to information loss.</p></li>
+</ul>
+</li>
+<li><p><strong>Context Trimming:</strong></p>
+<ul>
+<li><p><strong>Concept:</strong> Filters or “prunes” context based on hard-coded heuristics or trained models.</p></li>
+<li><p><strong>Strategies:</strong> Removing older messages from a list (e.g., in short-term chat history).</p></li>
+<li><p><strong>Examples:</strong> Provence: a trained context pruner for Question-Answering.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="isolating-context-splitting-up-context-for-focused-processing">
+<h3>3.4 Isolating Context: Splitting Up Context for Focused Processing<a class="headerlink" href="#isolating-context-splitting-up-context-for-focused-processing" title="Permalink to this heading">¶</a></h3>
+<p>Isolating context involves partitioning information strategically, allowing different parts of the agent system or different agents to focus on specific, manageable subsets of context.</p>
+<ul class="simple">
+<li><p><strong>Multi-Agent Architectures:</strong></p>
+<ul>
+<li><p><strong>Concept:</strong> Splits a complex task into sub-tasks, with each sub-agent handling a specific concern, equipped with its own tools, instructions, and isolated context window.</p></li>
+<li><p><strong>Motivation:</strong> Separation of concerns, enabling each sub-agent to operate with a narrower, optimized context, often outperforming single, monolithic agents.</p></li>
+<li><p><strong>Examples:</strong> OpenAI’s Swarm library, Anthropic’s multi-agent researcher system (reporting sub-agents operating in parallel with their own context windows).</p></li>
+<li><p><strong>Challenges:</strong> Increased token use (Anthropic reported up to 15x more tokens), requires careful prompt engineering for planning and coordination between sub-agents.</p></li>
+</ul>
+</li>
+<li><p><strong>Context Isolation with Environments (Sandboxing):</strong></p>
+<ul>
+<li><p><strong>Concept:</strong> Executes tool calls in a sandboxed environment, isolating token-heavy objects or complex operations from the main LLM context. Only selected return values or summarized observations are passed back.</p></li>
+<li><p><strong>Examples:</strong> HuggingFace’s CodeAgent outputs code that runs in a sandbox (e.g., E2B), returning only relevant results. This is particularly useful for managing large outputs like images, audio, or large datasets.</p></li>
+</ul>
+</li>
+<li><p><strong>State Objects / Schemas:</strong></p>
+<ul>
+<li><p><strong>Concept:</strong> An agent’s runtime state object, defined with a schema (e.g., Pydantic model), can isolate context. One field (e.g., <code class="docutils literal notranslate"><span class="pre">messages</span></code>) might be exposed to the LLM, while other fields store information for more selective use by specific nodes or logic.</p></li>
+<li><p><strong>Function:</strong> Serves a similar purpose to sandboxing, keeping data separate from the LLM until explicitly required.</p></li>
+<li><p><strong>Example:</strong> LangGraph’s state object with a schema allows developers to store context from tool calls in specific fields, exposing it only when relevant to the LLM.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="addressing-context-failures-and-robustness">
+<h2>4. Addressing Context Failures and Robustness<a class="headerlink" href="#addressing-context-failures-and-robustness" title="Permalink to this heading">¶</a></h2>
+<p><a class="reference external" href="https://www.dbreunig.com/2025/06/22/how-contexts-fail-and-how-to-fix-them.html">Drew Breunig highlighted specific ways longer contexts can lead to performance problems</a>, which context engineering aims to mitigate:</p>
+<ul class="simple">
+<li><p><strong>Context Poisoning:</strong> When a hallucination or incorrect piece of information makes its way into the context, leading the agent astray.</p>
+<ul>
+<li><p><strong>Mitigation:</strong> Rigorous validation of tool outputs, prompt engineering to encourage self-correction, and maintaining “clean AI context” through careful context management.</p></li>
+</ul>
+</li>
+<li><p><strong>Context Distraction:</strong> When excessive or irrelevant context overwhelms the LLM, causing it to lose focus or perform sub-optimally.</p>
+<ul>
+<li><p><strong>Mitigation:</strong> Aggressive selection and compression strategies, multi-agent decomposition to narrow focus, and active attention manipulation (recitation).</p></li>
+</ul>
+</li>
+<li><p><strong>Context Confusion:</strong> When superfluous context influences the response in unintended ways.</p>
+<ul>
+<li><p><strong>Mitigation:</strong> Precise context selection, trimming, and isolation.</p></li>
+</ul>
+</li>
+<li><p><strong>Context Clash:</strong> When different parts of the context disagree, leading to ambiguous instructions or conflicting information.</p>
+<ul>
+<li><p><strong>Mitigation:</strong> Clear hierarchy for context sources, conflict resolution mechanisms (e.g., explicit rules in <code class="docutils literal notranslate"><span class="pre">CLAUDE.md</span></code>), and validation steps.</p></li>
+</ul>
+</li>
+</ul>
+<section id="lessons-from-building-manus-operationalizing-context-engineering">
+<h3>4.1 Lessons from Building Manus: Operationalizing Context Engineering<a class="headerlink" href="#lessons-from-building-manus-operationalizing-context-engineering" title="Permalink to this heading">¶</a></h3>
+<p>Manus.im’s experience provides deep insights into the practical challenges and solutions in context engineering:</p>
+<ul class="simple">
+<li><p><strong>Design Around the KV-Cache:</strong></p>
+<ul>
+<li><p><strong>Priority:</strong> KV-cache hit rate is the single most important metric for latency and cost in production agents (e.g., 10x cost difference on Claude Sonnet for cached vs. uncached tokens).</p></li>
+<li><p><strong>Practices:</strong></p>
+<ul>
+<li><p><strong>Stable Prompt Prefix:</strong> Even a single token difference invalidates the cache from that point. Avoid dynamic elements like precise timestamps at the beginning of system prompts.</p></li>
+<li><p><strong>Append-Only Context:</strong> Avoid modifying previous actions/observations. Ensure deterministic serialization (e.g., JSON key ordering) to maintain prefix consistency.</p></li>
+<li><p><strong>Explicit Cache Breakpoints:</strong> Mark these manually in contexts for frameworks that don’t auto-support incremental prefix caching, especially at the end of the system prompt.</p></li>
+<li><p><strong>Infrastructure:</strong> Ensure prefix caching is enabled in self-hosted models (e.g., <code class="docutils literal notranslate"><span class="pre">vLLM</span></code>) and use session IDs for consistent routing.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Mask, Don’t Remove (Tool Selection):</strong></p>
+<ul>
+<li><p><strong>Problem:</strong> Dynamically adding/removing tools invalidates KV-cache and confuses the model (schema violations, hallucinated actions).</p></li>
+<li><p><strong>Solution:</strong> Use context-aware state machines to <em>mask</em> token logits during decoding, preventing/enforcing tool selection based on the current state. Most providers support “response prefill” for function calling (<code class="docutils literal notranslate"><span class="pre">Auto</span></code>, <code class="docutils literal notranslate"><span class="pre">Required</span></code>, <code class="docutils literal notranslate"><span class="pre">Specified</span></code> modes). Consistent action name prefixes (e.g., <code class="docutils literal notranslate"><span class="pre">browser_</span></code>, <code class="docutils literal notranslate"><span class="pre">shell_</span></code>) facilitate this without stateful logits processors.</p></li>
+</ul>
+</li>
+<li><p><strong>Use the File System as Context:</strong></p>
+<ul>
+<li><p><strong>Problem:</strong> LLM context windows, even large ones (128K+), are often insufficient for real-world agentic scenarios (huge observations, performance degradation, high cost). Irreversible compression risks information loss.</p></li>
+<li><p><strong>Solution:</strong> Treat the file system as the ultimate context—unlimited, persistent, and directly operable by the agent. The agent learns to read/write files on demand, using it as externalized memory.</p></li>
+<li><p><strong>Restorable Compression:</strong> Content can be dropped from context if a pointer (e.g., URL for webpage, file path for document) is preserved, allowing later retrieval.</p></li>
+<li><p><strong>Future Vision:</strong> This approach is seen as crucial for enabling State Space Models (SSMs) in agentic settings by externalizing long-term state.</p></li>
+</ul>
+</li>
+<li><p><strong>Manipulate Attention Through Recitation:</strong></p>
+<ul>
+<li><p><strong>Problem:</strong> Agents can drift off-topic or forget goals in long loops/contexts (“lost-in-the-middle”).</p></li>
+<li><p><strong>Solution:</strong> Constantly rewrite and update a global plan or <code class="docutils literal notranslate"><span class="pre">todo</span></code> list at the end of the context. This “recites” objectives into the model’s recent attention span, biasing its focus toward the task.</p></li>
+</ul>
+</li>
+<li><p><strong>Keep the Wrong Stuff In:</strong></p>
+<ul>
+<li><p><strong>Problem:</strong> Hiding errors (cleaning traces, retrying, resetting state) prevents the model from learning and adapting.</p></li>
+<li><p><strong>Solution:</strong> Leave failed actions, resulting observations, and stack traces in the context. The model implicitly updates its internal beliefs, shifting its prior away from repeating the same mistake. Error recovery is a key indicator of true agentic behavior.</p></li>
+</ul>
+</li>
+<li><p><strong>Don’t Get Few-Shotted (Increase Diversity):</strong></p>
+<ul>
+<li><p><strong>Problem:</strong> LLMs mimic patterns in context. Repetitive action-observation pairs can lead to brittle agents, overgeneralization, drift, or hallucination, especially in tasks with many similar decisions.</p></li>
+<li><p><strong>Solution:</strong> Introduce small amounts of structured variation in actions and observations (different serialization templates, alternate phrasing, minor noise in order/formatting). This breaks the pattern and “tweaks the model’s attention,” preventing it from falling into a rut.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="implementation-frameworks-best-practices">
+<h2>5. Implementation Frameworks &amp; Best Practices<a class="headerlink" href="#implementation-frameworks-best-practices" title="Permalink to this heading">¶</a></h2>
+<p>Building context-engineered agents requires robust frameworks and adherence to best practices.</p>
+<section id="general-frameworks-tools">
+<h3>5.1 General Frameworks &amp; Tools<a class="headerlink" href="#general-frameworks-tools" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>LangChain / LangGraph:</strong> LangGraph provides a low-level orchestration framework ideal for defining agent graphs, managing state, and integrating memory.</p>
+<ul>
+<li><p><strong>Write Context:</strong> Thread-scoped (short-term) memory via checkpointing of agent state, and flexible long-term memory for files or collections. LangMem offers further abstractions.</p></li>
+<li><p><strong>Select Context:</strong> Fine-grained control over state exposure within each node. Long-term memory supports file fetching and embedding-based retrieval. LangGraph Bigtool applies semantic search for tool selection.</p></li>
+<li><p><strong>Compress Context:</strong> Message list state can be summarized or trimmed periodically. Logic can be added to post-process tool calls or work phases for summarization.</p></li>
+<li><p><strong>Isolate Context:</strong> State object schemas for selective information exposure. Supports sandboxing (E2B, Pyodide) and multi-agent architectures (supervisor, swarm libraries).</p></li>
+</ul>
+</li>
+<li><p><strong>LlamaIndex / LlamaCloud:</strong> Offers tools and frameworks for building agentic systems with a strong emphasis on data integration and retrieval.</p>
+<ul>
+<li><p><strong>Knowledge Base / Tool Selection:</strong> Beyond single-knowledge base RAG, LlamaIndex supports multi-knowledge base agents with tool selection based on descriptions.</p></li>
+<li><p><strong>Context Ordering / Compression:</strong> Techniques like summarization of retrieval results before context insertion. Ranking steps to order information (e.g., by date relevance).</p></li>
+<li><p><strong>Long-Term Memory:</strong> Provides various memory blocks (<code class="docutils literal notranslate"><span class="pre">VectorMemoryBlock</span></code>, <code class="docutils literal notranslate"><span class="pre">FactExtractionMemoryBlock</span></code>, <code class="docutils literal notranslate"><span class="pre">StaticMemoryBlock</span></code>) and a base <code class="docutils literal notranslate"><span class="pre">MemoryBlock</span></code> for custom implementations.</p></li>
+<li><p><strong>Structured Information:</strong> LlamaExtract (LlamaCloud tool) uses LLM structured output functionality to extract relevant data from complex files, providing condensed context.</p></li>
+<li><p><strong>Workflow Engineering (LlamaIndex Workflows):</strong> An event-driven framework for defining explicit step sequences, strategically controlling context, ensuring reliability (validation, error handling), and optimizing for specific outcomes. Workflows prevent context overload by breaking tasks into focused steps with optimized context windows.</p></li>
+</ul>
+</li>
+<li><p><strong>LangSmith:</strong> Essential for observability and evaluation.</p>
+<ul>
+<li><p><strong>Tracing / Observability:</strong> Track token usage, agent trajectories, and interactions to identify context engineering opportunities.</p></li>
+<li><p><strong>Evaluation:</strong> Test the impact of context engineering efforts on agent performance through agent evaluation.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="practical-implementation">
+<h3>5.2 Practical Implementation<a class="headerlink" href="#practical-implementation" title="Permalink to this heading">¶</a></h3>
+<p>A structured approach to context engineering for coding agents:</p>
+<ol class="arabic simple">
+<li><p><strong>Set Up Global Rules (<code class="docutils literal notranslate"><span class="pre">CLAUDE.md</span></code>):</strong></p>
+<ul class="simple">
+<li><p><strong>Purpose:</strong> Contains project-wide rules, conventions, and constraints the AI assistant must follow in every conversation.</p></li>
+<li><p><strong>Content:</strong> Project awareness (planning docs, tasks), code structure (file size, module org), testing (unit test patterns, coverage), style (language, formatting), documentation (docstring, commenting).</p></li>
+<li><p><strong>Benefit:</strong> Ensures consistency, reduces AI failures, and enforces best practices.</p></li>
+</ul>
+</li>
+<li><p><strong>Create Initial Feature Request (<code class="docutils literal notranslate"><span class="pre">INITIAL.md</span></code>):</strong></p>
+<ul class="simple">
+<li><p><strong>Purpose:</strong> A specific and comprehensive description of the feature to be built.</p></li>
+<li><p><strong>Sections:</strong></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">FEATURE</span></code>: Detailed functionality and requirements.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EXAMPLES</span></code>: References to code patterns in <code class="docutils literal notranslate"><span class="pre">examples/</span></code> folder.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DOCUMENTATION</span></code>: Links to relevant APIs, libraries, or MCP server resources.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">OTHER</span> <span class="pre">CONSIDERATIONS</span></code>: Gotchas, specific requirements, common pitfalls.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Generate the Product Requirements Prompt (PRP):</strong></p>
+<ul class="simple">
+<li><p><strong>Concept:</strong> A comprehensive implementation blueprint generated by an orchestrating agent. Similar to a PRD, but tailored for AI coding assistants.</p></li>
+<li><p><strong>Process (e.g., <code class="docutils literal notranslate"><span class="pre">/generate-prp</span> <span class="pre">INITIAL.md</span></code> in Claude Code):</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Research:</strong> Analyzes codebase for patterns, similar implementations, conventions.</p></li>
+<li><p><strong>Documentation Gathering:</strong> Fetches relevant API docs, library guides, adds gotchas.</p></li>
+<li><p><strong>Blueprint Creation:</strong> Creates step-by-step implementation plan with validation gates and test requirements.</p></li>
+<li><p><strong>Quality Check:</strong> Scores confidence, ensures all context included.</p></li>
+</ol>
+</li>
+<li><p><strong>Benefit:</strong> Ensures the AI receives complete, structured context and a clear plan.</p></li>
+</ul>
+</li>
+<li><p><strong>Execute the PRP:</strong></p>
+<ul class="simple">
+<li><p><strong>Process (e.g., <code class="docutils literal notranslate"><span class="pre">/execute-prp</span> <span class="pre">PRPs/your-feature-name.md</span></code>):</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Load Context:</strong> Reads the entire PRP.</p></li>
+<li><p><strong>Plan:</strong> Creates a detailed task list (e.g., using <code class="docutils literal notranslate"><span class="pre">TodoWrite</span></code>).</p></li>
+<li><p><strong>Execute:</strong> Implements each component.</p></li>
+<li><p><strong>Validate:</strong> Runs tests and linting.</p></li>
+<li><p><strong>Iterate:</strong> Fixes issues found.</p></li>
+<li><p><strong>Complete:</strong> Ensures all requirements met.</p></li>
+</ol>
+</li>
+<li><p><strong>Benefit:</strong> Automates complex feature implementation with built-in quality assurance.</p></li>
+</ul>
+</li>
+<li><p><strong>Using Examples Effectively (<code class="docutils literal notranslate"><span class="pre">examples/</span></code> folder):</strong></p>
+<ul class="simple">
+<li><p><strong>Criticality:</strong> AI coding assistants perform significantly better with clear patterns to follow.</p></li>
+<li><p><strong>Content:</strong> Code structure, testing patterns, integration patterns (API clients, DB connections), CLI patterns, agent architecture patterns.</p></li>
+<li><p><strong>Structure:</strong> Organize examples logically (e.g., <code class="docutils literal notranslate"><span class="pre">cli.py</span></code>, <code class="docutils literal notranslate"><span class="pre">agent/</span></code>, <code class="docutils literal notranslate"><span class="pre">tests/</span></code>).</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="best-practices-for-robust-context-engineering">
+<h3>5.3 Best Practices for Robust Context Engineering<a class="headerlink" href="#best-practices-for-robust-context-engineering" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Be Explicit:</strong> Never assume the AI knows preferences. Include specific requirements, constraints, and reference examples liberally.</p></li>
+<li><p><strong>Provide Comprehensive Examples:</strong> More examples lead to better implementations. Show both desired patterns and anti-patterns, including error handling.</p></li>
+<li><p><strong>Implement Validation Gates:</strong> Integrate test commands into PRPs and agent workflows. The AI should iterate until all validations pass, ensuring working code from the outset.</p></li>
+<li><p><strong>Leverage Documentation:</strong> Include official API documentation, MCP server resources, and specific documentation sections.</p></li>
+<li><p><strong>Customize Global Rules:</strong> Tailor <code class="docutils literal notranslate"><span class="pre">CLAUDE.md</span></code> (or equivalent) with project-specific conventions, rules, and coding standards.</p></li>
+<li><p><strong>Monitor and Iterate:</strong> Use observability tools (like LangSmith) to track token usage, identify context issues, and continuously refine context engineering strategies.</p></li>
+<li><p><strong>Orthogonality:</strong> Design agent architecture to be largely independent of the underlying LLM, allowing for easier model upgrades and changes.</p></li>
+</ul>
+</section>
+</section>
+<section id="conclusion-the-craft-of-agentic-intelligence">
+<h2>6. Conclusion: The Craft of Agentic Intelligence<a class="headerlink" href="#conclusion-the-craft-of-agentic-intelligence" title="Permalink to this heading">¶</a></h2>
+<p>Context engineering is no longer an optional add-on but the foundational craft for building truly effective AI agents. It transcends mere prompt crafting, embracing a systematic approach to managing the flow, content, and structure of information presented to LLMs. By diligently applying strategies of writing, selecting, compressing, and isolating context, and by learning from real-world lessons like those from Manus.im, CTOs and Tech Leads can transform their agentic systems from fragile prototypes into robust, intelligent, and cost-efficient solutions. The agentic future will be built one meticulously engineered context at a time.</p>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="ch6_case_studies.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">The State of the Industry: Insights from the Field</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="ch4_evals.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">&lt;no title&gt;</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024, Deepak Karkala
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Context Engineering for AI Agents</a><ul>
+<li><a class="reference internal" href="#introduction-the-paradigm-shift-to-context-engineering">1. Introduction: The Paradigm Shift to Context Engineering</a><ul>
+<li><a class="reference internal" href="#prompt-engineering-vs-context-engineering">1.1 Prompt Engineering vs. Context Engineering</a></li>
+<li><a class="reference internal" href="#why-context-engineering-matters-for-ai-agents">1.2 Why Context Engineering Matters for AI Agents</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#the-components-of-context">2. The Components of Context</a></li>
+<li><a class="reference internal" href="#core-pillars-of-context-engineering">3. Core Pillars of Context Engineering</a><ul>
+<li><a class="reference internal" href="#write-context-saving-information-outside-the-context-window">3.1 Write Context: Saving Information Outside the Context Window</a></li>
+<li><a class="reference internal" href="#select-context-pulling-relevant-information-into-the-context-window">3.2 Select Context: Pulling Relevant Information into the Context Window</a></li>
+<li><a class="reference internal" href="#compressing-context-retaining-only-essential-tokens">3.3 Compressing Context: Retaining Only Essential Tokens</a></li>
+<li><a class="reference internal" href="#isolating-context-splitting-up-context-for-focused-processing">3.4 Isolating Context: Splitting Up Context for Focused Processing</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#addressing-context-failures-and-robustness">4. Addressing Context Failures and Robustness</a><ul>
+<li><a class="reference internal" href="#lessons-from-building-manus-operationalizing-context-engineering">4.1 Lessons from Building Manus: Operationalizing Context Engineering</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#implementation-frameworks-best-practices">5. Implementation Frameworks &amp; Best Practices</a><ul>
+<li><a class="reference internal" href="#general-frameworks-tools">5.1 General Frameworks &amp; Tools</a></li>
+<li><a class="reference internal" href="#practical-implementation">5.2 Practical Implementation</a></li>
+<li><a class="reference internal" href="#best-practices-for-robust-context-engineering">5.3 Best Practices for Robust Context Engineering</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#conclusion-the-craft-of-agentic-intelligence">6. Conclusion: The Craft of Agentic Intelligence</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=b3ba4146"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/scripts/furo.js?v=4e2eecee"></script>
+    </body>
+</html>

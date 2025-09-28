@@ -1,0 +1,647 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Building Trustworthy and Ethical AI Agents" href="ch_trust.html" /><link rel="prev" title="Securing AI Agents and Preventing Abuse" href="ch_security.html" />
+
+    <link rel="shortcut icon" href="../_static/favicon.ico"/><!-- Generated with Sphinx 7.1.2 and Furo 2024.05.06 -->
+        <title>Tool Use and Integration Management - Home</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=387cc868" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=36a5483c" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/style.css?v=8a7ff5ee" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" /
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">Home</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  
+  <span class="sidebar-brand-text">Home</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../past_experiences/index.html">Past Experiences</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Past Experiences</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../past_experiences/iot_anomaly.html">Anomaly Detection in Time Series IoT Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../past_experiences/iot_forecasting.html">Energy Demand Forecasting in Time Series IoT Data</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../past_experiences/adas_engine/index.html">ADAS: Data Engine</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of ADAS: Data Engine</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch0_business_challenge.html">Business Challenge and Goals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch1_ml_problem_framing.html">ML Problem Framing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch2_operational_strategy.html">Planning, Operational Strategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch3_pipelines_workflows.html">Workflows, Team, Roles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch4_testing_strategy.html">Testing Strategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch6_data_ingestion_workflows.html">Data Ingestion Workflows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch7_scene_understanding_data_mining.html">Scene Understanding &amp; Data Mining</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch8_model_training.html">Model Training &amp; Experimentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch9_packaging_promotion.html">Packaging, Evaluation &amp; Promotion Workflows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch10_deployment_serving.html">Deployment &amp; Serving</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch11_monitoring_continual_learning.html">Monitoring &amp; Continual Learning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch12_cost_lifecycle_compliance.html">Cost, Lifecycle, Compliance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch13_reliability_capacity_maps.html">Reliability, Capacity, Maps</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../projects/index.html">Projects</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Projects</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../projects/nlp/index.html">Natural Language Processing</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of Natural Language Processing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/airbnb_alternate_search/about/index.html">Airbnb Listing description based Semantic Search</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../projects/cv/index.html">Computer Vision</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of Computer Vision</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/ecommerce_image_segmentation/about/index.html">Image Segmentation for Ecommerce Products</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../projects/ml/index.html">Machine Learning</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of Machine Learning</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/airbnb_price_modeling/about/index.html">Predictive Price Modeling for Airbnb listings</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../publications/index.html">Patents, Papers, Thesis</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">AI Agents: A Lead Engineer’s Handbook</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of AI Agents: A Lead Engineer’s Handbook</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="ch1_intro.html">Agent Fundamentals: What, Why, and When?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch2_patterns.html">Agentic Patterns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch5_context_engineering.html">Context Engineering for AI Agents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch6_case_studies.html">The State of the Industry: Insights from the Field</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch7_conclusion.html"><strong>Conclusion: The Lead Engineer’s Mental Model for Building Agents</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_cost.html">Cost Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_data.html">Data Management and Knowledge Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_deploy.html">Deployment and Scaling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_guardrails.html">Guardrails</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_hitl.html">Human-in-the-Loop (HITL)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_latency.html">Latency Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_llm.html">LLM – Prompts, Goals, and Persona</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_memory.html">Managing Agent Memory (Short-Term and Long-Term)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_monitor.html">Monitoring and Observability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_orchestration.html">Orchestration and Task Decomposition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_prod.html">Production Challenges and Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_security.html">Securing AI Agents and Preventing Abuse</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Tool Use and Integration Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_trust.html">Building Trustworthy and Ethical AI Agents</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../mlops/index.html">MLOps</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of MLOps</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../mlops/ch1_problem_framing.html">ML Problem framing</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of ML Problem framing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../mlops/ch2_blueprint_operational_strategy.html">The MLOps Blueprint &amp; Operational Strategy</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../mlops/ch2a_platform/index.html">ML Platforms</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle navigation of ML Platforms</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch2a_platform/ml_platforms.html">ML Platforms: How to</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch2a_platform/uber.html">Uber Michelangelo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch2a_platform/linkedin.html">LinkedIn DARWIN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch2a_platform/netflix.html">Netflix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch2a_platform/shopify.html">Shopify Merlin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch2a_platform/zomato.html">Zomato: Real-time ML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch2a_platform/coveo.html">Coveo: MLOPs at reasonable scale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch2a_platform/monzo.html">Monzo ML Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch2a_platform/didact.html">Didact AI</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../mlops/ch3_project_planning/index.html">Project Planning</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" role="switch" type="checkbox"/><label for="toctree-checkbox-11"><div class="visually-hidden">Toggle navigation of Project Planning</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch3_project_planning/prd.html">Project Requirements Document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch3_project_planning/tech_stack.html">Tech Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch3_project_planning/config_management.html">Config Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch3_project_planning/pipeline_design.html">Pipeline Design</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch3_project_planning/environment_strategy.html">Environment Strategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch3_project_planning/cicd_branching_model.html">CI/CD Strategy and Branching Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch3_project_planning/directory_structure.html">Directory Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch3_project_planning/env_branchind_cicd_deployment.html">Environments, Branching, CI/CD, and Deployments Explained</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch3_project_planning/project_management.html">Project Management for MLOps</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../mlops/ch4_data_discovery/index.html">Data Sourcing, Discovery</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" role="switch" type="checkbox"/><label for="toctree-checkbox-12"><div class="visually-hidden">Toggle navigation of Data Sourcing, Discovery</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch4_data_discovery/data_sourcing_discovery.html">Data Sourcing, Discovery &amp; Understanding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch4_data_discovery/ch4_project.html">Project-Trending Now: Implementing Web Scraping, Ingestion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch4_data_discovery/industry_case_studies.html">Data Discovery Platforms: Industry Case Studies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch4_data_discovery/facebook_nemo.html">Facebook: Nemo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch4_data_discovery/netflix_metacat.html">Netflix Metacat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch4_data_discovery/uber_databook.html">Uber Databook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch4_data_discovery/linkedin_datahub.html">LinkedIn Datahub</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../mlops/ch7_model_development/index.html">Model Development, Tuning, Selection, Ensembles, Calibration</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" role="switch" type="checkbox"/><label for="toctree-checkbox-13"><div class="visually-hidden">Toggle navigation of Model Development, Tuning, Selection, Ensembles, Calibration</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch7_model_development/ch7_model_development.html">Chapter 7: Model Development</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch7_model_development/dl_training_playbook.html">How to train DL Models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch7_model_development/development.html">Model Development</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch7_model_development/industry_lessons.html">Model Development: Lessons from production systems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch7_model_development/ensembles.html"><strong>Model Ensembles</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch7_model_development/selection.html">Model Selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch7_model_development/tuning_hypopt.html">Hyperparameter Optimization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch7_model_development/expt_tracking.html">ML Expt tracking, Data Lineage, Model Registry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch7_model_development/calibration.html">Model Calibration</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../mlops/ch10_deployment_serving/index.html">Model Deployment &amp; Serving</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" role="switch" type="checkbox"/><label for="toctree-checkbox-14"><div class="visually-hidden">Toggle navigation of Model Deployment &amp; Serving</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch10_deployment_serving/ch10_deployment_serving.html">Chapter 10: Deployment &amp; Serving</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch10_deployment_serving/guide_deployment_serving.html">Guide: Model Deployment &amp; Serving</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch10_deployment_serving/guide_inference_stack.html">Deep Dive: Inference Stack</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../mlops/ch11_monitor_observe_drift/index.html">Monitoring, Observability, Drift, Interpretability</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" role="switch" type="checkbox"/><label for="toctree-checkbox-15"><div class="visually-hidden">Toggle navigation of Monitoring, Observability, Drift, Interpretability</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch11_monitor_observe_drift/ch11_monitor_observe_drift.html">Chapter 11: Monitoring, Observability, Drifts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch11_monitor_observe_drift/guide_monitor_observe_drift.html">Guide: ML System Failures, Data Distribution Shifts, Monitoring, and Observability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch11_monitor_observe_drift/guide_interpretability_shap_lime.html">Interpretability, SHAP, LIME</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch11_monitor_observe_drift/guide_stack.html">Prometheus + Grafana and ELK Stacks</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../mlops/ch12_retrain_online_testing/index.html">Continual learning, Retraining, A/B Testing</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" role="switch" type="checkbox"/><label for="toctree-checkbox-16"><div class="visually-hidden">Toggle navigation of Continual learning, Retraining, A/B Testing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch12_retrain_online_testing/ch12_continual_learning_prod_testing.html">Chapter 12: Continual Learning &amp; Production Testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch12_retrain_online_testing/guide_continual_learning.html">Continual Learning &amp; Model Retraining</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch12_retrain_online_testing/guide_ab_testing.html">A/B Testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch12_retrain_online_testing/guide_ab_testing_industry_lessons.html">A/B Testing &amp; Experimentation: Industry lessons</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch12_retrain_online_testing/guide_prod_testing_expt.html">Guide: Production Testing &amp; Experimentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch12_retrain_online_testing/dr_prod_testing_expt.html">Deep Research: Production Testing &amp; Experimentation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../pytorch/index.html">PyTorch</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" role="switch" type="checkbox"/><label for="toctree-checkbox-17"><div class="visually-hidden">Toggle navigation of PyTorch</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/general.html">General</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/state_dict.html">state_dict</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/mixed_precision.html">Mixed Precision</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/distributed_data_parallel.html">Distributed Data Parallel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/ddp_under_the_hood.html">DDP: Under the Hood</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/dp_ddp.html">DP vs DDP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/fsdp.html">FSDP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/tensor_parallelism.html">Tensor parallelism</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/pipeline_parallelism.html">Pipeline Parallelism</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/device_mesh.html">Device Mesh</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../lld/index.html">Low Level Design</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" role="switch" type="checkbox"/><label for="toctree-checkbox-18"><div class="visually-hidden">Toggle navigation of Low Level Design</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lld/parking_lot.html">Parking Lot</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../visualization/index.html">Data Visualization Projects</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="../_sources/agents/ch_tool.md.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="tool-use-and-integration-management">
+<h1>Tool Use and Integration Management<a class="headerlink" href="#tool-use-and-integration-management" title="Permalink to this heading">¶</a></h1>
+<p>One of the defining features of modern AI agents is their ability to extend beyond the base knowledge
+of the LLM by interacting with external <strong>tools</strong> and APIs. Tools enable agents to fetch up-to-date
+information, perform actions (like sending an email or executing code), and generally interface with the
+world. Effectively managing these tools – deciding which tools to provide, how the agent selects and
+invokes them, and how to monitor their usage – is a crucial aspect of building <strong>effective agents</strong>.</p>
+<p><strong>Why Tools Matter:</strong> Large language models, on their own, have limitations: their knowledge can be
+outdated (stuck at training data cut-off), they cannot perform explicit computations reliably, and they
+cannot natively take actions in the real world. Tools address these gaps. As IBM’s AI agent overview
+explains, <em>agentic technology uses tool calling on the backend to obtain up-to-date information, optimize
+workflows, and create subtasks autonomously to achieve complex goals</em>. In other words, tools give agents
+eyes, hands, and specialized skills. For example, an agent with a <strong>web search tool</strong> can fetch the latest
+news; an agent with a <strong>calculator or Python tool</strong> can do math or data processing; an agent with a
+<strong>database query tool</strong> can retrieve enterprise data on demand. Tools dramatically expand an agent’s
+problem-solving capabilities beyond what’s in its frozen model weights.</p>
+<p><strong>Defining the Toolset:</strong> As a system designer, you must carefully choose the set of tools (and their
+interfaces) that an agent will have. This “toolbox” becomes part of the agent’s operating environment.
+Tools could be: - <strong>APIs or services</strong> : e.g., a weather API, stock price API, internal microservice endpoints. -
+<strong>Datastores</strong> : a vector search on company documents, a SQL database connection, etc. - <strong>Custom
+functions</strong> : e.g., a function to send an email or create a calendar event. - <strong>Other agents</strong> : yes, even other
+agents can be exposed as tools (e.g., a specialized agent for image recognition could be a tool the main
+agent calls).</p>
+<p>Each tool should be accompanied by a description (for the agent’s understanding) and an invocation
+method (function call, REST API call via some interface, etc.). Modern frameworks often use a “function</p>
+<p>calling” approach where the agent can output a JSON or structured command that the orchestrator
+recognizes and then executes the corresponding tool, feeding the result back to the agent.</p>
+<p><strong>Tool Management Challenges:</strong> Simply adding tools isn’t a panacea – the agent needs to <em>learn</em> when
+and how to use them appropriately. There’s a risk of tool overuse (calling tools unnecessarily, which
+wastes time/cost) or underuse (not calling a tool even when it would help). Managing this requires: -
+<strong>Tool Selection Logic:</strong> If you give an agent many tools, the prompt must clearly define each tool’s
+purpose so the LLM can pick the right one. Otherwise, the agent might try tools at random or not at all.
+One emerging best practice is to supply examples in the prompt showing when to use which tool.
+Another approach is a middleware that intercepts the agent’s reasoning and suggests a tool if the agent
+seems to overlook it (though this is experimental). - <strong>Performance Monitoring:</strong> Some tools might be
+slow or have rate limits. It’s important to track tool latency and success rates. If a particular API often
+fails or is too slow, the agent should possibly avoid it or have a fallback. In AgentOps, tool usage
+statistics are gathered to identify such issues: e.g., which APIs are called most frequently, which calls
+take the longest, which calls often result in errors. With this data, you can optimize – maybe by
+upgrading an API, caching results, or adjusting the agent’s strategy. - <strong>Registration and Discovery:</strong> As
+your system grows, you may introduce new tools or versions. A robust system might include a <strong>tool
+registry</strong> or service where tools are registered with their capabilities, and agents (especially if you have
+many running) can discover what’s available. In production, this is akin to microservice discovery. The
+registry can also store metadata like authentication info, usage quotas, etc.</p>
+<p>Deepsense’s overview of AgentOps highlights that a robust tool management system is needed to
+<em>discover, register, administer, select, and utilize a “mesh” of tools or agents, including their ontology,
+capabilities, requirements, and performance metrics</em>. In other words, as a CTO you should view the set of
+tools as an evolving ecosystem that needs governance – documentation, versioning, permission
+controls, and monitoring.</p>
+<p><strong>Ensuring Correct Tool Use:</strong> Agents decide on tool use through their internal reasoning. Sometimes, an
+agent might choose a suboptimal tool or use it incorrectly (passing wrong parameters, etc.). To mitigate
+this: - Use <strong>verification</strong> steps: after the agent outputs a tool call, an orchestrator can validate the
+parameters. For example, if the agent selects a “DatabaseQuery” tool but the query looks like it might
+return too much data or has a syntax error, the orchestrator can intercept or modify it. - Implement
+<strong>tool-specific guardrails</strong> : e.g., limit what an agent can do with a file system tool (sandbox the directory
+it can access), or throttle how often it can hit an external API to avoid spam. We’ll cover security more
+later, but it’s closely tied to tool use. - Provide <strong>feedback in prompt</strong> : If a tool call fails (API returns error),
+feeding that error message back into the agent’s context often helps it adjust (e.g., agent sees “Tool X
+failed: invalid location parameter” and can correct its action).</p>
+<p><strong>Tool Integration Architecture:</strong> On the engineering side, integrating tools often means writing
+wrappers or “plugin” interfaces. Many teams use an approach where each tool is a function in code, and
+the LLM agent is allowed to call functions. For instance, OpenAI’s function-calling API or libraries like
+LangChain allow you to define Python functions and their JSON schema; the LLM can output a JSON
+chunk that matches a function, and the runtime will execute the actual function and return the output
+to the LLM. This pattern is quite effective and keeps a human-defined boundary on what the agent can
+do. Alternatively, an agent might output a textual command that your system parses (less safe). The
+takeaway: define clear <em>contracts</em> for tool usage. Each tool should have a well-defined input/output. It’s
+similar to designing an API for a microservice, but here the client is the AI agent.</p>
+<p><strong>Example – Tool Use Case:</strong> Suppose we have an “HR Assistant” agent that can do the following tools:
+lookup employee directory, retrieve HR policy document, and draft an email. A user asks: “I want to take
+leave next month, how many vacation days do I have left and can I carry over to next year?” The agent</p>
+<p>on its own may not know the user’s current leave balance or the exact policy on carryover. But armed
+with tools, it might plan: (1) call GetAvailableLeave(user_id) API – gets a number of days (say 5
+days left); (2) call SearchPolicies(“vacation carryover”) – retrieves a snippet from HR policy
+doc (which says up to 5 days can carry over); (3) formulate an answer combining these results. Here,
+tool integration allowed a dynamic, personalized response that’s grounded in real data (the user’s
+actual leave balance and the official policy). Ensuring the agent uses the tools correctly (e.g., passing the
+right user_id, reading the policy snippet correctly) is part of tool management. If the agent asked the
+wrong question to the search (like “carryon” instead of “carryover”), you might see an irrelevant snippet
+returned – monitoring and perhaps fine-tuning the agent’s query or having a more structured policy
+retrieval (like a direct FAQ lookup) could improve it.</p>
+<p><strong>Tool and Agent Evolution:</strong> Over time, you might add new tools (e.g., a new API for a common request)
+or deprecate old ones. The agent’s prompt and possibly its training (if you fine-tune models on tool use)
+need updating. This is an ongoing Ops task: manage the <strong>tool lifecycle</strong>. It parallels software: new
+microservices come in, old ones turned off. AgentOps should include tests when adding a new tool to
+ensure the agent can actually use it effectively (perhaps by prompting scenarios).</p>
+<p>Also, as usage grows, tools themselves might need scaling – e.g., if your agent hits the database 1000
+times a day via its tool, ensure the database can handle it or implement caching for repeated queries.</p>
+<section id="designing-effective-tools">
+<h2>Designing Effective Tools<a class="headerlink" href="#designing-effective-tools" title="Permalink to this heading">¶</a></h2>
+<p>The clarity and structure of tools directly impact the LLM’s ability to use them effectively.</p>
+<ul class="simple">
+<li><p><strong>Standardization and Reusability:</strong> Tools should be designed as standardized, well-documented, and tested components that can be reused across multiple agents.</p></li>
+<li><p><strong>Atomicity:</strong> Each tool should perform a single, specific, and well-defined action (e.g., <code class="docutils literal notranslate"><span class="pre">get_user_email</span></code> is preferable to a general <code class="docutils literal notranslate"><span class="pre">manage_user_profile</span></code>). Atomic tools are easier for the LLM to understand and compose into complex sequences.</p></li>
+<li><p><strong>Clear Descriptions:</strong> The tool’s name and description are the primary interface for the LLM. They must be written for the LLM as a consumer, clearly stating what the tool does, what arguments it requires, their format, and what it returns.</p></li>
+</ul>
+</section>
+<section id="tool-integration-patterns-and-types">
+<h2>Tool Integration Patterns and Types<a class="headerlink" href="#tool-integration-patterns-and-types" title="Permalink to this heading">¶</a></h2>
+<p>Tools can be categorized by where and how they are executed, offering different levels of control and security.</p>
+<ul class="simple">
+<li><p><strong>Extensions (Agent-Side Execution):</strong> These tools bridge the gap between an agent and an external API. The agent is taught how to use the API endpoint and its parameters, and it makes the live API call directly. This is useful for leveraging pre-built integrations (e.g., Vertex Search, Code Interpreter) and for multi-hop planning where the next action depends directly on the previous API call’s output.</p></li>
+<li><p><strong>Functions (Client-Side Execution):</strong> In this pattern, the model outputs a structured request (e.g., a JSON object) specifying which function to call and with what arguments, but it <em>does not</em> execute the call itself. The logic for executing the API call is offloaded to the client-side application. This provides more granular control and is ideal for scenarios with security restrictions, batch operations, or when API calls need to be made from a different layer of the application stack.</p></li>
+<li><p><strong>Data Stores (RAG Tools):</strong> These are specialized tools for implementing Retrieval-Augmented Generation. They provide the agent with access to knowledge from various sources like private documents, websites, or structured databases, converting that data into vector embeddings for retrieval.</p></li>
+</ul>
+<div class="highlight-mermaid notranslate"><div class="highlight"><pre><span></span>sequenceDiagram
+    participant User
+    participant AppUI as Client-Side UI
+    participant Agent
+    participant ExternalAPI as External API
+
+    par Agent-Side Execution (Extensions)
+        User-&gt;&gt;Agent: &quot;Find flights to Zurich&quot;
+        Agent-&gt;&gt;ExternalAPI: Calls get_flights(&quot;Zurich&quot;)
+        ExternalAPI--&gt;&gt;Agent: Flight data
+        Agent--&gt;&gt;User: &quot;Here are the flights...&quot;
+    and Client-Side Execution (Functions)
+        User-&gt;&gt;AppUI: &quot;Find flights to Zurich&quot;
+        AppUI-&gt;&gt;Agent: &quot;Find flights to Zurich&quot;
+        Agent--&gt;&gt;AppUI: function_call: {name: &quot;get_flights&quot;, args: {&quot;destination&quot;: &quot;Zurich&quot;}}
+        AppUI-&gt;&gt;ExternalAPI: Calls get_flights(&quot;Zurich&quot;)
+        ExternalAPI--&gt;&gt;AppUI: Flight data
+        AppUI--&gt;&gt;User: &quot;Here are the flights...&quot;
+    end
+</pre></div>
+</div>
+<p><em>Figure 4: Mermaid sequence diagram comparing Agent-Side vs. Client-Side tool execution.</em></p>
+</section>
+<section id="security-considerations-for-tool-use">
+<h2>Security Considerations for Tool Use<a class="headerlink" href="#security-considerations-for-tool-use" title="Permalink to this heading">¶</a></h2>
+<p>An agent’s collection of tools defines its “attack surface.” Security must be a foundational principle in agent design.</p>
+<ul class="simple">
+<li><p><strong>Principle of Least Privilege:</strong> An agent should be granted access only to the specific tools and permissions absolutely necessary for its function.</p></li>
+<li><p><strong>Input Sanitization and Validation:</strong> All inputs to tools, especially those containing user-provided data, must be rigorously sanitized to defend against prompt injection attacks.</p></li>
+<li><p><strong>Sandboxing:</strong> Tools that execute code (e.g., a Python interpreter) must be run in secure, isolated environments (sandboxes) like Docker containers to confine the “blast radius” of any malicious code.</p></li>
+<li><p><strong>Zero-Trust Security:</strong> Every single tool call should be independently authenticated and authorized at the moment of execution. Permissions should be dynamic and context-aware, not static.</p></li>
+</ul>
+<p>In summary, <strong>Tool Management</strong> in agent systems is about giving the agent the right external
+capabilities and ensuring it uses them <strong>effectively and safely</strong>. It involves: - Thoughtful selection of tools
+relevant to the domain/tasks. - A mechanism for the agent to invoke tools (often via function calls or API
+calls through an orchestrator). - Clear documentation of tools in the agent’s prompt (so the LLM knows
+what each does). - Monitoring of tool usage patterns and performance. - Evolving the toolset over time
+as needed, and handling the complexity of many tools via registries or abstraction layers.</p>
+<p>Proper tool integration is a game-changer for agent usefulness – it turns a clever chatbot into an
+<em>autonomous doer</em> that can act in the world. But without oversight, it could also turn into a loose cannon
+(imagine an agent spamming an API or using the wrong tool for a secure operation). Thus, tool
+management is a first-class concern in AgentOps.</p>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="ch_trust.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Building Trustworthy and Ethical AI Agents</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="ch_security.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">Securing AI Agents and Preventing Abuse</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024, Deepak Karkala
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Tool Use and Integration Management</a><ul>
+<li><a class="reference internal" href="#designing-effective-tools">Designing Effective Tools</a></li>
+<li><a class="reference internal" href="#tool-integration-patterns-and-types">Tool Integration Patterns and Types</a></li>
+<li><a class="reference internal" href="#security-considerations-for-tool-use">Security Considerations for Tool Use</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=b3ba4146"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/scripts/furo.js?v=4e2eecee"></script>
+    </body>
+</html>

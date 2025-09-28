@@ -1,0 +1,607 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Monitoring and Observability" href="ch_monitor.html" /><link rel="prev" title="LLM – Prompts, Goals, and Persona" href="ch_llm.html" />
+
+    <link rel="shortcut icon" href="../_static/favicon.ico"/><!-- Generated with Sphinx 7.1.2 and Furo 2024.05.06 -->
+        <title>Managing Agent Memory (Short-Term and Long-Term) - Home</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=387cc868" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=36a5483c" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/style.css?v=8a7ff5ee" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" /
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">Home</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  
+  <span class="sidebar-brand-text">Home</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../past_experiences/index.html">Past Experiences</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Past Experiences</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../past_experiences/iot_anomaly.html">Anomaly Detection in Time Series IoT Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../past_experiences/iot_forecasting.html">Energy Demand Forecasting in Time Series IoT Data</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../past_experiences/adas_engine/index.html">ADAS: Data Engine</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" role="switch" type="checkbox"/><label for="toctree-checkbox-2"><div class="visually-hidden">Toggle navigation of ADAS: Data Engine</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch0_business_challenge.html">Business Challenge and Goals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch1_ml_problem_framing.html">ML Problem Framing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch2_operational_strategy.html">Planning, Operational Strategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch3_pipelines_workflows.html">Workflows, Team, Roles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch4_testing_strategy.html">Testing Strategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch6_data_ingestion_workflows.html">Data Ingestion Workflows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch7_scene_understanding_data_mining.html">Scene Understanding &amp; Data Mining</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch8_model_training.html">Model Training &amp; Experimentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch9_packaging_promotion.html">Packaging, Evaluation &amp; Promotion Workflows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch10_deployment_serving.html">Deployment &amp; Serving</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch11_monitoring_continual_learning.html">Monitoring &amp; Continual Learning</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch12_cost_lifecycle_compliance.html">Cost, Lifecycle, Compliance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../past_experiences/adas_engine/ch13_reliability_capacity_maps.html">Reliability, Capacity, Maps</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../projects/index.html">Projects</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" role="switch" type="checkbox"/><label for="toctree-checkbox-3"><div class="visually-hidden">Toggle navigation of Projects</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../projects/nlp/index.html">Natural Language Processing</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" role="switch" type="checkbox"/><label for="toctree-checkbox-4"><div class="visually-hidden">Toggle navigation of Natural Language Processing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/airbnb_alternate_search/about/index.html">Airbnb Listing description based Semantic Search</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../projects/cv/index.html">Computer Vision</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle navigation of Computer Vision</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/ecommerce_image_segmentation/about/index.html">Image Segmentation for Ecommerce Products</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../projects/ml/index.html">Machine Learning</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle navigation of Machine Learning</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference external" href="https://www.deepakkarkala.com/docs/articles/machine_learning/airbnb_price_modeling/about/index.html">Predictive Price Modeling for Airbnb listings</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../publications/index.html">Patents, Papers, Thesis</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">AI Agents: A Lead Engineer’s Handbook</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle navigation of AI Agents: A Lead Engineer’s Handbook</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="ch1_intro.html">Agent Fundamentals: What, Why, and When?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch2_patterns.html">Agentic Patterns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch5_context_engineering.html">Context Engineering for AI Agents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch6_case_studies.html">The State of the Industry: Insights from the Field</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch7_conclusion.html"><strong>Conclusion: The Lead Engineer’s Mental Model for Building Agents</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_cost.html">Cost Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_data.html">Data Management and Knowledge Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_deploy.html">Deployment and Scaling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_guardrails.html">Guardrails</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_hitl.html">Human-in-the-Loop (HITL)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_latency.html">Latency Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_llm.html">LLM – Prompts, Goals, and Persona</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Managing Agent Memory (Short-Term and Long-Term)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_monitor.html">Monitoring and Observability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_orchestration.html">Orchestration and Task Decomposition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_prod.html">Production Challenges and Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_security.html">Securing AI Agents and Preventing Abuse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_tool.html">Tool Use and Integration Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ch_trust.html">Building Trustworthy and Ethical AI Agents</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../mlops/index.html">MLOps</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" role="switch" type="checkbox"/><label for="toctree-checkbox-8"><div class="visually-hidden">Toggle navigation of MLOps</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../mlops/ch1_problem_framing.html">ML Problem framing</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" role="switch" type="checkbox"/><label for="toctree-checkbox-9"><div class="visually-hidden">Toggle navigation of ML Problem framing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../mlops/ch2_blueprint_operational_strategy.html">The MLOps Blueprint &amp; Operational Strategy</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../mlops/ch2a_platform/index.html">ML Platforms</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" role="switch" type="checkbox"/><label for="toctree-checkbox-10"><div class="visually-hidden">Toggle navigation of ML Platforms</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch2a_platform/ml_platforms.html">ML Platforms: How to</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch2a_platform/uber.html">Uber Michelangelo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch2a_platform/linkedin.html">LinkedIn DARWIN</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch2a_platform/netflix.html">Netflix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch2a_platform/shopify.html">Shopify Merlin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch2a_platform/zomato.html">Zomato: Real-time ML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch2a_platform/coveo.html">Coveo: MLOPs at reasonable scale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch2a_platform/monzo.html">Monzo ML Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch2a_platform/didact.html">Didact AI</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../mlops/ch3_project_planning/index.html">Project Planning</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" role="switch" type="checkbox"/><label for="toctree-checkbox-11"><div class="visually-hidden">Toggle navigation of Project Planning</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch3_project_planning/prd.html">Project Requirements Document</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch3_project_planning/tech_stack.html">Tech Stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch3_project_planning/config_management.html">Config Management</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch3_project_planning/pipeline_design.html">Pipeline Design</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch3_project_planning/environment_strategy.html">Environment Strategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch3_project_planning/cicd_branching_model.html">CI/CD Strategy and Branching Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch3_project_planning/directory_structure.html">Directory Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch3_project_planning/env_branchind_cicd_deployment.html">Environments, Branching, CI/CD, and Deployments Explained</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch3_project_planning/project_management.html">Project Management for MLOps</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../mlops/ch4_data_discovery/index.html">Data Sourcing, Discovery</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" role="switch" type="checkbox"/><label for="toctree-checkbox-12"><div class="visually-hidden">Toggle navigation of Data Sourcing, Discovery</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch4_data_discovery/data_sourcing_discovery.html">Data Sourcing, Discovery &amp; Understanding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch4_data_discovery/ch4_project.html">Project-Trending Now: Implementing Web Scraping, Ingestion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch4_data_discovery/industry_case_studies.html">Data Discovery Platforms: Industry Case Studies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch4_data_discovery/facebook_nemo.html">Facebook: Nemo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch4_data_discovery/netflix_metacat.html">Netflix Metacat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch4_data_discovery/uber_databook.html">Uber Databook</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch4_data_discovery/linkedin_datahub.html">LinkedIn Datahub</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../mlops/ch7_model_development/index.html">Model Development, Tuning, Selection, Ensembles, Calibration</a><input class="toctree-checkbox" id="toctree-checkbox-13" name="toctree-checkbox-13" role="switch" type="checkbox"/><label for="toctree-checkbox-13"><div class="visually-hidden">Toggle navigation of Model Development, Tuning, Selection, Ensembles, Calibration</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch7_model_development/ch7_model_development.html">Chapter 7: Model Development</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch7_model_development/dl_training_playbook.html">How to train DL Models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch7_model_development/development.html">Model Development</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch7_model_development/industry_lessons.html">Model Development: Lessons from production systems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch7_model_development/ensembles.html"><strong>Model Ensembles</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch7_model_development/selection.html">Model Selection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch7_model_development/tuning_hypopt.html">Hyperparameter Optimization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch7_model_development/expt_tracking.html">ML Expt tracking, Data Lineage, Model Registry</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch7_model_development/calibration.html">Model Calibration</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../mlops/ch10_deployment_serving/index.html">Model Deployment &amp; Serving</a><input class="toctree-checkbox" id="toctree-checkbox-14" name="toctree-checkbox-14" role="switch" type="checkbox"/><label for="toctree-checkbox-14"><div class="visually-hidden">Toggle navigation of Model Deployment &amp; Serving</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch10_deployment_serving/ch10_deployment_serving.html">Chapter 10: Deployment &amp; Serving</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch10_deployment_serving/guide_deployment_serving.html">Guide: Model Deployment &amp; Serving</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch10_deployment_serving/guide_inference_stack.html">Deep Dive: Inference Stack</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../mlops/ch11_monitor_observe_drift/index.html">Monitoring, Observability, Drift, Interpretability</a><input class="toctree-checkbox" id="toctree-checkbox-15" name="toctree-checkbox-15" role="switch" type="checkbox"/><label for="toctree-checkbox-15"><div class="visually-hidden">Toggle navigation of Monitoring, Observability, Drift, Interpretability</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch11_monitor_observe_drift/ch11_monitor_observe_drift.html">Chapter 11: Monitoring, Observability, Drifts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch11_monitor_observe_drift/guide_monitor_observe_drift.html">Guide: ML System Failures, Data Distribution Shifts, Monitoring, and Observability</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch11_monitor_observe_drift/guide_interpretability_shap_lime.html">Interpretability, SHAP, LIME</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch11_monitor_observe_drift/guide_stack.html">Prometheus + Grafana and ELK Stacks</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../mlops/ch12_retrain_online_testing/index.html">Continual learning, Retraining, A/B Testing</a><input class="toctree-checkbox" id="toctree-checkbox-16" name="toctree-checkbox-16" role="switch" type="checkbox"/><label for="toctree-checkbox-16"><div class="visually-hidden">Toggle navigation of Continual learning, Retraining, A/B Testing</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch12_retrain_online_testing/ch12_continual_learning_prod_testing.html">Chapter 12: Continual Learning &amp; Production Testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch12_retrain_online_testing/guide_continual_learning.html">Continual Learning &amp; Model Retraining</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch12_retrain_online_testing/guide_ab_testing.html">A/B Testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch12_retrain_online_testing/guide_ab_testing_industry_lessons.html">A/B Testing &amp; Experimentation: Industry lessons</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch12_retrain_online_testing/guide_prod_testing_expt.html">Guide: Production Testing &amp; Experimentation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mlops/ch12_retrain_online_testing/dr_prod_testing_expt.html">Deep Research: Production Testing &amp; Experimentation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../pytorch/index.html">PyTorch</a><input class="toctree-checkbox" id="toctree-checkbox-17" name="toctree-checkbox-17" role="switch" type="checkbox"/><label for="toctree-checkbox-17"><div class="visually-hidden">Toggle navigation of PyTorch</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/general.html">General</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/state_dict.html">state_dict</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/mixed_precision.html">Mixed Precision</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/distributed_data_parallel.html">Distributed Data Parallel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/ddp_under_the_hood.html">DDP: Under the Hood</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/dp_ddp.html">DP vs DDP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/fsdp.html">FSDP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/tensor_parallelism.html">Tensor parallelism</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/pipeline_parallelism.html">Pipeline Parallelism</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/device_mesh.html">Device Mesh</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../lld/index.html">Low Level Design</a><input class="toctree-checkbox" id="toctree-checkbox-18" name="toctree-checkbox-18" role="switch" type="checkbox"/><label for="toctree-checkbox-18"><div class="visually-hidden">Toggle navigation of Low Level Design</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lld/parking_lot.html">Parking Lot</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../visualization/index.html">Data Visualization Projects</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="../_sources/agents/ch_memory.md.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="managing-agent-memory-short-term-and-long-term">
+<h1>Managing Agent Memory (Short-Term and Long-Term)<a class="headerlink" href="#managing-agent-memory-short-term-and-long-term" title="Permalink to this heading">¶</a></h1>
+<p>Memory is a fundamental component that separates a truly capable AI agent from a simple stateless
+chatbot. Real-world tasks often require remembering what happened earlier in the conversation (short-
+term memory) and retaining important information or learning over time across sessions (long-term
+memory). Managing this <strong>agentic memory</strong> effectively is key to building an AI agent that is coherent,
+personalized, and continually improving.</p>
+<p><strong>Why Memory Matters:</strong> Traditional LLMs are stateless – they don’t “remember” anything beyond the
+context window of the current prompt. Without additional memory, an agent would quickly lose track of
+prior interactions or facts it learned, leading to repetitive questions or inconsistent behavior. Memory
+allows the agent to <strong>learn from past interactions, maintain context, and personalize responses</strong>. For
+instance, if a user’s travel-planner agent remembers that the user hates early-morning flights, it can
+avoid suggesting those in the future. Thus, memory enhances both user experience and task
+effectiveness.</p>
+<p><strong>Short-Term vs Long-Term Memory:</strong> AI agents, like humans, rely on both short-term and long-term
+memory. <strong>Short-term memory</strong> (sometimes called working memory) holds the recent context of the
+ongoing task or conversation – essentially what’s within the LLM’s context window or the last few turns
+of dialogue. It’s analogous to a conversation’s running transcript or a scratchpad of the agent’s recent
+thoughts. This is naturally limited (by token length constraints and by design, to avoid irrelevant
+buildup). Agent frameworks often maintain this short-term state as the immediate history that is fed
+into each LLM prompt. For example, the agent might keep the last user query and its own last answer
+as context for the next response, or a summary of the dialogue so far if it’s gotten long.</p>
+<p><strong>Long-term memory</strong> , on the other hand, is an enduring store of information that persists across
+sessions and tasks. It allows the agent to recall <em>facts or experiences</em> from much earlier. Long-term
+memory can include various types of knowledge: - <strong>Episodic memory:</strong> Specific past events or
+interactions the agent had (e.g., “Last week I helped the user fix a printer issue”). This is like the
+agent’s personal diary of its encounters. - <strong>Procedural memory:</strong> Learned skills or action sequences (e.g.,
+a procedure for booking a flight or troubleshooting a router). This is “how-to” knowledge the agent
+has acquired. - <strong>Semantic memory:</strong> General world knowledge or facts the agent has gained (e.g., key
+facts about products, or that “visa is required for X country”). This functions as the agent’s
+knowledge base about the domain.</p>
+<p>In an enterprise setting, long-term memory might include customer profile data, accumulated
+conversation summaries, or an evolving knowledge graph of facts the agent has confirmed. Managing
+long-term memory is complex: the agent must decide what information is worth storing for future, how
+to represent it, and how to retrieve it when relevant.</p>
+<p><strong>Memory Storage Strategies:</strong> There are several strategies (often used in combination) to implement
+memory for agents: - <strong>Summarization:</strong> Periodically summarize the conversation or recent events and
+store the summary. This condenses long dialogues into shorter paraphrases that can be kept in context.
+As new interactions happen, the agent updates the summary. This is simple and human-readable – for
+example, after a long support chat, the agent might save “Summary: user had issue X, agent walked
+through steps Y, issue resolved with solution Z.” The next time the user comes, the agent can quickly
+recall what was discussed without reading the entire transcript. - <strong>Vector Embeddings (Vectorization):</strong>
+Store pieces of information as vectors (numerical embeddings) in a vector database, to enable semantic
+search. For instance, each important statement or fact can be embedded and saved. When the agent
+needs to recall something, it transforms the query or context into a vector and finds similar vectors
+(using cosine similarity or similar). This allows <strong>contextual retrieval</strong> of relevant memories even if exact
+words differ. It’s a core technique in modern long-term memory and retrieval-augmented generation.
+Best practice is to chunk information into semantically meaningful pieces and embed them (sometimes
+called <em>semantic chunking</em> of knowledge). - <strong>Knowledge Extraction:</strong> Instead of storing raw conversation
+text, the agent can extract structured facts or key snippets and store those in a database. For example,
+from a meeting discussion an agent might extract “Decision: launch campaign on Oct 10” and store it as
+a record. Tools like a document store or JSON database can keep these facts with metadata. This way,
+later queries can directly look up the fact “campaign launch date” rather than parsing a whole
+transcript. An example from the LangChain team showed an agent extracting and writing important</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">3</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">4</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">5</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">6</span>
+</pre></div>
+</div>
+<p>facts to memory as it went. - <strong>Graph or Knowledge Base (“Graphication”):</strong> For some applications,
+representing memory as a graph of entities and relationships is useful. E.g., the agent could maintain a
+graph linking a user to their projects to the deadlines. Graph-structured memory allows more logical
+queries (like a mini knowledge graph the agent updates). It can capture relationships better than free
+text.</p>
+<p>Each method has pros and cons – summarization is easy but may omit details; vector search is powerful
+but needs tuning to avoid irrelevant hits; structured extraction is precise but requires defining what to
+extract. In practice, a combination is often used. For example, an agent might maintain a running
+summary <em>and</em> store full conversation chunks in a vector store for safety.</p>
+<p><strong>Retrieval of Memories:</strong> Storing memories is only half the battle – the agent must know <em>when and how
+to retrieve</em> relevant memories at the right time. Typically, before each agent action or each new user
+query, there is a step to fetch any pertinent long-term memory to include in the prompt. A simple
+approach is keyword search or semantic search on stored memories using the current query as the key.
+More advanced approaches let the LLM itself decide when to pull in memory. For instance, the <strong>MemGPT</strong>
+research proposes an architecture where the LLM can issue a “retrieve” command (function call) to
+query its own long-term store when needed. In practice, many implementations use a heuristic: always
+retrieve the top <em>k</em> most relevant memory items (via vector similarity) for context, and maybe the most
+recent few interactions as well. The agent’s <strong>prompt assembly</strong> will then include those memory snippets
+(e.g. “Recalling: You previously told the user X…”). As a starting point, developers often begin with
+straightforward vector search for relevant memory and evolve to more sophisticated triggers or learned
+retrieval strategies as needed.</p>
+<p><strong>Memory Management Considerations:</strong> One big issue is <strong>memory growth</strong> – as an agent interacts
+endlessly, it could accumulate an ever-growing log of everything. This is unsustainable in terms of
+storage and search efficiency. Therefore, <strong>memory decay</strong> or pruning strategies are important. The
+agent should forget or archive information that is no longer useful. For example, we can impose
+retention policies: e.g. keep only last 3 months of detailed conversation, or automatically expire
+memories that haven’t been accessed in a long time. Techniques include time-based expiration, limiting
+memory store size, or scoring memories by importance and dropping the lowest importance ones over
+time. Some vector databases or memory systems provide built-in expiry or eviction policies (Redis, for
+instance, allows setting TTL on memory records or using LRU eviction for older items). By tuning these,
+we prevent memory bloat and ensure the agent remains efficient and focused on relevant knowledge.</p>
+<p>Another consideration: <strong>sharing memory across agents or sessions.</strong> In some cases, you may have
+multiple agent instances (like one per user or one per task type) – do they share a global memory or
+have separate memories? A global knowledge base (facts learned that apply to all users) can be shared,
+whereas user-specific conversational memory should be scoped per user for privacy and relevance.
+Designing the memory architecture thus involves deciding on namespaces or partitions of memory
+data.</p>
+<p><strong>Technical Implementation:</strong> In practice, implementing memory might leverage existing tools: - <strong>Vector
+databases</strong> (like Pinecone, Weaviate, Milvus, or even Redis with vector search module) to store
+embeddings for semantic recall. - Traditional databases or key-value stores for structured memory or
+direct lookups. - Caching layers for very short-term memory (some frameworks treat the last turn or two
+as cache). - In-memory data structures vs persistent storage: short-term can be just kept in process,
+long-term should be persisted (and likely needs backup, scaling, etc., like any datastore).</p>
+<p>The <strong>CoALA</strong> memory framework (an academic proposal) and others suggest a combination of episodic/
+procedural/semantic memory modules, each possibly implemented differently^3. As a lead engineer,</p>
+<p>you should choose the types of memory your agent needs based on the use case. For a troubleshooting
+agent, procedural memory (learned troubleshooting flows) might be key; for a personal assistant,
+episodic memory of previous interactions with the user is crucial.</p>
+<p><strong>Observability of Memory Usage:</strong> When running in production, it’s important to monitor memory-
+related metrics: e.g., how often is the agent retrieving from long-term memory? Are there cache hits/
+misses? How large is the memory store growing? Which memories are most accessed? These can
+inform tuning. If you find the agent rarely uses older memories, maybe you can prune more
+aggressively. If certain queries always trigger the same large set of memories, perhaps those should be
+consolidated into a summary.</p>
+<p>In summary, <strong>memory management</strong> in AI agents involves enabling <em>recall</em> (short-term context, long-
+term knowledge), <em>learning</em> (storing new useful info), and <em>forgetting</em> (discarding or compressing old info)
+in a controlled way. Done well, it results in an agent that feels <em>smart and context-aware</em> , remembering
+important details and improving over time – a key ingredient for user trust and effectiveness.
+Neglecting memory, on the other hand, leaves an agent either forgetful (if no memory) or muddled (if
+too much irrelevant memory). The best practice is to start with a simple memory mechanism and
+iterate: gather data on what the agent really needs to remember, and evolve the memory architecture
+(perhaps moving from just summaries to vector DB to more advanced schemes as the product
+matures).</p>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="ch_monitor.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Monitoring and Observability</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="ch_llm.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">LLM – Prompts, Goals, and Persona</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2024, Deepak Karkala
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=b3ba4146"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/scripts/furo.js?v=4e2eecee"></script>
+    </body>
+</html>
